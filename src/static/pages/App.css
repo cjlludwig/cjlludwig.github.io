@@ -1,5 +1,6 @@
 .App {
   height: 100%;
+  width: 100%;
   margin: 0;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 }
@@ -25,22 +26,21 @@ h1 {
 .img-1 {
   /* background-image: url("./images/field-smallest.jpg"); */
   background-color: #344E41;
-
   min-height: 100vh;
 }
 
 .img-2 {
   /* background-image: url("./images/field-smallest.jpg"); */
   background-color: #3A5A40;
-
   min-height: 50vh;
 }
 
 .img-3 {
   /* background-image: url("./images/field-smallest.jpg"); */
   background-color: #588157;
+  height: 400px;
 
-  min-height: 50vh;
+  /* min-height: 50vh; */
 }
 
 .img-text-1, .img-text-2 {
@@ -50,14 +50,18 @@ h1 {
   text-align: center;    
 }
 
-.img-text-1 {
-  font-size: 600%;
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 2%;
+  padding-bottom: 2%;
 }
 
 .section-1 {
   color:black;
   background-color: white;
-  padding: 50px 80px;
+  padding: 50px;
   text-align: justify;
   font-size: xx-large;
   font-weight: 500;
@@ -67,6 +71,9 @@ h1 {
   margin-bottom: 2.5%;
   margin-top: 2.5%;
   font-size: 125%;
+}
+.opening-span {
+  display: inline-flex;
 }
 
 .opening-paragraph {
@@ -139,4 +146,58 @@ h1 {
 .personal-logo {
   height: 30vmin;
   pointer-events: none;
+}
+
+.aws-pic {
+  height: 70vmin;
+  pointer-events: none;
+}
+
+.img-holder {
+  padding-right: 1.5%;
+}
+
+/* Mobile */
+@media screen and (max-width:480px) {
+  /* CSS for screens that are 480px pixels or less will be put in this section */
+  h1 {
+    position: absolute; 
+    left: 0;
+    top: 45%;
+    width: 100%;
+    font-size: 3rem;
+  }
+
+  .img-text-1 {
+    color: white;
+    text-align: center;    
+  }
+
+  .section-1 {
+    font-size: large;
+    padding-right: 3%;
+    padding-left: 3%;
+  }
+
+  .default-logo {
+    height: 10vmin;
+  }
+  .App-logo {
+    height: 10vmin;
+  }
+
+  .opening-span {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 2%;
+    padding-bottom: 2%;
+  }
+
+  .img-holder {
+    text-align: center;
+    width: 100%;
+    padding-bottom: 2%;
+    padding-right: 0%;
+  }
 }

@@ -57,3 +57,49 @@
   font-size: 1em;
   color: #2d3436;
 }
+
+/* Mobile */
+@media screen and (max-width:480px) {
+  /* CSS for screens that are 480px pixels or less will be put in this section */
+  .card-wrapper {
+    text-align: center;
+    margin: 0 auto;
+    padding: 25px;
+    max-width: 300px;
+    min-width: 300px;
+  }
+
+  .name {
+    font-size: 1.4em;
+    color: #2d3436;
+    display: flex;
+    flex: 1;
+    margin: 10% 20px 0;
+  }
+  
+  .card img {
+    margin: 10px 5px 0 0;
+  }
+  
+  .circle-img {
+    border-radius: 50%;
+    border: 5px solid #fff;
+    width: 100px;
+    height: 100px;
+  }
+
+  .top {
+    border-radius: 25px 25px 0 0;
+    height: 70px;
+    width: 100%;
+    background-color: #A3B18A;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+  }
+
+  .bottom {
+    margin-top: 60px;
+  }
+}
