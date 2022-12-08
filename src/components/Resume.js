@@ -33,7 +33,16 @@ function Resume() {
   return (
     <>
       <Document file={resumePdf} onLoadSuccess={onDocumentLoadSuccess}>
-        <Page pageNumber={pageNumber} />
+        <Page 
+          key={1}
+          className={pageNumber === 1 ? "prevPage" : ""}
+          pageNumber={1} 
+        />
+        <Page
+          key={2}
+          pageNumber={2}
+          className={pageNumber === 2 ? "prevPage" : ""}
+        />
       </Document>
       <div className='pdf-buttons'>
         <button

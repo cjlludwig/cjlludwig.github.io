@@ -76,8 +76,10 @@ body {
   margin-right: auto;
 
   position: absolute;
-  left: 47%;
+  left: 40%;
+  right: 40%;
   bottom: 5%;
+  z-index: 1;
 }
 
 .pdf-buttons button {
@@ -95,3 +97,12 @@ body {
   font-size: 0.8em;
   padding: 0 0.5em;
 }
+
+.react-pdf__Page.prevPage {
+  position: absolute !important;
+  z-index: 1;
+}
+
+/* Mobile */
+/* @media screen and (max-width:960px) {
+} */

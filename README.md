@@ -1,7 +1,7 @@
 # website
 Example personal webpage in Github pages.
 
-Located at [this link](https://cjlludwig.github.io/homepage/).
+Located at [this link](https://cjlludwig.github.io).
 
 # Default React Getting Started
 

@@ -49,7 +49,7 @@ function App() {
       <div className='section-1'>
         <div className='default-paragraph'>
           <div>
-            I'm creating this page to experiment with interesting React tools. I'll also be including a variety of relevant professional info for myself and resources I`ve found useful on my journey as a software engineer. So expect updates over the coming months.
+            I'm creating this page to experiment with interesting React tools. I'll also be including a variety of relevant professional info for myself and resources I've found useful on my journey as a software engineer. So expect updates over the coming months.
           </div>
         </div>
       </div>

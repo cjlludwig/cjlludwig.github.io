@@ -53,13 +53,13 @@
 }
 
 .info {
-  margin: 20px 0;
+  margin: 10px 0;
   font-size: 1em;
   color: #2d3436;
 }
 
 /* Mobile */
-@media screen and (max-width:480px) {
+@media screen and (max-width:960px) {
   /* CSS for screens that are 480px pixels or less will be put in this section */
   .card-wrapper {
     text-align: center;
@@ -70,7 +70,7 @@
   }
 
   .name {
-    font-size: 1.4em;
+    font-size: 1.1em;
     color: #2d3436;
     display: flex;
     flex: 1;
