@@ -1,7 +1,9 @@
 # website
-Example webpage in Github pages.
+Example personal webpage in Github pages.
 
+Located at [this link](https://cjlludwig.github.io).
 
+# Default React Getting Started
 
 # Getting Started with Create React App
 

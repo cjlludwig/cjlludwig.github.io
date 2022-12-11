@@ -1,5 +1,5 @@
-import headshot from '../static/images/headshot.jpg';
-import '../static/components/ContactCard.css';
+import headshot from '../static/images/Headshot.PNG';
+import '../static/styles/components/ContactCard.css';
 
 function Card() {
   return (
@@ -14,9 +14,13 @@ function Card() {
             <b>Cell: </b>
             (XXX)-XXX-XXXX
           </p>
-          <p className="info">
             <b>Email: </b>
             <a href = "mailto: cjlludwig@gmail.com">cjlludwig@gmail.com</a>
+          <p className="info">
+          </p>
+          <p className="info">
+            <b>Github: </b>
+            <a href="https://github.com/cjlludwig">https://github.com/cjlludwig</a>
           </p>
           <p className="info">
             <b>Linkedin: </b>
