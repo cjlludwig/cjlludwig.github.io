@@ -1,5 +1,5 @@
 import headshot from '../static/images/Headshot.PNG';
-import '../static/components/ContactCard.css';
+import '../static/styles/components/ContactCard.css';
 
 function Card() {
   return (

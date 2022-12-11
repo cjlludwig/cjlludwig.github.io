@@ -1,7 +1,7 @@
 import { Document, Page, pdfjs } from 'react-pdf'
 import { useState } from 'react';
 
-import '../static/components/Resume.css'
+import '../static/styles/components/Resume.css'
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 

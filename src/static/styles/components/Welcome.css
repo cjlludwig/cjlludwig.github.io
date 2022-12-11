@@ -1,0 +1,21 @@
+.typewriter-wrapper {
+  font-family: monospace;
+  padding-top: 35vh;
+  padding-left: 35%;
+  width: 60%;
+  font-size: 3rem;
+  color: white;
+}
+
+/* Mobile */
+@media screen and (max-width:960px) {
+  /* CSS for screens that are 480px pixels or less will be put in this section */
+  .typewriter-wrapper {
+    padding-top: 35vh;
+    padding-left: 15%;
+    width: 80%;
+    font-size: 2.5rem;
+    color: white;
+  }
+
+}

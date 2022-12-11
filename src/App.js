@@ -8,17 +8,16 @@ import awsPic from './static/images/ludwig_aws.JPG';
 
 import ContactCard from './components/ContactCard';
 import Resume from './components/Resume';
+import Welcome from './components/Welcome';
 
-import './static/pages/App.css';
-// import FadeInSection from './components/FadeInSection';
-
+import './static/styles/pages/App.css';
 
 function App() {
 
   return (
     <div className="App">
       <div className='img-1'>
-        <h1 className='img-text-1'>Hello!</h1>
+        <Welcome />
       </div>
       <div className='section-1'>
         <div className='opening'>
@@ -26,17 +25,15 @@ function App() {
             <div className='img-holder'>
               <img src={awsPic} className="aws-pic" alt="AWS Pic" />
             </div>
-            <div>
+            <div className='opening-paragraph-wrapper'>
               <div>
-                <b>My name's Connor.</b>
+                <b>Connor Ludwig -</b>
               </div>
-              {/* <FadeInSection> */}
                 <div className='opening-paragraph'>
-                  I'm a full stack software engineer at John Deere. <br/>
-                  Some of my key experiences are in implementing event driven systems, managing data platforms, and creating web applications. <br/>
-                  Welcome to my website!
+                  "I'm a full-stack software engineer at John Deere. 
+                  Some of my key experiences are in event driven architectures, data platforms, and cloud-hosted web applications. 
+                  I thrive in collaborative workplaces with a focus on innovative work. I help to get the best out of my team while getting the task at hand done."
                 </div>
-              {/* </FadeInSection> */}
             </div>
           </span>
         </div>
@@ -56,8 +53,6 @@ function App() {
       <div className='img-3'>
         <ContactCard />
       </div>
-      {/* <div className='img-4'>
-      </div> */}
       <div className='built-section'>
         <div>
           <div className='built'>

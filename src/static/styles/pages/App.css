@@ -10,7 +10,6 @@ h1 {
   left: 0;
   top: 45%;
   width: 100%;
-  text-align: center;
   font-size: 4rem;
 }
 
@@ -27,6 +26,7 @@ h1 {
   /* background-image: url("./images/field-smallest.jpg"); */
   background-color: #344E41;
   min-height: 100vh;
+  text-align: left;
 }
 
 .img-2 {
@@ -75,10 +75,15 @@ h1 {
 .opening-span {
   display: inline-flex;
 }
+.opening-paragraph-wrapper {
+  padding-top: 5%;
+  text-align: left;
+}
 
 .opening-paragraph {
   padding-top: 2.5%;
-  padding-left: 5%;
+  padding-left: 3%;
+  padding-right: 3%;
 }
 
 .default-paragraph {
