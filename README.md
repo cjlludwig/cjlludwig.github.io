@@ -1,4 +1,4 @@
-# website
+# Connor Ludwig's Personal Website
 Example personal webpage in Github pages.
 
 Located at [this link](https://cjlludwig.github.io).
