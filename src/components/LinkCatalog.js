@@ -55,14 +55,12 @@ function LinkCatalog() {
       <h2 className='link-header'>
         Link Drawer
       </h2>
-      <Accordion
-      // defaultActiveKey="0"
-      >
+      <Accordion>
         {
           links.map((data, index) => {
             const { name, url, description } = data;
             return (
-              <Accordion.Item eventKey={index + 1}>
+              <Accordion.Item key={index} eventKey={index + 1}>
                 <Accordion.Header>
                  {name}
                 </Accordion.Header>

@@ -10,6 +10,7 @@ import ContactCard from './components/ContactCard';
 import Resume from './components/Resume';
 import Welcome from './components/Welcome';
 import LinkCatalog from './components/LinkCatalog';
+import Header from './components/Header';
 
 import './static/styles/pages/App.css';
 
@@ -17,10 +18,11 @@ function App() {
 
   return (
     <div className="App">
-      <div className='img-1'>
+      <div id="home" className='img-1'>
         <Welcome />
       </div>
-      <div className='section-1'>
+      <Header />
+      <div id="aboutMe" className='section-1'>
         <div className='opening'>
           <span className='opening-span'>
             <div className='img-holder'>
@@ -39,7 +41,7 @@ function App() {
           </span>
         </div>
       </div>
-      <div className='img-2'>
+      <div id="resume" className='img-2'>
         <div className='center'>
           <Resume />
         </div>
@@ -51,12 +53,12 @@ function App() {
           </div>
         </div>
       </div>
-      <div className='img-catalog'>
+      <div id="links" className='img-catalog'>
         <LinkCatalog />
       </div>
       <div className='section-1'>
       </div>
-      <div className='img-card'>
+      <div id="contactCard" className='img-card'>
         <ContactCard />
       </div>
       <div className='built-section'>
