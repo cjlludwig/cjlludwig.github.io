@@ -1,24 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.ea110ae8.css",
-    "main.js": "/static/js/main.de5ea7fb.js",
+    "main.css": "/static/css/main.93cbe4c9.css",
+    "main.js": "/static/js/main.441fcdda.js",
     "static/js/787.9e216e8c.chunk.js": "/static/js/787.9e216e8c.chunk.js",
     "static/media/Headshot.PNG": "/static/media/Headshot.f283f1f41f007cf1588a.PNG",
     "static/media/ludwig_aws.JPG": "/static/media/ludwig_aws.7f9b75dcb3bc32d38249.JPG",
-    "static/media/cjludwig_resume.pdf": "/static/media/cjludwig_resume.e7428008fc2b401b0b8b.pdf",
+    "static/media/cjludwig_resume.pdf": "/static/media/cjludwig_resume.fabadbb25ca05b4f90be.pdf",
     "static/media/logo_transparent512.png": "/static/media/logo_transparent512.ad915eaf81bdcc2dfc6e.png",
+    "static/media/web-link.png": "/static/media/web-link.97f9aafc6bf4ff934838.png",
     "static/media/GitHub_Logo.png": "/static/media/GitHub_Logo.746ec8f0bc97208f903e.png",
     "static/media/docker.svg": "/static/media/docker.3253a6fe64f326e90f1716b7069eeeb8.svg",
     "static/media/Node.js_logo.svg": "/static/media/Node.js_logo.dd47e26ed1d7dddf018e5cbffc40f76d.svg",
     "static/media/vscode.svg": "/static/media/vscode.5f6c87ee85944898b6682f2a2a13df91.svg",
     "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/index.html",
-    "main.ea110ae8.css.map": "/static/css/main.ea110ae8.css.map",
-    "main.de5ea7fb.js.map": "/static/js/main.de5ea7fb.js.map",
+    "main.93cbe4c9.css.map": "/static/css/main.93cbe4c9.css.map",
+    "main.441fcdda.js.map": "/static/js/main.441fcdda.js.map",
     "787.9e216e8c.chunk.js.map": "/static/js/787.9e216e8c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ea110ae8.css",
-    "static/js/main.de5ea7fb.js"
+    "static/css/main.93cbe4c9.css",
+    "static/js/main.441fcdda.js"
   ]
 }
