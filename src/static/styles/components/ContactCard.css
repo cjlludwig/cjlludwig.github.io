@@ -1,21 +1,23 @@
 
-.card-wrapper {
+.contact-card-wrapper {
   text-align: center;
   margin: 0 auto;
   padding: 25px;
-  max-width: 400px;
-  min-width: 400px;
+  max-width: 450px;
+  min-width: 450px;
+  /* width: 400px; */
 }
 
-.card {
+.contact-card {
   border-radius: 25px;
   position: relative;
   padding: 25px 15px;
   background-color: #DAD7CD;
   margin: 50px 0;
-  height: 200px;
+  height: fit-content;
   box-shadow: 0 2px 5px #ccc;
   text-align: left;
+  width: 400px;
 }
 
 .top {
@@ -61,20 +63,20 @@
 /* Mobile */
 @media screen and (max-width:960px) {
   /* CSS for screens that are 480px pixels or less will be put in this section */
-  .card-wrapper {
+  .contact-card-wrapper {
     text-align: center;
     margin: 0 auto;
     padding: 25px;
-    max-width: 300px;
-    min-width: 300px;
+    max-width: 450px;
+    min-width: 450px;
   }
 
   .name {
-    font-size: 1.1em;
+    font-size: 1.5em;
     color: #2d3436;
     display: flex;
     flex: 1;
-    margin: 10% 20px 0;
+    margin: 5% 20px 0;
   }
   
   .card img {
@@ -84,8 +86,8 @@
   .circle-img {
     border-radius: 50%;
     border: 5px solid #fff;
-    width: 100px;
-    height: 100px;
+    width: 125px;
+    height: 125px;
   }
 
   .top {

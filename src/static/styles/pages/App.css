@@ -35,12 +35,16 @@ h1 {
   min-height: 50vh;
 }
 
-.img-3 {
+.img-card {
   /* background-image: url("./images/field-smallest.jpg"); */
-  background-color: #588157;
-  height: 400px;
+  background-color: #84a98c;
+  height: fit-content;
+}
 
-  /* min-height: 50vh; */
+.img-catalog {
+  height: fit-content;
+  background-color: #588157;
+
 }
 
 .img-text-1, .img-text-2 {
