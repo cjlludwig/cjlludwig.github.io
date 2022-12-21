@@ -3,8 +3,8 @@ import '../static/styles/components/ContactCard.css';
 
 function Card() {
   return (
-    <div className='card-wrapper'>
-      <div className="card">
+    <div className='contact-card-wrapper'>
+      <div className="contact-card">
         <div className="top">
           <h2 className="name">Connor J Ludwig</h2>
           <img className="circle-img" src={headshot} alt="avatar_img" />

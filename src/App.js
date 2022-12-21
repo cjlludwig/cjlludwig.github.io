@@ -9,6 +9,8 @@ import awsPic from './static/images/ludwig_aws.JPG';
 import ContactCard from './components/ContactCard';
 import Resume from './components/Resume';
 import Welcome from './components/Welcome';
+import LinkCatalog from './components/LinkCatalog';
+import Header from './components/Header';
 
 import './static/styles/pages/App.css';
 
@@ -16,10 +18,11 @@ function App() {
 
   return (
     <div className="App">
-      <div className='img-1'>
+      <div id="home" className='img-1'>
         <Welcome />
       </div>
-      <div className='section-1'>
+      <Header />
+      <div id="aboutMe" className='section-1'>
         <div className='opening'>
           <span className='opening-span'>
             <div className='img-holder'>
@@ -38,7 +41,7 @@ function App() {
           </span>
         </div>
       </div>
-      <div className='img-2'>
+      <div id="resume" className='img-2'>
         <div className='center'>
           <Resume />
         </div>
@@ -50,7 +53,12 @@ function App() {
           </div>
         </div>
       </div>
-      <div className='img-3'>
+      <div id="links" className='img-catalog'>
+        <LinkCatalog />
+      </div>
+      <div className='section-1'>
+      </div>
+      <div id="contactCard" className='img-card'>
         <ContactCard />
       </div>
       <div className='built-section'>
@@ -60,11 +68,34 @@ function App() {
           </div>
           <div>
             <span>
-              <img src={logo} className="App-logo" alt="React logo" href="https://reactjs.org" />
-              <img src={nodeLogo} className="default-logo" alt="Node logo" href="https://nodejs.org/en/docs/guides/getting-started-guide/"/>
-              <img src={gitLogo} className="default-logo" alt="Github logo" href="https://github.com/cjlludwig"/>
-              <img src={dockerLogo} className="default-logo" alt="Docker logo" href="https://www.docker.com/get-started/"/>
-              <img src={vsCodeLogo} className="default-logo" alt="Vs Code logo" href="https://code.visualstudio.com/"/>
+              <a href="https://reactjs.org">
+                <img src={logo} className="App-logo" alt="React logo" />
+              </a>
+              <a href="https://nodejs.org/en/docs/guides/getting-started-guide/">
+                <img src={nodeLogo} className="default-logo" alt="Node logo" />
+              </a>
+              <a href="https://github.com/cjlludwig">
+                <img src={gitLogo} className="default-logo" alt="Github logo" />
+              </a>
+              <a href="https://www.docker.com/get-started/">
+                <img src={dockerLogo} className="default-logo" alt="Docker logo" />
+              </a>
+              <a href="https://code.visualstudio.com/">
+                <img src={vsCodeLogo} className="default-logo" alt="Vs Code logo" />
+              </a>
+              <a href="https://www.flaticon.com/free-icons/http">
+                <img 
+                  src="https://media.flaticon.com/dist/min/img/logo/flaticon_negative.svg" 
+                  className="default-logo"  
+                  alt="Flaticon logo"
+                  style={{
+                    paddingLeft: "10px",
+                    width: "17%",
+                    objectFit: "cover",
+                    objectPosition: "0 100%"
+                  }}
+                />
+              </a>
             </span>
           </div>
           <img style={{padding:"10px"}} src={personalLogo} className="personal-logo" alt="Personal logo" />

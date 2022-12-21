@@ -12,7 +12,7 @@ function Welcome() {
             .typeString("\nMy name's Connor.<br>")
             .pauseFor(300)
             .typeString("\nWelcome to my site!<br>")
-            .pauseFor(2000)
+            .pauseFor(1000)
             .typeString("\nScroll on for more...")
             .start();
         }}

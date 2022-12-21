@@ -1,0 +1,49 @@
+.header-navbar-scrolling {
+  align-items: center;
+  width: 100%;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  background-color: #344E41;
+  text-align: left;
+  z-index: 100;
+  height: 100px;
+}
+
+.header-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  background-color: #344E41;
+  text-align: left;
+  height: 100px;
+
+}
+
+.header-logo {
+  height: 12vmin;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
+}
+
+/* Mobile */
+@media screen and (max-width:960px) {
+  /* CSS for screens that are 480px pixels or less will be put in this section */
+  .header-navbar-scrolling {
+    height: 80px;
+    margin-top: -1px;
+  }
+  
+  .header-navbar {
+    height: 80px;
+    margin-top: -1px;
+  }
+}
