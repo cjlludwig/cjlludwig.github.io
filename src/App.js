@@ -22,7 +22,8 @@ function App() {
         <Welcome />
       </div>
       <Header />
-      <div id="aboutMe" className='section-1'>
+      <div id="aboutMe" className="anchor" />
+      <div className='section-1'>
         <div className='opening'>
           <span className='opening-span'>
             <div className='img-holder'>
@@ -41,7 +42,8 @@ function App() {
           </span>
         </div>
       </div>
-      <div id="resume" className='img-2'>
+      <div id="resume" className="anchor" />
+      <div className='img-2'>
         <div className='center'>
           <Resume />
         </div>
@@ -53,12 +55,14 @@ function App() {
           </div>
         </div>
       </div>
-      <div id="links" className='img-catalog'>
+      <div id="links" className="anchor" />
+      <div className='img-catalog'>
         <LinkCatalog />
       </div>
       <div className='section-1'>
       </div>
-      <div id="contactCard" className='img-card'>
+      <div id="contactCard" className="anchor" />
+      <div className='img-card'>
         <ContactCard />
       </div>
       <div className='built-section'>
@@ -99,6 +103,7 @@ function App() {
             </span>
           </div>
           <img style={{padding:"10px"}} src={personalLogo} className="personal-logo" alt="Personal logo" />
+          <div className="mobile-spacer"/>
         </div>
       </div>
     </div>

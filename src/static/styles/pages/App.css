@@ -41,6 +41,12 @@ h1 {
   height: fit-content;
 }
 
+.anchor {
+  margin-top: -99px;
+  padding-bottom: 99px;
+  height: 0px;
+}
+
 .img-catalog {
   height: fit-content;
   background-color: #588157;
@@ -150,6 +156,9 @@ h1 {
 .default-logo {
   height: 20vmin;
   pointer-events: none;
+  padding-top: 10px;
+  padding-left: 10px;
+
 }
 
 .personal-logo {
@@ -164,6 +173,9 @@ h1 {
 
 .img-holder {
   padding-right: 1.5%;
+}
+.mobile-spacer {
+  height: 0px;
 }
 
 /* Mobile */
@@ -208,5 +220,15 @@ h1 {
     width: 100%;
     padding-bottom: 2%;
     padding-right: 0%;
+  }
+
+  .mobile-spacer {
+    height: 125px
+  }
+
+  .anchor {
+    margin-top: -0px;
+    padding-bottom: 0px;
+    height: 0px;
   }
 }
