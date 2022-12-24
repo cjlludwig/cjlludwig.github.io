@@ -48,20 +48,19 @@ a:active {
   position: fixed;
   bottom: 0;
   height: 125px;
-  margin-top: -1px;
   font-size: 1.3rem;
   z-index: 100;
   background-color: #344E41;
   text-align: left;
   line-height: 1.5;
   width: 100%;
+  margin-bottom: -1px;
 }
 
 
 /* Mobile */
 @media screen and (max-width:960px) {
   /* CSS for screens that are 480px pixels or less will be put in this section */
-
   .header-logo {
     height: 125px;
   }

@@ -8,6 +8,7 @@
     "react": "18.2.0",
     "react-bootstrap": "2.7.0",
     "react-dom": "18.2.0",
+    "react-gtm-module": "2.0.11",
     "react-pdf": "6.2.0",
     "react-scripts": "5.0.1",
     "react-tiny-link": "3.6.1",
