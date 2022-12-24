@@ -12,19 +12,19 @@ function Card() {
         <div className="bottom">
           <p className="info">
             <b>Cell: </b>
-            (XXX)-XXX-XXXX
+            &emsp;&emsp;(712)-830-6202
           </p>
             <b>Email: </b>
-            <a href = "mailto: cjlludwig@gmail.com">cjlludwig@gmail.com</a>
+            &emsp;&ensp;<a href = "mailto: cjlludwig@gmail.com">cjlludwig@gmail.com</a>
           <p className="info">
           </p>
           <p className="info">
             <b>Github: </b>
-            <a href="https://github.com/cjlludwig">https://github.com/cjlludwig</a>
+            &emsp;<a href="https://github.com/cjlludwig">https://github.com/cjlludwig</a>
           </p>
           <p className="info">
             <b>Linkedin: </b>
-            <a href="www.linkedin.com/in/connor-ludwig/">www.linkedin.com/in/connor-ludwig/</a>
+            &nbsp;<a href="www.linkedin.com/in/connor-ludwig/">www.linkedin.com/in/connor-ludwig/</a>
           </p>
         </div>
       </div>
