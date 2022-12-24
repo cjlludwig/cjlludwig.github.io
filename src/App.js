@@ -5,6 +5,7 @@ import dockerLogo from './static/images/docker.svg';
 import vsCodeLogo from './static/images/vscode.svg';
 import personalLogo from './static/images/logo_transparent512.png';
 import awsPic from './static/images/ludwig_aws.JPG';
+import googleAnalyticsLogo from './static/images/Logo_Google_Analytics.png';
 
 import ContactCard from './components/ContactCard';
 import Resume from './components/Resume';
@@ -83,6 +84,9 @@ function App() {
               </a>
               <a href="https://www.docker.com/get-started/">
                 <img src={dockerLogo} className="default-logo" alt="Docker logo" />
+              </a>
+              <a href="https://analytics.google.com/analytics/web/">
+                <img src={googleAnalyticsLogo} className="default-logo" alt="Google Analytics logo" />
               </a>
               <a href="https://code.visualstudio.com/">
                 <img src={vsCodeLogo} className="default-logo" alt="Vs Code logo" />
