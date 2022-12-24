@@ -4,6 +4,11 @@ import LinkAccordion from './LinkAccordion';
 
 const articles = [
   {
+    name: "Politics of ChatGPT",
+    description: "Great article done on the political sentiment of the AI tool ChatGPT. The author used some standard political sentiment quizzes to check the AI's alignment and offered great visualizations to demonstrate it's change over time.",
+    url: "https://davidrozado.substack.com/p/chatgpt"
+  },
+  {
     name: "Tao of Node",
     description: "Opinionated piece with some interesting and useful insights on Node Best Practices.",
     url: "https://alexkondov.com/tao-of-node/"
