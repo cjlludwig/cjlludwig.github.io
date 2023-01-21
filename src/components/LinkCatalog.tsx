@@ -1,8 +1,9 @@
 import '../static/styles/components/LinkCatalog.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LinkAccordion from './LinkAccordion';
+import { Links } from '../models/links';
 
-const articles = [
+const articles: Links[] = [
   {
     name: "Politics of ChatGPT",
     description: "Great article done on the political sentiment of the AI tool ChatGPT. The author used some standard political sentiment quizzes to check the AI's alignment and offered great visualizations to demonstrate it's change over time.",
@@ -25,7 +26,7 @@ const articles = [
   },
 ];
 
-const tools = [
+const tools: Links[] = [
   {
     name: "Vs Code Dev Containers",
     description: "An awesome new extension in Vs Code that allows developers to associate dvelopment containers with their code. Greatly reduces start up costs for new team members.",
@@ -53,7 +54,7 @@ const tools = [
   }
 ];
 
-const news = [
+const news: Links[] = [
   {
     name: "Node Weekly Newsletter",
     description: "Newsletter I use to keep up with Node framework changes.",

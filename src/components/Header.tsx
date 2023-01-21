@@ -9,11 +9,11 @@ function Header() {
   const [ pixelsScrolled, setPixelsScrolled ] = useState(window.scrollY);
   const [ isSticky, setSticky ] = useState(false);
   const [ height, setHeight ] = useState(0);
-  const navbarRef = useRef(null);
+  const navbarRef = useRef<HTMLDivElement>(null);
   const viewportHeight = window.innerHeight;
   const isMobile = window.innerWidth <= 960; // Common mobile cutoff
 
-  const handleNavigation = useCallback(e => {
+  const handleNavigation = useCallback((e: { currentTarget: any }) => {
     const window = e.currentTarget;
 
     if (isMobile) {
@@ -48,7 +48,9 @@ function Header() {
   }, [handleNavigation]);
 
   useEffect(() => {
-    setHeight(navbarRef.current.clientHeight)
+    if (navbarRef.current) {
+      setHeight(navbarRef.current.clientHeight)
+    }
   }, [])
 
   return ( 

@@ -4,7 +4,7 @@ import gitLogo from './static/images/GitHub_Logo.png';
 import dockerLogo from './static/images/docker.svg';
 import vsCodeLogo from './static/images/vscode.svg';
 import personalLogo from './static/images/logo_transparent512.png';
-import awsPic from './static/images/ludwig_aws.JPG';
+import awsPic from './static/images/reinvent.jpg';
 import googleAnalyticsLogo from './static/images/Logo_Google_Analytics.png';
 
 import ContactCard from './components/ContactCard';

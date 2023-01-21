@@ -1,4 +1,4 @@
-import headshot from '../static/images/Headshot.PNG';
+import headshot from '../static/images/cjl_headshot.png';
 import '../static/styles/components/ContactCard.css';
 
 function Card() {
