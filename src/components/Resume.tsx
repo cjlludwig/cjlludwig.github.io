@@ -10,15 +10,16 @@ import resumePdf from '../static/images/cjludwig_resume.pdf'
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 function Resume() {
-  const [numPages, setNumPages] = useState(null);
+  const [numPages, setNumPages] = useState<number | null>(null);
   const [pageNumber, setPageNumber] = useState(1);
 
-  function onDocumentLoadSuccess({ numPages }) {
+  function onDocumentLoadSuccess(loadEvent: { numPages: number }) {
+    const { numPages } = loadEvent;
     setNumPages(numPages);
     setPageNumber(1);
   }
-
-  function changePage(offset) {
+ 
+  function changePage(offset: number) {
     setPageNumber(prevPageNumber => prevPageNumber + offset);
   }
 
@@ -57,7 +58,7 @@ function Resume() {
         </span>
         <button
           type="button"
-          disabled={pageNumber >= numPages}
+          disabled={numPages ? pageNumber >= numPages : true}
           onClick={nextPage}
         >
           {">"}

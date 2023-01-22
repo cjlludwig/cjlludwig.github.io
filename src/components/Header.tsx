@@ -8,24 +8,32 @@ function Header() {
   const [ navBarClass, setNavBarClass ] = useState("header-navbar-scrolling");
   const [ pixelsScrolled, setPixelsScrolled ] = useState(window.scrollY);
   const [ isSticky, setSticky ] = useState(false);
-  const [height, setHeight] = useState(0);
-  const navbarRef = useRef(null);
+  const [ height, setHeight ] = useState(0);
+  const navbarRef = useRef<HTMLDivElement>(null);
   const viewportHeight = window.innerHeight;
+  const isMobile = window.innerWidth <= 960; // Common mobile cutoff
 
-  const handleNavigation = useCallback(e => {
+  const handleNavigation = useCallback((e: { currentTarget: any }) => {
     const window = e.currentTarget;
-    
-    if (window.scrollY <= viewportHeight) {
-      console.log("hit");
-      setNavBarClass("header-navbar-scrolling");
-      setSticky(false);
-    }
 
-    if (window.scrollY >= viewportHeight) {
-      console.log("hit");
-      setNavBarClass("header-navbar");
-      setSticky(true);
-
+    if (isMobile) {
+      if (window.scrollY <= height) {
+        setNavBarClass("header-navbar-scrolling-mobile");
+        setSticky(false);
+      }
+      if (window.scrollY >= height) {
+        setNavBarClass("header-navbar-mobile");
+        setSticky(true);
+      }
+    } else {
+      if (window.scrollY <= viewportHeight) {
+        setNavBarClass("header-navbar-scrolling");
+        setSticky(false);
+      }
+      if (window.scrollY >= viewportHeight) {
+        setNavBarClass("header-navbar");
+        setSticky(true);
+      }
     }
     setPixelsScrolled(window.scrollY);
   }, [ pixelsScrolled, viewportHeight ]);
@@ -40,7 +48,9 @@ function Header() {
   }, [handleNavigation]);
 
   useEffect(() => {
-    setHeight(navbarRef.current.clientHeight)
+    if (navbarRef.current) {
+      setHeight(navbarRef.current.clientHeight)
+    }
   }, [])
 
   return ( 
@@ -53,7 +63,7 @@ function Header() {
           <img className="header-logo" src={personalLogo} alt="Personal logo"/>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Collapse id="basic-navbar-nav" className='navbar-links-span'>
           <Nav className="mr-auto" >
             <Nav.Link key= '1' eventKey='1' href="#home" style={{ color: 'white' }}>Home</Nav.Link>
             <Nav.Link key= '2' href="#aboutMe" style={{ color: 'white' }}>About Me</Nav.Link>

@@ -4,7 +4,8 @@ import gitLogo from './static/images/GitHub_Logo.png';
 import dockerLogo from './static/images/docker.svg';
 import vsCodeLogo from './static/images/vscode.svg';
 import personalLogo from './static/images/logo_transparent512.png';
-import awsPic from './static/images/ludwig_aws.JPG';
+import awsPic from './static/images/reinvent.jpg';
+import googleAnalyticsLogo from './static/images/Logo_Google_Analytics.png';
 
 import ContactCard from './components/ContactCard';
 import Resume from './components/Resume';
@@ -15,14 +16,14 @@ import Header from './components/Header';
 import './static/styles/pages/App.css';
 
 function App() {
-
   return (
     <div className="App">
       <div id="home" className='img-1'>
         <Welcome />
       </div>
       <Header />
-      <div id="aboutMe" className='section-1'>
+      <div id="aboutMe" className="anchor" />
+      <div className='section-1'>
         <div className='opening'>
           <span className='opening-span'>
             <div className='img-holder'>
@@ -41,7 +42,8 @@ function App() {
           </span>
         </div>
       </div>
-      <div id="resume" className='img-2'>
+      <div id="resume" className="anchor" />
+      <div className='img-2'>
         <div className='center'>
           <Resume />
         </div>
@@ -53,12 +55,14 @@ function App() {
           </div>
         </div>
       </div>
-      <div id="links" className='img-catalog'>
+      <div id="links" className="anchor" />
+      <div className='img-catalog'>
         <LinkCatalog />
       </div>
       <div className='section-1'>
       </div>
-      <div id="contactCard" className='img-card'>
+      <div id="contactCard" className="anchor" />
+      <div className='img-card'>
         <ContactCard />
       </div>
       <div className='built-section'>
@@ -80,6 +84,9 @@ function App() {
               <a href="https://www.docker.com/get-started/">
                 <img src={dockerLogo} className="default-logo" alt="Docker logo" />
               </a>
+              <a href="https://analytics.google.com/analytics/web/">
+                <img src={googleAnalyticsLogo} className="default-logo" alt="Google Analytics logo" />
+              </a>
               <a href="https://code.visualstudio.com/">
                 <img src={vsCodeLogo} className="default-logo" alt="Vs Code logo" />
               </a>
@@ -99,6 +106,7 @@ function App() {
             </span>
           </div>
           <img style={{padding:"10px"}} src={personalLogo} className="personal-logo" alt="Personal logo" />
+          <div className="mobile-spacer"/>
         </div>
       </div>
     </div>

@@ -1,0 +1,14 @@
+.link-pic {
+  height: 20vmin;
+  padding: 10px;
+}
+
+.link-span {
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+}
+
+.link-card {
+  width: 100%;
+}

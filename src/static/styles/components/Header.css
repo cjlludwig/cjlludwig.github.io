@@ -1,5 +1,4 @@
 .header-navbar-scrolling {
-  align-items: center;
   width: 100%;
   font-size: 1.25rem;
   line-height: 1.5;
@@ -23,7 +22,7 @@
 }
 
 .header-logo {
-  height: 12vmin;
+  height: 100px;
 }
 
 a:hover {
@@ -34,16 +33,40 @@ a:active {
   text-decoration: underline;
 }
 
+.header-navbar-scrolling-mobile {
+  height: 125px;
+  margin-top: -1px;
+  font-size: 1.3rem;
+  z-index: 100;
+  background-color: #344E41;
+  text-align: left;
+  line-height: 1.5;
+  width: 100%;
+}
+
+.header-navbar-mobile {
+  position: fixed;
+  bottom: 0;
+  height: 125px;
+  font-size: 1.3rem;
+  z-index: 100;
+  background-color: #344E41;
+  text-align: left;
+  line-height: 1.5;
+  width: 100%;
+  margin-bottom: -1px;
+}
+
+
 /* Mobile */
 @media screen and (max-width:960px) {
   /* CSS for screens that are 480px pixels or less will be put in this section */
-  .header-navbar-scrolling {
-    height: 80px;
-    margin-top: -1px;
+  .header-logo {
+    height: 125px;
   }
-  
-  .header-navbar {
-    height: 80px;
-    margin-top: -1px;
+
+  .navbar-links-span {
+    position: absolute;
+    right: 2%;
   }
 }
