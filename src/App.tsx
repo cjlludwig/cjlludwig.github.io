@@ -16,7 +16,6 @@ import Header from './components/Header';
 import './static/styles/pages/App.css';
 
 function App() {
-
   return (
     <div className="App">
       <div id="home" className='img-1'>

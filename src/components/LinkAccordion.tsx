@@ -1,17 +1,14 @@
 import { useState } from "react";
 import Accordion from 'react-bootstrap/Accordion';
-// import { ReactTinyLink } from 'react-tiny-link';
 import { Links } from '../models/links';
 import linkPic from '../static/images/web-link.png';
-
+import { Card } from "react-bootstrap";
+import '../static/styles/components/LinkAccordion.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-const { ReactTinyLink } = require("react-tiny-link");
 
 function LinkAccordion<Props extends { links: Links[] }>(props: Props) {
   const { links=[] } = props;
   const [ openKey, setOpen ] = useState<number | null>(null);
-  // const proxy = process.env.REACT_APP_ENV === "dev" ? "https://proxy.cors.sh" : "";
 
   return (
     <Accordion >
@@ -27,24 +24,16 @@ function LinkAccordion<Props extends { links: Links[] }>(props: Props) {
             </Accordion.Header>
             <Accordion.Body>
               {openKey === index &&
-                <ReactTinyLink
-                  width="100%"
-                  description={description}
-                  defaultMedia={linkPic}
-                  cardSize="small"
-                  showGraphic={true}
-                  maxLine={3}
-                  minLine={2}
-                  url={url}
-                  proxyUrl={""}
-                  requestHeaders={ { 
-                    "Access-Control-Allow-Origin": "https://cjlludwig.github.io" ,
-                    // "Access-Control-Allow-Headers":"*",
-                    'Access-Control-Allow-Methods': 'HEAD, GET', // OPTIONS
-                    // "Access-Control-Max-Age": 1000,
-                    "Origin": "https://cjlludwig.github.io"
-                  } }
-                />
+              <a href={url} style={{ textDecoration: "none", color: "inherit" }}>
+                <span className="link-span">
+                  <img src={linkPic} className="link-pic" alt="default link" />
+                  <Card className="link-card">
+                    <Card.Header>{name}</Card.Header>
+                    <Card.Body>{description}</Card.Body>
+                    <Card.Footer style={{ textDecoration: "underline", color: "blue" }}>{url}</Card.Footer>
+                  </Card>
+                </span>
+              </a>
               } 
             </Accordion.Body>
           </Accordion.Item>
