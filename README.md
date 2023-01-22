@@ -1,7 +1,7 @@
 # Connor Ludwig's Personal Website
 Example personal webpage in Github pages.
 
-Located at [this link](https://cjlludwig.github.io).
+Located at [https://cjlludwig.github.io](https://cjlludwig.github.io).
 
 ## Details
 
