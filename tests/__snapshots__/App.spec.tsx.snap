@@ -1,0 +1,189 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> renders correctly 1`] = `
+<div
+  className="App"
+>
+  <div
+    className="img-1"
+    id="home"
+  />
+  <div
+    className="anchor"
+    id="aboutMe"
+  />
+  <div
+    className="section-1"
+  >
+    <div
+      className="opening"
+    >
+      <span
+        className="opening-span"
+      >
+        <div
+          className="img-holder"
+        >
+          <img
+            alt="AWS Pic"
+            className="aws-pic"
+            src=""
+          />
+        </div>
+        <div
+          className="opening-paragraph-wrapper"
+        >
+          <div>
+            <b>
+              Connor Ludwig -
+            </b>
+          </div>
+          <div
+            className="opening-paragraph"
+          >
+            "I'm a full-stack software engineer at John Deere. Some of my key experiences are in event driven architectures, data platforms, and cloud-hosted web applications. I thrive in collaborative workplaces with a focus on innovative work. I help to get the best out of my team while getting the task at hand done."
+          </div>
+        </div>
+      </span>
+    </div>
+  </div>
+  <div
+    className="anchor"
+    id="resume"
+  />
+  <div
+    className="img-2"
+  >
+    <div
+      className="center"
+    />
+  </div>
+  <div
+    className="section-1"
+  >
+    <div
+      className="default-paragraph"
+    >
+      <div>
+        I'm creating this page to experiment with interesting React tools. I'll also be including a variety of relevant professional info for myself and resources I've found useful on my journey as a software engineer. So expect updates over the coming months.
+      </div>
+    </div>
+  </div>
+  <div
+    className="anchor"
+    id="links"
+  />
+  <div
+    className="img-catalog"
+  />
+  <div
+    className="section-1"
+  />
+  <div
+    className="anchor"
+    id="contactCard"
+  />
+  <div
+    className="img-card"
+  />
+  <div
+    className="built-section"
+  >
+    <div>
+      <div
+        className="built"
+      >
+        Built with
+      </div>
+      <div>
+        <span>
+          <a
+            href="https://reactjs.org"
+          >
+            <img
+              alt="React logo"
+              className="App-logo"
+              src=""
+            />
+          </a>
+          <a
+            href="https://nodejs.org/en/docs/guides/getting-started-guide/"
+          >
+            <img
+              alt="Node logo"
+              className="default-logo"
+              src=""
+            />
+          </a>
+          <a
+            href="https://github.com/cjlludwig"
+          >
+            <img
+              alt="Github logo"
+              className="default-logo"
+              src=""
+            />
+          </a>
+          <a
+            href="https://www.docker.com/get-started/"
+          >
+            <img
+              alt="Docker logo"
+              className="default-logo"
+              src=""
+            />
+          </a>
+          <a
+            href="https://analytics.google.com/analytics/web/"
+          >
+            <img
+              alt="Google Analytics logo"
+              className="default-logo"
+              src=""
+            />
+          </a>
+          <a
+            href="https://code.visualstudio.com/"
+          >
+            <img
+              alt="Vs Code logo"
+              className="default-logo"
+              src=""
+            />
+          </a>
+          <a
+            href="https://www.flaticon.com/free-icons/http"
+          >
+            <img
+              alt="Flaticon logo"
+              className="default-logo"
+              src="https://media.flaticon.com/dist/min/img/logo/flaticon_negative.svg"
+              style={
+                {
+                  "objectFit": "cover",
+                  "objectPosition": "0 100%",
+                  "paddingLeft": "10px",
+                  "width": "17%",
+                }
+              }
+            />
+          </a>
+        </span>
+      </div>
+      <img
+        alt="Personal logo"
+        className="personal-logo"
+        src=""
+        style={
+          {
+            "padding": "10px",
+          }
+        }
+      />
+      <div
+        className="mobile-spacer"
+      />
+    </div>
+  </div>
+</div>
+`;
