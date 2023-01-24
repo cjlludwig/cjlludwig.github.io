@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> renders correctly 1`] = `
+<nav
+  className="header-navbar-scrolling navbar navbar-expand navbar-light"
+>
+  <a
+    className="navbar-brand"
+    href="/"
+  >
+    <img
+      alt="Personal logo"
+      className="header-logo"
+      src=""
+    />
+  </a>
+  <button
+    aria-controls="basic-navbar-nav"
+    aria-label="Toggle navigation"
+    className="navbar-toggler collapsed"
+    onClick={[Function]}
+    type="button"
+  >
+    <span
+      className="navbar-toggler-icon"
+    />
+  </button>
+  <div
+    aria-expanded={null}
+    className="navbar-links-span navbar-collapse collapse"
+    id="basic-navbar-nav"
+  >
+    <div
+      className="mr-auto navbar-nav"
+      onKeyDown={[Function]}
+    >
+      <a
+        className="nav-link"
+        data-rr-ui-event-key="1"
+        disabled={false}
+        href="#home"
+        onClick={[Function]}
+        style={
+          {
+            "color": "white",
+          }
+        }
+      >
+        Home
+      </a>
+      <a
+        className="nav-link"
+        data-rr-ui-event-key="#aboutMe"
+        disabled={false}
+        href="#aboutMe"
+        onClick={[Function]}
+        style={
+          {
+            "color": "white",
+          }
+        }
+      >
+        About Me
+      </a>
+      <a
+        className="nav-link"
+        data-rr-ui-event-key="#resume"
+        disabled={false}
+        href="#resume"
+        onClick={[Function]}
+        style={
+          {
+            "color": "white",
+          }
+        }
+      >
+        Resume
+      </a>
+      <a
+        className="nav-link"
+        data-rr-ui-event-key="#links"
+        disabled={false}
+        href="#links"
+        onClick={[Function]}
+        style={
+          {
+            "color": "white",
+          }
+        }
+      >
+        Links
+      </a>
+      <a
+        className="nav-link"
+        data-rr-ui-event-key="#contactCard"
+        disabled={false}
+        href="#contactCard"
+        onClick={[Function]}
+        style={
+          {
+            "color": "white",
+          }
+        }
+      >
+        Contact Card
+      </a>
+    </div>
+  </div>
+</nav>
+`;
