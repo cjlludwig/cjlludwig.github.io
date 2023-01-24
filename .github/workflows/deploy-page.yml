@@ -1,8 +1,11 @@
-name: cicd
-run-name: ${{ github.actor }} commit
-on: [push]
+name: deploy-page
+run-name: ${{ github.actor }} merge
+on:
+  push:
+    branches:
+      - master
 jobs:
-  build-and-validate-commit:
+  build-test-deploy:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -16,3 +19,4 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm t
+      - run: npm deploy
