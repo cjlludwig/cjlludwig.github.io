@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} merge
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   build-test-deploy:
     runs-on: ubuntu-latest
