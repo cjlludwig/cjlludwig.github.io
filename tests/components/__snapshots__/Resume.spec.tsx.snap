@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Resume /> renders correctly 1`] = `
+[
+  <div
+    className="react-pdf__Document"
+  >
+    <div
+      className="react-pdf__message react-pdf__message--no-data"
+    >
+      No PDF file specified.
+    </div>
+  </div>,
+  <div
+    className="pdf-buttons"
+  >
+    <button
+      disabled={true}
+      onClick={[Function]}
+      type="button"
+    >
+      &lt;
+    </button>
+    <span>
+      1
+       of 
+      --
+    </span>
+    <button
+      disabled={true}
+      onClick={[Function]}
+      type="button"
+    >
+      &gt;
+    </button>
+  </div>,
+]
+`;

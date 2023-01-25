@@ -1,6 +1,10 @@
-name: cicd
+name: validate-commit
 run-name: ${{ github.actor }} commit
-on: [push]
+on:
+  push:
+    branches:
+      - '*'
+      - '!master'
 jobs:
   build-and-validate-commit:
     runs-on: ubuntu-latest
