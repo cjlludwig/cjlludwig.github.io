@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} commit
 on:
   push:
     branches:
-      - *
+      - '*'
       - '!master'
 jobs:
   build-and-validate-commit:
