@@ -13,15 +13,18 @@ jobs:
         node-version: [18.x]
     steps:
       - uses: actions/checkout@v3
+      - name: setup-git-credentials
+        uses: de-vri-es/setup-git-credentials@v2.0.10
+        with:
+          credentials: ${{secrets.GIT_CREDENTIALS}}
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-          credentials: ${{secrets.GIT_CREDENTIALS}}
       - run: npm ci
       - run: npm t
-      - run: |
-          git config --global user.email "cjlludwig@gmail.com"
-          git config --global user.name "Connor Ludwig"
+      # - run: |
+      #     git config --global user.email "cjlludwig@gmail.com"
+      #     git config --global user.name "Connor Ludwig"
       - run: npm run deploy
