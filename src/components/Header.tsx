@@ -15,28 +15,27 @@ function Header() {
 
   const handleNavigation = useCallback((e: { currentTarget: any }) => {
     const window = e.currentTarget;
-
     if (isMobile) {
-      if (window.scrollY <= height) {
+      if (pixelsScrolled <= height) {
         setNavBarClass("header-navbar-scrolling-mobile");
         setSticky(false);
       }
-      if (window.scrollY >= height) {
+      if (pixelsScrolled >= height) {
         setNavBarClass("header-navbar-mobile");
         setSticky(true);
       }
     } else {
-      if (window.scrollY <= viewportHeight) {
+      if (pixelsScrolled <= viewportHeight) {
         setNavBarClass("header-navbar-scrolling");
         setSticky(false);
       }
-      if (window.scrollY >= viewportHeight) {
+      if (pixelsScrolled >= viewportHeight) {
         setNavBarClass("header-navbar");
         setSticky(true);
       }
     }
     setPixelsScrolled(window.scrollY);
-  }, [ pixelsScrolled, viewportHeight ]);
+  }, [ pixelsScrolled, viewportHeight, height, isMobile ]);
 
   useEffect(() => {
     setPixelsScrolled(window.scrollY);
