@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - fix-tests
 jobs:
   build-test-deploy:
     runs-on: ubuntu-latest
@@ -17,6 +18,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+          credentials: ${{secrets.GIT_CREDENTIALS}}
       - run: npm ci
       - run: npm t
       - run: npm run deploy
