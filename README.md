@@ -1,5 +1,5 @@
 # Connor Ludwig's Personal Website
-[![deploy-page](https://github.com/cjlludwig/cjlludwig.github.io/actions/workflows/deploy-page.yml/badge.svg)](https://github.com/cjlludwig/cjlludwig.github.io/actions/workflows/deploy-page.yml)
+[![deploy-page](https://github.com/cjlludwig/cjlludwig.github.io/actions/workflows/deploy-page.yml/badge.svg?branch=main&event=push)](https://github.com/cjlludwig/cjlludwig.github.io/actions/workflows/deploy-page.yml)
 <br>
 Example personal webpage in Github pages.
 
