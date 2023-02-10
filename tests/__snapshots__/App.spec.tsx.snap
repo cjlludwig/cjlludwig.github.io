@@ -59,6 +59,41 @@ exports[`<App /> renders correctly 1`] = `
     />
   </div>
   <div
+    className="anchor"
+    id="listening_to"
+  />
+  <div
+    className="section-spotify-trends"
+  >
+    <div
+      className="spotify-trends-container"
+    >
+      <div
+        className="react-multi-carousel-list carousel-container "
+        dir="ltr"
+      >
+        <ul
+          className="react-multi-carousel-track "
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseMove={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          style={
+            {
+              "overflow": "unset",
+              "transform": "translate3d(0px,0,0)",
+              "transition": "none",
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+  <div
     className="section-1"
   >
     <div
@@ -71,20 +106,17 @@ exports[`<App /> renders correctly 1`] = `
   </div>
   <div
     className="anchor"
-    id="links"
-  />
-  <div
-    className="img-catalog"
-  />
-  <div
-    className="section-1"
-  />
-  <div
-    className="anchor"
     id="contactCard"
   />
   <div
     className="img-card"
+  />
+  <div
+    className="anchor"
+    id="links"
+  />
+  <div
+    className="img-catalog"
   />
   <div
     className="built-section"

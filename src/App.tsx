@@ -14,6 +14,7 @@ import LinkCatalog from './components/LinkCatalog';
 import Header from './components/Header';
 
 import './static/styles/pages/App.css';
+import SpotifyTrends from './components/SpotifyTrends';
 
 function App() {
   return (
@@ -48,6 +49,10 @@ function App() {
           <Resume />
         </div>
       </div>
+      <div id="listening_to" className="anchor" />
+      <div className='section-spotify-trends'>
+        <SpotifyTrends />
+      </div>
       <div className='section-1'>
         <div className='default-paragraph'>
           <div>
@@ -55,15 +60,13 @@ function App() {
           </div>
         </div>
       </div>
-      <div id="links" className="anchor" />
-      <div className='img-catalog'>
-        <LinkCatalog />
-      </div>
-      <div className='section-1'>
-      </div>
       <div id="contactCard" className="anchor" />
       <div className='img-card'>
         <ContactCard />
+      </div>
+      <div id="links" className="anchor" />
+      <div className='img-catalog'>
+        <LinkCatalog />
       </div>
       <div className='built-section'>
         <div>

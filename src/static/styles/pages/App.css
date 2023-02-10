@@ -35,22 +35,30 @@ h1 {
   min-height: 50vh;
 }
 
-.img-card {
-  /* background-image: url("./images/field-smallest.jpg"); */
-  background-color: #84a98c;
-  height: fit-content;
-}
-
 .anchor {
   margin-top: -99px;
   padding-bottom: 99px;
   height: 0px;
 }
+.img-description {
+  height: fit-content;
+  background-color: #588157;
+  color:white;
+  padding: 50px;
+  text-align: justify;
+  font-size: xx-large;
+  font-weight: 500;
+}
 
 .img-catalog {
   height: fit-content;
   background-color: #588157;
+}
 
+.img-card {
+  /* background-image: url("./images/field-smallest.jpg"); */
+  background-color: white;
+  height: fit-content;
 }
 
 .img-text-1, .img-text-2 {
@@ -69,8 +77,9 @@ h1 {
 }
 
 .section-1 {
-  color:black;
-  background-color: white;
+  height: fit-content;
+  background-color: #588157;
+  color:white;
   padding: 50px;
   text-align: justify;
   font-size: xx-large;

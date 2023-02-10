@@ -26,85 +26,93 @@ exports[`<Header /> renders correctly 1`] = `
     />
   </button>
   <div
-    aria-expanded={null}
-    className="navbar-links-span navbar-collapse collapse"
-    id="basic-navbar-nav"
+    className="mr-auto navbar-nav"
+    onKeyDown={[Function]}
   >
-    <div
-      className="mr-auto navbar-nav"
-      onKeyDown={[Function]}
+    <a
+      className="nav-link"
+      data-rr-ui-event-key="1"
+      disabled={false}
+      href="#home"
+      onClick={[Function]}
+      style={
+        {
+          "color": "white",
+        }
+      }
     >
-      <a
-        className="nav-link"
-        data-rr-ui-event-key="1"
-        disabled={false}
-        href="#home"
-        onClick={[Function]}
-        style={
-          {
-            "color": "white",
-          }
+      Home
+    </a>
+    <a
+      className="nav-link"
+      data-rr-ui-event-key="#aboutMe"
+      disabled={false}
+      href="#aboutMe"
+      onClick={[Function]}
+      style={
+        {
+          "color": "white",
         }
-      >
-        Home
-      </a>
-      <a
-        className="nav-link"
-        data-rr-ui-event-key="#aboutMe"
-        disabled={false}
-        href="#aboutMe"
-        onClick={[Function]}
-        style={
-          {
-            "color": "white",
-          }
+      }
+    >
+      About Me
+    </a>
+    <a
+      className="nav-link"
+      data-rr-ui-event-key="#resume"
+      disabled={false}
+      href="#resume"
+      onClick={[Function]}
+      style={
+        {
+          "color": "white",
         }
-      >
-        About Me
-      </a>
-      <a
-        className="nav-link"
-        data-rr-ui-event-key="#resume"
-        disabled={false}
-        href="#resume"
-        onClick={[Function]}
-        style={
-          {
-            "color": "white",
-          }
+      }
+    >
+      Resume
+    </a>
+    <a
+      className="nav-link"
+      data-rr-ui-event-key="#listening_to"
+      disabled={false}
+      href="#listening_to"
+      onClick={[Function]}
+      style={
+        {
+          "color": "white",
         }
-      >
-        Resume
-      </a>
-      <a
-        className="nav-link"
-        data-rr-ui-event-key="#links"
-        disabled={false}
-        href="#links"
-        onClick={[Function]}
-        style={
-          {
-            "color": "white",
-          }
+      }
+    >
+      Listening To
+    </a>
+    <a
+      className="nav-link"
+      data-rr-ui-event-key="#contactCard"
+      disabled={false}
+      href="#contactCard"
+      onClick={[Function]}
+      style={
+        {
+          "color": "white",
         }
-      >
-        Links
-      </a>
-      <a
-        className="nav-link"
-        data-rr-ui-event-key="#contactCard"
-        disabled={false}
-        href="#contactCard"
-        onClick={[Function]}
-        style={
-          {
-            "color": "white",
-          }
+      }
+    >
+      Contact Card
+    </a>
+    <a
+      className="nav-link"
+      data-rr-ui-event-key="#links"
+      disabled={false}
+      href="#links"
+      onClick={[Function]}
+      style={
+        {
+          "color": "white",
         }
-      >
-        Contact Card
-      </a>
-    </div>
+      }
+    >
+      Links
+    </a>
   </div>
 </nav>
 `;

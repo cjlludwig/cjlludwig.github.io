@@ -1,0 +1,92 @@
+.spotify-trends-container {
+  padding-left: 4%;
+  padding-right: 4%;
+  padding-top: 2.5%;
+  padding-bottom: 2.5%;
+}
+.spotify-track-card {
+  height: 524px;
+}
+
+.spotify-body-contents {
+  padding: 5px
+}
+
+.spotify-subtitle {
+  padding-top: 5px;
+  padding-left: 5px;
+  padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
+}
+
+.spotify-album-img {
+  height: 348px;
+}
+.spotify-trend-meter {
+  display: flex;
+}
+.spotify-trend-meter-bar {
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  width: 100%;
+}
+.spotify-song-preview {
+  width: -webkit-fill-available;
+}
+
+.react-multi-carousel-list {
+  padding-bottom: 20px;
+}
+
+.card-body {
+  padding: 0 var(--bs-card-spacer-x);
+}
+.card img {
+  margin: 0;
+}
+
+a {
+  text-decoration: none !important;
+  color:black
+}
+
+.bg-10{
+  background-color: rgba(0,200,255,var(--bs-bg-opacity))!important;
+  --bs-bg-opacity: 1;
+}
+.bg-20{
+  background-color: rgba(0,200,170,var(--bs-bg-opacity))!important;
+  --bs-bg-opacity: 1;
+}
+.bg-30{
+  background-color: rgba(0,200,85,var(--bs-bg-opacity))!important;
+  --bs-bg-opacity: 1;
+}
+.bg-40{
+  background-color: rgba(103,200,0,var(--bs-bg-opacity))!important;
+  --bs-bg-opacity: 1;
+}
+.bg-50{
+  background-color: rgba(150,200,0,var(--bs-bg-opacity))!important;
+  --bs-bg-opacity: 1;
+}
+.bg-60{
+  background-color: rgba(175,200,0,var(--bs-bg-opacity))!important;
+  --bs-bg-opacity: 1;
+}
+.bg-70{
+  background-color: rgba(240,200,0,var(--bs-bg-opacity))!important;
+  --bs-bg-opacity: 1;
+}
+.bg-80{
+  background-color: rgba(240,150,0,var(--bs-bg-opacity))!important;
+  --bs-bg-opacity: 1;
+}
+.bg-90{
+  background-color: rgba(245,110,0,var(--bs-bg-opacity))!important;
+  --bs-bg-opacity: 1;
+}
+.bg-100{
+  background-color: rgba(245,60,0,var(--bs-bg-opacity))!important;
+  --bs-bg-opacity: 1;
+}
