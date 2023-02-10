@@ -5,10 +5,10 @@ import personalLogo from '../static/images/logo_transparent512.png';
 import "../static/styles/components/Header.css";
 
 function Header() {
-  const [ navBarClass, setNavBarClass ] = useState("header-navbar-scrolling");
-  const [ pixelsScrolled, setPixelsScrolled ] = useState(window.scrollY);
-  const [ isSticky, setSticky ] = useState(false);
-  const [ height, setHeight ] = useState(0);
+  const [navBarClass, setNavBarClass] = useState("header-navbar-scrolling");
+  const [pixelsScrolled, setPixelsScrolled] = useState(window.scrollY);
+  const [isSticky, setSticky] = useState(false);
+  const [height, setHeight] = useState(0);
   const navbarRef = useRef<HTMLDivElement>(null);
   const viewportHeight = window.innerHeight;
   const isMobile = window.innerWidth <= 960; // Common mobile cutoff
@@ -35,7 +35,7 @@ function Header() {
       }
     }
     setPixelsScrolled(window.scrollY);
-  }, [ pixelsScrolled, viewportHeight, height, isMobile ]);
+  }, [pixelsScrolled, viewportHeight, height, isMobile]);
 
   useEffect(() => {
     setPixelsScrolled(window.scrollY);
@@ -52,28 +52,27 @@ function Header() {
     }
   }, [])
 
-  return ( 
+  return (
     <>
-      <Navbar  
+      <Navbar
         ref={navbarRef}
         className={navBarClass}
-      > 
+      >
         <Navbar.Brand href="/">
-          <img className="header-logo" src={personalLogo} alt="Personal logo"/>
+          <img className="header-logo" src={personalLogo} alt="Personal logo" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav" className='navbar-links-span'>
-          <Nav className="mr-auto" >
-            <Nav.Link key= '1' eventKey='1' href="#home" style={{ color: 'white' }}>Home</Nav.Link>
-            <Nav.Link key= '2' href="#aboutMe" style={{ color: 'white' }}>About Me</Nav.Link>
-            <Nav.Link key= '3' href="#resume" style={{ color: 'white' }}>Resume</Nav.Link>
-            <Nav.Link key= '4' href="#links" style={{ color: 'white' }}>Links</Nav.Link>
-            <Nav.Link key= '5' href="#contactCard" style={{ color: 'white' }}>Contact Card</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
+        <Nav className="mr-auto" >
+          <Nav.Link key='nav-1' eventKey='1' href="#home" style={{ color: 'white' }}>Home</Nav.Link>
+          <Nav.Link key='nav-2' href="#aboutMe" style={{ color: 'white' }}>About Me</Nav.Link>
+          <Nav.Link key='nav-3' href="#resume" style={{ color: 'white' }}>Resume</Nav.Link>
+          <Nav.Link key='nav-4' href="#listening_to" style={{ color: 'white' }}>Listening To</Nav.Link>
+          <Nav.Link key='nav-6' href="#contactCard" style={{ color: 'white' }}>Contact Card</Nav.Link>
+          <Nav.Link key='nav-5' href="#links" style={{ color: 'white' }}>Links</Nav.Link>
+        </Nav>
       </Navbar>
       {isSticky &&
-        <div style={{ height: `${height}px`}}/>
+        <div style={{ height: `${height}px` }} />
       }
     </>
   );
