@@ -8,68 +8,71 @@ exports[`<ContactCard /> renders correctly 1`] = `
     className="contact-card"
   >
     <div
-      className="top"
+      className="contact-header"
     >
-      <h2
-        className="name"
-      >
-        Connor J Ludwig
-      </h2>
       <img
-        alt="avatar_img"
-        className="circle-img"
+        alt="Connor Ludwig"
+        className="profile-img"
         src=""
       />
+      <div
+        className="header-content"
+      >
+        <h2
+          className="name"
+        >
+          Connor J Ludwig
+        </h2>
+        <p
+          className="title"
+        >
+          Staff Software Engineer
+        </p>
+      </div>
     </div>
     <div
-      className="bottom"
+      className="contact-content"
     >
-      <p
-        className="info"
+      <div
+        className="contact-item"
       >
-        <b>
-          Cell: 
-        </b>
-          (712)-830-6202
-      </p>
-      <b>
-        Email: 
-      </b>
-        
-      <a
-        href="mailto: cjlludwig@gmail.com"
+        <i
+          className="fas fa-envelope"
+        />
+        <a
+          href="mailto:cjlludwig@gmail.com"
+        >
+          cjlludwig@gmail.com
+        </a>
+      </div>
+      <div
+        className="contact-item"
       >
-        cjlludwig@gmail.com
-      </a>
-      <p
-        className="info"
-      />
-      <p
-        className="info"
-      >
-        <b>
-          Github: 
-        </b>
-         
+        <i
+          className="fab fa-github"
+        />
         <a
           href="https://github.com/cjlludwig"
+          rel="noopener noreferrer"
+          target="_blank"
         >
-          https://github.com/cjlludwig
+          github.com/cjlludwig
         </a>
-      </p>
-      <p
-        className="info"
+      </div>
+      <div
+        className="contact-item"
       >
-        <b>
-          Linkedin: 
-        </b>
-         
+        <i
+          className="fab fa-linkedin"
+        />
         <a
-          href="www.linkedin.com/in/connor-ludwig/"
+          href="https://www.linkedin.com/in/connor-ludwig/"
+          rel="noopener noreferrer"
+          target="_blank"
         >
-          www.linkedin.com/in/connor-ludwig/
+          linkedin.com/in/connor-ludwig
         </a>
-      </p>
+      </div>
     </div>
   </div>
 </div>
