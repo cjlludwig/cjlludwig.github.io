@@ -101,9 +101,9 @@ exports[`<Header /> renders correctly 1`] = `
     </a>
     <a
       className="nav-link"
-      data-rr-ui-event-key="#links"
+      data-rr-ui-event-key="#projects"
       disabled={false}
-      href="#links"
+      href="#projects"
       onClick={[Function]}
       style={
         {
@@ -111,7 +111,7 @@ exports[`<Header /> renders correctly 1`] = `
         }
       }
     >
-      Links
+      Projects
     </a>
   </div>
 </nav>
