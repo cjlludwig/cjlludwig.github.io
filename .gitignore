@@ -104,3 +104,6 @@ dist
 .tern-port
 
 build/
+
+.cursor/rules
+.vscode/
