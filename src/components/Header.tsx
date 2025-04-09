@@ -68,7 +68,7 @@ function Header() {
           <Nav.Link key='nav-3' href="#resume" style={{ color: 'white' }}>Resume</Nav.Link>
           <Nav.Link key='nav-4' href="#listening_to" style={{ color: 'white' }}>Listening To</Nav.Link>
           <Nav.Link key='nav-6' href="#contactCard" style={{ color: 'white' }}>Contact Card</Nav.Link>
-          <Nav.Link key='nav-5' href="#projects" style={{ color: 'white' }}>Projects</Nav.Link>
+          <Nav.Link key='nav-5' href="#links" style={{ color: 'white' }}>Links</Nav.Link>
         </Nav>
       </Navbar>
       {isSticky &&

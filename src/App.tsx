@@ -10,6 +10,7 @@ import googleAnalyticsLogo from './static/images/Logo_Google_Analytics.png';
 import ContactCard from './components/ContactCard';
 import Resume from './components/Resume';
 import Welcome from './components/Welcome';
+import LinkCatalog from './components/LinkCatalog';
 import Header from './components/Header';
 
 import './static/styles/pages/App.css';
@@ -31,25 +32,13 @@ function App() {
             </div>
             <div className='opening-paragraph-wrapper'>
               <div>
-                <b>Connor Ludwig - Staff Software Engineer</b>
+                <b>Connor Ludwig -</b>
               </div>
-              <div className='opening-paragraph'>
-                I'm a versatile and results-driven Full-stack Software Engineer with over 8 years of experience, currently leading technical initiatives at Built Technologies. My expertise spans:
-                <ul>
-                  <li>Event-driven architectures and high-throughput systems</li>
-                  <li>Cloud-native applications and distributed systems</li>
-                  <li>Data platforms and real-time analytics</li>
-                  <li>Full-stack development (React, Node.js, Python, Java)</li>
-                  <li>Technical leadership and mentorship</li>
-                </ul>
-                Notable achievements:
-                <ul>
-                  <li>Led eventing data consistency project unlocking {'>'}5M in ARR</li>
-                  <li>Released novel Saas license management system managing {'>'}100M in ARR</li>
-                  <li>Mentored many junior engineers and coached them through promotion processes</li>
-                </ul>
-                I thrive in collaborative environments where I can leverage my technical expertise to mentor team members and drive innovation. My approach combines technical excellence with a focus on delivering business value through scalable, maintainable solutions.
-              </div>
+                <div className='opening-paragraph'>
+                  "I'm a full-stack software engineer at John Deere. 
+                  Some of my key experiences are in event driven architectures, data platforms, and cloud-hosted web applications. 
+                  I thrive in collaborative workplaces with a focus on innovative work. I help to get the best out of my team while getting the task at hand done."
+                </div>
             </div>
           </span>
         </div>
@@ -65,12 +54,9 @@ function App() {
         <SpotifyTrends />
       </div>
       <div className='section-1'>
-        <div className='default-paragraph' style={{paddingTop: '0', paddingBottom: '0'}}>
-          <div style={{textAlign: 'center', fontSize: '1.2rem', fontWeight: 500}}>
-              <span className='tech-label' style={{display: 'block', marginBottom: '1rem', fontSize: '1.4rem'}}>Certifications</span>
-              <span className='certifications'>
-                AWS Developer Associate • AWS Solutions Architect Associate • Python for Data Science • Blue River Machine Learning & AI
-              </span>
+        <div className='default-paragraph'>
+          <div>
+            I'm creating this page to experiment with interesting React tools. I'll also be including a variety of relevant professional info for myself and resources I've found useful on my journey as a software engineer. So expect updates over the coming months.
           </div>
         </div>
       </div>
@@ -78,82 +64,9 @@ function App() {
       <div className='img-card'>
         <ContactCard />
       </div>
-      <div id="projects" className="anchor" />
+      <div id="links" className="anchor" />
       <div className='img-catalog'>
-        <div className='projects-section'>
-          <h2 className='section-title'>Featured Projects</h2>
-          <div className='projects-grid'>
-            <div className='project-card'>
-              <div className='project-header'>
-                <h3>Real-time Financial Processing</h3>
-                <span className='project-date'>2024</span>
-              </div>
-              <div className='project-content'>
-                <p>Event-driven solution processing complex financial calculations with focus on accuracy and low-latency. Core project with 1-month turnaround to meet tight product release timeline.</p>
-                <div className='tech-stack'>
-                  <a href="https://aws.amazon.com" target="_blank" rel="noopener noreferrer">
-                    <span>AWS</span>
-                  </a>
-                  <a href="https://flink.apache.org" target="_blank" rel="noopener noreferrer">
-                    <span>PyFlink</span>
-                  </a>
-                  <a href="https://kafka.apache.org" target="_blank" rel="noopener noreferrer">
-                    <span>Kafka</span>
-                  </a>
-                  <a href="https://aws.amazon.com/lambda" target="_blank" rel="noopener noreferrer">
-                    <span>Lambda</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className='project-card'>
-              <div className='project-header'>
-                <h3>Licensing API Platform</h3>
-                <span className='project-date'>2021-2023</span>
-              </div>
-              <div className='project-content'>
-                <p>Implemented novel licensing API platform enabling seamless ordering of embedded technologies. Included IoT license delivery, elevated data collection, and expanded product marketing options.</p>
-                <div className='tech-stack'>
-                  <a href="https://aws.amazon.com" target="_blank" rel="noopener noreferrer">
-                    <span>AWS</span>
-                  </a>
-                  <a href="https://nodejs.org" target="_blank" rel="noopener noreferrer">
-                    <span>Node.js</span>
-                  </a>
-                  <a href="https://developers.google.com/protocol-buffers" target="_blank" rel="noopener noreferrer">
-                    <span>Protobuf</span>
-                  </a>
-                  <a href="https://aws.amazon.com/iot" target="_blank" rel="noopener noreferrer">
-                    <span>IoT</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className='project-card'>
-              <div className='project-header'>
-                <h3>Enterprise Data Catalog</h3>
-                <span className='project-date'>2019-2021</span>
-              </div>
-              <div className='project-content'>
-                <p>Created modern web application to simplify data discovery, governance, and management for enterprise data lake. App housed 1,000s of datasets with API integrations for data management.</p>
-                <div className='tech-stack'>
-                  <a href="https://aws.amazon.com" target="_blank" rel="noopener noreferrer">
-                    <span>AWS</span>
-                  </a>
-                  <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-                    <span>React</span>
-                  </a>
-                  <a href="https://nextjs.org" target="_blank" rel="noopener noreferrer">
-                    <span>Next.js</span>
-                  </a>
-                  <a href="https://spark.apache.org" target="_blank" rel="noopener noreferrer">
-                    <span>Spark</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <LinkCatalog />
       </div>
       <div className='built-section'>
         <div>
@@ -185,6 +98,12 @@ function App() {
                   src="https://media.flaticon.com/dist/min/img/logo/flaticon_negative.svg" 
                   className="default-logo"  
                   alt="Flaticon logo"
+                  style={{
+                    paddingLeft: "10px",
+                    width: "17%",
+                    objectFit: "cover",
+                    objectPosition: "0 100%"
+                  }}
                 />
               </a>
             </span>
