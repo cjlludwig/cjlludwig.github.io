@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.02304f16.css",
-    "main.js": "/static/js/main.ac451838.js",
+    "main.js": "/static/js/main.7d1014af.js",
     "static/media/reinvent.jpg": "/static/media/reinvent.4662b2ccfd3928c9d489.jpg",
     "static/media/cjludwig_resume.pdf": "/static/media/cjludwig_resume.c6dc8c3c27780f1ad690.pdf",
     "static/media/cjl_headshot.png": "/static/media/cjl_headshot.f283f1f41f007cf1588a.png",
@@ -17,10 +17,10 @@
     "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/index.html",
     "main.02304f16.css.map": "/static/css/main.02304f16.css.map",
-    "main.ac451838.js.map": "/static/js/main.ac451838.js.map"
+    "main.7d1014af.js.map": "/static/js/main.7d1014af.js.map"
   },
   "entrypoints": [
     "static/css/main.02304f16.css",
-    "static/js/main.ac451838.js"
+    "static/js/main.7d1014af.js"
   ]
 }
