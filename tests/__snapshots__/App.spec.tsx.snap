@@ -25,7 +25,7 @@ exports[`<App /> renders correctly 1`] = `
           className="img-holder"
         >
           <img
-            alt="AWS Pic"
+            alt="Wedding Pic"
             className="opening-self-pic"
             src=""
           />
