@@ -177,6 +177,8 @@ h1 {
 .opening-self-pic {
   height: 70vmin;
   pointer-events: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .img-holder {
