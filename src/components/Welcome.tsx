@@ -6,15 +6,18 @@ function Welcome() {
     <div className='typewriter-wrapper'>
       <Typewriter
         onInit={(typewriter) => {
-          typewriter.typeString('Hello!')
-            .pauseFor(300)
-            .deleteAll()
-            .typeString("\nMy name's Connor.<br>")
-            .pauseFor(300)
-            .typeString("\nWelcome to my site!<br>")
+          typewriter
+            .typeString('Hi, I\'m Connor Ludwig')
             .pauseFor(1000)
-            .typeString("\nScroll on for more...")
+            .deleteAll()
+            .typeString('Staff Software Engineer @ Built')
+            .pauseFor(1000)
+            .deleteAll() 
+            .typeString('Scroll to explore')
             .start();
+        }}
+        options={{
+          delay: 50,
         }}
       />
     </div>
@@ -22,4 +25,3 @@ function Welcome() {
 }
 
 export default Welcome;
-
