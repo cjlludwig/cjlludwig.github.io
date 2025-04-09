@@ -66,9 +66,12 @@ function App() {
         <SpotifyTrends />
       </div>
       <div className='section-1'>
-        <div className='default-paragraph'>
-          <div>
-            I'm creating this page to experiment with interesting React tools. I'll also be including a variety of relevant professional info for myself and resources I've found useful on my journey as a software engineer. So expect updates over the coming months.
+        <div className='default-paragraph' style={{paddingTop: '0', paddingBottom: '0'}}>
+          <div style={{textAlign: 'center', fontSize: '1.2rem', fontWeight: 500}}>
+              <span className='tech-label' style={{display: 'block', marginBottom: '1rem', fontSize: '1.4rem'}}>Certifications</span>
+              <span className='certifications'>
+                AWS Developer Associate • AWS Solutions Architect Associate • Python for Data Science • Blue River Machine Learning & AI
+              </span>
           </div>
         </div>
       </div>
