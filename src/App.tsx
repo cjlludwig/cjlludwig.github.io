@@ -32,13 +32,25 @@ function App() {
             </div>
             <div className='opening-paragraph-wrapper'>
               <div>
-                <b>Connor Ludwig -</b>
+                <b>Connor Ludwig - Staff Software Engineer</b>
               </div>
-                <div className='opening-paragraph'>
-                  "I'm a full-stack software engineer at John Deere. 
-                  Some of my key experiences are in event driven architectures, data platforms, and cloud-hosted web applications. 
-                  I thrive in collaborative workplaces with a focus on innovative work. I help to get the best out of my team while getting the task at hand done."
-                </div>
+              <div className='opening-paragraph'>
+                I'm a versatile and results-driven Full-stack Software Engineer with over 8 years of experience, currently leading technical initiatives at Built Technologies. My expertise spans:
+                <ul>
+                  <li>Event-driven architectures and high-throughput systems</li>
+                  <li>Cloud-native applications and distributed systems</li>
+                  <li>Data platforms and real-time analytics</li>
+                  <li>Full-stack development (React, Node.js, Python, Java)</li>
+                  <li>Technical leadership and mentorship</li>
+                </ul>
+                Notable achievements:
+                <ul>
+                  <li>Led eventing data consistency project unlocking {'>'}5M in ARR</li>
+                  <li>Released novel Saas license management system managing {'>'}100M in ARR</li>
+                  <li>Mentored many junior engineers and coached them through promotion processes</li>
+                </ul>
+                I thrive in collaborative environments where I can leverage my technical expertise to mentor team members and drive innovation. My approach combines technical excellence with a focus on delivering business value through scalable, maintainable solutions.
+              </div>
             </div>
           </span>
         </div>
