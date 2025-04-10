@@ -107,3 +107,6 @@ build/
 
 .cursor/rules
 .vscode/
+
+.DS_Store
+

@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 import personalLogo from '../static/images/logo_transparent512.png';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 import "../static/styles/components/Header.css";
 
