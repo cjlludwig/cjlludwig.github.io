@@ -1,92 +1,190 @@
+.spotify-section {
+  background-color: #588157;
+  padding: 4rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.section-title {
+  color: #DAD7CD;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 .spotify-trends-container {
-  padding-left: 4%;
-  padding-right: 4%;
-  padding-top: 2.5%;
-  padding-bottom: 2.5%;
+  margin: 2rem auto;
+  padding: 1rem;
+  max-width: 1400px;
+  width: 100%;
 }
+
 .spotify-track-card {
-  height: 524px;
+  margin: 0.5rem;
+  transition: transform 0.3s ease;
+  height: 100%;
+  background: rgba(52, 78, 65, 0.95);
+  border: 1px solid rgba(218, 215, 205, 0.3);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.spotify-body-contents {
-  padding: 5px
-}
-
-.spotify-subtitle {
-  padding-top: 5px;
-  padding-left: 5px;
-  padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
+.spotify-track-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-color: rgba(218, 215, 205, 0.5);
+  background: rgba(52, 78, 65, 0.98);
 }
 
 .spotify-album-img {
-  height: 348px;
+  height: 200px;
+  object-fit: cover;
 }
+
+.spotify-subtitle {
+  margin-top: 0.5rem;
+  color: #DAD7CD;
+}
+
+.spotify-body-contents {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 5px;
+}
+
 .spotify-trend-meter {
   display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
+
 .spotify-trend-meter-bar {
-  padding-left: 5px;
-  padding-top: 5px;
-  padding-bottom: 10px;
-  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
 }
+
 .spotify-song-preview {
-  width: -webkit-fill-available;
+  width: 100%;
+  margin-top: 0.5rem;
 }
 
-.react-multi-carousel-list {
-  padding-bottom: 20px;
+/* Analytics dashboard styles */
+.analytics-dashboard {
+  padding: 1rem 0;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-.card-body {
-  padding: 0 var(--bs-card-spacer-x);
-}
-.card img {
-  margin: 0;
-}
-
-a {
-  text-decoration: none !important;
-  color:black
+.stats-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.bg-10{
-  background-color: rgba(0,200,255,var(--bs-bg-opacity))!important;
-  --bs-bg-opacity: 1;
+.stat-item {
+  text-align: center;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: rgba(52, 78, 65, 0.95);
+  border: 1px solid rgba(218, 215, 205, 0.3);
 }
-.bg-20{
-  background-color: rgba(0,200,170,var(--bs-bg-opacity))!important;
-  --bs-bg-opacity: 1;
+
+.stat-item h4 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #DAD7CD;
 }
-.bg-30{
-  background-color: rgba(0,200,85,var(--bs-bg-opacity))!important;
-  --bs-bg-opacity: 1;
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #A3B18A;
 }
-.bg-40{
-  background-color: rgba(103,200,0,var(--bs-bg-opacity))!important;
-  --bs-bg-opacity: 1;
+
+.most-popular-track {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
-.bg-50{
-  background-color: rgba(150,200,0,var(--bs-bg-opacity))!important;
-  --bs-bg-opacity: 1;
+
+.most-popular-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
 }
-.bg-60{
-  background-color: rgba(175,200,0,var(--bs-bg-opacity))!important;
-  --bs-bg-opacity: 1;
+
+.most-popular-info {
+  flex: 1;
 }
-.bg-70{
-  background-color: rgba(240,200,0,var(--bs-bg-opacity))!important;
-  --bs-bg-opacity: 1;
+
+.most-popular-info h4 {
+  margin-bottom: 0.25rem;
+  color: #E9EDC9;
 }
-.bg-80{
-  background-color: rgba(240,150,0,var(--bs-bg-opacity))!important;
-  --bs-bg-opacity: 1;
+
+.most-popular-info p {
+  color: #DAD7CD;
+  margin-bottom: 0.5rem;
 }
-.bg-90{
-  background-color: rgba(245,110,0,var(--bs-bg-opacity))!important;
-  --bs-bg-opacity: 1;
+
+/* Card styling to match project theme */
+.spotify-trends-container .card {
+  background: rgba(52, 78, 65, 0.95);
+  border: 1px solid rgba(218, 215, 205, 0.3);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.bg-100{
-  background-color: rgba(245,60,0,var(--bs-bg-opacity))!important;
-  --bs-bg-opacity: 1;
+
+.spotify-trends-container .card-header {
+  background-color: rgba(52, 78, 65, 0.98);
+  border-bottom: 1px solid rgba(218, 215, 205, 0.3);
+  color: #E9EDC9;
+}
+
+.spotify-trends-container .card-header a {
+  color: #A3B18A;
+  text-decoration: none;
+}
+
+.spotify-trends-container .card-header a:hover {
+  color: #E9EDC9;
+}
+
+.spotify-trends-container .card-body {
+  color: #DAD7CD;
+}
+
+.spotify-trends-container .nav-tabs .nav-link {
+  color: #DAD7CD;
+}
+
+.spotify-trends-container .nav-tabs .nav-link.active {
+  background-color: rgba(52, 78, 65, 0.95);
+  color: #A3B18A;
+  border-color: rgba(218, 215, 205, 0.3);
+}
+
+.spotify-trends-container .nav-tabs {
+  border-bottom: 1px solid rgba(218, 215, 205, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .most-popular-track {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .most-popular-img {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .spotify-trends-container {
+    padding: 0.5rem;
+  }
 }

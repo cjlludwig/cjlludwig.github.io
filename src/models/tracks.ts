@@ -1,4 +1,3 @@
-
 export interface Track {
   album: Album;
   artists?: (ArtistsEntity)[] | null;
@@ -11,6 +10,7 @@ export interface Track {
   popularity: number;
   preview_url: string;
   uri: string;
+  genres?: string[];
 }
 export interface Album {
   external_urls: ExternalUrls;
