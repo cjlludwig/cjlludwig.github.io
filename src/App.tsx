@@ -6,11 +6,9 @@ import vsCodeLogo from './static/images/vscode.svg';
 import personalLogo from './static/images/logo_transparent512.png';
 import weddingPic from './static/images/wedding.jpg';
 import googleAnalyticsLogo from './static/images/Logo_Google_Analytics.png';
-
 import ContactCard from './components/ContactCard';
 import Resume from './components/Resume';
 import Welcome from './components/Welcome';
-import LinkCatalog from './components/LinkCatalog';
 import Header from './components/Header';
 
 import './static/styles/pages/App.css';
@@ -81,9 +79,6 @@ function App() {
       </div>
       <div id="projects" className="anchor" />
       <div className='img-catalog'>
-        {/* TODO: When link catalog is removed the sticky header breaks */}
-        <LinkCatalog />
-        {/* <div className='link-catalog-wrapper'></div> */}
         <div className='projects-section'>
           <h2 className='section-title'>Featured Projects</h2>
           <div className='projects-grid'>
