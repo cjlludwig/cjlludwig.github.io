@@ -79,7 +79,7 @@ function App() {
       <div className='img-card'>
         <ContactCard />
       </div>
-      <div id="links" className="anchor" />
+      <div id="projects" className="anchor" />
       <div className='img-catalog'>
         {/* TODO: When link catalog is removed the sticky header breaks */}
         <LinkCatalog />
