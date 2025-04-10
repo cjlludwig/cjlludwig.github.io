@@ -83,6 +83,7 @@ function App() {
       <div className='img-catalog'>
         {/* TODO: When link catalog is removed the sticky header breaks */}
         <LinkCatalog />
+        {/* <div className='link-catalog-wrapper'></div> */}
         <div className='projects-section'>
           <h2 className='section-title'>Featured Projects</h2>
           <div className='projects-grid'>

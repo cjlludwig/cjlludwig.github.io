@@ -89,19 +89,19 @@ const news: Links[] = [
 
 function LinkCatalog() {
   return (
-    <div className='link-catalog-wrapper'>
-      <h3 className='link-header'>
+    <div >
+      {/* <h3 className='link-header'>
         Favorite Tools
-      </h3>
-      <LinkAccordion links={tools}/>
-      <h3 style={{ paddingTop: "15px" }} className='link-header'>
+      </h3> */}
+      {/* <LinkAccordion links={tools}/> */}
+      {/* <h3 style={{ paddingTop: "15px" }} className='link-header'>
         Tech News Sources
-      </h3>
-      <LinkAccordion links={news}/>
-      <h3 style={{ paddingTop: "15px" }} className='link-header'>
+      </h3> */}
+      {/* <LinkAccordion links={news}/> */}
+      {/* <h3 style={{ paddingTop: "15px" }} className='link-header'>
         Interesting Articles
-      </h3>
-      <LinkAccordion links={articles}/>
+      </h3> */}
+      {/* <LinkAccordion links={articles}/> */}
     </div>
   );
 }
