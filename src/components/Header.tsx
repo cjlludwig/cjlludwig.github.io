@@ -74,7 +74,7 @@ function Header() {
         </Nav>
       </Navbar>
       {isSticky &&
-        <div style={{ height: `${height}px` }} />
+        <div style={{ height: `${height}px`, backgroundColor: "#588157"}} />
       }
     </>
   );
