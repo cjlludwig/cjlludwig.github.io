@@ -79,6 +79,7 @@ h1 {
 .section-1 {
   height: fit-content;
   background-color: #588157;
+  outline-color: "#588157";
   color: white;
   padding: 50px 0;
   text-align: justify;
@@ -504,4 +505,38 @@ h1 {
   .project-card {
     padding: 1.5rem;
   }
+
+  .opening-paragraph {
+    padding-left: 5;
+    padding-right: 5;
+  }
+  .opening-span {
+    flex-direction: column;
+    align-items: center; /* Ensures child content is centered horizontally */
+    padding: 0 1rem;
+    gap: 1.5rem;
+  }
+
+  .img-holder {
+    flex: none;
+    width: 90%; /* Reduced width by 10% */
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Ensures the image itself is centered inside the holder */
+  }
+
+  .opening-self-pic {
+    min-height: 360px; /* 10% reduction from 400px */
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .opening-paragraph-wrapper {
+    padding-top: 0;
+    width: 100%;
+  }
 }
+

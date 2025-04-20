@@ -21,7 +21,7 @@ function App() {
         <Welcome />
       </div>
       <Header />
-      <div id="aboutMe" className="anchor" />
+      <div id="aboutMe" className="anchor"  style={{ backgroundColor: "#588157" }}/>
       <div className='section-1'>
         <div className='opening'>
           <span className='opening-span'>
