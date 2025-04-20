@@ -62,18 +62,30 @@ function SpotifyTrends() {
   return (
     <div className='spotify-trends-container'>
       <Carousel
-        swipeable={isMobile}
-        draggable={false}
-        showDots={!isMobile}
+        // swipeable={isMobile}
+        // draggable={false}
+        // showDots={!isMobile}
+        // responsive={responsive}
+        // infinite={isMobile}
+        // autoPlay={isMobile ? true : false}
+        // autoPlaySpeed={10000}
+        // keyBoardControl={true}
+        // // customTransition="all .5"
+        // // transitionDuration={1000}
+        // containerClass="carousel-container"
+        // arrows={!isMobile}
+        // dotListClass="custom-dot-list-style"
+        // itemClass="carousel-item-padding-40-px"
+        swipeable={true}
+        draggable={true}
+        showDots={true}
         responsive={responsive}
-        infinite={isMobile}
-        autoPlay={isMobile ? true : false}
-        autoPlaySpeed={10000}
+        infinite={true}
+        autoPlay={isMobile}
+        autoPlaySpeed={8000}
         keyBoardControl={true}
-        // customTransition="all .5"
-        // transitionDuration={1000}
         containerClass="carousel-container"
-        arrows={!isMobile}
+        arrows={!isMobile} // Hide arrows on mobile
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
       >
