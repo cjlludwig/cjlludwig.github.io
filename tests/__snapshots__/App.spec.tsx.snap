@@ -11,6 +11,11 @@ exports[`<App /> renders correctly 1`] = `
   <div
     className="anchor"
     id="aboutMe"
+    style={
+      {
+        "backgroundColor": "#588157",
+      }
+    }
   />
   <div
     className="section-1"
