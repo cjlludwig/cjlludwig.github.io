@@ -1,0 +1,86 @@
+---
+description: Template for creating new React components
+globs:
+alwaysApply: false
+---
+
+# Component Template
+
+Use this template when creating new components:
+
+```jsx
+import resumeData from '../data/resume-data.json'
+
+function ComponentName() {
+  // Destructure data from resume JSON
+  const { dataSection } = resumeData
+  
+  return (
+    <section className="section component-name">
+      <div className="container">
+        <h2 className="section-title">Section Title</h2>
+        
+        <div className="component-content">
+          {/* Main content here */}
+          {dataSection.map((item, index) => (
+            <div key={index} className="component-item">
+              {/* Item content */}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default ComponentName
+```
+
+## Styling Template
+
+Add corresponding styles in `App.css`:
+
+```css
+/* Component Section */
+.component-name {
+  background-color: var(--bg-primary); /* or var(--bg-secondary) */
+}
+
+.component-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.component-item {
+  background-color: var(--bg-secondary);
+  padding: var(--spacing-lg);
+  border-radius: 0.75rem;
+  border: 2px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.component-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .component-content {
+    grid-template-columns: 1fr;
+  }
+}
+```
+
+## Integration Steps
+
+1. Create component file in `src/components/`
+2. Import in `src/App.jsx`
+3. Add to `<main>` section
+4. Add styles in `src/App.css`
+5. Test in both light and dark modes
+6. Verify mobile responsiveness

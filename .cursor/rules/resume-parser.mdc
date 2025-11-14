@@ -1,0 +1,131 @@
+---
+description: Guidelines for maintaining and extending the resume parser
+globs: parse-resume.js
+alwaysApply: false
+---
+# Resume Parser Guidelines
+
+When modifying `scripts/parse-resume.js`:
+
+## Parser Structure
+
+The parser reads `resume.md` line-by-line and extracts:
+- Personal info (name, title, location, links)
+- Professional summary
+- Work experience (title, company, location, period, achievements)
+- Projects (title, period, description, tech stack)
+- Skills (categorized)
+- Certifications and awards
+- Education details
+
+## Expected Markdown Format
+
+```markdown
+# Name
+**Title**
+Location
+[Link](url) | [Link](url)
+
+## Summary
+Text content...
+
+## Professional Experience
+### **Job Title**
+**Company – Location**
+*MM/YYYY – MM/YYYY*
+- Bullet points
+
+## Key Projects
+### **Project Name**
+*MM/YYYY – Present*
+Description.
+**Stack:** Tech1, Tech2
+
+## Technical Skills
+**Category:** Skill1, Skill2
+
+## Certifications & Awards
+- **Name** (Certified)  # Goes to certifications
+- **Name** (Year)       # Goes to awards
+
+## Education
+**School – Location**
+*Degree – Honors*
+Majors: List
+Minor: Name
+*MM/YYYY – MM/YYYY*
+```
+
+## Parser Rules
+
+1. **Regex patterns must be precise** - Test with sample data
+2. **Handle missing sections gracefully** - Use optional chaining
+3. **Clean up artifacts** - Remove `**`, `--`, empty items
+4. **Validate output** - Print counts to verify parsing
+5. **Maintain backward compatibility** - Don't break existing resume.md format
+
+## Testing Parser Changes
+
+```bash
+# Run parser
+npm run parse-resume
+
+# Check output counts
+# Should show: Name, Title, Experience #, Projects #, etc.
+
+# Verify generated JSON
+cat src/data/resume-data.json | jq '.'
+
+# Test with site
+npm run dev
+```
+
+## Adding New Data Extraction
+
+```javascript
+// 1. Add to data object
+const data = {
+  // ... existing
+  newSection: []
+}
+
+// 2. Add section detection
+if (sectionTitle === 'New Section Name') {
+  currentSection = 'newSection';
+}
+
+// 3. Add parsing logic
+else if (currentSection === 'newSection') {
+  // Parse and add to data.newSection
+}
+
+// 4. Update console output
+console.log(`   - New section items: ${data.newSection.length}`);
+```
+
+## Common Issues
+
+**Problem:** Extra characters in output (**, --, etc.)  
+**Solution:** Add `.replace(/\*\*/g, '')` or similar cleanup
+
+**Problem:** Section not being detected  
+**Solution:** Check exact heading match in resume.md
+
+**Problem:** Items missing from array  
+**Solution:** Check if filtering logic (like `!== '--'`) is too aggressive
+
+## Output Validation
+
+Parser should output:
+```bash
+✅ Resume data generated successfully
+   - Name: Full Name
+   - Title: Job Title
+   - Experience positions: X
+   - Projects: Y
+   - Skill categories: Z
+   - Certifications: A
+   - Awards: B
+```
+
+All counts should match resume.md content.

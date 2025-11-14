@@ -1,0 +1,637 @@
+---
+description: Professional portfolio development standards and workflows
+globs:
+alwaysApply: true
+---
+
+# Professional Portfolio - Development Guide
+
+## Project Overview
+
+This is a modern, single-page React portfolio optimized for Staff Engineer job searches. Content is auto-generated from `resume.md` (single source of truth), with professional branding, dark mode, and full responsiveness.
+
+**Tech Stack:**
+- React 19.2.0 + Vite 7.2.2
+- CSS with CSS Variables (no Tailwind)
+- React Icons
+- Pandoc + XeLaTeX (PDF generation)
+- GitHub Pages deployment
+- GitHub Actions (CI/CD)
+- Node.js build scripts
+
+## Core Principles
+
+1. **Content Automation**: `resume.md` is the single source of truth - never hardcode content
+2. **Professional Aesthetic**: Clean, minimalist, Staff Engineer portfolio feel
+3. **Performance First**: Keep bundle small, optimize images, fast loads
+4. **No Regressions**: Test builds before committing changes
+5. **Mobile-First**: Responsive design is mandatory
+
+## Content Management
+
+### resume.md Structure
+
+ALL website content comes from `resume.md` via automated parsing:
+
+```markdown
+# Name
+**Title**
+Location
+[Website](url) | [GitHub](url) | [LinkedIn](url)
+
+## Summary
+Professional summary text...
+
+## Professional Experience
+### **Job Title**
+**Company Name – Location**
+*MM/YYYY – MM/YYYY*
+- Achievement bullets
+
+## Key Projects
+### **Project Name**
+*MM/YYYY – Present*
+Description here.
+**Stack:** Tech1, Tech2, Tech3
+
+## Technical Skills
+**Category Name:** Skill1, Skill2, Skill3
+
+## Certifications & Awards
+- **Cert Name** (Certified)
+- **Award Name** (Year)
+
+## Education
+**University – Location**
+*Degree Type – Honors*
+Majors: Major names
+Minor: Minor name
+*MM/YYYY – MM/YYYY*
+```
+
+### Content Update Workflow
+
+```bash
+# 1. Edit resume.md with latest info
+vim resume.md
+
+# 2. Validate locally (generates JSON + PDF + builds site)
+npm run validate
+
+# 3. Preview the build
+npm run preview
+
+# 4. Push to feature branch
+git checkout -b feature/update-resume
+git push origin feature/update-resume
+
+# 5. Create PR and wait for validation to pass
+
+# 6. Merge to main → auto-deploys via GitHub Actions
+```
+
+**Never edit `src/data/resume-data.json` directly** - it's auto-generated!
+**Never edit `public/resume.pdf` directly** - it's auto-generated from resume.md!
+
+## Component Architecture
+
+### Component Structure
+
+```
+src/components/
+├── Hero.jsx           - Name, title, social links (from JSON)
+├── About.jsx          - Summary + key metrics (from JSON)
+├── Experience.jsx     - Work history (from JSON, filters internships)
+├── Skills.jsx         - Tech skills matrix (from JSON) + ATS keywords
+├── Projects.jsx       - Key projects (from JSON)
+├── Music.jsx          - Album grid (Spotify integration)
+├── GitHub.jsx         - GitHub activity widgets
+├── Certifications.jsx - Certs and awards (from JSON)
+└── Education.jsx      - University details (from JSON)
+```
+
+### Component Patterns
+
+All components follow this pattern:
+
+```jsx
+import resumeData from '../data/resume-data.json'
+
+function ComponentName() {
+  const { dataSection } = resumeData
+  
+  return (
+    <section className="section component-name">
+      <div className="container">
+        <h2 className="section-title">Section Title</h2>
+        {/* Content rendered from resumeData */}
+      </div>
+    </section>
+  )
+}
+
+export default ComponentName
+```
+
+**Rules:**
+- Import data from `resume-data.json`, never hardcode
+- Use functional components with hooks
+- Export as default
+- Use semantic HTML (`section`, `article`, `nav`)
+- Keep components focused and single-purpose
+
+## Styling Standards
+
+### CSS Architecture
+
+Use custom CSS with CSS Variables - **NO Tailwind, NO CSS-in-JS**.
+
+```css
+/* Define in :root for light mode */
+:root {
+  --bg-primary: #ffffff;
+  --text-primary: #1a1a1a;
+  --accent-primary: #2563eb;
+  --spacing-md: 1.5rem;
+}
+
+/* Override in .dark for dark mode */
+.dark {
+  --bg-primary: #0f172a;
+  --text-primary: #f1f5f9;
+  --accent-primary: #3b82f6;
+}
+```
+
+### Design System
+
+**Colors:**
+- Primary Blue: `#2563eb` (light), `#3b82f6` (dark)
+- Backgrounds: Light grays / Dark navy blues
+- Text: High contrast ratios for accessibility
+
+**Spacing Scale:**
+```css
+--spacing-xs: 0.5rem;
+--spacing-sm: 1rem;
+--spacing-md: 1.5rem;
+--spacing-lg: 2rem;
+--spacing-xl: 3rem;
+--spacing-2xl: 4rem;
+```
+
+**Typography:**
+- System font stack (native, fast-loading)
+- Font sizes: 0.875rem to 3rem
+- Line height: 1.6 for body text
+
+### Styling Rules
+
+1. **Use CSS Variables**: Never hardcode colors or spacing
+2. **Dark Mode Support**: Always define both light and dark variants
+3. **Smooth Transitions**: 0.2-0.3s ease for interactive elements
+4. **Hover States**: All interactive elements need visible hover feedback
+5. **Mobile-First**: Write mobile styles first, enhance with media queries
+6. **Consistent Borders**: Use `var(--border-color)` for all borders
+7. **Shadow Hierarchy**: Use predefined shadow variables (sm, md, lg)
+
+### Responsive Breakpoints
+
+```css
+/* Desktop: default styles */
+
+@media (max-width: 768px) {
+  /* Tablet adjustments */
+}
+
+@media (max-width: 480px) {
+  /* Mobile adjustments */
+}
+```
+
+## Icon & Image Management
+
+### Favicon Generation
+
+Icons are auto-generated from `public/favicon.svg`:
+
+```bash
+npm run generate-icons
+```
+
+**Generates:**
+- favicon-16x16.png, favicon-32x32.png
+- apple-touch-icon.png (180x180)
+- android-chrome-192x192.png, android-chrome-512x512.png
+- og-image.png (1200x630 social card)
+- twitter-card.png (1200x600)
+- site.webmanifest (PWA config)
+
+### Icon Design Guidelines
+
+**Favicon (`public/favicon.svg`):**
+- Professional "CL" monogram
+- Blue gradient background
+- Clean, recognizable at small sizes
+- SVG format for scalability
+
+**Social Cards:**
+- Edit `scripts/generate-social-image.js` for design changes
+- Must include: name, title, professional tagline
+- Match site color scheme
+- Run `npm run generate-icons` after changes
+
+## Build & Deployment
+
+### Scripts
+
+```bash
+npm run setup                # First-time setup (icons + parse)
+npm run dev                  # Dev server (auto-parses resume.md + generates PDF)
+npm run build                # Production build (auto-parses resume.md + generates PDF)
+npm run validate             # Full validation (same as CI checks)
+npm run preview              # Preview production build
+npm run deploy               # Deploy to GitHub Pages manually
+npm run parse-resume         # Manually parse resume.md → JSON
+npm run generate-resume-pdf  # Manually generate PDF from resume.md
+npm run generate-icons       # Manually generate icons/images
+```
+
+### Build Process
+
+```
+1. npm run generate-resume
+   ├─ npm run parse-resume
+   │  └─ Reads resume.md
+   │  └─ Generates src/data/resume-data.json
+   └─ npm run generate-resume-pdf
+      └─ Runs pandoc to generate public/resume.pdf
+
+2. vite build
+   └─ Bundles React app
+   └─ Outputs to dist/
+
+3. gh-pages -d dist
+   └─ Deploys to GitHub Pages
+
+Note: On push to main, GitHub Actions runs this automatically
+```
+
+### Deployment Checklist
+
+Before deploying:
+- [ ] `resume.md` is up to date
+- [ ] Validation passes: `npm run validate`
+- [ ] Test locally: `npm run preview`
+- [ ] Dark mode works in both themes
+- [ ] All links work (especially social links)
+- [ ] Mobile responsive at 320px, 768px, 1024px widths
+- [ ] PDF generates correctly (automatic in build)
+- [ ] Push to feature branch first (not main)
+- [ ] Wait for CI validation to pass (green checkmark)
+- [ ] Merge to main for auto-deployment
+
+## Code Quality Standards
+
+### JavaScript/JSX
+
+```jsx
+// ✅ Good: Functional component with clear data flow
+function Experience() {
+  const { experience } = resumeData
+  const mainExperience = experience.filter(exp => !exp.title.includes('Internship'))
+  
+  return (
+    <section className="section experience">
+      {mainExperience.map((exp, index) => (
+        <ExperienceCard key={index} experience={exp} />
+      ))}
+    </section>
+  )
+}
+
+// ❌ Bad: Hardcoded content, no data binding
+function Experience() {
+  return <div>Senior Staff Software Engineer at Built Technologies</div>
+}
+```
+
+### Best Practices
+
+1. **Destructure Data**: `const { name, title } = resumeData.personal`
+2. **Key Props**: Use unique keys for mapped elements (index as last resort)
+3. **Semantic HTML**: Use proper tags (`section`, `article`, `nav`, `header`, `footer`)
+4. **Accessibility**: Include alt text, aria-labels where appropriate
+5. **Performance**: Avoid unnecessary re-renders, use React hooks properly
+6. **Comments**: Add comments for complex logic only
+
+### Linting
+
+Run linter before committing:
+```bash
+npm run build  # Will show any errors
+```
+
+## Common Tasks
+
+### Add New Section
+
+```jsx
+// 1. Create component
+import resumeData from '../data/resume-data.json'
+
+function NewSection() {
+  return (
+    <section className="section new-section">
+      <div className="container">
+        <h2 className="section-title">New Section</h2>
+        {/* Content */}
+      </div>
+    </section>
+  )
+}
+
+export default NewSection
+
+// 2. Import in App.jsx
+import NewSection from './components/NewSection'
+
+// 3. Add to main content
+<main>
+  {/* existing sections */}
+  <NewSection />
+</main>
+
+// 4. Add styles to App.css
+.new-section {
+  background-color: var(--bg-primary);
+}
+```
+
+### Update Color Scheme
+
+```bash
+# 1. Edit CSS variables in src/App.css
+:root {
+  --accent-primary: #new-color;
+}
+
+# 2. Update favicon.svg
+# Edit public/favicon.svg gradient colors
+
+# 3. Update social card
+# Edit scripts/generate-social-image.js colors
+
+# 4. Regenerate icons
+npm run generate-icons
+
+# 5. Test both themes
+npm run dev
+```
+
+### Add New Album to Music Section
+
+```jsx
+// Edit src/components/Music.jsx
+const albums = [
+  // ... existing albums
+  {
+    name: "Album Name",
+    artist: "Artist Name",
+    image: "https://i.scdn.co/image/...",  // 300x300 from Spotify
+    url: "https://open.spotify.com/album/..."
+  }
+]
+```
+
+## Performance Guidelines
+
+**Bundle Size Targets:**
+- Total JS: < 220 KB (< 70 KB gzipped)
+- CSS: < 12 KB (< 2.5 KB gzipped)
+- HTML: < 5 KB (< 1.5 KB gzipped)
+
+**Optimization:**
+- Use SVG favicons (smallest)
+- Lazy load images if adding more
+- Keep dependencies minimal
+- Avoid large icon packs - import specific icons only:
+  ```jsx
+  // ✅ Good: Import specific icons
+  import { FaGithub, FaLinkedin } from 'react-icons/fa'
+  
+  // ❌ Bad: Import entire library
+  import * as Icons from 'react-icons/fa'
+  ```
+
+## SEO & Metadata
+
+### Meta Tags (index.html)
+
+Update when role/company changes:
+- `<title>` - Include keywords: "Staff Software Engineer", "Distributed Systems"
+- Meta description - Summarize experience and expertise
+- Open Graph tags - For social sharing
+- Twitter Card tags - For Twitter shares
+- Structured data (JSON-LD) - Keep professional details current
+
+### ATS Optimization
+
+**Keywords in `Skills.jsx`:**
+```jsx
+const atsKeywords = [
+  "Staff Software Engineer",
+  "Senior Staff Engineer",
+  "Distributed Systems",
+  "Cloud Architecture",
+  // ... add relevant job search keywords
+]
+```
+
+Update keywords based on target roles.
+
+## Troubleshooting
+
+### Content not updating
+```bash
+# Clear generated data and rebuild
+rm src/data/resume-data.json
+npm run parse-resume
+npm run build
+```
+
+### Icons not showing
+```bash
+# Verify files exist
+ls -la public/*.png public/*.svg
+
+# Regenerate
+npm run generate-icons
+npm run build
+```
+
+### Build fails
+```bash
+# Check parser output
+npm run parse-resume
+
+# Verify JSON is valid
+node -e "require('./src/data/resume-data.json')"
+
+# Fresh install
+rm -rf node_modules dist
+npm install
+npm run build
+```
+
+### Dark mode not working
+- Check `localStorage.getItem('darkMode')`
+- Verify `.dark` class on `<html>` element
+- Check CSS variable definitions in both `:root` and `.dark`
+
+## Package Management
+
+**Installation:**
+```bash
+# Install without version pinning
+npm install package-name
+
+# Never use:
+npm install package-name@1.2.3  # ❌ Hardcoded version
+```
+
+**Updating:**
+```bash
+npm update  # Update to latest compatible versions
+```
+
+## Git Workflow
+
+**Feature Branch Workflow:**
+```bash
+# 1. Create feature branch
+git checkout -b feature/my-changes
+
+# 2. Make changes and validate
+npm run validate
+
+# 3. Commit with descriptive message
+git commit -m "Update resume with new role"
+
+# 4. Push to feature branch
+git push origin feature/my-changes
+
+# 5. Create PR and wait for CI validation
+
+# 6. Merge when green ✅
+```
+
+**Commit messages:**
+```bash
+# ✅ Good: Descriptive
+git commit -m "Add Music section with album grid display"
+git commit -m "Fix button contrast in light mode"
+git commit -m "Update resume with new role"
+
+# ❌ Bad: Vague
+git commit -m "updates"
+git commit -m "fix"
+```
+
+**Never commit directly to main!** Always use feature branches and PRs.
+
+**Never commit:**
+- `node_modules/`
+- `dist/`
+- `.DS_Store`
+- `*.log`
+- `src/data/resume-data.json` (generated file, but tracked for deployment)
+
+## Documentation
+
+**Code comments:**
+```jsx
+// Use sparingly, only for complex logic
+// ✅ Good: Explains WHY
+// Filter internships for cleaner main experience timeline
+const mainExperience = experience.filter(exp => !exp.title.includes('Internship'))
+
+// ❌ Bad: States WHAT (obvious from code)
+// Loop through experiences
+```
+
+## Links & Resources
+
+- **Main Documentation**: `docs/GUIDE.md`
+- **Validation Guide**: `docs/VALIDATION_GUIDE.md`
+- **Branch Protection**: `docs/BRANCH_PROTECTION.md`
+- **Deployment Guide**: `README.md`
+- **GitHub Pages**: https://cjlludwig.github.io
+- **React Docs**: https://react.dev/
+- **Vite Docs**: https://vite.dev/
+- **Pandoc Docs**: https://pandoc.org/
+
+## Validation & CI/CD
+
+### Local Validation
+
+Always validate before pushing:
+```bash
+npm run validate
+```
+
+This runs the same checks as CI:
+- ✅ Parses resume.md to JSON
+- ✅ Generates PDF from resume.md
+- ✅ Builds site with Vite
+- ✅ Verifies all assets compile
+
+### CI/CD Pipeline
+
+**On push to feature branch:**
+- `.github/workflows/validate-commit.yml` runs
+- Validates build succeeds
+- Shows status in PR
+
+**On merge to main:**
+- `.github/workflows/deploy-page.yml` runs
+- Installs Pandoc for PDF generation
+- Runs full build
+- Deploys to `gh-pages` branch
+- Site goes live automatically
+
+### Troubleshooting CI/CD
+
+**Build fails on GitHub but works locally:**
+```bash
+# Check Node version matches (18.x)
+node --version
+
+# Try clean build
+rm -rf node_modules dist
+npm install
+npm run validate
+```
+
+**PDF generation fails:**
+```bash
+# Install Pandoc locally
+brew install pandoc basictex  # macOS
+sudo apt-get install pandoc texlive-xetex  # Linux
+
+npm run generate-resume-pdf
+```
+
+For more details, see `docs/VALIDATION_GUIDE.md`
+
+## Emergency Procedures
+
+If build breaks on main:
+1. Check GitHub Actions logs for errors
+2. Revert last changes: `git revert HEAD && git push`
+3. Fix on feature branch, validate, then merge
+4. Never force push to main
+
+---
+
+**Remember**: This is a professional portfolio for Staff Engineer roles. Every change should enhance the professional, clean, modern aesthetic while maintaining performance and accessibility.
