@@ -14,7 +14,9 @@ This is a modern, single-page React portfolio optimized for Staff Engineer job s
 - React 19.2.0 + Vite 7.2.2
 - CSS with CSS Variables (no Tailwind)
 - React Icons
+- Pandoc + XeLaTeX (PDF generation)
 - GitHub Pages deployment
+- GitHub Actions (CI/CD)
 - Node.js build scripts
 
 ## Core Principles
@@ -71,20 +73,25 @@ Minor: Minor name
 
 ```bash
 # 1. Edit resume.md with latest info
-# 2. Run parser to generate JSON
-npm run parse-resume
+vim resume.md
 
-# 3. Verify generated data
-cat src/data/resume-data.json
+# 2. Validate locally (generates JSON + PDF + builds site)
+npm run validate
 
-# 4. Test locally
-npm run dev
+# 3. Preview the build
+npm run preview
 
-# 5. Deploy
-npm run deploy
+# 4. Push to feature branch
+git checkout -b feature/update-resume
+git push origin feature/update-resume
+
+# 5. Create PR and wait for validation to pass
+
+# 6. Merge to main → auto-deploys via GitHub Actions
 ```
 
 **Never edit `src/data/resume-data.json` directly** - it's auto-generated!
+**Never edit `public/resume.pdf` directly** - it's auto-generated from resume.md!
 
 ## Component Architecture
 
@@ -239,21 +246,26 @@ npm run generate-icons
 ### Scripts
 
 ```bash
-npm run setup          # First-time setup (icons + parse)
-npm run dev            # Dev server (auto-parses resume.md)
-npm run build          # Production build (auto-parses resume.md)
-npm run preview        # Preview production build
-npm run deploy         # Deploy to GitHub Pages
-npm run parse-resume   # Manually parse resume.md
-npm run generate-icons # Manually generate icons/images
+npm run setup                # First-time setup (icons + parse)
+npm run dev                  # Dev server (auto-parses resume.md + generates PDF)
+npm run build                # Production build (auto-parses resume.md + generates PDF)
+npm run validate             # Full validation (same as CI checks)
+npm run preview              # Preview production build
+npm run deploy               # Deploy to GitHub Pages manually
+npm run parse-resume         # Manually parse resume.md → JSON
+npm run generate-resume-pdf  # Manually generate PDF from resume.md
+npm run generate-icons       # Manually generate icons/images
 ```
 
 ### Build Process
 
 ```
-1. npm run parse-resume
-   └─ Reads resume.md
-   └─ Generates src/data/resume-data.json
+1. npm run generate-resume
+   ├─ npm run parse-resume
+   │  └─ Reads resume.md
+   │  └─ Generates src/data/resume-data.json
+   └─ npm run generate-resume-pdf
+      └─ Runs pandoc to generate public/resume.pdf
 
 2. vite build
    └─ Bundles React app
@@ -261,18 +273,23 @@ npm run generate-icons # Manually generate icons/images
 
 3. gh-pages -d dist
    └─ Deploys to GitHub Pages
+
+Note: On push to main, GitHub Actions runs this automatically
 ```
 
 ### Deployment Checklist
 
 Before deploying:
 - [ ] `resume.md` is up to date
-- [ ] `public/resume.pdf` matches resume.md
-- [ ] Build completes without errors: `npm run build`
+- [ ] Validation passes: `npm run validate`
 - [ ] Test locally: `npm run preview`
 - [ ] Dark mode works in both themes
 - [ ] All links work (especially social links)
 - [ ] Mobile responsive at 320px, 768px, 1024px widths
+- [ ] PDF generates correctly (automatic in build)
+- [ ] Push to feature branch first (not main)
+- [ ] Wait for CI validation to pass (green checkmark)
+- [ ] Merge to main for auto-deployment
 
 ## Code Quality Standards
 
@@ -490,6 +507,25 @@ npm update  # Update to latest compatible versions
 
 ## Git Workflow
 
+**Feature Branch Workflow:**
+```bash
+# 1. Create feature branch
+git checkout -b feature/my-changes
+
+# 2. Make changes and validate
+npm run validate
+
+# 3. Commit with descriptive message
+git commit -m "Update resume with new role"
+
+# 4. Push to feature branch
+git push origin feature/my-changes
+
+# 5. Create PR and wait for CI validation
+
+# 6. Merge when green ✅
+```
+
 **Commit messages:**
 ```bash
 # ✅ Good: Descriptive
@@ -502,11 +538,14 @@ git commit -m "updates"
 git commit -m "fix"
 ```
 
+**Never commit directly to main!** Always use feature branches and PRs.
+
 **Never commit:**
 - `node_modules/`
 - `dist/`
 - `.DS_Store`
 - `*.log`
+- `src/data/resume-data.json` (generated file, but tracked for deployment)
 
 ## Documentation
 
@@ -524,18 +563,74 @@ const mainExperience = experience.filter(exp => !exp.title.includes('Internship'
 ## Links & Resources
 
 - **Main Documentation**: `docs/GUIDE.md`
+- **Validation Guide**: `docs/VALIDATION_GUIDE.md`
+- **Branch Protection**: `docs/BRANCH_PROTECTION.md`
 - **Deployment Guide**: `README.md`
-- **GitHub Pages**: https://cjlludwig.github.io/professional
+- **GitHub Pages**: https://cjlludwig.github.io
 - **React Docs**: https://react.dev/
 - **Vite Docs**: https://vite.dev/
+- **Pandoc Docs**: https://pandoc.org/
 
-## Emergency Contacts
+## Validation & CI/CD
 
-If build breaks before deployment:
-1. Revert last changes: `git revert HEAD`
-2. Check GitHub Actions for errors
-3. Test locally: `npm run build && npm run preview`
-4. Deploy only after successful local build
+### Local Validation
+
+Always validate before pushing:
+```bash
+npm run validate
+```
+
+This runs the same checks as CI:
+- ✅ Parses resume.md to JSON
+- ✅ Generates PDF from resume.md
+- ✅ Builds site with Vite
+- ✅ Verifies all assets compile
+
+### CI/CD Pipeline
+
+**On push to feature branch:**
+- `.github/workflows/validate-commit.yml` runs
+- Validates build succeeds
+- Shows status in PR
+
+**On merge to main:**
+- `.github/workflows/deploy-page.yml` runs
+- Installs Pandoc for PDF generation
+- Runs full build
+- Deploys to `gh-pages` branch
+- Site goes live automatically
+
+### Troubleshooting CI/CD
+
+**Build fails on GitHub but works locally:**
+```bash
+# Check Node version matches (18.x)
+node --version
+
+# Try clean build
+rm -rf node_modules dist
+npm install
+npm run validate
+```
+
+**PDF generation fails:**
+```bash
+# Install Pandoc locally
+brew install pandoc basictex  # macOS
+sudo apt-get install pandoc texlive-xetex  # Linux
+
+npm run generate-resume-pdf
+```
+
+For more details, see `docs/VALIDATION_GUIDE.md`
+
+## Emergency Procedures
+
+If build breaks on main:
+1. Check GitHub Actions logs for errors
+2. Revert last changes: `git revert HEAD && git push`
+3. Fix on feature branch, validate, then merge
+4. Never force push to main
 
 ---
 
