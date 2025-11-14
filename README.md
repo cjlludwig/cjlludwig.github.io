@@ -308,12 +308,12 @@ rm -rf node_modules/ && npm install  # Fresh install
 
 ## 📚 Documentation
 
-**Complete Guide**: See [`docs/GUIDE.md`](docs/GUIDE.md) for comprehensive documentation including:
-- Detailed feature explanations
-- Step-by-step workflows
-- Advanced customization
-- Troubleshooting guide
-- Technical reference
+**Complete documentation available in [`docs/`](docs/) directory:**
+
+- **[GUIDE.md](docs/GUIDE.md)** - Complete development guide, customization, and troubleshooting
+- **[VALIDATION_GUIDE.md](docs/VALIDATION_GUIDE.md)** - How to validate changes before deploying
+- **[BRANCH_PROTECTION.md](docs/BRANCH_PROTECTION.md)** - GitHub branch protection setup
+- **[docs/README.md](docs/README.md)** - Documentation index and quick reference
 
 ## 🎉 What You Get
 
@@ -330,7 +330,8 @@ rm -rf node_modules/ && npm install  # Fresh install
 
 ## 📞 Support
 
-- **Documentation**: [`docs/GUIDE.md`](docs/GUIDE.md)
+- **Documentation**: [`docs/`](docs/) - Complete guides and references
+- **Validation Help**: [`docs/VALIDATION_GUIDE.md`](docs/VALIDATION_GUIDE.md)
 - **Issues**: Check GitHub Issues
 - **React**: https://react.dev/
 - **Vite**: https://vite.dev/

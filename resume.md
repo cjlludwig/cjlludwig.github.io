@@ -125,8 +125,8 @@ Developed modern web application to enable data discovery, governance, and metad
 - **Big 12 Career Fair Representative** (2022)  
 - **Databricks Data & AI Summit "Data Team Innovation Award" Winner** (2021)  
 - **John Deere DeepRacer AI & ML Challenge Champion** (2020)  
-- **New and Experienced Organizational Network (NEON)** – Chair, Social Networking Lead, Intern Lead  
-- **Bettendorf High School Computer Science Course Mentor**
+- **New and Experienced Organizational Network (NEON ERG)** – Chair, Social Networking Lead, Intern Lead  (2018-2021)
+- **Bettendorf High School Computer Science Course Mentor** (2019)
 
 ---
 
