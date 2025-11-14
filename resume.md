@@ -52,7 +52,7 @@ Versatile and results-driven Full-stack Software Engineer with a proven track re
 
 ### **Full-stack Software Engineer**  
 **Deere & Company – Moline, IL**  
-*01/2018 – 09/2021*
+*09/2017 – 09/2021*
 
 - Managed petabyte-scale enterprise data lake platform fronted with Databricks, serving 2,000+ customers
 - Built data governance web app using React & Node.js for 1,000+ datasets

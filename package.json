@@ -11,14 +11,15 @@
     "generate-icons": "node scripts/generate-icons.js && node scripts/generate-social-image.js",
     "generate-resume-pdf": "pandoc resume.md -o public/resume.pdf --pdf-engine=xelatex -V geometry:margin=0.75in -V linkcolor:blue -V urlcolor:blue || echo 'Warning: PDF generation skipped (pandoc not installed)'",
     "generate-resume": "npm run parse-resume && npm run generate-resume-pdf",
-    "dev": "npm run generate-resume && vite",
-    "build": "npm run generate-resume && vite build",
+    "dev": "npm run parse-resume && vite",
+    "build": "npm run parse-resume && vite build",
     "test": "npm run build",
     "validate": "npm run build && echo '\n✅ Validation passed! Safe to push.\n'",
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "setup": "npm run generate-icons && npm run generate-resume"
+    "setup": "npm run generate-icons && npm run generate-resume",
+    "prepare": "husky"
   },
   "dependencies": {
     "react": "^19.2.0",
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^5.1.1",
     "gh-pages": "^6.3.0",
+    "husky": "^9.1.7",
     "sharp": "^0.34.5",
     "vite": "^7.2.2"
   }
