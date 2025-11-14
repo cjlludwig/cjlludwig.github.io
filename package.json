@@ -1,67 +1,33 @@
 {
   "name": "cjlludwig.github.io",
+  "version": "1.0.0",
+  "description": "Professional portfolio website for Connor Ludwig - Senior Staff Software Engineer",
+  "license": "ISC",
+  "author": "Connor Ludwig",
+  "type": "module",
   "homepage": "https://cjlludwig.github.io",
-  "version": "0.1.0",
-  "private": true,
   "scripts": {
+    "parse-resume": "node scripts/parse-resume.js",
+    "generate-icons": "node scripts/generate-icons.js && node scripts/generate-social-image.js",
+    "generate-resume-pdf": "pandoc resume.md -o public/resume.pdf --pdf-engine=xelatex -V geometry:margin=0.75in -V linkcolor:blue -V urlcolor:blue || echo 'Warning: PDF generation skipped (pandoc not installed)'",
+    "generate-resume": "npm run parse-resume && npm run generate-resume-pdf",
+    "dev": "npm run generate-resume && vite",
+    "build": "npm run generate-resume && vite build",
+    "test": "npm run build",
+    "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "eject": "react-scripts eject"
-  },
-  "engines": {
-    "npm": ">=8.0.0",
-    "node": ">=18.0.0"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "deploy": "gh-pages -d dist",
+    "setup": "npm run generate-icons && npm run generate-resume"
   },
   "dependencies": {
-    "@types/node": "18.11.18",
-    "@types/react": "18.0.27",
-    "@types/react-dom": "18.0.10",
-    "bootstrap": "5.2.3",
-    "react": "18.2.0",
-    "react-bootstrap": "2.7.0",
-    "react-dom": "18.2.0",
-    "react-gtm-module": "2.0.11",
-    "react-multi-carousel": "2.8.2",
-    "react-pdf": "6.2.0",
-    "react-scripts": "5.0.1",
-    "typescript": "4.9.4",
-    "typewriter-effect": "2.19.0",
-    "web-vitals": "2.1.4"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-icons": "^5.5.0"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "5.16.5",
-    "@testing-library/react": "13.4.0",
-    "@testing-library/user-event": "13.5.0",
-    "@types/jest": "29.2.6",
-    "@types/react-gtm-module": "2.0.1",
-    "@types/react-pdf": "6.2.0",
-    "@types/react-test-renderer": "18.0.0",
-    "gh-pages": "4.0.0",
-    "jest-environment-jsdom": "29.3.1",
-    "react-test-renderer": "18.2.0",
-    "ts-jest": "29.0.5",
-    "ts-node-dev": "2.0.0"
+    "@vitejs/plugin-react": "^5.1.1",
+    "gh-pages": "^6.3.0",
+    "sharp": "^0.34.5",
+    "vite": "^7.2.2"
   }
 }
