@@ -5,6 +5,8 @@ import About from './components/About'
 import Experience from './components/Experience'
 import Skills from './components/Skills'
 import Projects from './components/Projects'
+import Books from './components/Books'
+import Movies from './components/Movies'
 import Music from './components/Music'
 import GitHub from './components/GitHub'
 import Certifications from './components/Certifications'
@@ -47,6 +49,10 @@ function App() {
               <a href="#experience">Experience</a>
               <a href="#skills">Skills</a>
               <a href="#projects">Projects</a>
+              <span className="nav-separator">|</span>
+              <a href="#books" className="nav-fun">Books</a>
+              <a href="#movies" className="nav-fun">Movies</a>
+              <a href="#music" className="nav-fun">Music</a>
               <button 
                 onClick={toggleDarkMode} 
                 className="theme-toggle"
@@ -66,10 +72,12 @@ function App() {
         <Experience />
         <Skills />
         <Projects />
-        <Music />
-        <GitHub />
         <Certifications />
         <Education />
+        <GitHub />
+        <Books />
+        <Movies />
+        <Music />
       </main>
 
       {/* Footer */}
