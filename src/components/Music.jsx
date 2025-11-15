@@ -66,11 +66,11 @@ function Music() {
   ]
 
   return (
-    <section className="section music">
+    <section id="music" className="section music">
       <div className="container">
         <h2 className="section-title">Currently Spinning</h2>
-        <p className="music-subtitle">
-          <FaSpotify className="spotify-icon" /> My favorite albums on rotation
+        <p className="section-subtitle music-subtitle">
+          My favorite albums on rotation
         </p>
         
         <div className="album-wall">
@@ -94,6 +94,19 @@ function Music() {
               </div>
             </a>
           ))}
+        </div>
+        
+        <div className="music-footer">
+          <p>
+            Powered by{' '}
+            <a 
+              href="https://open.spotify.com/user/121782208"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Spotify
+            </a>
+          </p>
         </div>
       </div>
     </section>
