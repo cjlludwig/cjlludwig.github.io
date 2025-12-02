@@ -8,11 +8,12 @@
   "homepage": "https://cjlludwig.github.io",
   "scripts": {
     "parse-resume": "node scripts/parse-resume.js",
+    "generate-blogs": "node scripts/generate-blogs.js",
     "generate-icons": "node scripts/generate-icons.js && node scripts/generate-social-image.js",
     "generate-resume-pdf": "pandoc resume.md -o public/resume.pdf --pdf-engine=xelatex -V geometry:margin=0.75in -V linkcolor:blue -V urlcolor:blue || echo 'Warning: PDF generation skipped (pandoc not installed)'",
     "generate-resume": "npm run parse-resume && npm run generate-resume-pdf",
-    "dev": "npm run parse-resume && vite",
-    "build": "npm run parse-resume && vite build",
+    "dev": "npm run parse-resume && npm run generate-blogs && vite",
+    "build": "npm run parse-resume && npm run generate-blogs && vite build",
     "test": "npm run build",
     "validate": "npm run build && echo '\n✅ Validation passed! Safe to push.\n'",
     "preview": "vite preview",
@@ -22,6 +23,11 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "gray-matter": "^4.0.3",
+    "highlight.js": "^11.11.1",
+    "marked": "^13.0.2",
+    "mermaid": "^11.4.1",
+    "react-helmet-async": "^2.0.5",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-icons": "^5.5.0"

@@ -1,0 +1,43 @@
+import { useEffect, useRef } from 'react'
+import mermaid from 'mermaid'
+
+function BlogPost({ post }) {
+  const contentRef = useRef(null)
+
+  useEffect(() => {
+    if (!post || !contentRef.current) return
+
+    const mermaidBlocks = contentRef.current.querySelectorAll('.mermaid')
+    if (mermaidBlocks.length) {
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral' })
+      mermaid.run({ nodes: mermaidBlocks })
+    }
+  }, [post])
+
+  return (
+    <section className="section" id="blog-post">
+      <div className="container">
+        <div className="blog-post-header">
+          <p className="blog-date">{new Date(post.date).toLocaleDateString()}</p>
+          <h1 className="blog-post-title">{post.title}</h1>
+          <p className="blog-post-description">{post.description}</p>
+          {post.tags?.length ? (
+            <div className="blog-tags">
+              {post.tags.map((tag) => (
+                <span key={tag} className="tag">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          ) : null}
+          <a className="back-link" href="#/blog">
+            ← Back to all posts
+          </a>
+        </div>
+        <article className="blog-post-body" ref={contentRef} dangerouslySetInnerHTML={{ __html: post.html }} />
+      </div>
+    </section>
+  )
+}
+
+export default BlogPost

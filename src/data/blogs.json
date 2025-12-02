@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2025-12-02T15:08:35.056Z",
+  "posts": [
+    {
+      "title": "Visualizing systems with Mermaid",
+      "date": "2025-02-05",
+      "slug": "mermaid-demo",
+      "description": "A quick example of rendering Mermaid diagrams inside the site.",
+      "tags": [
+        "diagrams",
+        "tools"
+      ],
+      "image": "/blog-images/mermaid.png",
+      "html": "<p>Modern docs benefit from visual explanations. Here's a simple architecture sketch:</p>\n<pre class=\"mermaid\">graph TD\n  User[User] -->|browses| WebApp[Web App]\n  WebApp -->|reads| BlogData[blogs.json]\n  BlogData -->|links| Images[(public assets)]</pre>\n<p>And here's a sequence diagram for a request lifecycle:</p>\n<pre class=\"mermaid\">sequenceDiagram\n  participant Browser\n  participant App\n  participant Blogs\n  Browser->>App: Navigate to #/blog/mermaid-demo\n  App->>Blogs: Load blog HTML\n  App-->>Browser: Render article\n  Browser->>Browser: Mermaid renders diagrams</pre>"
+    },
+    {
+      "title": "Welcome to the blog",
+      "date": "2025-01-15",
+      "slug": "welcome",
+      "description": "Why I added a blog and what to expect.",
+      "tags": [
+        "personal",
+        "update"
+      ],
+      "image": "/blog-images/welcome-card.png",
+      "html": "<h2>Why a blog?</h2>\n<p>I've wanted a space to write about projects that go beyond the bullet points on my resume. Expect architecture sketches, debug stories, and quick notes on tools I've enjoyed using.</p>\n<h2>What to expect</h2>\n<ul><li>Short notes that take less than five minutes to read</li><li>Diagrams and code samples you can skim quickly</li><li>Links to demos or repos whenever possible</li></ul>\n<pre><code class=\"language-javascript\">function helloWorld() {\n  console.log('Hello, blog!')\n}</code></pre>\n<p>See you soon.</p>"
+    }
+  ]
+}
