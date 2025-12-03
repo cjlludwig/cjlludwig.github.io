@@ -18,6 +18,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - name: Install dependencies
-        # Use legacy-peer-deps to allow React 19 alongside packages with older peer ranges
-        run: npm ci --legacy-peer-deps
+        run: npm install
       - run: npm t
