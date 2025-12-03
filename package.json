@@ -27,8 +27,8 @@
     "highlight.js": "^11.11.1",
     "marked": "^13.0.2",
     "mermaid": "^11.4.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "react-icons": "^5.5.0"
   },
   "devDependencies": {
