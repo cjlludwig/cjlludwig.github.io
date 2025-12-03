@@ -1,6 +1,5 @@
 import { useState, useEffect, useMemo } from 'react'
 import { FaGithub, FaLinkedin, FaDownload, FaMoon, FaSun } from 'react-icons/fa'
-import { Helmet } from 'react-helmet-async'
 import Hero from './components/Hero'
 import About from './components/About'
 import Experience from './components/Experience'
@@ -14,9 +13,12 @@ import Certifications from './components/Certifications'
 import Education from './components/Education'
 import BlogIndex from './components/BlogIndex'
 import BlogPost from './components/BlogPost'
+import Seo from './components/Seo'
 import blogsData from './data/blogs.json'
 
 const posts = blogsData.posts || []
+
+const SITE_URL = 'https://cjlludwig.github.io'
 
 const defaultMeta = {
   title: 'Connor Ludwig | Senior Staff Software Engineer',
@@ -86,44 +88,42 @@ function App() {
         description: activePost.description,
         image: activePost.image,
         date: activePost.date,
+        url: `${SITE_URL}/#/blog/${activePost.slug}`,
+        type: 'article',
       }
     }
     if (route.page === 'blog') {
       return {
         title: 'Blog | Connor Ludwig',
         description: 'Short engineering notes, diagrams, and stories.',
+        url: `${SITE_URL}/#/blog`,
       }
     }
-    return defaultMeta
+    return { ...defaultMeta, url: SITE_URL }
   }, [route.page, activePost])
 
   return (
     <div className="app">
-      <Helmet>
-        <title>{pageMeta.title}</title>
-        <meta name="description" content={pageMeta.description} />
-        <meta property="og:title" content={pageMeta.title} />
-        <meta property="og:description" content={pageMeta.description} />
-        <meta property="og:type" content={route.page === 'post' ? 'article' : 'website'} />
-        {pageMeta.image ? <meta property="og:image" content={pageMeta.image} /> : null}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={pageMeta.title} />
-        <meta name="twitter:description" content={pageMeta.description} />
-        {pageMeta.image ? <meta name="twitter:image" content={pageMeta.image} /> : null}
-        {route.page === 'post' && activePost ? (
-          <script type="application/ld+json">
-            {JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'BlogPosting',
-              headline: activePost.title,
-              datePublished: activePost.date,
-              description: activePost.description,
-              image: activePost.image,
-              url: `https://cjlludwig.github.io/#/blog/${activePost.slug}`,
-            })}
-          </script>
-        ) : null}
-      </Helmet>
+      <Seo
+        title={pageMeta.title}
+        description={pageMeta.description}
+        image={pageMeta.image}
+        type={pageMeta.type}
+        url={pageMeta.url}
+        jsonLd={
+          route.page === 'post' && activePost
+            ? {
+                '@context': 'https://schema.org',
+                '@type': 'BlogPosting',
+                headline: activePost.title,
+                datePublished: activePost.date,
+                description: activePost.description,
+                image: activePost.image,
+                url: `${SITE_URL}/#/blog/${activePost.slug}`,
+              }
+            : null
+        }
+      />
 
       {/* Header with navigation */}
       <header className="header">
