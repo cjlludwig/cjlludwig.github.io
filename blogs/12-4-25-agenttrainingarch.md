@@ -77,16 +77,16 @@ AWS proposed (and demoed) a three-agent pipeline orchestrated by a controller mo
 Here’s a conceptual view:
 
 ```mermaid
-flowchart LR
-    O[Orchestrator] --> PA[Pattern Analysis Agent]
-    O --> DG[Data Generation Agent]
-    O --> Q[Quality Agent]
+flowchart LR;
+    O["Orchestrator"] --> PA["Pattern Analysis Agent"];
+    O --> DG["Data Generation Agent"];
+    O --> Q["Quality Agent"];
 
-    PA --> DG
-    DG --> Q
-    Q --> O
+    PA --> DG;
+    DG --> Q;
+    Q --> O;
 
-    DG -->|Approved Data| DATA[(Augmented Training Data)]
+    DG --> DATA["Augmented Training Data"];
 ```
 
 ---
