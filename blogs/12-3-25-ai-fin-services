@@ -54,6 +54,7 @@ sequenceDiagram
     Agent->>PaymentNetwork: Stablecoin payment
     PaymentNetwork-->>Website: Settlement confirmation
     Website->>Agent: Content delivered
+```
 
 Takeaways
 	•	Crisis complexity is rising; agent systems must be designed with resilience in mind.
