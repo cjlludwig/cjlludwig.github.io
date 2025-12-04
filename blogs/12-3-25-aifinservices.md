@@ -69,15 +69,15 @@ No login flows, auth redirects, cookies, or access tokens—just a machine payin
 ## Diagram
 ```mermaid
 sequenceDiagram
-    participant Agent
-    participant Website
-    participant PaymentNetwork
+    participant A as Agent
+    participant W as Website
+    participant P as Payment Network
 
-    Agent->>Website: Request content
-    Website-->>Agent: 402 Payment Required (x402)
-    Agent->>PaymentNetwork: Send stablecoin payment
-    PaymentNetwork-->>Website: Confirm settlement
-    Website->>Agent: Provide content
+    A->>W: Request content
+    W-->>A: 402 Payment Required (x402)
+    A->>P: Send stablecoin payment
+    P-->>W: Confirm settlement
+    W->>A: Provide content
 ```
 
 ## Monetization: Agents Don’t See Ads
