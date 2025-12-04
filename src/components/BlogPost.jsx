@@ -7,6 +7,16 @@ function BlogPost({ post }) {
   useEffect(() => {
     if (!post || !contentRef.current) return
 
+    // Convert fenced mermaid code blocks into mermaid containers
+    const mermaidCodeBlocks = contentRef.current.querySelectorAll('pre code.language-mermaid')
+    mermaidCodeBlocks.forEach((codeBlock) => {
+      const pre = codeBlock.parentElement
+      const container = document.createElement('div')
+      container.className = 'mermaid'
+      container.textContent = codeBlock.textContent
+      pre.replaceWith(container)
+    })
+
     const mermaidBlocks = contentRef.current.querySelectorAll('.mermaid')
     if (mermaidBlocks.length) {
       mermaid.initialize({ startOnLoad: false, theme: 'neutral' })
