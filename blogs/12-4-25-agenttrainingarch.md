@@ -18,8 +18,6 @@ tags: ["llm", "agents", "aws", "fine-tuning", "ai-systems"]
 
 This session from AWS’s Generative AI Innovation Center explored how they accelerate fine-tuning using a structured multi-agent workflow. While not something customers can download today, the architecture provided a clear lens into real-world tuning pipelines and how teams can automate data generation at scale.
 
----
-
 ## The Tradeoff Landscape: Accuracy, Cost, and Latency
 
 AWS framed model optimization as a balancing act across three levers:
@@ -29,8 +27,6 @@ AWS framed model optimization as a balancing act across three levers:
 - **Latency**
 
 Improving one often regresses another, so every tuning project must prioritize based on business needs. The system showcased in this talk aims to make these tradeoffs explicit and controllable.
-
----
 
 ## Why Small Models Are Back in Style
 
@@ -48,8 +44,6 @@ A key theme: the growing shift toward **small, domain-targeted models**.
 
 This creates pressure to fill capability gaps efficiently — which is where structured multi-agent data generation comes in.
 
----
-
 ## The Customization Spectrum
 
 AWS positioned fine-tuning as one option among several ways to customize model behavior. Ordered by effort and potential impact:
@@ -62,8 +56,6 @@ AWS positioned fine-tuning as one option among several ways to customize model b
 
 The message: **most organizations can get farther than they realize by improving fine-tuning data quality**, not necessarily by redesigning models.
 
----
-
 ## The True Cost Curve: Training vs. Inference
 
 One of the session’s more useful visuals contrasted:
@@ -72,8 +64,6 @@ One of the session’s more useful visuals contrasted:
 - Long-tail **inference cost**, which dominates total spend
 
 This is especially relevant for small models: a little tuning up front dramatically reduces ongoing inference footprint. That’s why AWS invests in data automation — tuning must be cheap enough to justify frequent iterations.
-
----
 
 ## Multi-Agent Architecture: A Hybrid Orchestration Model
 
@@ -92,8 +82,6 @@ flowchart LR;
   DG --> DATA["Augmented Training Data"];
 ```
 
----
-
 ## Pattern Analysis: Finding What the Model Doesn’t Understand
 
 The **Pattern Analysis Agent** identifies weaknesses in the model by analyzing failure cases.
@@ -107,8 +95,6 @@ The first approach caused overfitting: the model learned artifacts of the error 
 
 The generalized strategy avoided this, enabling the agent to surface conceptual gaps (e.g., reasoning steps the model skips) and provide structured guidance to the generator agent.
 
----
-
 ## Data Generation: Producing New Training Samples at Scale
 
 The **Data Generation Agent** creates training samples driven by:
@@ -118,8 +104,6 @@ The **Data Generation Agent** creates training samples driven by:
 - orchestrator constraints
 
 In the demo example (a code snippet for a mean deviation function), the generator produced a technically correct but unreadable solution. The moment underscored the value of the next step — external quality judgment.
-
----
 
 ## Quality Agent: A Neutral Judge to Reduce Bias
 
@@ -132,8 +116,6 @@ The **Quality Agent** evaluates outputs using a *different* model than the gener
 
 The agent provides structured feedback to the orchestrator, which decides whether to accept or regenerate samples.
 
----
-
 ## Efficiency Wins in Their Production Setup
 
 AWS improved throughput and cost efficiency using:
@@ -145,13 +127,9 @@ AWS improved throughput and cost efficiency using:
 
 These optimizations made the pipeline fast and affordable enough for repeated, iterative tuning.
 
----
-
 ## Benchmarks and Real-World Gains
 
 The benchmark slides showed consistent but modest improvements across accuracy metrics compared to traditional fine-tuning. While not dramatic, the gains reinforce a reality across the industry: **automation improves consistency and reduces cost**, even if the absolute accuracy lift is incremental.
-
----
 
 ## Closing Thoughts
 
@@ -164,8 +142,6 @@ This session shared a pragmatic multi-agent blueprint rather than announcing a p
 - upgrade small models without scaling compute budgets
 
 Ultimately, it reinforces the theme that **fine-tuning success depends more on data quality than raw model size**.
-
----
 
 ## Further Reading & Resources
 
