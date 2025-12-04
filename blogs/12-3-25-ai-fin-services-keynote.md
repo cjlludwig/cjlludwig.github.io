@@ -56,14 +56,14 @@ sequenceDiagram
     Website->>Agent: Content delivered
 ```
 
-Takeaways
+## Takeaways
 	•	Crisis complexity is rising; agent systems must be designed with resilience in mind.
 	•	Agents need a native payment primitive to operate autonomously.
 	•	x402 proposes a lightweight, open, machine-to-machine payment standard.
 	•	Ads don’t work for agents; direct per-request payments may define future web monetization.
 	•	Early demos show feasibility, but adoption and ecosystem tooling will determine impact.
 
-Resources
+## Resources
 	•	Coinbase x402 draft: https://github.com/coinbase/x402
 	•	HTTP 402 status code background: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
 	•	Coinbase developer docs: https://developers.coinbase.com/
