@@ -1,19 +1,17 @@
-# TLDR
+# Automated LLM Fine-Tuning With Multi-Agent Systems  
+
+This session walked through how AWS internally speeds up LLM fine-tuning using a hybrid multi-agent architecture. Nothing “off-the-shelf” for customers yet — but a surprisingly transparent peek at how they run production-grade fine-tuning loops at scale.
+
+The core idea: **fine-tuning isn’t compute-bound, it’s data-prep-bound**. And the biggest wins come from automating the boring parts.
+
+---
+## TLDR
 - AWS demoed a multi-agent system used internally to automate and accelerate LLM fine-tuning.  
 - Three specialized agents — pattern analysis, data generation, and quality — work in a feedback loop orchestrated by a controller.  
 - The goal: reduce data-prep friction, improve accuracy, and make small models more practical for production.  
 - The talk emphasized the tradeoffs: accuracy vs cost vs latency, and why small models need augmentation workflows to close capability gaps.  
 - Results showed incremental but consistent performance gains, with clearer operational efficiency.  
 - Useful conceptual overview, not a packaged AWS product — but plenty of patterns worth borrowing.
-
----
-
-# Automated LLM Fine-Tuning With Multi-Agent Systems  
-### Notes from *Custom Intelligence: Building AI That Matches Your Business DNA* (AWS Generative AI Innovation Center)
-
-This session walked through how AWS internally speeds up LLM fine-tuning using a hybrid multi-agent architecture. Nothing “off-the-shelf” for customers yet — but a surprisingly transparent peek at how they run production-grade fine-tuning loops at scale.
-
-The core idea: **fine-tuning isn’t compute-bound, it’s data-prep-bound**. And the biggest wins come from automating the boring parts.
 
 ---
 
@@ -165,7 +163,6 @@ most fine-tuning gains are incremental, and the magic comes from better *data*, 
 ---
 
 # Further Reading & Resources
-- AWS session listing — *Custom Intelligence: Building AI That Matches Your Business DNA* (re:Invent)  
 - AWS Generative AI Innovation Center: https://aws.amazon.com/generative-ai/innovation-center/  
 - Paper referenced in talk: https://arxiv.org/abs/2510.18143  
 - Background on SFT, DPO, fine-tuning:  
