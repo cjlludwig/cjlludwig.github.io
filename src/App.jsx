@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { FaGithub, FaLinkedin, FaDownload, FaMoon, FaSun } from 'react-icons/fa'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -15,6 +15,12 @@ import BlogIndex from './components/BlogIndex'
 import BlogPost from './components/BlogPost'
 import Seo from './components/Seo'
 import blogsData from './data/blogs.json'
+import {
+  initAnalytics,
+  trackFileDownload,
+  trackPageView,
+  trackSocialProfile,
+} from './utils/analytics'
 
 const posts = blogsData.posts || []
 
@@ -67,6 +73,7 @@ function App() {
   }
 
   const [route, setRoute] = useState(() => getRouteFromHash(window.location.hash))
+  const lastTrackedPath = useRef(null)
 
   useEffect(() => {
     const onHashChange = () => {
@@ -101,6 +108,25 @@ function App() {
     }
     return { ...defaultMeta, url: SITE_URL }
   }, [route.page, activePost])
+
+  const pageViewPath = useMemo(() => {
+    if (route.page === 'home') return '/'
+    if (route.page === 'blog') return '/blog'
+    if (route.page === 'post' && activePost) return `/blog/${activePost.slug}`
+    return null
+  }, [route.page, activePost])
+
+  useEffect(() => {
+    initAnalytics()
+  }, [])
+
+  useEffect(() => {
+    if (!pageViewPath) return
+    if (lastTrackedPath.current === pageViewPath) return
+
+    trackPageView(pageViewPath, pageMeta.title)
+    lastTrackedPath.current = pageViewPath
+  }, [pageMeta.title, pageViewPath])
 
   return (
     <div className="app">
@@ -185,26 +211,31 @@ function App() {
         <div className="container">
           <div className="footer-content">
             <div className="footer-links">
-              <a 
-                href="https://github.com/cjlludwig" 
-                target="_blank" 
+              <a
+                href="https://github.com/cjlludwig"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="footer-link"
+                onClick={() => trackSocialProfile('GitHub', 'https://github.com/cjlludwig')}
               >
                 <FaGithub /> GitHub
               </a>
-              <a 
-                href="https://linkedin.com/in/connor-ludwig" 
-                target="_blank" 
+              <a
+                href="https://linkedin.com/in/connor-ludwig"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="footer-link"
+                onClick={() =>
+                  trackSocialProfile('LinkedIn', 'https://linkedin.com/in/connor-ludwig')
+                }
               >
                 <FaLinkedin /> LinkedIn
               </a>
-              <a 
-                href="/resume.pdf" 
+              <a
+                href="/resume.pdf"
                 download
                 className="footer-link"
+                onClick={() => trackFileDownload('/resume.pdf')}
               >
                 <FaDownload /> Download Resume
               </a>
