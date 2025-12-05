@@ -243,7 +243,7 @@ Add to your README to show build status:
 **Solution:**
 ```bash
 # Check Node version matches CI
-node --version  # Should be 18.x
+node --version  # Should be 22.x
 
 # Ensure all files are committed
 git status
