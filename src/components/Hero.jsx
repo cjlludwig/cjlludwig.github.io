@@ -1,4 +1,5 @@
 import { FaGithub, FaLinkedin, FaDownload, FaGlobe } from 'react-icons/fa'
+import { trackFileDownload, trackSocialProfile } from '../utils/analytics'
 import resumeData from '../data/resume-data.json'
 
 function Hero() {
@@ -20,20 +21,25 @@ function Hero() {
           
           <div className="hero-links">
             {personal.links.map((link, index) => (
-              <a 
+              <a
                 key={index}
-                href={link.url} 
-                target="_blank" 
+                href={link.url}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="hero-link"
+                onClick={() =>
+                  ['GitHub', 'LinkedIn'].includes(link.text) &&
+                  trackSocialProfile(link.text, link.url)
+                }
               >
                 {iconMap[link.text]} {link.text}
               </a>
             ))}
-            <a 
-              href="/resume.pdf" 
+            <a
+              href="/resume.pdf"
               download
               className="hero-link hero-link-primary"
+              onClick={() => trackFileDownload('/resume.pdf')}
             >
               <FaDownload /> Download Resume
             </a>

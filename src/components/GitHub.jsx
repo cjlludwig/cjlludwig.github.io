@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { FaGithub, FaStar, FaCodeBranch } from 'react-icons/fa'
+import { trackSocialProfile } from '../utils/analytics'
 
 function GitHub() {
   const githubUsername = 'cjlludwig'
@@ -23,7 +24,13 @@ function GitHub() {
   const renderFallback = (title, href) => (
     <div className="github-stat-fallback">
       <p>{title} are temporarily unavailable.</p>
-      <a href={href} target="_blank" rel="noopener noreferrer" className="github-fallback-link">
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="github-fallback-link"
+        onClick={() => trackSocialProfile('GitHub', href)}
+      >
         Open on GitHub
       </a>
     </div>
@@ -38,11 +45,12 @@ function GitHub() {
         
         <div className="github-content">
           {/* Profile Card */}
-          <a 
+          <a
             href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="github-link"
+            onClick={() => trackSocialProfile('GitHub', githubUrl)}
           >
             <div className="github-profile-card">
               <img
@@ -98,6 +106,7 @@ function GitHub() {
               target="_blank"
               rel="noopener noreferrer"
               className="github-button"
+              onClick={() => trackSocialProfile('GitHub', githubUrl)}
             >
               <FaGithub /> View All Repositories
             </a>
