@@ -272,6 +272,9 @@ body {
   display: grid;
   gap: var(--spacing-md);
   color: var(--text-primary);
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .blog-post-body p {
@@ -312,6 +315,7 @@ body {
   padding: var(--spacing-md);
   overflow: auto;
   border: 1px solid var(--border-color);
+  max-width: 100%;
 }
 
 .blog-post-body pre code {
@@ -321,6 +325,11 @@ body {
 .blog-post-body img {
   max-width: 100%;
   border-radius: 0.75rem;
+}
+
+.blog-post-body svg {
+  max-width: 100%;
+  height: auto;
 }
 
 .back-link {
