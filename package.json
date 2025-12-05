@@ -6,6 +6,9 @@
   "author": "Connor Ludwig",
   "type": "module",
   "homepage": "https://cjlludwig.github.io",
+  "engines": {
+    "node": "^22.0.0"
+  },
   "scripts": {
     "parse-resume": "node scripts/parse-resume.js",
     "generate-blogs": "node scripts/generate-blogs.js",
