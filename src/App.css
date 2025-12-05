@@ -110,11 +110,15 @@ body {
   align-items: center;
 }
 
-.nav-links a {
+.nav-links a { 
   color: var(--text-secondary);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s ease;
+}
+
+.nav-blog {
+  font-weight: 600;
 }
 
 .nav-links a:hover {
@@ -1462,19 +1466,24 @@ body {
     gap: var(--spacing-sm);
   }
 
-  /* Hide professional links on mobile, keep fun ones */
-  .nav-links a:not(.nav-fun):not(.theme-toggle) {
+  /* Hide professional links on mobile, keep blog and fun links */
+  .nav-links a:not(.nav-fun):not(.nav-blog):not(.theme-toggle) {
     display: none;
   }
-  
+
   /* Show fun links on mobile */
   .nav-links .nav-fun {
     display: inline-block;
   }
-  
-  /* Keep separator visible to show fun section */
+
+  /* Keep the blog link visible on mobile */
+  .nav-links .nav-blog {
+    display: inline-block;
+  }
+
+  /* Hide separator on mobile for a cleaner layout */
   .nav-separator {
-    display: inline;
+    display: none;
   }
   
   /* Reduce spacing on mobile */
