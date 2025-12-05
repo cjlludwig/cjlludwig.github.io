@@ -27,24 +27,26 @@ function BlogPost({ post }) {
   return (
     <section className="section" id="blog-post">
       <div className="container">
-        <div className="blog-post-header">
-          <p className="blog-date">{new Date(post.date).toLocaleDateString()}</p>
-          <h1 className="blog-post-title">{post.title}</h1>
-          <p className="blog-post-description">{post.description}</p>
-          {post.tags?.length ? (
-            <div className="blog-tags">
-              {post.tags.map((tag) => (
-                <span key={tag} className="tag">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          ) : null}
-          <a className="back-link" href="#/blog">
-            ← Back to all posts
-          </a>
+        <div className="blog-post-content">
+          <div className="blog-post-header">
+            <p className="blog-date">{new Date(post.date).toLocaleDateString()}</p>
+            <h1 className="blog-post-title">{post.title}</h1>
+            <p className="blog-post-description">{post.description}</p>
+            {post.tags?.length ? (
+              <div className="blog-tags">
+                {post.tags.map((tag) => (
+                  <span key={tag} className="tag">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            ) : null}
+            <a className="back-link" href="#/blog">
+              ← Back to all posts
+            </a>
+          </div>
+          <article className="blog-post-body" ref={contentRef} dangerouslySetInnerHTML={{ __html: post.html }} />
         </div>
-        <article className="blog-post-body" ref={contentRef} dangerouslySetInnerHTML={{ __html: post.html }} />
       </div>
     </section>
   )

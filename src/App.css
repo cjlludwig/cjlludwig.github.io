@@ -254,6 +254,12 @@ body {
   margin-bottom: var(--spacing-lg);
 }
 
+.blog-post-content {
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+
 .blog-post-title {
   font-size: 2rem;
 }
