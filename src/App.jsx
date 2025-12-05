@@ -165,11 +165,13 @@ function App() {
               <a href="#experience">Experience</a>
               <a href="#skills">Skills</a>
               <a href="#projects">Projects</a>
-              <a href="#/blog">Blog</a>
+              <a href="#/blog" className="nav-blog">
+                Blog
+              </a>
               <span className="nav-separator">|</span>
-              <a href="#books" className="nav-fun">Books</a>
-              <a href="#movies" className="nav-fun">Movies</a>
-              <a href="#music" className="nav-fun">Music</a>
+              <a href="#books" className="nav-fun">
+                Fun Stuff
+              </a>
               <button 
                 onClick={toggleDarkMode} 
                 className="theme-toggle"

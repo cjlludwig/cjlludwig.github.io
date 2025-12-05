@@ -3,7 +3,6 @@ function BlogIndex({ posts }) {
     <section className="section" id="blog">
       <div className="container">
         <div className="section-header">
-          <p className="section-subtitle">Writing</p>
           <h2 className="section-title">Latest Posts</h2>
           <p className="section-description">
             Notes on engineering, architecture experiments, and the tools I enjoy using.
