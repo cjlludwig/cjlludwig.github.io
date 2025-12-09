@@ -76,16 +76,17 @@ function Books() {
                   className="book-cover"
                   loading="lazy"
                 />
-              </div>
-              <div className="book-info">
-                <h3 className="book-title">{book.title}</h3>
-                {/* {book.series && <p className="book-series">{book.series}</p>} */}
-                <p className="book-author">{book.author}</p>
-                {book.rating > 0 && (
-                  <div className="book-rating">
-                    {renderStars(book.rating)}
+                <div className="book-overlay">
+                  <div className="book-info">
+                    <h3 className="book-title">{book.title}</h3>
+                    <p className="book-author">{book.author}</p>
+                    {book.rating > 0 && (
+                      <div className="book-rating">
+                        {renderStars(book.rating)}
+                      </div>
+                    )}
                   </div>
-                )}
+                </div>
               </div>
             </a>
           ))}

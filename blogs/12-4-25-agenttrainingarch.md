@@ -2,8 +2,8 @@
 title: "Automated LLM Fine-Tuning with Multi-Agent Systems"
 date: "2025-12-04T12:00:00Z"
 slug: "automated-llm-fine-tuning-multi-agent-systems"
-description: "Notes from an AWS session on automating LLM fine-tuning through a multi-agent workflow optimizing accuracy, cost, and latency."
-tags: ["llm", "agents", "aws", "fine-tuning", "ai-systems"]
+description: "Notes from AWS re:Invent 2025: Automating LLM fine-tuning through a multi-agent workflow optimizing accuracy, cost, and latency."
+tags: ["llm", "agents", "aws", "fine-tuning", "ai-systems", "AWS re:Invent"]
 ---
 
 # Automated LLM Fine-Tuning with Multi-Agent Systems
@@ -145,11 +145,10 @@ Ultimately, it reinforces the theme that **fine-tuning success depends more on d
 
 ## Further Reading & Resources
 
+- AWS re:Invent Session Catalog: https://reinvent.awsevents.com/
+
 - AWS Generative AI Innovation Center  
   https://aws.amazon.com/generative-ai/innovation-center/
 
 - *Custom Intelligence: Multi-Agent Data Augmentation for LLMs*  
   https://arxiv.org/abs/2510.18143
-
-- Hugging Face: Fine-Tuning Overview  
-  https://huggingface.co/docs/transformers/main/en/training

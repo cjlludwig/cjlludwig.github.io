@@ -2,8 +2,8 @@
 title: "Agents in Financial Services: Allianz and Coinbase Keynote Highlights"
 date: "2025-12-03T16:10:00Z"
 slug: "agents-for-financial-services-keynote"
-description: "Notes from the Allianz and Coinbase keynote on agents, resilience, internet payments, and the emerging x402 protocol."
-tags: ["agents", "fintech", "crypto", "payments", "standards"]
+description: "Notes from AWS re:Invent 2025: The Allianz and Coinbase keynote on agents, resilience, internet payments, and the emerging x402 protocol."
+tags: ["agents", "fintech", "crypto", "payments", "standards", "AWS re:Invent"]
 image: ""
 ---
 
@@ -103,9 +103,9 @@ x402 is positioned as a foundation for that shift.
  - Monetization for an agent-read web will likely hinge on direct per-request payments, not ads.
 
 ## Resources
- - https://github.com/coinbase/x402
- - https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
- - https://developers.coinbase.com/
- - https://reinvent.awsevents.com/
- - https://www.allianz.com/en/press/
+ - AWS re:Invent Session Catalog: https://reinvent.awsevents.com/
+ - x402 Protocol: https://github.com/coinbase/x402
+ - HTTP 402 Status Code: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+ - Coinbase Developers: https://developers.coinbase.com/
+ - Allianz Press: https://www.allianz.com/en/press/
 

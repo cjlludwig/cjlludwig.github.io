@@ -2,8 +2,8 @@
 title: "Customizing Foundation Models with Amazon SageMaker AI"
 date: "2025-12-04"
 slug: "sagemaker-ai-foundation-model-customization"
-description: "Notes from an AWS session on simplifying and accelerating foundation model customization using SageMaker AI."
-tags: ["aws", "sagemaker", "genai", "machine-learning", "model-tuning"]
+description: "Notes from AWS re:Invent 2025: Simplifying and accelerating foundation model customization using SageMaker AI."
+tags: ["aws", "sagemaker", "genai", "machine-learning", "model-tuning", "AWS re:Invent"]
 ---
 # Customizing Foundation Models with SageMaker AI
 
@@ -131,8 +131,8 @@ This closes the loop from idea to production in a single interface.
 https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-fine-tuning.html
 
 ## Further Reading / Resources
+- AWS re:Invent Session Catalog: https://reinvent.awsevents.com/
 - AWS SageMaker AI documentation: https://docs.aws.amazon.com/sagemaker/latest/dg/whatis.html  
 - SageMaker JumpStart foundation models: https://aws.amazon.com/sagemaker/jumpstart/  
 - AWS ML Blog (tuning techniques, RLHF, RLVR): https://aws.amazon.com/blogs/machine-learning/  
-- AWS Responsible AI pages: https://aws.amazon.com/responsible-ai/  
-- re:Invent session portal (slides when posted): https://reinvent.awsevents.com/
+- AWS Responsible AI pages: https://aws.amazon.com/responsible-ai/
