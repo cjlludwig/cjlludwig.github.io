@@ -24,7 +24,24 @@
       "title": "Senior Staff Software Engineer",
       "company": "Built Technologies",
       "location": "Nashville, TN (Remote)",
-      "period": "01/2024 – Present",
+      "period": "01/2025 – Present",
+      "achievements": [
+        "Founded AI Agents Platform, establishing evaluation frameworks, safety guardrails, and observability patterns",
+        "Led AI document extraction experimentation with benchmark-driven evaluation and regression protection",
+        "Drove org-wide AI tooling adoption, authoring standards and enabling LLM-ready documentation practices",
+        "Unblocked over $1M ARR by delivering complex loan compliance calculations for enterprise clients",
+        "Built Data Streaming team from scratch, hiring senior engineers and establishing team practices",
+        "Led 5+ P1 incidents as incident commander, restoring platform stability during critical regressions",
+        "Drove financial precision initiative, improving calculation accuracy to 14 decimal digits",
+        "Led org-wide documentation initiative across 100+ engineers, building AI-ready knowledge base",
+        "Mentored staff and senior engineers while ranking 100th percentile in code review contributions"
+      ]
+    },
+    {
+      "title": "Staff Software Engineer",
+      "company": "Built Technologies",
+      "location": "Nashville, TN (Remote)",
+      "period": "01/2024 – 01/2025",
       "achievements": [
         "Led architecture of high-throughput, event-driven financial systems in a FinTech startup environment",
         "Delivered core data consistency project, unlocking over $5 million in ARR",
@@ -56,12 +73,11 @@
       "location": "Urbandale, IA",
       "period": "09/2021 – 09/2022",
       "achievements": [
-        "Launched scalable system supporting 100,000+ IoT devices annually",
+        "Launched distributed API web service supporting 100,000+ IoT devices annually",
         "Improved license delivery performance by 4x through optimization and infrastructure enhancements",
         "Spearheaded secure cryptographic processes to protect billions of dollars in company revenue",
         "Guided 20+ cross-functional stakeholders in product definition and development",
         "Built ETL data pipelines for digital sales department with 10,000+ users",
-        "Architected distributed API web service with AWS IoT system integrations",
         "Deployed serverless monitoring and logging for over 20 microservices",
         "Established CI/CD processes, reducing deployment times by over 30%"
       ]
@@ -94,8 +110,24 @@
   ],
   "projects": [
     {
+      "title": "AI Agents Platform",
+      "period": "08/2025 – Present",
+      "description": "Founding member building enterprise AI agent platform supporting both deterministic workflows and autonomous agents. Delivered intelligent document processing for unstructured financial documents, enabling automated data ingestion. Pioneered AI product ideation and thought leadership across organization.",
+      "stack": [
+        "AWS Strands",
+        "AWS Agentcore",
+        "OpenAi",
+        "Claude",
+        "Knowledge Bases",
+        "Temporal",
+        "Python",
+        "LLMs",
+        "React"
+      ]
+    },
+    {
       "title": "Real-time Calculation Processing",
-      "period": "06/2024 – Present",
+      "period": "06/2024 – 07/2025",
       "description": "Built event-driven system to handle complex financial calculations with a focus on accuracy and low latency. Delivered within a one-month turnaround to meet tight product release timeline.",
       "stack": [
         "AWS",
@@ -186,6 +218,7 @@
       "Kubernetes",
       "GitHub Actions",
       "Jenkins",
+      "Datadog",
       "OpenSSL",
       "Linux"
     ],
@@ -202,6 +235,19 @@
       "Pandas",
       "Databricks",
       "MQTT"
+    ],
+    "AI & Machine Learning": [
+      "Claude",
+      "OpenAI",
+      "Gemini",
+      "Cursor",
+      "GitHub Copilot",
+      "Strands",
+      "AI Agents",
+      "Prompt Engineering",
+      "RAG",
+      "Evaluation Frameworks",
+      "Document Extraction"
     ],
     "Tools & Practices": [
       "Git",
@@ -223,8 +269,7 @@
       "IaC",
       "Mentoring",
       "System Architecture",
-      "Product Management",
-      "SAP"
+      "Product Management"
     ]
   },
   "certifications": [

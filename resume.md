@@ -15,7 +15,21 @@ Versatile and results-driven Full-stack Software Engineer with a proven track re
 
 ### **Senior Staff Software Engineer**  
 **Built Technologies – Nashville, TN (Remote)**  
-*01/2024 – Present*
+*01/2025 – Present*
+
+- Founded AI Agents Platform, establishing evaluation frameworks, safety guardrails, and observability patterns
+- Led AI document extraction experimentation with benchmark-driven evaluation and regression protection
+- Drove org-wide AI tooling adoption, authoring standards and enabling LLM-ready documentation practices
+- Unblocked over $1M ARR by delivering complex loan compliance calculations for enterprise clients
+- Built Data Streaming team from scratch, hiring senior engineers and establishing team practices
+- Led 5+ P1 incidents as incident commander, restoring platform stability during critical regressions
+- Drove financial precision initiative, improving calculation accuracy to 14 decimal digits
+- Led org-wide documentation initiative across 100+ engineers, building AI-ready knowledge base
+- Mentored staff and senior engineers while ranking 100th percentile in code review contributions
+
+### **Staff Software Engineer**  
+**Built Technologies – Nashville, TN (Remote)**  
+*01/2024 – 01/2025*
 
 - Led architecture of high-throughput, event-driven financial systems in a FinTech startup environment
 - Delivered core data consistency project, unlocking over $5 million in ARR
@@ -41,12 +55,11 @@ Versatile and results-driven Full-stack Software Engineer with a proven track re
 **Deere & Company – Urbandale, IA**  
 *09/2021 – 09/2022*
 
-- Launched scalable system supporting 100,000+ IoT devices annually
+- Launched distributed API web service supporting 100,000+ IoT devices annually
 - Improved license delivery performance by 4x through optimization and infrastructure enhancements
 - Spearheaded secure cryptographic processes to protect billions of dollars in company revenue
 - Guided 20+ cross-functional stakeholders in product definition and development
 - Built ETL data pipelines for digital sales department with 10,000+ users
-- Architected distributed API web service with AWS IoT system integrations
 - Deployed serverless monitoring and logging for over 20 microservices
 - Established CI/CD processes, reducing deployment times by over 30%
 
@@ -77,8 +90,14 @@ Versatile and results-driven Full-stack Software Engineer with a proven track re
 
 ## Key Projects
 
+### **AI Agents Platform**  
+*08/2025 – Present*
+
+Founding member building enterprise AI agent platform supporting both deterministic workflows and autonomous agents. Delivered intelligent document processing for unstructured financial documents, enabling automated data ingestion. Pioneered AI product ideation and thought leadership across organization.  
+**Stack:** AWS Strands, AWS Agentcore, OpenAi, Claude, Knowledge Bases, Temporal, Python, LLMs, React
+
 ### **Real-time Calculation Processing**  
-*06/2024 – Present*
+*06/2024 – 07/2025*
 
 Built event-driven system to handle complex financial calculations with a focus on accuracy and low latency. Delivered within a one-month turnaround to meet tight product release timeline.  
 **Stack:** AWS, PyFlink, SQL, Terraform, Kafka, Lambda
@@ -106,9 +125,10 @@ Developed modern web application to enable data discovery, governance, and metad
 ## Technical Skills
 
 **Languages & Frameworks:** JavaScript, TypeScript, Node.js, Java, Python, Scala, C++, C#, HTML, CSS, Sass, React, Express.js, Next.js, D3.js, Enzyme, QT  
-**Cloud & Infrastructure:** AWS, AWS IoT, AWS SAM, Terraform, CloudFormation, Docker, Kubernetes, GitHub Actions, Jenkins, OpenSSL, Linux  
+**Cloud & Infrastructure:** AWS, AWS IoT, AWS SAM, Terraform, CloudFormation, Docker, Kubernetes, GitHub Actions, Jenkins, Datadog, OpenSSL, Linux  
 **Data & Analytics:** SQL, MongoDB, Apache Spark, PySpark, PyFlink, Flink, Kafka, Snowflake, Jupyter, Pandas, Databricks, MQTT  
-**Tools & Practices:** Git, REST APIs, OAuth, TDD, Unit Testing, E2E Testing, Integration Testing, Selenium, Code Reviews, Agile, UX Design, Protobuf, Redis, CI/CD, Microservices, Analytics, IaC, Mentoring, System Architecture, Product Management, SAP  
+**AI & Machine Learning:** Claude, OpenAI, Gemini, Cursor, GitHub Copilot, Strands, AI Agents, Prompt Engineering, RAG, Evaluation Frameworks, Document Extraction  
+**Tools & Practices:** Git, REST APIs, OAuth, TDD, Unit Testing, E2E Testing, Integration Testing, Selenium, Code Reviews, Agile, UX Design, Protobuf, Redis, CI/CD, Microservices, Analytics, IaC, Mentoring, System Architecture, Product Management  
 
 ---
 
