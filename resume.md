@@ -7,7 +7,7 @@ Chicago, IL, US
 
 ## Summary
 
-Versatile and results-driven Full-stack Software Engineer with a proven track record in leading technical initiatives within startups and Fortune 500 companies. With over 8 years of experience, excels in developing robust tools and scalable systems that enhance productivity and drive business growth. Proven technical leader with a history of modernizing engineering practices and improving engineering standards. Routinely masters new technologies to meet project needs. Strong communication and collaboration skills demonstrated through technical mentorship, advising cross-functional stakeholders, and customer consulting to identify optimal solutions.
+Versatile and results-driven Full-stack Software Engineer with a proven track record in leading technical initiatives within startups and Fortune 500 companies. With over 8 years of experience, excels in developing robust tools and scalable systems that enhance productivity and drive business growth. Proven technical leader with a history of modernizing engineering practices and improving engineering standards. Routinely masters new technologies to meet project needs. Strong communication and collaboration skills demonstrated through technical mentorship, advising cross-functional stakeholders, and customer consulting to identify optimal solutions. Deep domain experience in fintech, construction lending, precision agriculture, and enterprise data platforms.
 
 ---
 
@@ -129,6 +129,7 @@ Developed modern web application to enable data discovery, governance, and metad
 **Data & Analytics:** SQL, MongoDB, Apache Spark, PySpark, PyFlink, Flink, Kafka, Snowflake, Jupyter, Pandas, Databricks, MQTT  
 **AI & Machine Learning:** Claude, OpenAI, Gemini, Cursor, GitHub Copilot, Strands, AI Agents, Prompt Engineering, RAG, Evaluation Frameworks, Document Extraction  
 **Tools & Practices:** Git, REST APIs, OAuth, TDD, Unit Testing, E2E Testing, Integration Testing, Selenium, Code Reviews, Agile, UX Design, Protobuf, Redis, CI/CD, Microservices, Analytics, IaC, Mentoring, System Architecture, Product Management  
+**Domain Expertise:** FinTech, Construction Lending, Real Estate, Asset Management, Precision Agriculture, Ag Tech, Embedded Systems, SaaS Licensing, Data Engineering  
 
 ---
 

@@ -38,3 +38,7 @@ coverage/
 # Misc
 *.tsbuildinfo
 
+# Tailored resumes (job-specific, not tracked)
+tailored-resumes/
+
+.cursor/
