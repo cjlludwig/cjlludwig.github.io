@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redirecting...</title>
+  <script>
+    // GitHub Pages SPA redirect workaround
+    // Encodes the current path into a query parameter and redirects to index.html
+    // The main app will restore the path on load
+    (function() {
+      var path = window.location.pathname;
+      var search = window.location.search;
+      var hash = window.location.hash;
+
+      // Don't redirect if we're already at root
+      if (path === '/' || path === '/index.html') {
+        return;
+      }
+
+      // Redirect to root with path encoded in query string
+      var redirectUrl = '/?p=' + encodeURIComponent(path + search + hash);
+      window.location.replace(redirectUrl);
+    })();
+  </script>
+</head>
+<body>
+  <p>Redirecting...</p>
+</body>
+</html>
