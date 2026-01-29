@@ -251,6 +251,24 @@ body {
   font-size: 0.9rem;
 }
 
+.blog-view-all {
+  text-align: center;
+  margin-top: var(--spacing-xl);
+}
+
+.view-all-link {
+  color: var(--accent-primary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.125rem;
+  transition: color 0.2s ease;
+}
+
+.view-all-link:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
 .blog-post-header {
   display: flex;
   flex-direction: column;

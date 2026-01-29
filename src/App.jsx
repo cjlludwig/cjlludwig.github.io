@@ -283,7 +283,7 @@ function App() {
             <Certifications />
             <Education />
             <GitHub />
-            <BlogIndex posts={posts} />
+            <BlogIndex posts={posts.slice(0, 3)} showViewAll />
             <Books />
             <Movies />
             <Music />

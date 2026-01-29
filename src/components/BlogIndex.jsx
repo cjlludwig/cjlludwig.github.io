@@ -1,4 +1,4 @@
-function BlogIndex({ posts }) {
+function BlogIndex({ posts, showViewAll = false }) {
   return (
     <section className="section" id="blog">
       <div className="container">
@@ -38,6 +38,11 @@ function BlogIndex({ posts }) {
             </article>
           ))}
         </div>
+        {showViewAll && (
+          <div className="blog-view-all">
+            <a href="/blog" className="view-all-link">View all posts →</a>
+          </div>
+        )}
       </div>
     </section>
   )
