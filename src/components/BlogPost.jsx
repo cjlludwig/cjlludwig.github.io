@@ -29,7 +29,7 @@ function BlogPost({ post }) {
       <div className="container">
         <div className="blog-post-content">
           <div className="blog-post-header">
-            <a className="back-link" href="#/blog">
+            <a className="back-link" href="/blog">
               ← Back to all posts
             </a>
             <h1 className="blog-post-title">{post.title}</h1>

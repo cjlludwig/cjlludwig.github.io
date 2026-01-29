@@ -40,6 +40,24 @@ function updateStructuredData(jsonLd) {
   }
 }
 
+function updateCanonical(url) {
+  const selector = 'link[rel="canonical"]'
+  const existing = document.head.querySelector(selector)
+
+  if (!url) {
+    return
+  }
+
+  if (existing) {
+    existing.setAttribute('href', url)
+  } else {
+    const link = document.createElement('link')
+    link.setAttribute('rel', 'canonical')
+    link.setAttribute('href', url)
+    document.head.appendChild(link)
+  }
+}
+
 function Seo({ title, description, type = 'website', image, url, jsonLd }) {
   useEffect(() => {
     if (title) {
@@ -58,6 +76,7 @@ function Seo({ title, description, type = 'website', image, url, jsonLd }) {
     upsertMeta('name', 'twitter:description', description)
     upsertMeta('name', 'twitter:image', image)
 
+    updateCanonical(url)
     updateStructuredData(jsonLd)
 
     return () => {

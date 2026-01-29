@@ -14,7 +14,7 @@ function BlogIndex({ posts }) {
               <div className="blog-card-content">
                 <p className="blog-date">{new Date(post.date).toLocaleDateString()}</p>
                 <h3 className="blog-title">
-                  <a href={`#/blog/${post.slug}`}>{post.title}</a>
+                  <a href={`/blog/${post.slug}`}>{post.title}</a>
                 </h3>
                 <p className="blog-description">{post.description}</p>
                 {post.tags?.length ? (
@@ -26,7 +26,7 @@ function BlogIndex({ posts }) {
                     ))}
                   </div>
                 ) : null}
-                <a className="blog-readmore" href={`#/blog/${post.slug}`}>
+                <a className="blog-readmore" href={`/blog/${post.slug}`}>
                   Read more →
                 </a>
               </div>

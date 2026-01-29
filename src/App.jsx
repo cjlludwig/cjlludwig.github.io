@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { FaGithub, FaLinkedin, FaDownload, FaMoon, FaSun } from 'react-icons/fa'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -32,19 +32,29 @@ const defaultMeta = {
     'Senior Staff Software Engineer passionate about building performant platforms, reliable systems, and delightful developer experiences.',
 }
 
-function getRouteFromHash(hash) {
-  const sanitized = hash.replace(/^#/, '')
-  if (!sanitized || sanitized === '/') {
+function getRouteFromPath(pathname) {
+  const path = pathname || '/'
+  if (path === '/' || path === '/index.html') {
     return { page: 'home' }
   }
 
-  const parts = sanitized.split('/').filter(Boolean)
+  const parts = path.split('/').filter(Boolean)
   if (parts[0] === 'blog') {
     if (parts[1]) return { page: 'post', slug: parts[1] }
     return { page: 'blog' }
   }
 
   return { page: 'home' }
+}
+
+function restorePathFromRedirect() {
+  const params = new URLSearchParams(window.location.search)
+  const redirectedPath = params.get('p')
+  if (redirectedPath) {
+    window.history.replaceState(null, '', redirectedPath)
+    return redirectedPath
+  }
+  return window.location.pathname
 }
 
 function App() {
@@ -72,16 +82,89 @@ function App() {
     setDarkMode(!darkMode)
   }
 
-  const [route, setRoute] = useState(() => getRouteFromHash(window.location.hash))
+  const [route, setRoute] = useState(() => getRouteFromPath(restorePathFromRedirect()))
   const lastTrackedPath = useRef(null)
 
-  useEffect(() => {
-    const onHashChange = () => {
-      setRoute(getRouteFromHash(window.location.hash))
-    }
-    window.addEventListener('hashchange', onHashChange)
-    return () => window.removeEventListener('hashchange', onHashChange)
+  const navigate = useCallback((path) => {
+    window.history.pushState(null, '', path)
+    setRoute(getRouteFromPath(path))
+    window.scrollTo(0, 0)
   }, [])
+
+  const handleNavClick = useCallback((e) => {
+    const href = e.currentTarget.getAttribute('href')
+    if (href && href.startsWith('/') && !href.startsWith('//')) {
+      e.preventDefault()
+      navigate(href)
+    }
+  }, [navigate])
+
+  useEffect(() => {
+    const onPopState = () => {
+      setRoute(getRouteFromPath(window.location.pathname))
+    }
+    window.addEventListener('popstate', onPopState)
+    return () => window.removeEventListener('popstate', onPopState)
+  }, [])
+
+  useEffect(() => {
+    const handleLinkClick = (e) => {
+      const link = e.target.closest('a')
+      if (!link) return
+
+      const href = link.getAttribute('href')
+      if (!href) return
+
+      // Skip external links, downloads, and mailto
+      if (
+        link.target === '_blank' ||
+        link.hasAttribute('download') ||
+        href.startsWith('http') ||
+        href.startsWith('//') ||
+        href.startsWith('mailto:')
+      ) {
+        return
+      }
+
+      // Handle anchor links to home sections (e.g., /#about, /#projects)
+      if (href.startsWith('/#')) {
+        const hash = href.slice(1) // Get "#about" from "/#about"
+        const currentPath = window.location.pathname
+
+        // If already on home, just scroll to the section
+        if (currentPath === '/' || currentPath === '/index.html') {
+          e.preventDefault()
+          const element = document.querySelector(hash)
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' })
+            window.history.pushState(null, '', href)
+          }
+        } else {
+          // Navigate to home first, then scroll to section
+          e.preventDefault()
+          navigate('/')
+          // Wait for home to render, then scroll
+          setTimeout(() => {
+            const element = document.querySelector(hash)
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' })
+              window.history.replaceState(null, '', href)
+            }
+          }, 100)
+        }
+        return
+      }
+
+      // Handle internal path navigation (e.g., /blog, /blog/slug)
+      if (href.startsWith('/')) {
+        e.preventDefault()
+        navigate(href)
+      }
+    }
+
+    document.addEventListener('click', handleLinkClick)
+    return () => document.removeEventListener('click', handleLinkClick)
+  }, [navigate])
 
   const activePost = useMemo(
     () => posts.find((post) => post.slug === route.slug),
@@ -95,7 +178,7 @@ function App() {
         description: activePost.description,
         image: activePost.image,
         date: activePost.date,
-        url: `${SITE_URL}/#/blog/${activePost.slug}`,
+        url: `${SITE_URL}/blog/${activePost.slug}`,
         type: 'article',
       }
     }
@@ -103,7 +186,7 @@ function App() {
       return {
         title: 'Blog | Connor Ludwig',
         description: 'Short engineering notes, diagrams, and stories.',
-        url: `${SITE_URL}/#/blog`,
+        url: `${SITE_URL}/blog`,
       }
     }
     return { ...defaultMeta, url: SITE_URL }
@@ -145,7 +228,7 @@ function App() {
                 datePublished: activePost.date,
                 description: activePost.description,
                 image: activePost.image,
-                url: `${SITE_URL}/#/blog/${activePost.slug}`,
+                url: `${SITE_URL}/blog/${activePost.slug}`,
               }
             : null
         }
@@ -156,20 +239,20 @@ function App() {
         <div className="container">
           <nav className="nav">
             <div className="nav-brand">
-              <a href="#/" className="brand-link">
+              <a href="/" className="brand-link" onClick={handleNavClick}>
                 Connor Ludwig
               </a>
             </div>
             <div className="nav-links">
-              <a href="#about">About</a>
-              <a href="#experience">Experience</a>
-              <a href="#skills">Skills</a>
-              <a href="#projects">Projects</a>
-              <a href="#/blog" className="nav-blog">
+              <a href="/#about">About</a>
+              <a href="/#experience">Experience</a>
+              <a href="/#skills">Skills</a>
+              <a href="/#projects">Projects</a>
+              <a href="/blog" className="nav-blog" onClick={handleNavClick}>
                 Blog
               </a>
               <span className="nav-separator">|</span>
-              <a href="#books" className="nav-fun">
+              <a href="/#books" className="nav-fun">
                 Fun Stuff
               </a>
               <button 
