@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+
+    <!-- SEO Meta Tags -->
+    <title>AI Agents Ate the Conference: Reality, Hype, and Hard Lessons from re:Invent | Connor Ludwig</title>
+    <meta name="description" content="A candid engineer’s recap of re:Invent 2025: the gap between leadership and engineering on AI agents, why benchmarks mislead, and what real-world agent architecture actually looks like in the Wild West era of agentic systems." />
+    <meta name="author" content="Connor Ludwig" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://cjlludwig.github.io/blog/ai-agents-ate-the-conference" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://cjlludwig.github.io/blog/ai-agents-ate-the-conference" />
+    <meta property="og:site_name" content="Connor Ludwig" />
+    <meta property="og:title" content="AI Agents Ate the Conference: Reality, Hype, and Hard Lessons from re:Invent" />
+    <meta property="og:description" content="A candid engineer’s recap of re:Invent 2025: the gap between leadership and engineering on AI agents, why benchmarks mislead, and what real-world agent architecture actually looks like in the Wild West era of agentic systems." />
+    <meta property="og:image" content="https://cjlludwig.github.io/og-image.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://cjlludwig.github.io/blog/ai-agents-ate-the-conference" />
+    <meta name="twitter:title" content="AI Agents Ate the Conference: Reality, Hype, and Hard Lessons from re:Invent" />
+    <meta name="twitter:description" content="A candid engineer’s recap of re:Invent 2025: the gap between leadership and engineering on AI agents, why benchmarks mislead, and what real-world agent architecture actually looks like in the Wild West era of agentic systems." />
+    <meta name="twitter:image" content="https://cjlludwig.github.io/twitter-card.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "AI Agents Ate the Conference: Reality, Hype, and Hard Lessons from re:Invent",
+      "description": "A candid engineer’s recap of re:Invent 2025: the gap between leadership and engineering on AI agents, why benchmarks mislead, and what real-world agent architecture actually looks like in the Wild West era of agentic systems.",
+      "url": "https://cjlludwig.github.io/blog/ai-agents-ate-the-conference",
+      "datePublished": "2025-12-08",
+      "author": {
+        "@type": "Person",
+        "name": "Connor Ludwig",
+        "url": "https://cjlludwig.github.io"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Connor Ludwig"
+      }
+    }
+    </script>
+    <script type="module" crossorigin src="/assets/index-BlMBc-e8.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CeSuumnz.css">
+  </head>
+  <body>
+    <div id="root">
+      <!-- Pre-rendered content for SEO -->
+      <article>
+        <header>
+          <h1>AI Agents Ate the Conference: Reality, Hype, and Hard Lessons from re:Invent</h1>
+          <time datetime="2025-12-08">December 8, 2025</time>
+        </header>
+        <div class="blog-content">
+          <h1>AI Agents Ate the Conference</h1>
+<p>Another re:Invent is in the books, or as I like to call it, <strong>Cowboys and Coders Week</strong>. The PBR championship always lands on the same dates, so the Strip fills up with a strange mix of hoodies, boots, and people loudly comparing Cybertrucks to F-150s.  </p>
+<p>I walked away with plenty of technical notes, but the real value of re:Invent has always been the <strong>industry temperature check</strong>. You get tens of thousands of engineers across every company size and maturity level all wrestling with similar problems. This year, the collective mood around AI and agents felt especially sharp:<br> <strong>we’re all still figuring this out, even the AWS teams building the tools.</strong></p>
+<hr>
+<h2>The Leadership–Engineering Perception Gap</h2>
+<p>One theme kept resurfacing in keynotes, chalk talks, and hallway conversations:<br><strong>leaders and engineers are not talking about the same kind of “agents.”</strong></p>
+<h3>What leaders are saying</h3>
+<p>If you watched the <a href="https://reinvent.awsevents.com/keynotes/">re:Invent keynotes</a>, you saw a pitch for highly capable, nearly autonomous agent systems:</p>
+<ul>
+<li>Acting independently  </li>
+<li>Built in a fraction of the time  </li>
+<li>Seamlessly pushed to production  </li>
+<li>Reasoning and adapting with minimal supervision</li>
+</ul>
+<p>It’s an inspiring narrative that occasionally feels like a recruiting pitch for AGI.</p>
+<h3>What engineers are actually building</h3>
+<p>The engineers presenting the 400/500-level sessions told a very different story:</p>
+<ul>
+<li>Production agents are not monolithic super-intelligences.  </li>
+<li>They’re <strong>collections of tiny, tightly scoped agentic units</strong>, each responsible for one well-bounded task.  </li>
+<li>These pieces require <strong>substantial upfront design</strong>, narrow inputs, deep evaluation, and consistent benchmarking.  </li>
+<li>The “intelligence” shows up only when these small components are stitched together.</li>
+</ul>
+<p>Multiple sessions quietly converged on the same rules of thumb for production agents: most useful ones end up making binary decisions in practice, things like &quot;rotate traffic&quot; or &quot;hold steady.&quot; They work best when they only read from one or two input streams. Teams increasingly run them as sidecars so that when they misbehave the blast radius stays small. Swarms did get mentioned, but usually as something people tried, then backed away from because the operational overhead was not worth it.</p>
+<p>Not exactly the sci-fi ideal of end-to-end autonomy.</p>
+<h3>Why the gap matters</h3>
+<p>Leadership hears “autonomous coworkers.”<br>Engineers hear “a lattice of brittle reasoning units that each require a test suite.”  </p>
+<p>Both perspectives contain truth, but the mismatch is already creating friction inside engineering orgs. Bridging that expectation gap will be essential for successful agent launches.</p>
+<hr>
+<h2>The Coding Benchmark Illusion</h2>
+<p>A session from the AGI team on frontier model benchmarking took aim at well-known “85% coding score” from frontier models.</p>
+<p>Leadership interpretation:  </p>
+<blockquote>
+<p>“85% of expert-level capability. We can automate 85% of engineering.”</p>
+</blockquote>
+<p>But the team’s visualization looked more like a set of nested buckets:</p>
+<ol>
+<li><strong>Real-world engineering work</strong>  </li>
+<li>→ Recorded engineering tasks  </li>
+<li>→ Golden benchmark tasks  </li>
+<li>→ The benchmark itself</li>
+</ol>
+<p>The score at the bottom is <strong>a fraction of a fraction of a fraction</strong> of actual engineering capability. That nuance often evaporates when the stat hits a slide deck, and expectations drift accordingly.</p>
+<p>That illusion gets worse over time. Eval datasets are increasingly contaminated, frontier models are now &quot;seeing&quot; a meaningful chunk of the test set during training, and small changes to prompts or decoding parameters can move scores more than most slide decks admit. We compress a messy, non deterministic capability space into a tidy number that looks scientific, but often is not measuring what we think it is.</p>
+<hr>
+<h2>Workflows, Graphs, and Swarms: The Great Agent Design Schism</h2>
+<p>Another pattern surfaced across sessions.</p>
+<h3>What the advanced sessions endorsed</h3>
+<p>Most 400/500-level talks promoted structured workflows with optional business-intent orchestration. Think:</p>
+<ul>
+<li>Task-specific agents with clear responsibilities  </li>
+<li>Strong output guarantees  </li>
+<li>Controlled dynamic routing  </li>
+<li>A grounded, production-ready architecture</li>
+</ul>
+<p>The clearest example came from AWS’s new work on <strong>Lambda Durable Functions</strong>, which formalizes multi-step workflows and long-running agentic patterns. It’s worth reading the announcement:<br><a href="https://aws.amazon.com/blogs/aws/build-multi-step-applications-and-ai-workflows-with-aws-lambda-durable-functions/">Build Multi-Step Applications and AI Workflows with AWS Lambda Durable Functions</a>.</p>
+<h3>What the mid-level sessions showcased</h3>
+<p>The 200/300 tracks leaned toward chat-centric demos:</p>
+<ul>
+<li>Dynamic graphs where sub-agents act as tools  </li>
+<li>A single chat agent orchestrating everything  </li>
+<li>Occasional references to <strong>swarms</strong>, usually with very few implementation details</li>
+</ul>
+<p>Swarm examples mostly appeared in keynotes, which didn’t help make the case for real-world scalability.</p>
+<h3>The deeper issue</h3>
+<p>We use <strong>“agent”</strong> to describe:</p>
+<ul>
+<li>Structured workflows  </li>
+<li>Chat interfaces with tool access  </li>
+<li>Loose collections of semi-autonomous components  </li>
+<li>A tuned LLM with triggers and actions</li>
+</ul>
+<p>With a vocabulary that broad, it’s no surprise teams talk past each other. A shared mental model is still emerging.</p>
+<hr>
+<h2>The Rise of AI-Native Development (…Almost)</h2>
+<p>In conversations with other engineers, tool adoption felt uneven. Cursor, Copilot, and Kiro are gaining traction, but they’re still far from universal.</p>
+<p>Many sessions focused on the mindset shift required to make these tools effective. No matter the name—<em>spec-driven development</em>, <em>context engineering</em>, or something similar—the message was consistent:<br>AI is only a force multiplier once we change <strong>how</strong> we work, not just which IDE we use.</p>
+<p>For a good summary of the broader trend, these pieces from AWS and industry analysts capture it well:</p>
+<ul>
+<li><a href="https://builder.aws.com/content/36PrCPEn56UGlBrGdcbbeIvlT51/5-qualities-to-become-the-renaissance-developer-in-the-ai-era-aws-reinvent-cto-keynote-summary">5 Qualities to Become the Renaissance Developer in the AI Era</a>  </li>
+<li><em>The Kernel</em>: <a href="https://thekernel.news/articles/dawn-of-the-renaissance-developer/">Dawn of the Renaissance Developer</a></li>
+</ul>
+<hr>
+<h2>Fine-Tuning: More Accessible, Still Optional</h2>
+<p>My team has avoided fine-tuning because doing it safely in production takes specialized expertise. This year’s SageMaker announcements lower that barrier significantly.</p>
+<p>Right-sized and tuned models are becoming more compelling for targeted tasks, but my position hasn’t changed:<br><strong>start with off-the-shelf models, ship the MVP, then optimize.</strong><br>Fine-tuning remains an optimization path, not a default strategy.</p>
+<hr>
+<h2>Great Non-Agent Announcements That Got Buried</h2>
+<p>The agent wave overshadowed several genuinely useful platform updates. Among the ones that deserved more attention:</p>
+<ul>
+<li><strong>Database Cost Planner</strong>: <a href="https://aws.amazon.com/blogs/aws/introducing-database-savings-plans-for-aws-databases/">Introducing Database Savings Plans for AWS Databases</a></li>
+<li><strong>Extended Lambda function duration</strong>: <a href="https://aws.amazon.com/blogs/aws/build-multi-step-applications-and-ai-workflows-with-aws-lambda-durable-functions/">Build multi-step applications and AI workflows with AWS Lambda durable functions</a> </li>
+<li><strong>Custom Lambda environments</strong>: <a href="https://aws.amazon.com/blogs/aws/introducing-aws-lambda-managed-instances-serverless-simplicity-with-ec2-flexibility/">Introducing AWS Lambda Managed Instances</a></li>
+</ul>
+<p>Some team absolutely spent a year shipping these capabilities only to get overshadowed by agent demos. I salute them.</p>
+<hr>
+<h2>Werner Vogels, Voice of Reason (Again)</h2>
+<p>Werner delivered one of the strongest keynotes this year, and it’s worth watching:  </p>
+<ul>
+<li><strong>CTO Keynote:</strong> <a href="https://www.youtube.com/watch?v=3Y1G9najGiI">https://www.youtube.com/watch?v=3Y1G9najGiI</a></li>
+</ul>
+<p>He dismantled the “end of the developer” narrative by tracing similar predictions through COBOL, visual programming, cloud, and every other wave of existential anxiety. The pattern is familiar:  </p>
+<blockquote>
+<p>“Engineers won’t be needed soon.”</p>
+</blockquote>
+<p>Reality always contradicts it. Each wave has increased demand for software and for people who build it.</p>
+<p>AWS&#39;s companion resource is also worth reading:</p>
+<ul>
+<li>The AWS summary:<br><a href="https://builder.aws.com/content/36PrCPEn56UGlBrGdcbbeIvlT51/5-qualities-to-become-the-renaissance-developer-in-the-ai-era-aws-reinvent-cto-keynote-summary">https://builder.aws.com/content/36PrCPEn56UGlBrGdcbbeIvlT51/5-qualities-to-become-the-renaissance-developer-in-the-ai-era-aws-reinvent-cto-keynote-summary</a></li>
+</ul>
+<p>Werner’s core messages:</p>
+<ul>
+<li>AI is an enabler, not a replacement  </li>
+<li>Adaptation beats anxiety  </li>
+<li>Curiosity matters  </li>
+<li>And the line that instantly entered tech folklore:<br><strong>“Vibe coding without human review is gambling.”</strong></li>
+</ul>
+<p>It hit especially hard after attending a session on self-evolving agents where no one could clearly explain how accountability works once you remove HITL. If there’s no human on the hook, how do you trust the system at all?</p>
+<p>Werner’s stance was refreshing:<br><strong>human review stays in the loop, and ownership remains with the developer.</strong></p>
+<hr>
+<h2>The Important Stats</h2>
+<ul>
+<li><strong>Sessions attended:</strong> 13 + 4 keynotes  </li>
+<li><strong>Steps walked:</strong> 68,300  </li>
+<li><strong>Most steps in one day:</strong> 21,450  </li>
+<li><strong>Swag collected:</strong> 1 hoodie, 4 shirts, 1 sock  </li>
+<li><strong>Plates consumed at Bacchanal Buffet:</strong> 4  </li>
+<li><strong>Connor Bedard goals scored:</strong> 2 (go Blackhawks!)  </li>
+<li><strong>Blizzards driven through:</strong> 1  </li>
+<li><strong>Cups of coffee:</strong> ∞</li>
+</ul>
+<hr>
+<h2>Final Thanks</h2>
+<p>Huge thanks to <strong>Built Technologies</strong> for investing in employee upskilling and giving me the chance to attend. I always come back from re:Invent with fresh ideas, but this year felt especially pivotal. The agent landscape is evolving fast, and it’s clear we’re still only at the beginning of figuring out what production grade agents actually look like in practice.</p>
+
+        </div>
+      </article>
+    </div>
+  </body>
+</html>

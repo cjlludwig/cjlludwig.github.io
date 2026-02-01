@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+
+    <!-- SEO Meta Tags -->
+    <title>AI Code to Prod: Why Context Matters More Than Vibes | Connor Ludwig</title>
+    <meta name="description" content="Notes from AWS re:Invent 2025: Shifting from vibe-driven prompting to structured, production-ready AI code workflows, featuring Kiro and the rise of the so-called &#039;context architect.&#039;" />
+    <meta name="author" content="Connor Ludwig" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://cjlludwig.github.io/blog/ai-code-to-prod-context-matters" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://cjlludwig.github.io/blog/ai-code-to-prod-context-matters" />
+    <meta property="og:site_name" content="Connor Ludwig" />
+    <meta property="og:title" content="AI Code to Prod: Why Context Matters More Than Vibes" />
+    <meta property="og:description" content="Notes from AWS re:Invent 2025: Shifting from vibe-driven prompting to structured, production-ready AI code workflows, featuring Kiro and the rise of the so-called &#039;context architect.&#039;" />
+    <meta property="og:image" content="https://cjlludwig.github.io/og-image.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://cjlludwig.github.io/blog/ai-code-to-prod-context-matters" />
+    <meta name="twitter:title" content="AI Code to Prod: Why Context Matters More Than Vibes" />
+    <meta name="twitter:description" content="Notes from AWS re:Invent 2025: Shifting from vibe-driven prompting to structured, production-ready AI code workflows, featuring Kiro and the rise of the so-called &#039;context architect.&#039;" />
+    <meta name="twitter:image" content="https://cjlludwig.github.io/twitter-card.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "AI Code to Prod: Why Context Matters More Than Vibes",
+      "description": "Notes from AWS re:Invent 2025: Shifting from vibe-driven prompting to structured, production-ready AI code workflows, featuring Kiro and the rise of the so-called &#039;context architect.&#039;",
+      "url": "https://cjlludwig.github.io/blog/ai-code-to-prod-context-matters",
+      "datePublished": "2025-12-02",
+      "author": {
+        "@type": "Person",
+        "name": "Connor Ludwig",
+        "url": "https://cjlludwig.github.io"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Connor Ludwig"
+      }
+    }
+    </script>
+    <script type="module" crossorigin src="/assets/index-BlMBc-e8.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CeSuumnz.css">
+  </head>
+  <body>
+    <div id="root">
+      <!-- Pre-rendered content for SEO -->
+      <article>
+        <header>
+          <h1>AI Code to Prod: Why Context Matters More Than Vibes</h1>
+          <time datetime="2025-12-02">December 2, 2025</time>
+        </header>
+        <div class="blog-content">
+          <h1>AI Code to Prod: Why Context Matters More Than Vibes (Kiro Overview)</h1>
+<h2>TLDR</h2>
+<ul>
+<li>“Vibe coding” works for demos, not for production engineering.</li>
+<li>Domain context—not just instructions—is the top predictor of AI code success.</li>
+<li>The industry is shifting toward structured prompt specs and phase-based workflows.</li>
+<li>AWS’s Kiro tool pushes this paradigm with steering rules, hooks, and spec generation.</li>
+<li>Better context → more predictable agents → safer, more maintainable code.</li>
+</ul>
+<p>AI-generated code is moving fast, but the methods we use to guide that code are moving even faster. This session unpacked the shift from loose, vibes-based prompting to a more engineered, context-rich approach for getting LLM-generated code into production safely. The speakers called this emerging role the <em>context architect</em>—a label that might be a bit broad, but the underlying idea is solid: production AI needs structure.</p>
+<hr>
+<h2>From Vibe Coder to Context Architect</h2>
+<p>The presenters contrasted two archetypes:</p>
+<ul>
+<li><p><strong>The Vibe Coder</strong><br>Reactive. Throws vague prompts at a model. Great for throwing together demos. Asks “What?”</p>
+</li>
+<li><p><strong>The Context Architect</strong><br>Systematic. Uses structured context, requirements, and specs. Aims for production readiness. Asks “Why?”</p>
+</li>
+</ul>
+<p>The core argument: LLMs are generalists. Without strong domain constraints and company-specific context, they drift. Most AI code failures have nothing to do with the LLM and everything to do with missing domain guardrails.</p>
+<p>So the shift isn’t away from creativity—it’s toward <em>intentional scaffolding.</em></p>
+<hr>
+<h2>Why Domain Context Is the Make-or-Break Variable</h2>
+<p>One of the more direct points: <strong>domain specificity is the top reason AI-generated code fails in real systems.</strong></p>
+<p>Notably:</p>
+<ul>
+<li>Company requirements are rarely obvious to an AI.</li>
+<li>Compliance and edge-case considerations don’t magically appear without prompting.</li>
+<li>Architectural constraints (latency, throughput, libraries, frameworks) must be declared explicitly.</li>
+</ul>
+<p>The message was clear: If you want production outcomes, treat the LLM like a junior engineer—give it the background, the constraints, and the “why,” not just the task.</p>
+<hr>
+<h2>Structured Prompting: More Planning, Fewer Surprises</h2>
+<p>The session pushed a move from open-ended vibes to plan/spec workflows.<br>The benefits:</p>
+<ul>
+<li>Clearer expectations for the model.</li>
+<li>Predictable agent behavior.</li>
+<li>The ability to review and validate generated plans before code exists.</li>
+<li>A natural bridge to automated tests, CI hooks, and iterative improvements.</li>
+</ul>
+<p>This mirrored real-world engineering: spend a little more time upfront so you don&#39;t spend five times more debugging later.</p>
+<hr>
+<h2>Kiro: AWS’s Take on AI-Assisted Structured Development</h2>
+<p>The live demo used <strong>Kiro</strong>, AWS&#39;s coding tool built around structured AI workflows. Two notable modes:</p>
+<ul>
+<li><strong>Vibe Mode</strong>: Quick and loose.</li>
+<li><strong>Spec Mode</strong>: Structured, step-based, reviewable.</li>
+</ul>
+<p>A few standout features:</p>
+<h3>Steering Rules</h3>
+<p>Similar to Cursor’s rules engine. Kiro supports tiers of rule types to influence the agent.<br>You can:</p>
+<ul>
+<li>Auto-generate rules from the existing codebase (they didn’t fully stress-test this live).</li>
+<li>Define project conventions.</li>
+<li>Control stylistic or safety constraints.</li>
+</ul>
+<h3>Kiro CLI Visibility</h3>
+<p>The CLI exposes:</p>
+<ul>
+<li>Internal model behavior,</li>
+<li>Active context windows,</li>
+<li>Phase transitions,</li>
+<li>Execution traces.</li>
+</ul>
+<p>This level of transparency is incredibly helpful for debugging why an LLM “did what it did” instead of guessing.</p>
+<h3>Hooks</h3>
+<p>Hooks let you define automated lifecycle steps using natural language.<br>Examples:</p>
+<ul>
+<li>Automatically write a unit test for any new logic.</li>
+<li>Format and lint before finalizing output.</li>
+<li>Validate schema or API contracts mid-run.</li>
+</ul>
+<p>This nudges AI agents into predictable workflows instead of free-form chat sessions.</p>
+<h3>Natural Project Lifecycle</h3>
+<p>One of the workflow highlights:<br>You can <em>start</em> with a vibe-coded idea, then have Kiro auto-generate a spec, then evolve steering rules as the project grows.<br>This creates a multi-phase loop that feels more like real engineering than prompting in a vacuum.</p>
+<hr>
+<h2>The Big Picture Shift</h2>
+<p>The overarching theme:<br><strong>AI coding is growing up.</strong></p>
+<p>We’re moving beyond:</p>
+<ul>
+<li>“Give me the code for X”</li>
+</ul>
+<p>Toward:</p>
+<ul>
+<li>Structured layers (requirements → design → implementation → operational readiness)</li>
+<li>Defined failure modes and compliance considerations</li>
+<li>Predictable agent behavior reinforced by tooling</li>
+</ul>
+<p>This isn’t about over-engineering. It’s about bringing the same discipline we expect from human engineers into AI-assisted workflows.</p>
+<hr>
+<h2>Open Questions Raised</h2>
+<p>The session wrapped with good discussion points:</p>
+<ul>
+<li>How far can spec automation go before users regress to vibe prompts anyway?</li>
+<li>What risk models are needed when AI is generating foundational scaffolding?</li>
+<li>How do we measure whether steering rules improve or hurt code quality over long-term maintenance?</li>
+</ul>
+<p>None of these have clear answers yet—but they’re the right questions to be asking.</p>
+<hr>
+<h2>Further Reading &amp; Resources</h2>
+<ul>
+<li>AWS re:Invent session catalog: <a href="https://reinvent.awsevents.com/">https://reinvent.awsevents.com/</a></li>
+</ul>
+
+        </div>
+      </article>
+    </div>
+  </body>
+</html>

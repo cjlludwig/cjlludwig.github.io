@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+
+    <!-- SEO Meta Tags -->
+    <title>Building AI Agents at Scale | Connor Ludwig</title>
+    <meta name="description" content="Notes from AWS re:Invent 2025: Scaling agentic systems, enforcing multi-tenant safety, and choosing the right architectural patterns." />
+    <meta name="author" content="Connor Ludwig" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://cjlludwig.github.io/blog/building-ai-agents-at-scale" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://cjlludwig.github.io/blog/building-ai-agents-at-scale" />
+    <meta property="og:site_name" content="Connor Ludwig" />
+    <meta property="og:title" content="Building AI Agents at Scale" />
+    <meta property="og:description" content="Notes from AWS re:Invent 2025: Scaling agentic systems, enforcing multi-tenant safety, and choosing the right architectural patterns." />
+    <meta property="og:image" content="https://cjlludwig.github.io/og-image.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://cjlludwig.github.io/blog/building-ai-agents-at-scale" />
+    <meta name="twitter:title" content="Building AI Agents at Scale" />
+    <meta name="twitter:description" content="Notes from AWS re:Invent 2025: Scaling agentic systems, enforcing multi-tenant safety, and choosing the right architectural patterns." />
+    <meta name="twitter:image" content="https://cjlludwig.github.io/twitter-card.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Building AI Agents at Scale",
+      "description": "Notes from AWS re:Invent 2025: Scaling agentic systems, enforcing multi-tenant safety, and choosing the right architectural patterns.",
+      "url": "https://cjlludwig.github.io/blog/building-ai-agents-at-scale",
+      "datePublished": "2025-12-03T00:00:00Z",
+      "author": {
+        "@type": "Person",
+        "name": "Connor Ludwig",
+        "url": "https://cjlludwig.github.io"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Connor Ludwig"
+      }
+    }
+    </script>
+    <script type="module" crossorigin src="/assets/index-BlMBc-e8.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CeSuumnz.css">
+  </head>
+  <body>
+    <div id="root">
+      <!-- Pre-rendered content for SEO -->
+      <article>
+        <header>
+          <h1>Building AI Agents at Scale</h1>
+          <time datetime="2025-12-03T00:00:00Z">December 3, 2025</time>
+        </header>
+        <div class="blog-content">
+          <h1>Building AI Agents at Scale</h1>
+<h2>TLDR</h2>
+<ul>
+<li>AWS framed agent growth as a progression: flexible → structured → scalable → multi-tenant.</li>
+<li>Multi-tenant isolation using JWT-derived tenant IDs was a highlight.</li>
+<li>AgentCore + MCP demonstrated how guardrails and determinism evolve alongside capability.</li>
+<li>The simplified pattern-selection matrix clarified when to use orchestrators, graphs, workflows, and swarm.</li>
+<li>Conversational agents alone are insufficient—production systems demand predictability.</li>
+</ul>
+<hr>
+<h2>From Chat Demos to Production-Ready Agents</h2>
+<p>The workshop walked through the real-world lifecycle of agentic systems. Early versions typically start as flexible, chat-centric prototypes. Over time, requirements shift toward <strong>determinism</strong>, <strong>auditing</strong>, and <strong>strict routing</strong>, especially in multi-tenant SaaS environments.</p>
+<p>AWS used AgentCore and MCP registries to illustrate how this progression naturally unfolds: as capabilities expand, so must the structural safeguards around the agent.</p>
+<hr>
+<h2>Tenant-Segmented Agents: A Required Safety Layer</h2>
+<p>One of the most practical demos showed the runtime automatically extracting a <strong>tenant_id from the user’s JWT</strong> and injecting it into every tool call. This ensured that Lambdas, REST APIs, and other backend tools were always scoped to the correct tenant.</p>
+<p>This approach prevents:</p>
+<ul>
+<li>Cross-tenant data access  </li>
+<li>Hallucinated or incorrect tenant identifiers  </li>
+<li>Nondeterministic routing attempts</li>
+</ul>
+<p>The segmentation lives inside the agent definition rather than relying on the LLM to reason about tenant safety, making it especially attractive for ISVs and SaaS builders.</p>
+<hr>
+<h2>Choosing a Pattern for Agentic Workflows</h2>
+<p>Instead of treating &quot;agents&quot; as a one-size-fits-all solution, the workshop broke down four distinct architectural patterns. The value was in understanding when each should be applied.</p>
+<h3>Orchestrator</h3>
+<p>Ideal for <strong>early iteration and conversational front ends</strong>.<br>Highly flexible but weak in structure, determinism, and parallelism.</p>
+<h3>Graph</h3>
+<p>Ideal for <strong>fast, structured, deterministic flows</strong>.<br>Explicit nodes and transitions provide strong control but zero conversational flexibility.</p>
+<h3>Workflow Engine</h3>
+<p>Ideal for <strong>durable, auditable, production-grade orchestration</strong>.<br>Great for long-running or multi-system processes with retry and validation needs.</p>
+<h3>Swarm</h3>
+<p>Ideal for <strong>rich conversational experiences</strong>.<br>High flexibility but not suitable for business-critical or deterministic flows.</p>
+<hr>
+<h2>Real Systems Combine Patterns</h2>
+<p>One of the strongest messages from the workshop: <strong>mature agentic systems almost never use a single pattern.</strong></p>
+<p>Common progression:</p>
+<ol>
+<li>Begin with an orchestrator for experimentation.  </li>
+<li>Add Graph or Workflow engines for critical steps requiring determinism.  </li>
+<li>Introduce multi-tenant enforcement at the runtime layer.  </li>
+<li>Use swarm-style behavior only for conversational UX.</li>
+</ol>
+<p>This approach balances flexibility with reliability as the system scales.</p>
+<hr>
+<h2>Why It Matters</h2>
+<p>AWS reinforced that agentic capability isn&#39;t the hard part anymore—the surrounding <strong>architecture</strong> is.<br>Predictability, safety, auditability, and routing controls are what distinguish a demo from a production system.</p>
+<p>The agent is only as safe as the scaffolding around it. This workshop was all about building that scaffolding.</p>
+<hr>
+<h2>Further Reading / Resources</h2>
+<ul>
+<li>AWS re:Invent Session Catalog: <a href="https://reinvent.awsevents.com/">https://reinvent.awsevents.com/</a></li>
+<li>AWS Documentation: <a href="https://docs.aws.amazon.com">https://docs.aws.amazon.com</a>  </li>
+<li>Model Context Protocol: <a href="https://modelcontextprotocol.io">https://modelcontextprotocol.io</a>  </li>
+<li>AWS Step Functions: <a href="https://aws.amazon.com/step-functions">https://aws.amazon.com/step-functions</a>  </li>
+<li>Temporal Workflow Platform: <a href="https://temporal.io">https://temporal.io</a></li>
+</ul>
+
+        </div>
+      </article>
+    </div>
+  </body>
+</html>

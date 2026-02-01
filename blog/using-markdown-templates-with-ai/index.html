@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+
+    <!-- SEO Meta Tags -->
+    <title>Using Markdown Templates with AI | Connor Ludwig</title>
+    <meta name="description" content="While working with LLM tools for production application development, I’ve found one of the highest-leverage productivity hacks to be the use of Markdown..." />
+    <meta name="author" content="Connor Ludwig" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://cjlludwig.github.io/blog/using-markdown-templates-with-ai" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://cjlludwig.github.io/blog/using-markdown-templates-with-ai" />
+    <meta property="og:site_name" content="Connor Ludwig" />
+    <meta property="og:title" content="Using Markdown Templates with AI" />
+    <meta property="og:description" content="While working with LLM tools for production application development, I’ve found one of the highest-leverage productivity hacks to be the use of Markdown..." />
+    <meta property="og:image" content="https://cjlludwig.github.io/og-image.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://cjlludwig.github.io/blog/using-markdown-templates-with-ai" />
+    <meta name="twitter:title" content="Using Markdown Templates with AI" />
+    <meta name="twitter:description" content="While working with LLM tools for production application development, I’ve found one of the highest-leverage productivity hacks to be the use of Markdown..." />
+    <meta name="twitter:image" content="https://cjlludwig.github.io/twitter-card.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Using Markdown Templates with AI",
+      "description": "While working with LLM tools for production application development, I’ve found one of the highest-leverage productivity hacks to be the use of Markdown...",
+      "url": "https://cjlludwig.github.io/blog/using-markdown-templates-with-ai",
+      "datePublished": "2026-02-01",
+      "author": {
+        "@type": "Person",
+        "name": "Connor Ludwig",
+        "url": "https://cjlludwig.github.io"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Connor Ludwig"
+      }
+    }
+    </script>
+    <script type="module" crossorigin src="/assets/index-BlMBc-e8.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CeSuumnz.css">
+  </head>
+  <body>
+    <div id="root">
+      <!-- Pre-rendered content for SEO -->
+      <article>
+        <header>
+          <h1>Using Markdown Templates with AI</h1>
+          <time datetime="2026-02-01">February 1, 2026</time>
+        </header>
+        <div class="blog-content">
+          <p>While working with LLM tools for production application development, I’ve found one of the highest-leverage productivity hacks to be the use of Markdown templates for consistent documentation and SDLC processes.</p>
+<p>Documentation is, at best, a chore for most developers and, at worst, a curse word. It’s frequently treated as an afterthought. Something written post-release to appease management. Headless LLM coding agents change the economics of that behavior entirely.</p>
+<p>Where teams previously absorbed the cost of poor documentation through strong onboarding, tribal knowledge, and sheer camaraderie, LLM-driven workflows surface that cost immediately. You now pay for bad docs in wasted tokens, broken inference loops, and repeated iterations to reach something even marginally commit-worthy. And that’s assuming you’re validating the generated code at all, which I sincerely hope you are.</p>
+<p>In an LLM-as-dev world, documentation-as-code becomes far more compelling. LLMs are already excellent at navigating codebases. Storing documentation alongside logic makes more sense than scattering it across wikis, tickets, and third-party tools.</p>
+<p>You <em>can</em> mitigate some of this fragmentation with MCPs, but every additional system is another logical hop for the model to reason through. That friction adds up. I strongly prefer treating the repo as the source of truth and copying documentation outward <em>after</em> publication, not the other way around. This keeps docs embedded in normal development workflows where review is required and documentation is treated as an iterable artifact, not a static deliverable.</p>
+<h2>Organization</h2>
+<p>Most conventions push teams toward centralizing repository documentation under a <code>/docs</code> directory. This keeps the project root clean while still allowing flexibility underneath.</p>
+<p>Within <code>/docs</code>, organize by concern in whatever way feels most natural to your team. At a minimum, I like including a <code>/specs</code> directory to aggregate feature-level documentation over time for fast reference. Higher-level architectural material, such as technical requirement docs or design overviews, often fits cleanly under something like <code>/trds</code>.</p>
+<p>The critical detail is that <em>each</em> subset should include a generic <code>TEMPLATE.md</code> to drive consistency and baseline quality.</p>
+<p>When developers are left to their own devices, shorthand notes and half-formed thoughts tend to get promoted directly into “official” docs. That works for the author’s mental model, but it introduces cognitive friction for everyone else. The same friction shows up for LLMs. Missing structure or references often breaks self-navigation and forces extra inference cycles, which is just wasted spend.</p>
+<p>I also recommend placing a <code>README.md</code> at the top of the <code>/docs</code> folder to clearly outline conventions, expectations, and stylistic rules.</p>
+<pre><code class="language-markdown">/docs
+├── README.md              # Conventions, style guide, template usage
+├── TEMPLATE.md            # Default doc template
+├── /specs
+│   ├── TEMPLATE.md        # Feature spec template
+│   ├── user-auth.md
+│   └── data-pipeline.md
+└── /trds
+    ├── TEMPLATE.md        # Technical requirements template
+    ├── architecture.md
+    └── system-design.md
+</code></pre>
+<h2>Templates</h2>
+<p>Markdown templates are open-ended documents with a prescribed structure and conventions. Their job is to guide discovery, thinking, and note-taking, not to constrain expression.</p>
+<p>Finding the right balance between rigid structure and intuitive guidance is non-trivial and somewhat personal. As a rule of thumb, keeping hierarchical depth under three levels and total sections under five or six tends to land in a sweet spot.</p>
+<p>Beyond that, templates start to feel like busywork. You get sections that aren’t applicable, filler text written purely to satisfy structure, and documentation that exists to be completed rather than read. That defeats the purpose. The goal is comprehension, not completeness theater.</p>
+<h3>Types of Templates</h3>
+<ol>
+<li>PR templates – must have</li>
+<li>Specs – nice to have</li>
+<li>Architecture / technical docs – nice to have</li>
+<li>Agent rules – nice to have</li>
+</ol>
+<h3>General Recommendations</h3>
+<ul>
+<li><p><strong>Use LLM hints.</strong><br>Markdown comments are a clean way to embed guidance for LLMs without polluting the human-readable surface area of a document.</p>
+</li>
+<li><p><strong>Distinguish human guidance from LLM hints.</strong><br>Use blockquotes (<code>&gt;</code>) for human-facing template descriptions that should be removed on publish. This creates a clear visual distinction: comments stay (for LLMs), blockquotes go (replaced by real content). It also makes cleanup obvious during review.</p>
+</li>
+<li><p><strong>Lead with a rules alert.</strong><br>Place a <a href="https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts">GitHub-flavored alert</a> (<code>&gt; [!NOTE]</code>, <code>&gt; [!TIP]</code>, etc.) at the top of each template summarizing core rules: what the doc is for, how to handle optional sections, and what to remove before publishing. This primes authors before they start writing and makes expectations explicit rather than implied.</p>
+</li>
+<li><p><strong>Use Markdown formatting tools and linters.</strong><br>Tools like <a href="https://github.com/markdownlint/markdownlint">markdownlint</a> help deterministically enforce conventions and prevent slow stylistic drift.</p>
+</li>
+<li><p><strong>Be opinionated about style.</strong><br>Templates and documentation formats are inherently opinionated. Don’t shy away from nit-picky rules. Once adopted, they compound in value.</p>
+</li>
+<li><p><strong>Leverage LLM rules.</strong><br>Cursor rules, <code>CLAUDE.md</code>, <code>AGENTS.md</code>, and similar mechanisms should be used aggressively. If you like Mermaid diagrams, say so. If you dislike deep sub-headers, document it. This moves tool output closer to a peer dynamic rather than a guessing game.</p>
+</li>
+<li><p><strong>Use visualization extensions.</strong><br>Markdown extensions like <a href="https://mermaid.js.org/">Mermaid.js</a> and Code Snippets are excellent for breaking up walls of text. Diagrams often convey nuance more efficiently than prose for both humans and LLMs. Use them for flows, graphs, and system relationships.</p>
+</li>
+<li><p><strong>Always preview rendered output.</strong><br>Make sure you can preview how docs render on GitHub or your target platform. Nothing undermines trust faster than a diagram that fails to render in production.</p>
+</li>
+<li><p><strong>Don’t escape the template too early.</strong><br>There’s a strong instinct to abandon structure when a section feels heavy or “not applicable.” Instead, work through it with an LLM as a collaborative brainstorming exercise. You’ll often discover what <em>isn’t</em> needed only after fully considering what <em>could</em> be. Over time, this sharpens both the templates and the resulting documentation.</p>
+</li>
+</ul>
+<h2>Tools</h2>
+<p>Here&#39;s a practical toolkit for working with Markdown templates and docs-as-code workflows:</p>
+<h3>VS Code / Cursor Extensions</h3>
+<ul>
+<li><p><strong><a href="https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one">Markdown All in One</a></strong><br>Keyboard shortcuts, TOC generation, auto-preview. Eliminates friction for basic formatting tasks.</p>
+</li>
+<li><p><strong><a href="https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint">markdownlint</a></strong><br>Enforces consistent style. Configure via <code>.markdownlint.json</code> in your repo root. Catches trailing whitespace, heading structure violations, and other formatting drift before it compounds.</p>
+</li>
+<li><p><strong><a href="https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid">Markdown Preview Mermaid Support</a></strong><br>Renders Mermaid diagrams in the built-in preview pane. Essential for validating flowcharts and architecture diagrams without leaving the editor.</p>
+</li>
+<li><p><strong><a href="https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image">Paste Image</a></strong><br>Pastes screenshots directly into docs with auto-generated relative paths. Useful for quick captures during troubleshooting or pairing sessions.</p>
+</li>
+</ul>
+<h3>Web Tools</h3>
+<ul>
+<li><p><strong><a href="https://mermaid.live/">Mermaid Live Editor</a></strong><br>Iterate on diagrams with instant preview. Export to SVG or PNG. Faster than fighting with syntax in your editor when building complex flows.</p>
+</li>
+<li><p><strong><a href="https://stackedit.io/">StackEdit</a></strong><br>Browser-based Markdown editor with live preview, sync to GitHub/Google Drive, and export to HTML/PDF. Helpful for non-technical stakeholders who need to contribute docs without local tooling.</p>
+</li>
+<li><p><strong><a href="https://hackmd.io/">HackMD</a></strong><br>Collaborative Markdown editor. Real-time multi-user editing with GitHub sync. Good for RFC-style documents or async spec reviews.</p>
+</li>
+<li><p><strong><a href="https://www.tablesgenerator.com/markdown_tables">Tables Generator</a></strong><br>Visual table builder for Markdown. Avoids manual pipe-alignment hell for complex tables.</p>
+</li>
+</ul>
+<h3>Automation</h3>
+<p><strong>Pre-commit hooks</strong><br>Wire up <code>markdownlint-cli</code> or <code>prettier</code> to run on staged <code>.md</code> files. Prevents broken formatting from reaching main. Example:</p>
+<pre><code class="language-yaml"># .pre-commit-config.yaml
+repos:
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.39.0
+    hooks:
+      - id: markdownlint
+</code></pre>
+<p><strong>GitHub Actions</strong><br>Automate link checking and diagram validation in CI. <a href="https://github.com/tcort/markdown-link-check">markdown-link-check</a> catches broken URLs. Pair with Mermaid CLI to validate diagram syntax before merge.</p>
+<h2>Putting It All Together</h2>
+<p>Below is a reference template and a sample GitHub repository that show these conventions in practice. The template reflects the structural constraints discussed above, and the repo demonstrates how documentation, specs, and agent rules live alongside code as first-class artifacts.</p>
+<p>If you adopt nothing else, start with the template. Once it’s in place, the surrounding structure tends to emerge naturally.</p>
+<h3>Repo</h3>
+<p>See <a href="https://github.com/cjlludwig/llm-md-templates">llm-md-templates</a> repo for a boilerplate reference.</p>
+<h3>Template</h3>
+<pre><code class="language-md"># Feature: [Title]
+
+&gt; [!NOTE]
+&gt; **Template rules:**
+&gt; - This doc captures a feature from problem through implementation criteria.
+&gt; - Replace blockquoted guidance with your content as you go.
+&gt; - Delete sections that don&#39;t apply—not every feature needs every section.
+&gt; - Remove this alert before marking the doc as complete.
+
+&lt;!-- LLM: This is a feature spec. Focus on problem statement and success criteria before implementation. --&gt;
+
+## Problem Statement
+
+&gt; Describe the user pain point or business need. Be specific about *who* is affected and *why* this matters.
+
+## Proposed Solution
+
+&gt; High-level approach. Avoid implementation minutiae—focus on the &quot;what&quot; and &quot;why.&quot;
+
+### System Context
+
+&lt;!-- LLM: Use this diagram to understand service boundaries and data flow. --&gt;
+
+&gt; Update the diagram below to reflect actual system boundaries.
+
+&#39;&#39;&#39;mermaid
+flowchart LR
+    A[Client] --&gt; B[API Gateway]
+    B --&gt; C[Service]
+    C --&gt; D[(Database)]
+&#39;&#39;&#39;
+
+## Success Criteria
+
+&lt;!-- LLM: These are non-negotiable acceptance criteria. All must be satisfied. --&gt;
+
+&gt; Define measurable criteria. Remove placeholders.
+
+- [ ] Criterion 1
+- [ ] Criterion 2
+
+## Open Questions
+
+&gt; Track unresolved decisions. Remove this section when all are resolved.
+
+| Question | Owner | Status |
+|----------|-------|--------|
+| Example? | @owner | Open |
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> Replace <code>&#39;&#39;&#39;</code> with standard code fences. Shown escaped here to render correctly in the parent block.</p>
+</blockquote>
+
+        </div>
+      </article>
+    </div>
+  </body>
+</html>

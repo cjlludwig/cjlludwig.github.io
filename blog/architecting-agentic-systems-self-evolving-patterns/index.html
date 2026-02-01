@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+
+    <!-- SEO Meta Tags -->
+    <title>Architecting Agentic Systems: Self-Evolving Patterns for Autonomous Ops | Connor Ludwig</title>
+    <meta name="description" content="Notes from AWS re:Invent 2025: Self-evolving architectures, hierarchical agent patterns, and the operational realities of deploying autonomous AI in production." />
+    <meta name="author" content="Connor Ludwig" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://cjlludwig.github.io/blog/architecting-agentic-systems-self-evolving-patterns" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://cjlludwig.github.io/blog/architecting-agentic-systems-self-evolving-patterns" />
+    <meta property="og:site_name" content="Connor Ludwig" />
+    <meta property="og:title" content="Architecting Agentic Systems: Self-Evolving Patterns for Autonomous Ops" />
+    <meta property="og:description" content="Notes from AWS re:Invent 2025: Self-evolving architectures, hierarchical agent patterns, and the operational realities of deploying autonomous AI in production." />
+    <meta property="og:image" content="https://cjlludwig.github.io/og-image.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://cjlludwig.github.io/blog/architecting-agentic-systems-self-evolving-patterns" />
+    <meta name="twitter:title" content="Architecting Agentic Systems: Self-Evolving Patterns for Autonomous Ops" />
+    <meta name="twitter:description" content="Notes from AWS re:Invent 2025: Self-evolving architectures, hierarchical agent patterns, and the operational realities of deploying autonomous AI in production." />
+    <meta name="twitter:image" content="https://cjlludwig.github.io/twitter-card.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Architecting Agentic Systems: Self-Evolving Patterns for Autonomous Ops",
+      "description": "Notes from AWS re:Invent 2025: Self-evolving architectures, hierarchical agent patterns, and the operational realities of deploying autonomous AI in production.",
+      "url": "https://cjlludwig.github.io/blog/architecting-agentic-systems-self-evolving-patterns",
+      "datePublished": "2025-12-02",
+      "author": {
+        "@type": "Person",
+        "name": "Connor Ludwig",
+        "url": "https://cjlludwig.github.io"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Connor Ludwig"
+      }
+    }
+    </script>
+    <script type="module" crossorigin src="/assets/index-BlMBc-e8.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CeSuumnz.css">
+  </head>
+  <body>
+    <div id="root">
+      <!-- Pre-rendered content for SEO -->
+      <article>
+        <header>
+          <h1>Architecting Agentic Systems: Self-Evolving Patterns for Autonomous Ops</h1>
+          <time datetime="2025-12-02">December 2, 2025</time>
+        </header>
+        <div class="blog-content">
+          <h1>Architecting Agentic Systems: Self-Evolving Patterns for Autonomous Ops</h1>
+<h2>TLDR</h2>
+<ul>
+<li>Threat landscapes and system complexity are outpacing human-only operational models.  </li>
+<li>AWS advocates hierarchical, single-purpose agent patterns over swarms.  </li>
+<li>Most production agents today run as sidecars to contain blast radius.  </li>
+<li>Keep agents simple: 1–2 input streams, binary-ish decisions.  </li>
+<li>Accountability remains a major unsolved gap for agentic AI adoption.  </li>
+<li>Continuous improvement loops and well-architected pillars frame how agents evolve over time.</li>
+</ul>
+<p>The session laid out a pragmatic blueprint for designing agentic systems that improve themselves while remaining governable. Much of it echoed what many engineering teams (including ours) have learned the hard way: complexity kills, and swarms amplify complexity faster than they deliver value.</p>
+<h2>The Expanding Threat Landscape and Why Agents Matter</h2>
+<p>Modern systems have ballooned in complexity—distributed architectures, ephemeral compute, sprawling integrations, and an attack surface that grows geometrically. Traditional operational approaches are still largely reactive: alerts fire, humans respond, and root causes are analyzed after the fact.</p>
+<p>The premise was simple. Humans alone can’t keep up. Agents need to shoulder more of the operational burden, growing in expertise alongside engineers rather than replacing them.</p>
+<p>AWS framed this shift across five well-architected pillars:</p>
+<ul>
+<li><strong>Operational Excellence</strong>: autonomous monitoring, self-healing, iterative process optimization  </li>
+<li><strong>Security</strong>: threat detection, automated response, compliance checks  </li>
+<li><strong>Reliability</strong>: predictive scaling, failure forecasting, automated recovery  </li>
+<li><strong>Performance</strong>: resource optimization and latency reduction  </li>
+<li><strong>Cost</strong>: anomaly detection and optimization guidance</li>
+</ul>
+<p>These aren’t meant to be solved by one mega-agent. They are domains where <em>specialized</em> agents can thrive.</p>
+<h2>Observability as the Foundation</h2>
+<p>The talk emphasized that observability is the raw material of effective agent systems. AWS mapped each pillar to the supporting services teams already know: CloudWatch, Systems Manager, GuardDuty, Security Hub, Config, Auto Scaling, ELB, Route 53, X-Ray, Cost Explorer, and Compute Optimizer.</p>
+<p>In other words, before expecting agents to act intelligently, you must give them structured, high-quality signals.</p>
+<h2>Key Components of Agentic Systems</h2>
+<p>The session outlined the major building blocks required to run agents at enterprise scale:</p>
+<ul>
+<li><strong>Agent Orchestrator</strong> to coordinate agent roles and manage cross-pillar learning  </li>
+<li><strong>Bedrock AgentCore</strong> to provide deployment scaffolding  </li>
+<li><strong>Memory Architecture</strong> for both working memory and long-term retention  </li>
+<li><strong>Decision Frameworks</strong> like the OODA loop  </li>
+<li><strong>Learning Mechanisms</strong> including reinforcement loops and continuous improvement</li>
+</ul>
+<p>The design encourages systems that evolve but remain predictable.</p>
+<h2>Why Agent Swarms Become a Nightmare</h2>
+<p>One of the most validating moments was the explicit acknowledgment that swarm architectures often fail. They’re difficult to debug, impossible to observe holistically, and create emergent behaviors that teams can’t predict or govern. This mirrors what many orgs (including ours) have seen firsthand.</p>
+<p>AWS’s recommendation was clear:<br><strong>Prefer hierarchical systems with narrowly scoped agents that report into an orchestrator.</strong></p>
+<h2>Simplicity as a Design Constraint</h2>
+<p>Several design heuristics stood out:</p>
+<ul>
+<li>Keep agents single-purpose.  </li>
+<li>Avoid multi-role “Swiss Army knife” agents.  </li>
+<li>Expect that many useful agent decisions end up binary in practice.  </li>
+<li>Limit agents to one or two input streams for higher accuracy.  </li>
+<li>Deploy agents as sidecars to minimize unintended blast radius.</li>
+</ul>
+<p>They also noted they haven’t fully evaluated the risk profile of adversarial manipulation of sidecar agents, which was surprisingly candid.</p>
+<h2>A Demo of Goal-Driven Agents</h2>
+<p>The walkthrough example focused on reducing cart abandonment. Each specialized agent contributed signals tied to operational, security, resilience, performance, or cost insights. The orchestrator aligned these signals to the business goal and selected actions accordingly.</p>
+<p>The important takeaway wasn’t the e-commerce domain but the pattern:<br><strong>business goals → orchestrator → specialized agents → system actions → measurable outcomes.</strong></p>
+<h2>Continuous Improvement: A Self-Evolving Loop</h2>
+<p>Agents sit inside a continuous improvement cycle:</p>
+<ol>
+<li>Monitoring and data collection  </li>
+<li>Pattern recognition and analysis  </li>
+<li>Decision making and planning  </li>
+<li>Action and implementation  </li>
+<li>Adaptation and refinement</li>
+</ol>
+<p>This ensures agents don’t stagnate and instead accumulate knowledge and improve over time.</p>
+<h2>Accountability: The Hardest Open Question</h2>
+<p>In traditional systems, decision-makers are accountable for outcomes. When agents make decisions autonomously, who is accountable?</p>
+<p>The speaker agreed this is a core blocker for enterprise adoption. While they think accountability can work for discrete, narrow agents, the system-wide question remains unanswered. Their advice: be cautious, start small, and avoid early overreach.</p>
+<h2>Further Reading / Resources</h2>
+<ul>
+<li>AWS Well-Architected Framework: <a href="https://aws.amazon.com/architecture/well-architected">https://aws.amazon.com/architecture/well-architected</a>  </li>
+<li>Amazon Bedrock Agents: <a href="https://aws.amazon.com/bedrock/agents/">https://aws.amazon.com/bedrock/agents/</a>  </li>
+<li>OODA Loop: <a href="https://en.wikipedia.org/wiki/OODA_loop">https://en.wikipedia.org/wiki/OODA_loop</a></li>
+<li>AWS re:Invent session catalog: <a href="https://reinvent.awsevents.com">https://reinvent.awsevents.com</a></li>
+</ul>
+
+        </div>
+      </article>
+    </div>
+  </body>
+</html>

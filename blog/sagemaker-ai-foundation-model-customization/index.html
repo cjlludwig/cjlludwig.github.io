@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+
+    <!-- SEO Meta Tags -->
+    <title>Customizing Foundation Models with Amazon SageMaker AI | Connor Ludwig</title>
+    <meta name="description" content="Notes from AWS re:Invent 2025: Simplifying and accelerating foundation model customization using SageMaker AI." />
+    <meta name="author" content="Connor Ludwig" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://cjlludwig.github.io/blog/sagemaker-ai-foundation-model-customization" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://cjlludwig.github.io/blog/sagemaker-ai-foundation-model-customization" />
+    <meta property="og:site_name" content="Connor Ludwig" />
+    <meta property="og:title" content="Customizing Foundation Models with Amazon SageMaker AI" />
+    <meta property="og:description" content="Notes from AWS re:Invent 2025: Simplifying and accelerating foundation model customization using SageMaker AI." />
+    <meta property="og:image" content="https://cjlludwig.github.io/og-image.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://cjlludwig.github.io/blog/sagemaker-ai-foundation-model-customization" />
+    <meta name="twitter:title" content="Customizing Foundation Models with Amazon SageMaker AI" />
+    <meta name="twitter:description" content="Notes from AWS re:Invent 2025: Simplifying and accelerating foundation model customization using SageMaker AI." />
+    <meta name="twitter:image" content="https://cjlludwig.github.io/twitter-card.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Customizing Foundation Models with Amazon SageMaker AI",
+      "description": "Notes from AWS re:Invent 2025: Simplifying and accelerating foundation model customization using SageMaker AI.",
+      "url": "https://cjlludwig.github.io/blog/sagemaker-ai-foundation-model-customization",
+      "datePublished": "2025-12-04",
+      "author": {
+        "@type": "Person",
+        "name": "Connor Ludwig",
+        "url": "https://cjlludwig.github.io"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Connor Ludwig"
+      }
+    }
+    </script>
+    <script type="module" crossorigin src="/assets/index-BlMBc-e8.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CeSuumnz.css">
+  </head>
+  <body>
+    <div id="root">
+      <!-- Pre-rendered content for SEO -->
+      <article>
+        <header>
+          <h1>Customizing Foundation Models with Amazon SageMaker AI</h1>
+          <time datetime="2025-12-04">December 4, 2025</time>
+        </header>
+        <div class="blog-content">
+          <h1>Customizing Foundation Models with SageMaker AI</h1>
+<h2>TLDR</h2>
+<ul>
+<li>SageMaker AI now offers guided, serverless model customization workflows with fine-tuning, RL, and synthetic data options.</li>
+<li>The console experience is polished, but code-first parity may lag.</li>
+<li>Customization improves latency, cost, and accuracy.</li>
+<li>Evaluation, lineage, and benchmark comparison are built in.</li>
+<li>Private VPC, encryption, and governance are available by default.</li>
+</ul>
+<p>AWS is leaning heavily into making model customization accessible to teams that don’t want to spend months wrangling GPU clusters, custom trainers, and eval pipelines. This session walked through a new SageMaker AI workflow designed to reduce customization time from months to roughly 30 minutes. Below are my refined notes and interpretations from the talk and live demo.</p>
+<h2>The Model Customization Workflow</h2>
+<p>The core workflow: define goals → gather data → customize → iterate → deploy.<br>All of it sits under a governance and responsible-AI framework.</p>
+<h2>Why Customize When Foundation Models Keep Getting Better?</h2>
+<p>The presenter emphasized three motivations:</p>
+<ol>
+<li><strong>Latency</strong> — Smaller or domain-specific models respond faster.  </li>
+<li><strong>Cost</strong> — Fine-tuned models often use fewer tokens and smaller architectures.  </li>
+<li><strong>Accuracy</strong> — Domain-adapted reasoning reduces hallucinations and improves reliability.</li>
+</ol>
+<p>In short: tuning transforms the model into a domain-expert instead of a generalist.</p>
+<h2>New Console Flows in SageMaker AI</h2>
+<p>The new “Customize” dropdown appears on all supported foundation models in the SageMaker AI console.</p>
+<p>Highlights:</p>
+<h3>Kiro-Enabled Spec Process</h3>
+<p>A guided wizard that dynamically validates configuration choices and prevents invalid setups.</p>
+<h3>Customization Techniques</h3>
+<p>Multiple tuning modes were demonstrated:</p>
+<ul>
+<li>Supervised fine-tuning  </li>
+<li>RLVR  </li>
+<li>Reinforcement Learning  </li>
+<li>RL with LLM-as-a-judge</li>
+</ul>
+<p>The last option is notable: AWS now provides judge models natively for reinforcement learning loops.</p>
+<h3>Synthetic Data Generation</h3>
+<p>Users can generate synthetic examples either:</p>
+<ul>
+<li>without supplying data (pure synthetic),  </li>
+<li>with an input bucket for grounding, or  </li>
+<li>with fully user-defined datasets.</li>
+</ul>
+<h3>Evaluator Page</h3>
+<p>A built-in interface for creating or importing eval sets.<br>AWS includes a catalog of predefined training scenarios, such as high-quality tool-calling evaluations.</p>
+<p>This solves one of the historically painful parts of model customization: the eval pipeline.</p>
+<h2>Live Demo: SageMaker Studio</h2>
+<p>The presenters demonstrated the full workflow:</p>
+<ul>
+<li>Selecting a base model  </li>
+<li>Triggering customization  </li>
+<li>Creating synthetic examples  </li>
+<li>Reviewing evaluation criteria  </li>
+<li>Tuning for tool-calling quality  </li>
+<li>Comparing base vs. tuned outputs  </li>
+<li>Testing in the prompt playground  </li>
+<li>Deploying to an endpoint</li>
+</ul>
+<p>The key message: a process that used to take months can now be run serverlessly in ~30 minutes.</p>
+<p>A caveat: although the speaker said everything is supported “as code,” AWS launches often lag in full IaC coverage. Code-first teams may find gaps on day one.</p>
+<h3>Diagram</h3>
+<pre><code class="language-mermaid">flowchart LR;
+  Goals[Define goals &amp; eval criteria] --&gt; Data[Prepare dataset];
+  Data --&gt; Customize[Customize &amp; evaluate models];
+  Customize --&gt; Iterate[Iterate toward goals];
+  Iterate --&gt; Deploy[Deploy model];
+  classDef gray fill:#f2f2f2,stroke:#999;
+  Goals:::gray;
+  Data:::gray;
+  Customize:::gray;
+  Iterate:::gray;
+  Deploy:::gray;
+</code></pre>
+<h2>Infrastructure &amp; Security Notes</h2>
+<p>AWS emphasized secure defaults:</p>
+<ul>
+<li>Serverless runtime  </li>
+<li>Private VPC support  </li>
+<li>Automatic volume encryption  </li>
+<li>Lineage tracking for every step</li>
+</ul>
+<p>Governance is woven throughout the lifecycle rather than added as an afterthought.</p>
+<h2>Benchmarking &amp; Comparison</h2>
+<p>After customization completes:</p>
+<ul>
+<li>Users can benchmark the base vs. tuned model using AWS or custom eval suites.  </li>
+<li>Side-by-side comparisons are available.  </li>
+<li>Lineage, parameters, and history are fully traceable.</li>
+</ul>
+<h2>Prompt Playground &amp; Deployment</h2>
+<p>Teams can immediately:</p>
+<ul>
+<li>adjust inference parameters,  </li>
+<li>test prompts interactively,  </li>
+<li>deploy the model to an endpoint, and  </li>
+<li>manage endpoints in the UI.</li>
+</ul>
+<p>This closes the loop from idea to production in a single interface.</p>
+<h2>Useful Reference</h2>
+<p><strong>Foundation models and hyperparameters for fine-tuning — Amazon SageMaker AI</strong><br><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-fine-tuning.html">https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-fine-tuning.html</a></p>
+<h2>Further Reading / Resources</h2>
+<ul>
+<li>AWS re:Invent Session Catalog: <a href="https://reinvent.awsevents.com/">https://reinvent.awsevents.com/</a></li>
+<li>AWS SageMaker AI documentation: <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/whatis.html">https://docs.aws.amazon.com/sagemaker/latest/dg/whatis.html</a>  </li>
+<li>SageMaker JumpStart foundation models: <a href="https://aws.amazon.com/sagemaker/jumpstart/">https://aws.amazon.com/sagemaker/jumpstart/</a>  </li>
+<li>AWS ML Blog (tuning techniques, RLHF, RLVR): <a href="https://aws.amazon.com/blogs/machine-learning/">https://aws.amazon.com/blogs/machine-learning/</a>  </li>
+<li>AWS Responsible AI pages: <a href="https://aws.amazon.com/responsible-ai/">https://aws.amazon.com/responsible-ai/</a></li>
+</ul>
+
+        </div>
+      </article>
+    </div>
+  </body>
+</html>

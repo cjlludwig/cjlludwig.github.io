@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+
+    <!-- SEO Meta Tags -->
+    <title>Model Privacy Assessments in Modern GenAI Systems | Connor Ludwig</title>
+    <meta name="description" content="Notes from AWS re:Invent 2025: A practical walkthrough of reconstruction attacks, attribute inference, guardrails, and differential privacy for GenAI and RAG systems." />
+    <meta name="author" content="Connor Ludwig" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://cjlludwig.github.io/blog/model-privacy-assessments" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://cjlludwig.github.io/blog/model-privacy-assessments" />
+    <meta property="og:site_name" content="Connor Ludwig" />
+    <meta property="og:title" content="Model Privacy Assessments in Modern GenAI Systems" />
+    <meta property="og:description" content="Notes from AWS re:Invent 2025: A practical walkthrough of reconstruction attacks, attribute inference, guardrails, and differential privacy for GenAI and RAG systems." />
+    <meta property="og:image" content="https://cjlludwig.github.io/og-image.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://cjlludwig.github.io/blog/model-privacy-assessments" />
+    <meta name="twitter:title" content="Model Privacy Assessments in Modern GenAI Systems" />
+    <meta name="twitter:description" content="Notes from AWS re:Invent 2025: A practical walkthrough of reconstruction attacks, attribute inference, guardrails, and differential privacy for GenAI and RAG systems." />
+    <meta name="twitter:image" content="https://cjlludwig.github.io/twitter-card.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Model Privacy Assessments in Modern GenAI Systems",
+      "description": "Notes from AWS re:Invent 2025: A practical walkthrough of reconstruction attacks, attribute inference, guardrails, and differential privacy for GenAI and RAG systems.",
+      "url": "https://cjlludwig.github.io/blog/model-privacy-assessments",
+      "datePublished": "2025-12-01",
+      "author": {
+        "@type": "Person",
+        "name": "Connor Ludwig",
+        "url": "https://cjlludwig.github.io"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Connor Ludwig"
+      }
+    }
+    </script>
+    <script type="module" crossorigin src="/assets/index-BlMBc-e8.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CeSuumnz.css">
+  </head>
+  <body>
+    <div id="root">
+      <!-- Pre-rendered content for SEO -->
+      <article>
+        <header>
+          <h1>Model Privacy Assessments in Modern GenAI Systems</h1>
+          <time datetime="2025-12-01">December 1, 2025</time>
+        </header>
+        <div class="blog-content">
+          <h1>Model Privacy Assessments in Modern GenAI Systems</h1>
+<h2>TLDR</h2>
+<ul>
+<li>GenAI systems leak more than you think—often without directly exposing raw data.</li>
+<li>Reconstruction and attribute-inference attacks are surprisingly easy due to model generalization.</li>
+<li>PII masking and guardrails help, but only if applied at multiple layers (ingestion, query, and response).</li>
+<li>Small sample sizes create privacy edges; differential privacy offers a mathematical mitigation.</li>
+<li>Treat RAG systems as unbounded input pipelines that require strong and layered defenses.</li>
+</ul>
+<p>Privacy in GenAI is one of those topics where the more you learn, the more you realize how many places things can go wrong. This session walked through the core attack types, why they’re so effective on generative systems, and the modern defensive stack for mitigating real-world risk.</p>
+<h2>The Core Attack Surfaces</h2>
+<h3>Reconstruction Attacks</h3>
+<p>Reconstruction attacks attempt to approximate or recreate the original training data simply by <strong>asking the model enough cleverly structured questions</strong>.</p>
+<p>GenAI is particularly vulnerable because:</p>
+<ul>
+<li>Models are designed to reproduce <em>patterns</em> they’ve seen before.</li>
+<li>Rare patterns, if present in the training set, can inadvertently leak back out.</li>
+<li>Adversaries don’t need internal access—just repeated queries.</li>
+</ul>
+<p>The net effect: if sensitive data was in the model’s training corpus, an attacker can often coax fragments or approximations back out.</p>
+<h3>Attribute Inference Attacks</h3>
+<p>Attribute inference attacks rely on <strong>partial knowledge</strong> of a record to derive hidden or restricted fields.<br>Example pattern:</p>
+<ul>
+<li>Attacker knows a user’s name or ID.</li>
+<li>They query the model in a way that encourages completing the missing attribute.</li>
+<li>The model may output something statistically “likely” based on its training exposure.</li>
+</ul>
+<p>This becomes especially dangerous in RAG or agentic systems where the model has broader context access and may behave more confidently.</p>
+<h2>Defense Strategies for Practical Deployments</h2>
+<h3>PII Masking Guardrails</h3>
+<p>Guardrails act as the first line of defense for <strong>explicit</strong> PII leakage. The session highlighted two high-value placements:</p>
+<ol>
+<li><p><strong>Outbound Response Filtering</strong><br>Prevents the model from returning raw PII even if it retrieved something sensitive.</p>
+</li>
+<li><p><strong>Inbound Query Masking</strong><br>Useful for RAG pipelines where users might attempt to inject PII to trigger targeted lookups.</p>
+</li>
+</ol>
+<p>This layering ensures that neither queries nor responses become vehicles for privacy compromise.</p>
+<h3>Privacy Masking &amp; Small-Sample Pitfalls</h3>
+<p>Even if explicit fields are masked, there’s a subtle but serious issue:</p>
+<p>Low sample sizes allow attackers to infer identities by exploiting <strong>statistical uniqueness</strong>.<br>For example:</p>
+<ul>
+<li>A query that filters to only one or two people.</li>
+<li>A retrieval pattern that accidentally signals a unique match.</li>
+</ul>
+<p>This is where things shift from guardrails into formal privacy engineering.</p>
+<h3>Differentially Private Generation</h3>
+<p>For high-risk cases, the recommended mitigation is <strong>Differential Privacy (DP)</strong> applied to generative outputs.</p>
+<p>Conceptually:</p>
+<ul>
+<li>Duplicate or perturb queries to introduce controlled randomness.</li>
+<li>Bound, mathematically, how much any single record can influence the output.</li>
+<li>Ensure that adding or removing one person’s record doesn’t noticeably shift the model’s behavior.</li>
+</ul>
+<p>DP goes beyond heuristic masking. It gives you a measurable privacy guarantee tied to the epsilon (ɛ) budget.</p>
+<h2>Key Takeaways</h2>
+<ul>
+<li><strong>Privacy is multi-layered.</strong> It isn’t only about preventing direct exposure but also preventing inference-based reconstruction.</li>
+<li><strong>RAG and agentic systems expand the attack surface.</strong> Unbounded inputs and dynamic retrieval require stronger scrutiny than static LLMs.</li>
+<li><strong>Index only the data you’re willing to reveal.</strong> The corpus itself is your first trust boundary.</li>
+<li><strong>Apply masking and guardrails everywhere.</strong> Ingestion → query → retrieval → response.</li>
+<li><strong>Use differential privacy for outlier cases.</strong> When data density is low or risk tolerance is near zero, noise becomes your friend.</li>
+</ul>
+<h2>Further Reading / Resources</h2>
+<ul>
+<li>AWS re:Invent Session Catalog: <a href="https://reinvent.awsevents.com/">https://reinvent.awsevents.com/</a></li>
+<li>AWS Bedrock Guardrails documentation: <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html">https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html</a>  </li>
+<li>Research overview on differential privacy: <a href="https://privacytools.seas.harvard.edu/differential-privacy">https://privacytools.seas.harvard.edu/differential-privacy</a>  </li>
+<li>NIST AI Risk Management Framework: <a href="https://www.nist.gov/itl/ai-risk-management-framework">https://www.nist.gov/itl/ai-risk-management-framework</a>  </li>
+<li>OWASP Top 10 for LLM Applications: <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/">https://owasp.org/www-project-top-10-for-large-language-model-applications/</a>  </li>
+<li>Attribute inference attack survey (arXiv): <a href="https://arxiv.org/abs/2102.08504">https://arxiv.org/abs/2102.08504</a></li>
+</ul>
+
+        </div>
+      </article>
+    </div>
+  </body>
+</html>

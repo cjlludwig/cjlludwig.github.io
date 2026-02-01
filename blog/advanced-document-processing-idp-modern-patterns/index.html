@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+
+    <!-- SEO Meta Tags -->
+    <title>Advanced Document Processing with LLMs and AWS: Modern IDP Patterns at Scale | Connor Ludwig</title>
+    <meta name="description" content="Notes from AWS re:Invent 2025: A deep dive into the evolution of intelligent document processing, multimodal extraction pipelines, and AWS-native orchestration patterns for high-assurance workflows." />
+    <meta name="author" content="Connor Ludwig" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://cjlludwig.github.io/blog/advanced-document-processing-idp-modern-patterns" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://cjlludwig.github.io/blog/advanced-document-processing-idp-modern-patterns" />
+    <meta property="og:site_name" content="Connor Ludwig" />
+    <meta property="og:title" content="Advanced Document Processing with LLMs and AWS: Modern IDP Patterns at Scale" />
+    <meta property="og:description" content="Notes from AWS re:Invent 2025: A deep dive into the evolution of intelligent document processing, multimodal extraction pipelines, and AWS-native orchestration patterns for high-assurance workflows." />
+    <meta property="og:image" content="https://cjlludwig.github.io/og-image.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://cjlludwig.github.io/blog/advanced-document-processing-idp-modern-patterns" />
+    <meta name="twitter:title" content="Advanced Document Processing with LLMs and AWS: Modern IDP Patterns at Scale" />
+    <meta name="twitter:description" content="Notes from AWS re:Invent 2025: A deep dive into the evolution of intelligent document processing, multimodal extraction pipelines, and AWS-native orchestration patterns for high-assurance workflows." />
+    <meta name="twitter:image" content="https://cjlludwig.github.io/twitter-card.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Advanced Document Processing with LLMs and AWS: Modern IDP Patterns at Scale",
+      "description": "Notes from AWS re:Invent 2025: A deep dive into the evolution of intelligent document processing, multimodal extraction pipelines, and AWS-native orchestration patterns for high-assurance workflows.",
+      "url": "https://cjlludwig.github.io/blog/advanced-document-processing-idp-modern-patterns",
+      "datePublished": "2025-12-02T18:45:00Z",
+      "author": {
+        "@type": "Person",
+        "name": "Connor Ludwig",
+        "url": "https://cjlludwig.github.io"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Connor Ludwig"
+      }
+    }
+    </script>
+    <script type="module" crossorigin src="/assets/index-BlMBc-e8.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CeSuumnz.css">
+  </head>
+  <body>
+    <div id="root">
+      <!-- Pre-rendered content for SEO -->
+      <article>
+        <header>
+          <h1>Advanced Document Processing with LLMs and AWS: Modern IDP Patterns at Scale</h1>
+          <time datetime="2025-12-02T18:45:00Z">December 2, 2025</time>
+        </header>
+        <div class="blog-content">
+          <h1>Advanced Document Processing with LLMs and AWS</h1>
+<h2>TLDR</h2>
+<ul>
+<li>IDP has evolved from manual OCR workflows to LLM-centric, multimodal extraction systems.</li>
+<li>Modern pipelines rely on per-page processing, orchestration layers, and deterministic merging for reliability.</li>
+<li>AWS Step Functions excel as an agent control plane for large, complex, unbounded documents.</li>
+<li>Contract processing follows a repeatable conceptual flow: classification → summarization → extraction → validation.</li>
+<li>Always use a <strong>separate</strong> LLM as a judge model; skipping this step introduces major quality and bias risks.</li>
+<li>Continuous improvement spans RAG, alignment, fine-tuning, and domain-specific pretraining.</li>
+</ul>
+<p>Intelligent Document Processing (IDP) has quietly undergone one of the most dramatic evolutions in enterprise AI. What started as manual data entry and brittle OCR templates has turned into highly scalable, multimodal, LLM-powered workflows capable of handling complex, heterogeneous, and high-risk document streams—like those found in banking and large financial institutions.</p>
+<p>This session offered one of the clearer, more pragmatic looks at how AWS customers are modernizing IDP, the architectural patterns that work at scale, and where LLMs are an accelerator rather than a silver bullet.</p>
+<h2>The Evolution of IDP: From Manual Work to Generative AI</h2>
+<p>A key slide walked through the timeline of IDP techniques from the 1990s onward. Each decade introduced new automation layers, but the breakthrough moment arrived with modern LLMs.</p>
+<h3>1990s</h3>
+<ul>
+<li><strong>Document classification:</strong> Manual  </li>
+<li><strong>Data extraction:</strong> Manual  </li>
+<li><strong>Document understanding:</strong> Manual  </li>
+<li><strong>Comparison:</strong> Basic text diff  </li>
+<li><strong>Contact review:</strong> Manual</li>
+</ul>
+<h3>2000s</h3>
+<ul>
+<li>Heuristic classification  </li>
+<li>Templated OCR  </li>
+<li>Keyword extraction  </li>
+<li>Text diff for comparisons  </li>
+<li>Keyword search for reviews</li>
+</ul>
+<h3>2010s</h3>
+<ul>
+<li>SVM, RCF, ML-enhanced OCR  </li>
+<li>Rule-based NLP  </li>
+<li>Semantic similarity  </li>
+<li>ML clause extraction</li>
+</ul>
+<h3>2020s</h3>
+<ul>
+<li>CNN &amp; BERT for classification  </li>
+<li>Deep learning–based extraction  </li>
+<li>Transformer-based understanding and comparison</li>
+</ul>
+<h3>2023 and beyond</h3>
+<ul>
+<li>LLMs for classification, understanding, and comparison  </li>
+<li>LLMs + advanced CV for extraction  </li>
+<li>LLMs + RAG for complex reasoning  </li>
+<li>Generative AI as a core IDP capability</li>
+</ul>
+<p>Across all categories, a clear progression emerges:<br><strong>Manual → Automation → Machine Learning → Generative AI</strong></p>
+<p>The shift wasn’t just about accuracy—it was about <em>accessibility</em>. LLMs unlocked workflows teams could actually build without multi-year ML investments.</p>
+<h2>Why LLM + RAG Became the Dominant Pattern</h2>
+<p>The presenters echoed a theme common across many AI sessions: even if specialized extraction tools can outperform in certain narrow tasks, the <strong>velocity</strong>, <strong>accessibility</strong>, and <strong>ease of iteration</strong> with LLMs outweigh the marginal accuracy differences.</p>
+<p>Teams adopt LLMs because:</p>
+<ul>
+<li>They can start fast.  </li>
+<li>They don’t need rigid document templates.  </li>
+<li>They can improve incrementally with grounding, examples, and guardrails.</li>
+</ul>
+<p>Especially in domains like finance, where document formats are effectively unbounded, the agility advantage is enormous.</p>
+<h2>A Real-World Banking Scenario</h2>
+<p>The session centered on a banking use case with:</p>
+<ul>
+<li>Dozens of document types  </li>
+<li>Highly inconsistent formatting  </li>
+<li>Mixed handwriting, tables, and embedded images  </li>
+<li>Regulatory and audit pressures  </li>
+<li>Large, multi-hundred-page PDFs</li>
+</ul>
+<p>Traditional OCR-based solutions struggled because they assumed a predictable structure. LLM-based multimodal pipelines, by contrast, were able to reason about each page in context.</p>
+<h2>Step Functions as the Agent Control Plane</h2>
+<p>AWS used <strong>Step Functions</strong> as the orchestration backbone—a pattern they’ve now seen across many customer IDP deployments.</p>
+<p>Why Step Functions?</p>
+<ul>
+<li>Native ability to handle fan-out/fan-in workflows  </li>
+<li>Easy integration with Bedrock, Lambda, S3, and Textract  </li>
+<li>Deterministic control over retries, branching, validation, and error handling  </li>
+<li>A natural “agent runtime” that avoids non-deterministic agent loop behavior</li>
+</ul>
+<p>A particularly useful pattern:<br><strong>an iterator function manages model context windows</strong>, chunking large documents cleanly into page-level operations.</p>
+<h2>Per-Page Multimodal Processing: A Critical Design Choice</h2>
+<p>The presenters stressed this repeatedly:<br><strong>Always process documents at the page level using the source images—not extracted text.</strong></p>
+<p>Why?</p>
+<ul>
+<li>Text-only extraction loses layout, signals, and multimodal cues.  </li>
+<li>Page-level isolation prevents runaway context window issues.  </li>
+<li>Failures become diagnosable (one page breaks, not the whole document).  </li>
+<li>Fragment merging can be deterministic and auditable.</li>
+</ul>
+<p>This is fully aligned with best-practice IDP architectures:<br><strong>process locally, merge globally.</strong></p>
+<h2>The Conceptual Flow for Contract Processing</h2>
+<p>Across contracts and other structured documents, AWS outlined a repeatable logical flow:</p>
+<ol>
+<li><strong>Orchestration</strong> (Step Functions coordinating all steps)</li>
+<li><strong>Contract Type Classification</strong>  </li>
+<li><strong>Contract Purpose Summarization</strong>  </li>
+<li><strong>Contract Insights / Information Extraction</strong>  </li>
+<li><strong>Process Validation</strong> (LLM as a judge)  </li>
+<li><strong>Continuous Improvement / Model Tuning</strong></li>
+</ol>
+<p>This model mirrors the extraction lifecycle many enterprise teams already follow, but with improved structure and more effective use of LLMs.</p>
+<h2>Summarizing Contract Purpose with Nova Lite</h2>
+<p>For summarization tasks, AWS selected <strong>Amazon Nova Lite</strong>, describing it as:</p>
+<ul>
+<li>More efficient for summarization  </li>
+<li>Stronger text comprehension  </li>
+<li>Broad multilingual support  </li>
+<li>Cost-efficient  </li>
+<li>Supports large context windows</li>
+</ul>
+<p>The flow:</p>
+<ul>
+<li>Split PDF into pages  </li>
+<li>Run each page through Nova Pro for page-level analysis  </li>
+<li>Combine results into an aggregated understanding of contract purpose</li>
+</ul>
+<p>The design choice here was interesting:<br>Use Nova Lite for the summarization <em>judgment</em>, but use Nova Pro as the per-page reasoning engine.</p>
+<h2>Extracting Contract Details with Nova Pro</h2>
+<p>For structured extraction—names, dates, amounts, clauses—the system uses <strong>Amazon Nova Pro</strong> because of its:</p>
+<ul>
+<li>Large context window support  </li>
+<li>Multilingual capabilities  </li>
+<li>Strong tool-use and function-calling behavior  </li>
+<li>Cost-efficiency at scale</li>
+</ul>
+<p>Each page produces structured output (JSON), and a consolidation Lambda merges results deterministically.</p>
+<p>This is where multimodal page-level processing really pays off.</p>
+<h2>Process Validation: Using a Different Model as the Judge</h2>
+<p>This was one of the strongest recommendations in the session:</p>
+<blockquote>
+<p><strong>Never use the same model as both extractor and judge.</strong></p>
+</blockquote>
+<p>AWS validated outputs by:</p>
+<ul>
+<li>Running the extracted JSON + page images through <strong>Claude Haiku 4.5</strong>  </li>
+<li>Using Bedrock Batch for cost-effective cross-checking  </li>
+<li>Achieving ~50% cost reduction due to batch parallelization</li>
+</ul>
+<p>Why a different model?</p>
+<ul>
+<li>It reduces confirmation bias  </li>
+<li>It increases robustness under edge cases  </li>
+<li>It makes failures more explainable</li>
+</ul>
+<p>Many customers skip this step—and AWS said it consistently leads to higher defect rates.</p>
+<h2>Optimization Techniques That Matter at Scale</h2>
+<p>Several production-ready patterns emerged:</p>
+<h3>Page Classification to Reduce Downstream Cost</h3>
+<p>Identify “dead pages” early and exclude them before expensive LLM steps.</p>
+<h3>Include a Justification Field</h3>
+<p>Every extracted field included a short justification string—hugely useful for:</p>
+<ul>
+<li>Evals  </li>
+<li>QA  </li>
+<li>Debugging  </li>
+<li>Audits</li>
+</ul>
+<h3>Use LLM for Conflict Resolution Only</h3>
+<p>Most merging is deterministic.<br>LLMs step in only when conflicting values require domain reasoning.</p>
+<h2>Continuous Improvement Strategies</h2>
+<p>The final slide outlined four improvement levers teams can mix and match:</p>
+<h3>1. RAG</h3>
+<ul>
+<li>Fastest boost to relevance  </li>
+<li>Requires no training  </li>
+<li>Uses enterprise knowledge as grounding</li>
+</ul>
+<h3>2. Alignment</h3>
+<ul>
+<li>Adjusts outputs to brand/voice  </li>
+<li>Uses feedback or ranking data  </li>
+<li>Ensures cross-team consistency</li>
+</ul>
+<h3>3. Supervised Fine-Tuning</h3>
+<ul>
+<li>Uses real workflow examples  </li>
+<li>Encodes institutional know-how  </li>
+<li>Improves extraction consistency</li>
+</ul>
+<h3>4. Continued Pre-Training</h3>
+<ul>
+<li>Deep domain understanding  </li>
+<li>Uses unlabeled internal data  </li>
+<li>Produces domain-smart base models</li>
+</ul>
+<p>Together, these create a continuous improvement loop where models evolve alongside the business.</p>
+<h2>Additional Resources</h2>
+<ul>
+<li>Bedrock Custom Models: <a href="https://github.com/aws-samples/amazon-bedrock-samples">https://github.com/aws-samples/amazon-bedrock-samples</a>  </li>
+<li>Amazon Textract: <a href="https://aws.amazon.com/textract">https://aws.amazon.com/textract</a>  </li>
+<li>Amazon Bedrock: <a href="https://aws.amazon.com/bedrock">https://aws.amazon.com/bedrock</a>  </li>
+<li>Step Functions: <a href="https://aws.amazon.com/step-functions">https://aws.amazon.com/step-functions</a>  </li>
+<li>AWS re:Invent session catalog: <a href="https://reinvent.awsevents.com">https://reinvent.awsevents.com</a></li>
+</ul>
+
+        </div>
+      </article>
+    </div>
+  </body>
+</html>

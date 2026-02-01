@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+
+    <!-- SEO Meta Tags -->
+    <title>LLM Eval Reliability Foundations | Connor Ludwig</title>
+    <meta name="description" content="Notes from AWS re:Invent 2025: A breakdown of why traditional LLM benchmarks are failing, how contamination and nondeterminism distort scores, and where evaluation is heading next." />
+    <meta name="author" content="Connor Ludwig" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://cjlludwig.github.io/blog/llm-eval-reliability-foundations" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://cjlludwig.github.io/blog/llm-eval-reliability-foundations" />
+    <meta property="og:site_name" content="Connor Ludwig" />
+    <meta property="og:title" content="LLM Eval Reliability Foundations" />
+    <meta property="og:description" content="Notes from AWS re:Invent 2025: A breakdown of why traditional LLM benchmarks are failing, how contamination and nondeterminism distort scores, and where evaluation is heading next." />
+    <meta property="og:image" content="https://cjlludwig.github.io/og-image.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://cjlludwig.github.io/blog/llm-eval-reliability-foundations" />
+    <meta name="twitter:title" content="LLM Eval Reliability Foundations" />
+    <meta name="twitter:description" content="Notes from AWS re:Invent 2025: A breakdown of why traditional LLM benchmarks are failing, how contamination and nondeterminism distort scores, and where evaluation is heading next." />
+    <meta name="twitter:image" content="https://cjlludwig.github.io/twitter-card.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "LLM Eval Reliability Foundations",
+      "description": "Notes from AWS re:Invent 2025: A breakdown of why traditional LLM benchmarks are failing, how contamination and nondeterminism distort scores, and where evaluation is heading next.",
+      "url": "https://cjlludwig.github.io/blog/llm-eval-reliability-foundations",
+      "datePublished": "2025-12-01",
+      "author": {
+        "@type": "Person",
+        "name": "Connor Ludwig",
+        "url": "https://cjlludwig.github.io"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Connor Ludwig"
+      }
+    }
+    </script>
+    <script type="module" crossorigin src="/assets/index-BlMBc-e8.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CeSuumnz.css">
+  </head>
+  <body>
+    <div id="root">
+      <!-- Pre-rendered content for SEO -->
+      <article>
+        <header>
+          <h1>LLM Eval Reliability Foundations</h1>
+          <time datetime="2025-12-01">December 1, 2025</time>
+        </header>
+        <div class="blog-content">
+          <h1>LLM Eval Reliability Foundations</h1>
+<h2>TLDR</h2>
+<ul>
+<li>Benchmark scores compress huge capability spaces into deceptively tiny numbers.</li>
+<li>Eval datasets are increasingly contaminated, inflating scores without improving real-world performance.</li>
+<li>Non-determinism across parameters, prompts, and compute setups undermines reproducibility.</li>
+<li>Strong evaluations require transparency, coverage, realism, and rubric-grounded judgement.</li>
+<li>Dynamic benchmarks and real-world tasks are emerging as the new standard.</li>
+</ul>
+<h2>The Evaluation Approximation Problem</h2>
+<p>Real-world capability space is massive—coding, writing, reasoning, planning—yet benchmarks measure only a tiny subset. Slides illustrated a funnel: <strong>capability space → task distribution → benchmark dataset → numeric score</strong>. At each step, signal is compressed or lost entirely.</p>
+<p>The key question: <em>Are we actually measuring what we think we are measuring?</em><br>Often, the answer is no.</p>
+<h2>The Rapidly Shifting LLM Evaluation Landscape</h2>
+<p>The timeline showcased how benchmarking has evolved:</p>
+<ul>
+<li><strong>2012–2020:</strong> Classic NLP tasks like SQuAD, GLUE, Winograd.</li>
+<li><strong>2021–2022:</strong> Knowledge/skills tests like HumanEval, GSM8K, MMLU, BIG-bench.</li>
+<li><strong>2023–2025:</strong> Agent tasks (SWE-Bench, AgentBench), generation/logic tests (MT-Bench, LiveBench), and refined reasoning (MMLU Pro).</li>
+<li><strong>2025+:</strong> Emerging dynamic and long-horizon evaluations (GDPVal, 30hr coding, DyCodeEval).</li>
+</ul>
+<p>The trend is clear: <strong>static benchmarks are aging out</strong>, and interactive or dynamic tasks are taking over.</p>
+<h2>Contamination: The Growing Data Leakage Crisis</h2>
+<p>Slides showed measurable contamination increases across 2020–2023. Frontier models exhibit leakage rates nearing <strong>50%</strong>.<br>Examples included jumps of +20% on popular evals like ARC, MMLU, and C-Eval.</p>
+<p>This contamination causes synthetic overfitting—models memorize evaluation items rather than demonstrating generalized ability.</p>
+<h2>Non-Determinism in Evaluation</h2>
+<p>The session highlighted three forms of nondeterminism:</p>
+<ul>
+<li><strong>Parameter Sensitivity:</strong> Changing decoding parameters (temperature, top-p) can meaningfully alter scores.  </li>
+<li><strong>Prompt Sensitivity:</strong> Simple paraphrases of prompts produce different benchmark outcomes.  </li>
+<li><strong>Compute Variance:</strong> Even identical prompts/parameters vary between sequential and batched inference.</li>
+</ul>
+<p>Reproducibility is now one of the most fragile assumptions in LLM benchmarking.</p>
+<h2>What Makes a Good Evaluation?</h2>
+<p>Good evaluations share several traits:</p>
+<ul>
+<li>Coverage  </li>
+<li>Transparency  </li>
+<li>Robustness  </li>
+<li>Realism  </li>
+<li>Method Consistency  </li>
+<li>Capturing Refinements  </li>
+<li>Plurality Principle  </li>
+<li>Quantifying Uncertainty  </li>
+<li>Reproducibility</li>
+</ul>
+<p>Few existing benchmarks satisfy all nine.</p>
+<h2>Strengthening Evaluation Approaches</h2>
+<p>The session outlined three major shifts needed:</p>
+<h3>Static → Dynamic</h3>
+<p>Static datasets saturate and leak.<br>Dynamic benchmarks continuously refresh data to avoid memorization.</p>
+<h3>Heuristic → Rubric-Grounded Judgement</h3>
+<p>Rather than vague LLM comparisons, structured rubrics define what “good” looks like.<br>This reduces drift, increases clarity, and makes decisions explainable.</p>
+<h3>Single-Judge → Agentic Judges</h3>
+<p>Judges augmented with tools (calculators, web search, browser) reduce hallucinations and bias, grounding evaluations in external evidence.</p>
+<h2>From Objective to Subjective Measurement</h2>
+<p>Early evaluations relied on deterministic string matching.<br>Modern assessments increasingly use <strong>LLM-as-a-judge</strong>, measuring qualities like clarity, reasoning, and helpfulness.</p>
+<p>But LLM judges carry biases: length, style, positional ordering, and even self-preference.<br>Rubric grounding helps mitigate—but not eliminate—these issues.</p>
+<h2>Real-World &amp; Long-Horizon Tasks</h2>
+<p>Long-horizon, time-varying tasks still challenge most agents.<br>Mind2Web 2 results show humans outperform agents, but the gap narrows as inference time increases.<br>Hallucinations remain widespread in these scenarios.</p>
+<h2>Final Takeaway</h2>
+<p>Eval reliability is straining under contamination, nondeterminism, and oversimplified scoring.<br>The future of LLM benchmarking must be:</p>
+<ul>
+<li>dynamic  </li>
+<li>rubric-grounded  </li>
+<li>tool-augmented  </li>
+<li>and anchored in real-world workflows</li>
+</ul>
+<p>Static leaderboards alone can&#39;t capture the complexity or reliability expectations of modern AI systems.</p>
+<hr>
+<h2>Further Reading &amp; Resources</h2>
+<ul>
+<li>AWS re:Invent Session Catalog: <a href="https://reinvent.awsevents.com/">https://reinvent.awsevents.com/</a></li>
+</ul>
+
+        </div>
+      </article>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+
+    <!-- SEO Meta Tags -->
+    <title>Real-Time AI Inference Patterns from the Gaming Industry | Connor Ludwig</title>
+    <meta name="description" content="Notes from AWS re:Invent 2025: How modern game studios are building real-time inference engines, optimizing cost, and blending narrative control between players, designers, and AI agents." />
+    <meta name="author" content="Connor Ludwig" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://cjlludwig.github.io/blog/real-time-ai-inference-patterns-gaming" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://cjlludwig.github.io/blog/real-time-ai-inference-patterns-gaming" />
+    <meta property="og:site_name" content="Connor Ludwig" />
+    <meta property="og:title" content="Real-Time AI Inference Patterns from the Gaming Industry" />
+    <meta property="og:description" content="Notes from AWS re:Invent 2025: How modern game studios are building real-time inference engines, optimizing cost, and blending narrative control between players, designers, and AI agents." />
+    <meta property="og:image" content="https://cjlludwig.github.io/og-image.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://cjlludwig.github.io/blog/real-time-ai-inference-patterns-gaming" />
+    <meta name="twitter:title" content="Real-Time AI Inference Patterns from the Gaming Industry" />
+    <meta name="twitter:description" content="Notes from AWS re:Invent 2025: How modern game studios are building real-time inference engines, optimizing cost, and blending narrative control between players, designers, and AI agents." />
+    <meta name="twitter:image" content="https://cjlludwig.github.io/twitter-card.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Real-Time AI Inference Patterns from the Gaming Industry",
+      "description": "Notes from AWS re:Invent 2025: How modern game studios are building real-time inference engines, optimizing cost, and blending narrative control between players, designers, and AI agents.",
+      "url": "https://cjlludwig.github.io/blog/real-time-ai-inference-patterns-gaming",
+      "datePublished": "2025-12-01",
+      "author": {
+        "@type": "Person",
+        "name": "Connor Ludwig",
+        "url": "https://cjlludwig.github.io"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Connor Ludwig"
+      }
+    }
+    </script>
+    <script type="module" crossorigin src="/assets/index-BlMBc-e8.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CeSuumnz.css">
+  </head>
+  <body>
+    <div id="root">
+      <!-- Pre-rendered content for SEO -->
+      <article>
+        <header>
+          <h1>Real-Time AI Inference Patterns from the Gaming Industry</h1>
+          <time datetime="2025-12-01">December 1, 2025</time>
+        </header>
+        <div class="blog-content">
+          <h1>Real-Time AI Inference Patterns from the Gaming Industry</h1>
+<h2>TLDR</h2>
+<ul>
+<li>The gaming industry is quietly pioneering real-time distributed AI patterns.</li>
+<li>Studios are building inference engines like <strong>INFUSE</strong> to blend narrative control between players, designers, and agents.</li>
+<li>Architecture is centered around <strong>Actors</strong> (local scope) and <strong>Directors</strong> (global scope).</li>
+<li>Major cost optimizations came from moving to <strong>self-hosted open-weight models</strong> and enforcing strict <strong>structured generation</strong>.</li>
+<li>Real-time inference (1–2s cycles) requires stateless calls, guardrails, and aggressive token constraints.</li>
+<li>Automated “theater tests” help validate behavior across entire simulated worlds.</li>
+</ul>
+<hr>
+<h2>Why Games Are the Hardest Distributed Systems You’re Not Thinking About</h2>
+<p>Video games are, in many ways, the purest expression of a distributed architecture:  </p>
+<ul>
+<li>Clients and servers share portions of state.  </li>
+<li>State authority shifts depending on gameplay rules.  </li>
+<li>Performance constraints are extreme and unforgiving.</li>
+</ul>
+<p>Because of this, games have become an unexpected but perfect sandbox for pushing real-time AI systems to their limits.</p>
+<p>The Jam and Tea studio team presenting built an inference engine called <strong>INFUSE</strong>, designed to sit alongside Unreal Engine and provide adaptive narrative and behavioral logic in real time.</p>
+<p>Its guiding goal:<br><strong>Bridge narrative control between players, designers, and autonomous AI agents.</strong></p>
+<hr>
+<h2>The INFUSE Engine: Actors, Directors, and Shared Narrative</h2>
+<p>At the heart of INFUSE is a simple but powerful pattern:</p>
+<ul>
+<li><p><strong>Actors (Local Scope)</strong><br>Represent individual NPC-level reasoning.<br>Handle tight, situation-specific logic.</p>
+</li>
+<li><p><strong>Directors (Global Scope)</strong><br>Manage world-level coherence, pacing, and narrative structure.</p>
+</li>
+</ul>
+<p>The two interact through a concept they call <strong>Structured Emergence</strong>—a controlled balance between explicit design constraints and unexpected, player-driven outcomes.</p>
+<p>Designers and players both influence the experience, with AI agents sitting in the middle, continuously shaping the evolving world.</p>
+<hr>
+<h2>Making the Client the Source of Truth</h2>
+<p>One of the most interesting design decisions:</p>
+<p><strong>Clients own the state. Inference is stateless.</strong></p>
+<p>Rather than maintaining rolling memory or conversational context on the server, every inference call includes the <strong>entire required slice of world state</strong>—often <strong>20–40k tokens inbound</strong>—and expects about <strong>100 tokens outbound</strong>.</p>
+<p>This ensures:</p>
+<ul>
+<li>Deterministic behavior  </li>
+<li>No hidden AI memory  </li>
+<li>Tight control of narrative  </li>
+<li>Straightforward debugging</li>
+</ul>
+<p>Stateless AI is far simpler to reason about in a real-time environment.</p>
+<hr>
+<h2>Guardrails: Keeping NPCs Grounded in Reality</h2>
+<p>To prevent wild or lore-breaking outputs, they added a post-processing layer that:</p>
+<ul>
+<li>Sanitizes raw LLM responses  </li>
+<li>Filters invalid or unwanted actions  </li>
+<li>Applies a deterministic correction when needed</li>
+</ul>
+<p>Example:<br>If an NPC attempts to fly or summon impossible magic, the system automatically rewrites the reasoning:</p>
+<blockquote>
+<p>&quot;You cannot fly. An anti-flight ward has been cast over this area.&quot;</p>
+</blockquote>
+<p>The guardrails are a safety net but also a narrative device.</p>
+<hr>
+<h2>Real-Time Inference Loops and Queuing</h2>
+<p>Inference runs on <strong>1–2 second cycles</strong>, which is blisteringly fast considering the token sizes involved.</p>
+<p>To support this, the system uses:</p>
+<ul>
+<li>An async queuing layer  </li>
+<li>Cloud GPUs dedicated to game sessions  </li>
+<li>Stateless calls to avoid memory buildup</li>
+</ul>
+<p>This pattern mirrors high-frequency trading and robotics more than traditional game AI.</p>
+<hr>
+<h2>The Brutal Cost Curve of Large-Context Inference</h2>
+<p>Their original architecture was… expensive.</p>
+<ul>
+<li><strong>$200 per game session</strong> when relying on external providers.  </li>
+<li>Moving to <strong>self-hosted open-weight models</strong> dropped it to <strong>$20</strong>.  </li>
+<li>Adding <strong>structured generation</strong> (severely limiting outbound tokens) cut it to <strong>$2</strong>.  </li>
+<li>Final pass of deep optimization + bare-metal tuning hit <strong>$0.50</strong> per session.</li>
+</ul>
+<p>This is a rare, quantified look at what real-time LLM usage costs at scale—and how aggressively you need to optimize to reach consumer-grade economics.</p>
+<hr>
+<h2>Testing AI Worlds: Unit Tests and “Theater Tests”</h2>
+<p>Beyond conventional unit tests, the team runs <strong>theater tests</strong>:</p>
+<ul>
+<li>Start with an empty game world  </li>
+<li>Spawn a diverse set of NPCs  </li>
+<li>Give each character a unique prompt background  </li>
+<li>Evaluate whether the world emerges into the expected narrative state</li>
+</ul>
+<p>It’s essentially <strong>load testing for emergent behavior</strong>, ensuring that the AI ecosystem doesn’t spiral into chaos when many agents interact simultaneously.</p>
+<hr>
+<h2>Closing Thoughts</h2>
+<p>This session was a fascinating look into how the gaming industry is solving problems that most enterprises won’t face for years:</p>
+<ul>
+<li>Real-time inference at scale  </li>
+<li>Narrative-safe generative AI  </li>
+<li>Distributed state synchronization  </li>
+<li>Cost-efficient open-weight model deployment</li>
+</ul>
+<p>If you want a glimpse of future agent architectures—or you’re building anything that blends real-time user input with autonomous behaviors—these patterns are worth studying closely.</p>
+<hr>
+<h2>Further Reading &amp; Resources</h2>
+<ul>
+<li>Jam and Tea Studio: <a href="https://www.jamandtea.studio/">https://www.jamandtea.studio/</a></li>
+<li>AWS re:Invent session catalog: <a href="https://reinvent.awsevents.com">https://reinvent.awsevents.com</a></li>
+</ul>
+
+        </div>
+      </article>
+    </div>
+  </body>
+</html>

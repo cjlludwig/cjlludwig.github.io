@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+
+    <!-- SEO Meta Tags -->
+    <title>Vibe Coding a Spotify Playlist Analyzer | Connor Ludwig</title>
+    <meta name="description" content="A quick vibe-coded Python project exploring what can be inferred from public Spotify playlist data using modern AI coding tools." />
+    <meta name="author" content="Connor Ludwig" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://cjlludwig.github.io/blog/vibe-coding-spotify-playlist-analyzer" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://cjlludwig.github.io/blog/vibe-coding-spotify-playlist-analyzer" />
+    <meta property="og:site_name" content="Connor Ludwig" />
+    <meta property="og:title" content="Vibe Coding a Spotify Playlist Analyzer" />
+    <meta property="og:description" content="A quick vibe-coded Python project exploring what can be inferred from public Spotify playlist data using modern AI coding tools." />
+    <meta property="og:image" content="https://cjlludwig.github.io/og-image.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://cjlludwig.github.io/blog/vibe-coding-spotify-playlist-analyzer" />
+    <meta name="twitter:title" content="Vibe Coding a Spotify Playlist Analyzer" />
+    <meta name="twitter:description" content="A quick vibe-coded Python project exploring what can be inferred from public Spotify playlist data using modern AI coding tools." />
+    <meta name="twitter:image" content="https://cjlludwig.github.io/twitter-card.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Vibe Coding a Spotify Playlist Analyzer",
+      "description": "A quick vibe-coded Python project exploring what can be inferred from public Spotify playlist data using modern AI coding tools.",
+      "url": "https://cjlludwig.github.io/blog/vibe-coding-spotify-playlist-analyzer",
+      "datePublished": "2026-01-15",
+      "author": {
+        "@type": "Person",
+        "name": "Connor Ludwig",
+        "url": "https://cjlludwig.github.io"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Connor Ludwig"
+      }
+    }
+    </script>
+    <script type="module" crossorigin src="/assets/index-BlMBc-e8.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CeSuumnz.css">
+  </head>
+  <body>
+    <div id="root">
+      <!-- Pre-rendered content for SEO -->
+      <article>
+        <header>
+          <h1>Vibe Coding a Spotify Playlist Analyzer</h1>
+          <time datetime="2026-01-15">January 15, 2026</time>
+        </header>
+        <div class="blog-content">
+          <p>I recently vibe coded a small side project after getting curious about what you can actually infer from public Spotify data versus what stays private.</p>
+<p>I wanted to poke at my own playlists without investing a ton of time digging through Spotify’s dev docs. This is where modern AI coding tools really shine. The barrier to entry is so much lower now that you can focus on the idea instead of the plumbing.</p>
+<p>One thing that helped a lot was being opinionated early. I locked in Python, Spotipy for the Spotify APIs, and Rich for CLI output from the start. That bit of upfront constraint narrowed the problem space and led to something usable much faster. In my experience, lots of unfocused back-and-forth with an agent tends to compound into messy tech decisions. In real codebases, that shows up as readability issues, maintainability pain, and bugs. Fewer prompts with clearer intent usually leads to better outcomes.</p>
+<p>The script analyzes public playlists to surface likely favorite songs, albums, and artists. It is intentionally simple and there are some important caveats. Track appearances are not listens, so songs that show up in lots of playlists skew higher. Some of my actual favorite tracks barely appeared because they live in a single playlist I play constantly. Also worth noting, Spotify appears to be tightening access to their developer platform, which makes creating and experimenting with new apps harder right now.</p>
+<p>If you want to explore your own data or inspect any public profile, the code is open and easy to run.</p>
+<p>Script: <a href="https://github.com/cjlludwig/spotify-analyzer">https://github.com/cjlludwig/spotify-analyzer</a></p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/11f1cb1d-fc17-4687-ad37-9de31af599af" alt="Spotify Playlist Analyzer demo" />
+</p>
+
+        </div>
+      </article>
+    </div>
+  </body>
+</html>
