@@ -8,6 +8,8 @@ const BLOGS_DIR = path.join(process.cwd(), 'blogs')
 const OUTPUT_DIR = path.join(process.cwd(), 'src', 'data')
 const OUTPUT_FILE = path.join(OUTPUT_DIR, 'blogs.json')
 
+const FIX_MODE = process.argv.includes('--fix')
+
 function ensureOutputDir() {
   if (!fs.existsSync(OUTPUT_DIR)) {
     fs.mkdirSync(OUTPUT_DIR, { recursive: true })
@@ -28,6 +30,122 @@ function configureMarked() {
       return hljs.highlightAuto(code).value
     },
   })
+}
+
+function toKebabCase(str) {
+  return str
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '')
+}
+
+function extractTitleFromContent(content) {
+  const match = content.match(/^#\s+(.+)$/m)
+  return match ? match[1].trim() : null
+}
+
+function extractDescriptionFromContent(content) {
+  // Remove the first heading line and find the first paragraph
+  const withoutHeading = content.replace(/^#\s+.+$/m, '').trim()
+  // Split by double newlines to get paragraphs
+  const paragraphs = withoutHeading.split(/\n\n+/)
+
+  for (const para of paragraphs) {
+    const trimmed = para.trim()
+    // Skip empty, headings, code blocks, or list items
+    if (!trimmed || trimmed.startsWith('#') || trimmed.startsWith('```') || trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
+      continue
+    }
+    // Clean up and truncate to ~160 chars
+    const cleaned = trimmed.replace(/\n/g, ' ').replace(/\s+/g, ' ')
+    if (cleaned.length <= 160) {
+      return cleaned
+    }
+    // Truncate at word boundary
+    const truncated = cleaned.slice(0, 157)
+    const lastSpace = truncated.lastIndexOf(' ')
+    return (lastSpace > 100 ? truncated.slice(0, lastSpace) : truncated) + '...'
+  }
+  return ''
+}
+
+function inferFrontmatter(content) {
+  const title = extractTitleFromContent(content) || 'Untitled'
+  const date = new Date().toISOString().split('T')[0]
+  const slug = toKebabCase(title)
+  const description = extractDescriptionFromContent(content)
+
+  return {
+    title,
+    date,
+    slug,
+    description,
+    tags: [],
+    image: ''
+  }
+}
+
+function hasFrontmatter(raw) {
+  return raw.trimStart().startsWith('---')
+}
+
+function fixBlogFile(filePath) {
+  const raw = fs.readFileSync(filePath, 'utf-8')
+
+  if (hasFrontmatter(raw)) {
+    console.log(`  Skipped (has frontmatter): ${path.basename(filePath)}`)
+    return false
+  }
+
+  const content = raw.trim()
+  const frontmatter = inferFrontmatter(content)
+
+  const frontmatterYaml = `---
+title: "${frontmatter.title}"
+date: "${frontmatter.date}"
+slug: "${frontmatter.slug}"
+description: "${frontmatter.description}"
+tags: []
+image: ""
+---
+
+`
+
+  fs.writeFileSync(filePath, frontmatterYaml + content)
+  console.log(`  Fixed: ${path.basename(filePath)}`)
+  console.log(`    title: "${frontmatter.title}"`)
+  console.log(`    slug: "${frontmatter.slug}"`)
+  return true
+}
+
+function fixBlogs() {
+  if (!fs.existsSync(BLOGS_DIR)) {
+    console.log('No blogs directory found.')
+    return
+  }
+
+  const files = fs
+    .readdirSync(BLOGS_DIR)
+    .filter((file) => file.endsWith('.md'))
+
+  if (files.length === 0) {
+    console.log('No markdown files found in blogs directory.')
+    return
+  }
+
+  console.log('Checking blog files for missing frontmatter...')
+  let fixedCount = 0
+
+  for (const file of files) {
+    const filePath = path.join(BLOGS_DIR, file)
+    if (fixBlogFile(filePath)) {
+      fixedCount++
+    }
+  }
+
+  console.log(`\nDone. Fixed ${fixedCount} file(s).`)
 }
 
 function loadPosts() {
@@ -78,4 +196,8 @@ function generateBlogs() {
   console.log(`Generated ${posts.length} blog posts to ${OUTPUT_FILE}`)
 }
 
-generateBlogs()
+if (FIX_MODE) {
+  fixBlogs()
+} else {
+  generateBlogs()
+}

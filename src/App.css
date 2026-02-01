@@ -1313,33 +1313,6 @@ body {
   transform: translateY(-4px);
 }
 
-.github-stat-fallback {
-  width: 100%;
-  max-width: 100%;
-  padding: var(--spacing-md);
-  background: var(--surface-secondary);
-  border-radius: 0.5rem;
-  border: 1px dashed var(--border-color);
-  color: var(--text-secondary);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
-  align-items: center;
-  justify-content: center;
-  min-height: 200px;
-}
-
-.github-fallback-link {
-  color: var(--accent-primary);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.github-fallback-link:hover {
-  text-decoration: underline;
-}
-
 .github-cta {
   text-align: center;
   margin-top: var(--spacing-lg);

@@ -40,9 +40,19 @@ React components consume JSON
 blogs/*.md (create/edit posts here)
     ↓ npm run generate-blogs
 src/data/blogs.json (auto-generated)
+    ↓ npm run build (after vite build)
+dist/blog/{slug}/index.html (static HTML for SEO)
 ```
 
 All content flows from markdown files through Node.js parser scripts to JSON, which React components then import directly.
+
+### Static Blog Pages (SSG)
+
+Blog posts are pre-rendered as static HTML during build for SEO. The `scripts/generate-blog-pages.js` script runs after `vite build` and creates:
+- `/dist/blog/index.html` - blog listing page
+- `/dist/blog/{slug}/index.html` - individual post pages
+
+Each page includes pre-rendered content for crawlers plus the React bundle for client-side hydration. This ensures blog URLs return HTTP 200 (not 404) for Google Search Console sitemap validation.
 
 ### Component Pattern
 
@@ -83,3 +93,7 @@ Pure CSS with CSS variables for theming in `src/App.css`. Dark mode toggles `.da
 - Sharp (image processing)
 - gh-pages (deployment)
 - Node.js 22.x required
+
+## Reminders
+
+- Update CLAUDE.md as key details are found.
