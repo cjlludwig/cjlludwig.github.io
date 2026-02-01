@@ -29,7 +29,7 @@ function extractAssetTags(indexHtml) {
 function generateBlogPostPage(post, assetTags) {
   const title = escapeHtml(post.title)
   const description = escapeHtml(post.description || `Read ${post.title} by Connor Ludwig`)
-  const url = `${SITE_URL}/blog/${post.slug}`
+  const url = `${SITE_URL}/blog/${post.slug}/`
   const date = post.date ? new Date(post.date).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
@@ -119,7 +119,7 @@ function generateBlogPostPage(post, assetTags) {
 function generateBlogIndexPage(posts, assetTags) {
   const title = 'Blog | Connor Ludwig'
   const description = 'Technical articles on distributed systems, cloud architecture, AI engineering, and software development by Connor Ludwig.'
-  const url = `${SITE_URL}/blog`
+  const url = `${SITE_URL}/blog/`
 
   const postListHtml = posts.map(post => {
     const postTitle = escapeHtml(post.title)
@@ -131,7 +131,7 @@ function generateBlogIndexPage(posts, assetTags) {
     }) : ''
     return `
         <article>
-          <h2><a href="/blog/${post.slug}">${postTitle}</a></h2>
+          <h2><a href="/blog/${post.slug}/">${postTitle}</a></h2>
           ${date ? `<time datetime="${post.date}">${date}</time>` : ''}
           ${postDescription ? `<p>${postDescription}</p>` : ''}
         </article>`
