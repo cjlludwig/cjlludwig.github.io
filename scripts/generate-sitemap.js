@@ -10,7 +10,7 @@ function generateSitemap() {
   // Static pages
   const staticPages = [
     { url: '/', priority: '1.0', changefreq: 'weekly' },
-    { url: '/blog', priority: '0.8', changefreq: 'weekly' },
+    { url: '/blog/', priority: '0.8', changefreq: 'weekly' },
   ]
 
   // Load blog posts
@@ -18,7 +18,7 @@ function generateSitemap() {
   if (fs.existsSync(BLOGS_JSON)) {
     const blogsData = JSON.parse(fs.readFileSync(BLOGS_JSON, 'utf-8'))
     blogPosts = (blogsData.posts || []).map((post) => ({
-      url: `/blog/${post.slug}`,
+      url: `/blog/${post.slug}/`,
       priority: '0.6',
       changefreq: 'monthly',
       lastmod: post.date ? new Date(post.date).toISOString().split('T')[0] : null,
