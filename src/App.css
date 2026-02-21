@@ -330,12 +330,89 @@ body {
   margin: 0.25rem 0 0;
 }
 
-.blog-post-body pre,
+/* Inline code (backtick refs) */
 .blog-post-body code {
   font-family: var(--font-mono);
+  font-size: 0.875em;
+  background-color: #161b22;
+  color: #c9d1d9;
+  border: 1px solid #30363d;
+  border-radius: 0.3rem;
+  padding: 0.15em 0.45em;
 }
 
+/* IDE code block panel */
+.blog-post-body .code-block {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid #30363d;
+  margin: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Reset inline-code styles inside code block */
+.blog-post-body .code-block code {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  color: inherit;
+  font-size: 0.875rem;
+}
+
+/* Header bar: lang label + copy button */
+.blog-post-body .code-block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #161b22;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #30363d;
+}
+
+/* Language label */
+.blog-post-body .code-block-lang {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #8b949e;
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+}
+
+/* Copy button */
+.code-copy-btn {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 0.375rem;
+  border: 1px solid #30363d;
+  background-color: transparent;
+  color: #8b949e;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+  line-height: 1.4;
+}
+.code-copy-btn:hover {
+  border-color: #58a6ff;
+  color: #58a6ff;
+  background-color: rgba(88, 166, 255, 0.08);
+}
+.code-copy-btn--copied {
+  border-color: #3fb950;
+  color: #3fb950;
+  background-color: rgba(63, 185, 80, 0.08);
+}
+
+/* Shiki <pre> inside the panel — don't override background (set inline by Shiki) */
+.blog-post-body .code-block pre {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  border-radius: 0;
+}
+
+/* Fallback <pre> outside .code-block (e.g. mermaid) */
 .blog-post-body pre {
+  font-family: var(--font-mono);
   background-color: var(--bg-tertiary);
   border-radius: 0.75rem;
   padding: var(--spacing-md);
@@ -343,9 +420,8 @@ body {
   border: 1px solid var(--border-color);
   max-width: 100%;
 }
-
 .blog-post-body pre code {
-  color: var(--text-secondary);
+  font-family: var(--font-mono);
 }
 
 .blog-post-body img {

@@ -24,6 +24,33 @@ function BlogPost({ post }) {
     }
   }, [post])
 
+  useEffect(() => {
+    if (!post || !contentRef.current) return
+    contentRef.current.querySelectorAll('.code-block').forEach((block) => {
+      if (block.querySelector('.code-copy-btn')) return
+      const header = block.querySelector('.code-block-header')
+      if (!header) return
+      const btn = document.createElement('button')
+      btn.className = 'code-copy-btn'
+      btn.setAttribute('aria-label', 'Copy code to clipboard')
+      btn.textContent = 'Copy'
+      btn.addEventListener('click', async () => {
+        const code = block.querySelector('code')
+        if (!code) return
+        try {
+          await navigator.clipboard.writeText(code.textContent)
+          btn.textContent = 'Copied!'
+          btn.classList.add('code-copy-btn--copied')
+          setTimeout(() => {
+            btn.textContent = 'Copy'
+            btn.classList.remove('code-copy-btn--copied')
+          }, 2000)
+        } catch { /* clipboard unavailable, fail silently */ }
+      })
+      header.appendChild(btn)
+    })
+  }, [post])
+
   return (
     <section className="section" id="blog-post">
       <div className="container">

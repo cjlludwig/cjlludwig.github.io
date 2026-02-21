@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { marked } from 'marked'
-import hljs from 'highlight.js'
+import { codeToHtml } from 'shiki'
 
 const BLOGS_DIR = path.join(process.cwd(), 'blogs')
 const OUTPUT_DIR = path.join(process.cwd(), 'src', 'data')
@@ -16,20 +16,64 @@ function ensureOutputDir() {
   }
 }
 
+function escapeHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+}
+
+// Module-level cache: bridges async walkTokens results to the synchronous renderer
+const shikiCache = new Map()
+
 function configureMarked() {
-  marked.setOptions({
-    gfm: true,
-    breaks: true,
-    highlight(code, lang) {
-      if (lang && lang.toLowerCase() === 'mermaid') {
-        return `<pre class="mermaid">${code}</pre>`
+  shikiCache.clear()
+
+  // walkTokens runs async before rendering — populate shikiCache per code block
+  marked.use({
+    async: true,
+    async walkTokens(token) {
+      if (token.type !== 'code') return
+      const rawLang = (token.lang || '').split(/\s+/)[0].toLowerCase()
+      if (rawLang === 'mermaid') return
+      const displayLang = rawLang || 'text'
+      const safeText = String(token.text || '')
+      const key = `${displayLang}:::${safeText}`
+      if (shikiCache.has(key)) return
+      try {
+        shikiCache.set(key, await codeToHtml(safeText, {
+          lang: displayLang,
+          theme: 'github-dark-dimmed',
+        }))
+      } catch {
+        try {
+          shikiCache.set(key, await codeToHtml(safeText, { lang: 'text', theme: 'github-dark-dimmed' }))
+        } catch {
+          shikiCache.set(key, null)
+        }
       }
-      if (lang && hljs.getLanguage(lang)) {
-        return hljs.highlight(code, { language: lang }).value
-      }
-      return hljs.highlightAuto(code).value
     },
+    renderer: {
+      // Synchronous renderer: looks up pre-computed Shiki HTML from cache
+      // Note: marked v13 calls code(text, lang, escaped) — not a token object
+      code(text, lang) {
+        const rawLang = (lang || '').split(/\s+/)[0].toLowerCase()
+        if (rawLang === 'mermaid') {
+          return `<pre class="mermaid">${text}</pre>\n`
+        }
+        const displayLang = rawLang || 'text'
+        const safeText = String(text || '')
+        const key = `${displayLang}:::${safeText}`
+        const shikiHtml = shikiCache.get(key) || `<pre><code>${escapeHtml(safeText)}</code></pre>`
+        return (
+          `<div class="code-block" data-lang="${displayLang}">\n` +
+          `  <div class="code-block-header">\n` +
+          `    <span class="code-block-lang">${displayLang}</span>\n` +
+          `  </div>\n` +
+          shikiHtml + '\n' +
+          `</div>\n`
+        )
+      }
+    }
   })
+  marked.setOptions({ gfm: true, breaks: true })
 }
 
 function toKebabCase(str) {
@@ -148,7 +192,7 @@ function fixBlogs() {
   console.log(`\nDone. Fixed ${fixedCount} file(s).`)
 }
 
-function loadPosts() {
+async function loadPosts() {
   if (!fs.existsSync(BLOGS_DIR)) {
     return []
   }
@@ -157,35 +201,33 @@ function loadPosts() {
     .readdirSync(BLOGS_DIR)
     .filter((file) => file.endsWith('.md'))
 
-  const posts = files
-    .map((file) => {
-      const filePath = path.join(BLOGS_DIR, file)
-      const raw = fs.readFileSync(filePath, 'utf-8')
-      const { data, content } = matter(raw)
+  const posts = await Promise.all(files.map(async (file) => {
+    const filePath = path.join(BLOGS_DIR, file)
+    const raw = fs.readFileSync(filePath, 'utf-8')
+    const { data, content } = matter(raw)
 
-      const slugFromFile = file.replace(/\.md$/, '')
-      const slug = data.slug || slugFromFile
-      const html = marked.parse(content)
+    const slugFromFile = file.replace(/\.md$/, '')
+    const slug = data.slug || slugFromFile
+    const html = await marked.parse(content)
 
-      return {
-        title: data.title || slug,
-        date: data.date || new Date().toISOString(),
-        slug,
-        description: data.description || '',
-        tags: data.tags || [],
-        image: data.image || '',
-        html,
-      }
-    })
-    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    return {
+      title: data.title || slug,
+      date: data.date || new Date().toISOString(),
+      slug,
+      description: data.description || '',
+      tags: data.tags || [],
+      image: data.image || '',
+      html,
+    }
+  }))
 
-  return posts
+  return posts.sort((a, b) => new Date(b.date) - new Date(a.date))
 }
 
-function generateBlogs() {
+async function generateBlogs() {
   ensureOutputDir()
   configureMarked()
-  const posts = loadPosts()
+  const posts = await loadPosts()
 
   const payload = {
     generatedAt: new Date().toISOString(),
@@ -199,5 +241,5 @@ function generateBlogs() {
 if (FIX_MODE) {
   fixBlogs()
 } else {
-  generateBlogs()
+  generateBlogs().catch(console.error)
 }
