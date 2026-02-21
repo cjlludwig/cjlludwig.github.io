@@ -57,8 +57,8 @@
       }
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-K-H_rf8Z.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CeSuumnz.css">
+    <script type="module" crossorigin src="/assets/index-Cqh-gSCs.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-9Zbrlv56.css">
   </head>
   <body>
     <div id="root">
@@ -80,18 +80,22 @@
 <p>The critical detail is that <em>each</em> subset should include a generic <code>TEMPLATE.md</code> to drive consistency and baseline quality.</p>
 <p>When developers are left to their own devices, shorthand notes and half-formed thoughts tend to get promoted directly into “official” docs. That works for the author’s mental model, but it introduces cognitive friction for everyone else. The same friction shows up for LLMs. Missing structure or references often breaks self-navigation and forces extra inference cycles, which is just wasted spend.</p>
 <p>I also recommend placing a <code>README.md</code> at the top of the <code>/docs</code> folder to clearly outline conventions, expectations, and stylistic rules.</p>
-<pre><code class="language-markdown">/docs
-├── README.md              # Conventions, style guide, template usage
-├── TEMPLATE.md            # Default doc template
-├── /specs
-│   ├── TEMPLATE.md        # Feature spec template
-│   ├── user-auth.md
-│   └── data-pipeline.md
-└── /trds
-    ├── TEMPLATE.md        # Technical requirements template
-    ├── architecture.md
-    └── system-design.md
-</code></pre>
+<div class="code-block" data-lang="markdown">
+  <div class="code-block-header">
+    <span class="code-block-lang">markdown</span>
+  </div>
+<pre class="shiki github-dark-dimmed" style="background-color:#22272e;color:#adbac7" tabindex="0"><code><span class="line"><span style="color:#ADBAC7">/docs</span></span>
+<span class="line"><span style="color:#ADBAC7">├── README.md              # Conventions, style guide, template usage</span></span>
+<span class="line"><span style="color:#ADBAC7">├── TEMPLATE.md            # Default doc template</span></span>
+<span class="line"><span style="color:#ADBAC7">├── /specs</span></span>
+<span class="line"><span style="color:#ADBAC7">│   ├── TEMPLATE.md        # Feature spec template</span></span>
+<span class="line"><span style="color:#ADBAC7">│   ├── user-auth.md</span></span>
+<span class="line"><span style="color:#ADBAC7">│   └── data-pipeline.md</span></span>
+<span class="line"><span style="color:#ADBAC7">└── /trds</span></span>
+<span class="line"><span style="color:#ADBAC7">    ├── TEMPLATE.md        # Technical requirements template</span></span>
+<span class="line"><span style="color:#ADBAC7">    ├── architecture.md</span></span>
+<span class="line"><span style="color:#ADBAC7">    └── system-design.md</span></span></code></pre>
+</div>
 <h2>Templates</h2>
 <p>Markdown templates are open-ended documents with a prescribed structure and conventions. Their job is to guide discovery, thinking, and note-taking, not to constrain expression.</p>
 <p>Finding the right balance between rigid structure and intuitive guidance is non-trivial and somewhat personal. As a rule of thumb, keeping hierarchical depth under three levels and total sections under five or six tends to land in a sweet spot.</p>
@@ -150,13 +154,17 @@
 </ul>
 <h3>Automation</h3>
 <p><strong>Pre-commit hooks</strong><br>Wire up <code>markdownlint-cli</code> or <code>prettier</code> to run on staged <code>.md</code> files. Prevents broken formatting from reaching main. Example:</p>
-<pre><code class="language-yaml"># .pre-commit-config.yaml
-repos:
-  - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.39.0
-    hooks:
-      - id: markdownlint
-</code></pre>
+<div class="code-block" data-lang="yaml">
+  <div class="code-block-header">
+    <span class="code-block-lang">yaml</span>
+  </div>
+<pre class="shiki github-dark-dimmed" style="background-color:#22272e;color:#adbac7" tabindex="0"><code><span class="line"><span style="color:#768390"># .pre-commit-config.yaml</span></span>
+<span class="line"><span style="color:#8DDB8C">repos</span><span style="color:#ADBAC7">:</span></span>
+<span class="line"><span style="color:#ADBAC7">  - </span><span style="color:#8DDB8C">repo</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">https://github.com/igorshubovych/markdownlint-cli</span></span>
+<span class="line"><span style="color:#8DDB8C">    rev</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">v0.39.0</span></span>
+<span class="line"><span style="color:#8DDB8C">    hooks</span><span style="color:#ADBAC7">:</span></span>
+<span class="line"><span style="color:#ADBAC7">      - </span><span style="color:#8DDB8C">id</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">markdownlint</span></span></code></pre>
+</div>
 <p><strong>GitHub Actions</strong><br>Automate link checking and diagram validation in CI. <a href="https://github.com/tcort/markdown-link-check">markdown-link-check</a> catches broken URLs. Pair with Mermaid CLI to validate diagram syntax before merge.</p>
 <h2>Putting It All Together</h2>
 <p>Below is a reference template and a sample GitHub repository that show these conventions in practice. The template reflects the structural constraints discussed above, and the repo demonstrates how documentation, specs, and agent rules live alongside code as first-class artifacts.</p>
@@ -164,55 +172,59 @@ repos:
 <h3>Repo</h3>
 <p>See <a href="https://github.com/cjlludwig/llm-md-templates">llm-md-templates</a> repo for a boilerplate reference.</p>
 <h3>Template</h3>
-<pre><code class="language-md"># Feature: [Title]
-
-&gt; [!NOTE]
-&gt; **Template rules:**
-&gt; - This doc captures a feature from problem through implementation criteria.
-&gt; - Replace blockquoted guidance with your content as you go.
-&gt; - Delete sections that don&#39;t apply—not every feature needs every section.
-&gt; - Remove this alert before marking the doc as complete.
-
-&lt;!-- LLM: This is a feature spec. Focus on problem statement and success criteria before implementation. --&gt;
-
-## Problem Statement
-
-&gt; Describe the user pain point or business need. Be specific about *who* is affected and *why* this matters.
-
-## Proposed Solution
-
-&gt; High-level approach. Avoid implementation minutiae—focus on the &quot;what&quot; and &quot;why.&quot;
-
-### System Context
-
-&lt;!-- LLM: Use this diagram to understand service boundaries and data flow. --&gt;
-
-&gt; Update the diagram below to reflect actual system boundaries.
-
-&#39;&#39;&#39;mermaid
-flowchart LR
-    A[Client] --&gt; B[API Gateway]
-    B --&gt; C[Service]
-    C --&gt; D[(Database)]
-&#39;&#39;&#39;
-
-## Success Criteria
-
-&lt;!-- LLM: These are non-negotiable acceptance criteria. All must be satisfied. --&gt;
-
-&gt; Define measurable criteria. Remove placeholders.
-
-- [ ] Criterion 1
-- [ ] Criterion 2
-
-## Open Questions
-
-&gt; Track unresolved decisions. Remove this section when all are resolved.
-
-| Question | Owner | Status |
-|----------|-------|--------|
-| Example? | @owner | Open |
-</code></pre>
+<div class="code-block" data-lang="md">
+  <div class="code-block-header">
+    <span class="code-block-lang">md</span>
+  </div>
+<pre class="shiki github-dark-dimmed" style="background-color:#22272e;color:#adbac7" tabindex="0"><code><span class="line"><span style="color:#6CB6FF;font-weight:bold"># Feature: [</span><span style="color:#96D0FF;font-weight:bold">Title</span><span style="color:#6CB6FF;font-weight:bold">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#8DDB8C">> [</span><span style="color:#96D0FF">!NOTE</span><span style="color:#8DDB8C">]</span></span>
+<span class="line"><span style="color:#8DDB8C">> </span><span style="color:#ADBAC7;font-weight:bold">**Template rules:**</span></span>
+<span class="line"><span style="color:#8DDB8C">> </span><span style="color:#F69D50">-</span><span style="color:#8DDB8C"> This doc captures a feature from problem through implementation criteria.</span></span>
+<span class="line"><span style="color:#8DDB8C">> </span><span style="color:#F69D50">-</span><span style="color:#8DDB8C"> Replace blockquoted guidance with your content as you go.</span></span>
+<span class="line"><span style="color:#8DDB8C">> </span><span style="color:#F69D50">-</span><span style="color:#8DDB8C"> Delete sections that don't apply—not every feature needs every section.</span></span>
+<span class="line"><span style="color:#8DDB8C">> </span><span style="color:#F69D50">-</span><span style="color:#8DDB8C"> Remove this alert before marking the doc as complete.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#768390">&#x3C;!-- LLM: This is a feature spec. Focus on problem statement and success criteria before implementation. --></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6CB6FF;font-weight:bold">## Problem Statement</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#8DDB8C">> Describe the user pain point or business need. Be specific about </span><span style="color:#ADBAC7;font-style:italic">*who*</span><span style="color:#8DDB8C"> is affected and </span><span style="color:#ADBAC7;font-style:italic">*why*</span><span style="color:#8DDB8C"> this matters.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6CB6FF;font-weight:bold">## Proposed Solution</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#8DDB8C">> High-level approach. Avoid implementation minutiae—focus on the "what" and "why."</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6CB6FF;font-weight:bold">### System Context</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#768390">&#x3C;!-- LLM: Use this diagram to understand service boundaries and data flow. --></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#8DDB8C">> Update the diagram below to reflect actual system boundaries.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7">'''mermaid</span></span>
+<span class="line"><span style="color:#ADBAC7">flowchart LR</span></span>
+<span class="line"><span style="color:#ADBAC7">    A[</span><span style="color:#96D0FF">Client</span><span style="color:#ADBAC7">] --> B[API Gateway]</span></span>
+<span class="line"><span style="color:#ADBAC7">    B --> C[</span><span style="color:#96D0FF">Service</span><span style="color:#ADBAC7">]</span></span>
+<span class="line"><span style="color:#ADBAC7">    C --> D[</span><span style="color:#96D0FF">(Database)</span><span style="color:#ADBAC7">]</span></span>
+<span class="line"><span style="color:#ADBAC7">'''</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6CB6FF;font-weight:bold">## Success Criteria</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#768390">&#x3C;!-- LLM: These are non-negotiable acceptance criteria. All must be satisfied. --></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#8DDB8C">> Define measurable criteria. Remove placeholders.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F69D50">-</span><span style="color:#ADBAC7"> [ ] Criterion 1</span></span>
+<span class="line"><span style="color:#F69D50">-</span><span style="color:#ADBAC7"> [ ] Criterion 2</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6CB6FF;font-weight:bold">## Open Questions</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#8DDB8C">> Track unresolved decisions. Remove this section when all are resolved.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7">| Question | Owner | Status |</span></span>
+<span class="line"><span style="color:#ADBAC7">|----------|-------|--------|</span></span>
+<span class="line"><span style="color:#ADBAC7">| Example? | @owner | Open |</span></span></code></pre>
+</div>
 <blockquote>
 <p><strong>Note:</strong> Replace <code>&#39;&#39;&#39;</code> with standard code fences. Shown escaped here to render correctly in the parent block.</p>
 </blockquote>

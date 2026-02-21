@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+
+    <!-- SEO Meta Tags -->
+    <title>Claude Code Save Plan Hook | Connor Ludwig</title>
+    <meta name="description" content="Never lose a Claude Code plan again. A tiny Claude Code hook that copies your latest plan into docs/plans so it survives terminal restarts and stays tied to the repo.&quot;" />
+    <meta name="author" content="Connor Ludwig" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://cjlludwig.github.io/blog/claude-code-save-plan-hook/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://cjlludwig.github.io/blog/claude-code-save-plan-hook/" />
+    <meta property="og:site_name" content="Connor Ludwig" />
+    <meta property="og:title" content="Claude Code Save Plan Hook" />
+    <meta property="og:description" content="Never lose a Claude Code plan again. A tiny Claude Code hook that copies your latest plan into docs/plans so it survives terminal restarts and stays tied to the repo.&quot;" />
+    <meta property="og:image" content="https://cjlludwig.github.io/og-image.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://cjlludwig.github.io/blog/claude-code-save-plan-hook/" />
+    <meta name="twitter:title" content="Claude Code Save Plan Hook" />
+    <meta name="twitter:description" content="Never lose a Claude Code plan again. A tiny Claude Code hook that copies your latest plan into docs/plans so it survives terminal restarts and stays tied to the repo.&quot;" />
+    <meta name="twitter:image" content="https://cjlludwig.github.io/twitter-card.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Claude Code Save Plan Hook",
+      "description": "Never lose a Claude Code plan again. A tiny Claude Code hook that copies your latest plan into docs/plans so it survives terminal restarts and stays tied to the repo.&quot;",
+      "url": "https://cjlludwig.github.io/blog/claude-code-save-plan-hook/",
+      "datePublished": "2026-02-20",
+      "author": {
+        "@type": "Person",
+        "name": "Connor Ludwig",
+        "url": "https://cjlludwig.github.io"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Connor Ludwig"
+      }
+    }
+    </script>
+    <script type="module" crossorigin src="/assets/index-Cqh-gSCs.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-9Zbrlv56.css">
+  </head>
+  <body>
+    <div id="root">
+      <!-- Pre-rendered content for SEO -->
+      <article>
+        <header>
+          <h1>Claude Code Save Plan Hook</h1>
+          <time datetime="2026-02-20">February 20, 2026</time>
+        </header>
+        <div class="blog-content">
+          <p>I’ve been using Claude Code enough that I now default to Plan before I let it touch anything. The downside is obvious the moment you start running multiple threads of work in parallel: you end up with several plans in flight, each mid-groomed, each representing real time spent nudging the model toward something you’d actually approve.</p>
+<p>And then a run hangs, or the agent crashes, or the terminal gets into a weird state.</p>
+<p>Anthropic (and, frankly, most agent runtimes) still have enough instability that “just restart the session” is a normal troubleshooting step. That’s fine until you realize you just lost the plan you carefully shaped into a crisp set of steps.</p>
+<p>So I wired up a small hook that snapshots the latest Claude plan into the repo the moment Claude transitions from <code>Plan -&gt; Edit</code>. It’s a pure quality-of-life upgrade, but one that very quickly becomes “how did I live without this?”</p>
+<h2>The problem: plans persist, but not where you need them</h2>
+<p>Claude Code helpfully persists plans to a common location, <code>~/.claude/plans/{random_name}.md</code>.</p>
+<p>That’s useful, but in practice it becomes a single bucket across all repos and sessions on your machine. If you’re hopping between projects (or juggling multiple plans), it gets messy fast.</p>
+<p>What I actually wanted was:</p>
+<ul>
+<li>“When a plan is about to result in edits, save a copy inside <strong>this repo</strong>.”</li>
+<li>Name it something human-readable (based on the plan header).</li>
+<li>Make it safe to run repeatedly and safe across multiple tool invocations.</li>
+</ul>
+<h2>The solution: snapshot on PreToolUse</h2>
+<p>Claude Code exposes hooks. A <code>PreToolUse</code> hook is the perfect place to do this because it runs right as Claude is about to invoke an editing tool.</p>
+<p>The flow looks like this:</p>
+<ol>
+<li><p>Claude creates/tunes a plan (persisted under <code>~/.claude/plans/</code>).</p>
+</li>
+<li><p>Claude is about to call <code>Write</code>, <code>Edit</code>, <code>MultiEdit</code>, or <code>Bash</code>.</p>
+</li>
+<li><p>Our hook runs:</p>
+<ul>
+<li>Finds the most recently updated plan file.</li>
+<li>Derives a slug from the plan’s <code># Heading</code>.</li>
+<li>Copies it into <code>docs/plans/{descriptive_name}.md</code> in the current repo.</li>
+<li>Exits silently if there’s nothing to do.</li>
+</ul>
+</li>
+</ol>
+<p>From that point on, you’ve got a stable, repo-local record of the intent before implementation begins.</p>
+<p>And because the file lives in your repo, it becomes easy to reference later in Claude prompts -- <code>@docs/plans/{descriptive_name}.md</code>.</p>
+<h2>Why is this valuable?</h2>
+<p>Plans capture something that’s often missing in the final code, <code>intent</code>. Having that intent preserved inside the repo pays dividends well beyond simply avoiding lost work. It makes writing a strong PR description straightforward because you’re not reconstructing context from scattered code changes. It gives you a clean paper trail when debugging regressions, showing what you originally meant to implement. And it creates high-signal “why” documentation that stands apart from the implementation itself.</p>
+<p>Instead of ephemeral agent chatter, plans become lightweight, versionable engineering artifacts that travel with the code.</p>
+<hr>
+<h2>Hook implementation</h2>
+<p>Below is the exact setup: a <code>settings.json</code> hook plus a small Node script.</p>
+<h3>Save plan hook</h3>
+<div class="code-block" data-lang="json">
+  <div class="code-block-header">
+    <span class="code-block-lang">json</span>
+  </div>
+<pre class="shiki github-dark-dimmed" style="background-color:#22272e;color:#adbac7" tabindex="0"><code><span class="line"><span style="color:#768390">// ./claude/settings.json</span></span>
+<span class="line"><span style="color:#ADBAC7">{</span></span>
+<span class="line"><span style="color:#8DDB8C">  "permissions"</span><span style="color:#ADBAC7">: {</span></span>
+<span class="line"><span style="color:#8DDB8C">      "defaultMode"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"plan"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#ADBAC7">  },</span></span>
+<span class="line"><span style="color:#8DDB8C">  "hooks"</span><span style="color:#ADBAC7">: {</span></span>
+<span class="line"><span style="color:#8DDB8C">    "PreToolUse"</span><span style="color:#ADBAC7">: [</span></span>
+<span class="line"><span style="color:#ADBAC7">      {</span></span>
+<span class="line"><span style="color:#8DDB8C">        "matcher"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"Write|Edit|MultiEdit|Bash"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">        "hooks"</span><span style="color:#ADBAC7">: [</span></span>
+<span class="line"><span style="color:#ADBAC7">          {</span></span>
+<span class="line"><span style="color:#8DDB8C">            "type"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"command"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#8DDB8C">            "command"</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">"node </span><span style="color:#F47067">\"</span><span style="color:#96D0FF">$CLAUDE_PROJECT_DIR</span><span style="color:#F47067">\"</span><span style="color:#96D0FF">/.claude/hooks/save-plan.js"</span></span>
+<span class="line"><span style="color:#ADBAC7">          }</span></span>
+<span class="line"><span style="color:#ADBAC7">        ]</span></span>
+<span class="line"><span style="color:#ADBAC7">      }</span></span>
+<span class="line"><span style="color:#ADBAC7">    ]</span></span>
+<span class="line"><span style="color:#ADBAC7">  }</span></span>
+<span class="line"><span style="color:#ADBAC7">}</span></span></code></pre>
+</div>
+<h3>Save plan script</h3>
+<div class="code-block" data-lang="js">
+  <div class="code-block-header">
+    <span class="code-block-lang">js</span>
+  </div>
+<pre class="shiki github-dark-dimmed" style="background-color:#22272e;color:#adbac7" tabindex="0"><code><span class="line"><span style="color:#768390">// .claude/hooks/save-plan.js</span></span>
+<span class="line"><span style="color:#F47067">import</span><span style="color:#ADBAC7"> fs </span><span style="color:#F47067">from</span><span style="color:#96D0FF"> 'fs'</span><span style="color:#ADBAC7">;</span></span>
+<span class="line"><span style="color:#F47067">import</span><span style="color:#ADBAC7"> path </span><span style="color:#F47067">from</span><span style="color:#96D0FF"> 'path'</span><span style="color:#ADBAC7">;</span></span>
+<span class="line"><span style="color:#F47067">import</span><span style="color:#ADBAC7"> os </span><span style="color:#F47067">from</span><span style="color:#96D0FF"> 'os'</span><span style="color:#ADBAC7">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">const</span><span style="color:#6CB6FF"> input</span><span style="color:#F47067"> =</span><span style="color:#6CB6FF"> JSON</span><span style="color:#ADBAC7">.</span><span style="color:#DCBDFB">parse</span><span style="color:#ADBAC7">(fs.</span><span style="color:#DCBDFB">readFileSync</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">'/dev/stdin'</span><span style="color:#ADBAC7">, </span><span style="color:#96D0FF">'utf8'</span><span style="color:#ADBAC7">));</span></span>
+<span class="line"><span style="color:#F47067">const</span><span style="color:#ADBAC7"> { </span><span style="color:#6CB6FF">session_id</span><span style="color:#ADBAC7">, </span><span style="color:#6CB6FF">permission_mode</span><span style="color:#ADBAC7"> } </span><span style="color:#F47067">=</span><span style="color:#ADBAC7"> input;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">if</span><span style="color:#ADBAC7"> (permission_mode </span><span style="color:#F47067">!==</span><span style="color:#96D0FF"> 'acceptEdits'</span><span style="color:#ADBAC7">) process.</span><span style="color:#DCBDFB">exit</span><span style="color:#ADBAC7">(</span><span style="color:#6CB6FF">0</span><span style="color:#ADBAC7">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">const</span><span style="color:#6CB6FF"> lockFile</span><span style="color:#F47067"> =</span><span style="color:#ADBAC7"> path.</span><span style="color:#DCBDFB">join</span><span style="color:#ADBAC7">(os.</span><span style="color:#DCBDFB">tmpdir</span><span style="color:#ADBAC7">(), </span><span style="color:#96D0FF">`claude-plan-saved-${</span><span style="color:#ADBAC7">session_id</span><span style="color:#96D0FF">}`</span><span style="color:#ADBAC7">);</span></span>
+<span class="line"><span style="color:#F47067">if</span><span style="color:#ADBAC7"> (fs.</span><span style="color:#DCBDFB">existsSync</span><span style="color:#ADBAC7">(lockFile)) process.</span><span style="color:#DCBDFB">exit</span><span style="color:#ADBAC7">(</span><span style="color:#6CB6FF">0</span><span style="color:#ADBAC7">);</span></span>
+<span class="line"><span style="color:#ADBAC7">fs.</span><span style="color:#DCBDFB">writeFileSync</span><span style="color:#ADBAC7">(lockFile, </span><span style="color:#96D0FF">'1'</span><span style="color:#ADBAC7">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">const</span><span style="color:#6CB6FF"> plansDir</span><span style="color:#F47067"> =</span><span style="color:#ADBAC7"> path.</span><span style="color:#DCBDFB">join</span><span style="color:#ADBAC7">(os.</span><span style="color:#DCBDFB">homedir</span><span style="color:#ADBAC7">(), </span><span style="color:#96D0FF">'.claude'</span><span style="color:#ADBAC7">, </span><span style="color:#96D0FF">'plans'</span><span style="color:#ADBAC7">);</span></span>
+<span class="line"><span style="color:#F47067">if</span><span style="color:#ADBAC7"> (</span><span style="color:#F47067">!</span><span style="color:#ADBAC7">fs.</span><span style="color:#DCBDFB">existsSync</span><span style="color:#ADBAC7">(plansDir)) process.</span><span style="color:#DCBDFB">exit</span><span style="color:#ADBAC7">(</span><span style="color:#6CB6FF">0</span><span style="color:#ADBAC7">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">const</span><span style="color:#6CB6FF"> latest</span><span style="color:#F47067"> =</span><span style="color:#ADBAC7"> fs.</span><span style="color:#DCBDFB">readdirSync</span><span style="color:#ADBAC7">(plansDir)</span></span>
+<span class="line"><span style="color:#ADBAC7">  .</span><span style="color:#DCBDFB">filter</span><span style="color:#ADBAC7">(</span><span style="color:#F69D50">f</span><span style="color:#F47067"> =></span><span style="color:#ADBAC7"> f.</span><span style="color:#DCBDFB">endsWith</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">'.md'</span><span style="color:#ADBAC7">))</span></span>
+<span class="line"><span style="color:#ADBAC7">  .</span><span style="color:#DCBDFB">map</span><span style="color:#ADBAC7">(</span><span style="color:#F69D50">f</span><span style="color:#F47067"> =></span><span style="color:#ADBAC7"> ({ f, mtime: fs.</span><span style="color:#DCBDFB">statSync</span><span style="color:#ADBAC7">(path.</span><span style="color:#DCBDFB">join</span><span style="color:#ADBAC7">(plansDir, f)).mtimeMs }))</span></span>
+<span class="line"><span style="color:#ADBAC7">  .</span><span style="color:#DCBDFB">sort</span><span style="color:#ADBAC7">((</span><span style="color:#F69D50">a</span><span style="color:#ADBAC7">, </span><span style="color:#F69D50">b</span><span style="color:#ADBAC7">) </span><span style="color:#F47067">=></span><span style="color:#ADBAC7"> b.mtime </span><span style="color:#F47067">-</span><span style="color:#ADBAC7"> a.mtime)[</span><span style="color:#6CB6FF">0</span><span style="color:#ADBAC7">];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">if</span><span style="color:#ADBAC7"> (</span><span style="color:#F47067">!</span><span style="color:#ADBAC7">latest) process.</span><span style="color:#DCBDFB">exit</span><span style="color:#ADBAC7">(</span><span style="color:#6CB6FF">0</span><span style="color:#ADBAC7">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">const</span><span style="color:#6CB6FF"> content</span><span style="color:#F47067"> =</span><span style="color:#ADBAC7"> fs.</span><span style="color:#DCBDFB">readFileSync</span><span style="color:#ADBAC7">(path.</span><span style="color:#DCBDFB">join</span><span style="color:#ADBAC7">(plansDir, latest.f), </span><span style="color:#96D0FF">'utf8'</span><span style="color:#ADBAC7">);</span></span>
+<span class="line"><span style="color:#F47067">const</span><span style="color:#6CB6FF"> title</span><span style="color:#F47067"> =</span><span style="color:#ADBAC7"> content.</span><span style="color:#DCBDFB">match</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">/</span><span style="color:#F47067">^</span><span style="color:#96D0FF">#</span><span style="color:#6CB6FF">\s</span><span style="color:#F47067">+</span><span style="color:#96D0FF">(</span><span style="color:#6CB6FF">.</span><span style="color:#F47067">+</span><span style="color:#96D0FF">)</span><span style="color:#F47067">$</span><span style="color:#96D0FF">/</span><span style="color:#F47067">m</span><span style="color:#ADBAC7">)?.[</span><span style="color:#6CB6FF">1</span><span style="color:#ADBAC7">]</span></span>
+<span class="line"><span style="color:#ADBAC7">  ?.</span><span style="color:#DCBDFB">trim</span><span style="color:#ADBAC7">()</span></span>
+<span class="line"><span style="color:#ADBAC7">  .</span><span style="color:#DCBDFB">toLowerCase</span><span style="color:#ADBAC7">()</span></span>
+<span class="line"><span style="color:#ADBAC7">  .</span><span style="color:#DCBDFB">replace</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">/</span><span style="color:#6CB6FF">[</span><span style="color:#F47067">^</span><span style="color:#6CB6FF">a-z0-9]</span><span style="color:#F47067">+</span><span style="color:#96D0FF">/</span><span style="color:#F47067">g</span><span style="color:#ADBAC7">, </span><span style="color:#96D0FF">'-'</span><span style="color:#ADBAC7">)</span></span>
+<span class="line"><span style="color:#ADBAC7">  .</span><span style="color:#DCBDFB">replace</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">/</span><span style="color:#F47067">^</span><span style="color:#96D0FF">-</span><span style="color:#F47067">|</span><span style="color:#96D0FF">-</span><span style="color:#F47067">$</span><span style="color:#96D0FF">/</span><span style="color:#F47067">g</span><span style="color:#ADBAC7">, </span><span style="color:#96D0FF">''</span><span style="color:#ADBAC7">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">const</span><span style="color:#6CB6FF"> outName</span><span style="color:#F47067"> =</span><span style="color:#ADBAC7"> title </span><span style="color:#F47067">?</span><span style="color:#96D0FF"> `${</span><span style="color:#ADBAC7">title</span><span style="color:#96D0FF">}.md`</span><span style="color:#F47067"> :</span><span style="color:#ADBAC7"> latest.f;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">const</span><span style="color:#6CB6FF"> projectDir</span><span style="color:#F47067"> =</span><span style="color:#ADBAC7"> process.env.</span><span style="color:#6CB6FF">CLAUDE_PROJECT_DIR</span><span style="color:#F47067"> ??</span><span style="color:#ADBAC7"> process.</span><span style="color:#DCBDFB">cwd</span><span style="color:#ADBAC7">();</span></span>
+<span class="line"><span style="color:#F47067">const</span><span style="color:#6CB6FF"> outDir</span><span style="color:#F47067"> =</span><span style="color:#ADBAC7"> path.</span><span style="color:#DCBDFB">join</span><span style="color:#ADBAC7">(projectDir, </span><span style="color:#96D0FF">'docs'</span><span style="color:#ADBAC7">, </span><span style="color:#96D0FF">'plans'</span><span style="color:#ADBAC7">);</span></span>
+<span class="line"><span style="color:#ADBAC7">fs.</span><span style="color:#DCBDFB">mkdirSync</span><span style="color:#ADBAC7">(outDir, { recursive: </span><span style="color:#6CB6FF">true</span><span style="color:#ADBAC7"> });</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7">fs.</span><span style="color:#DCBDFB">copyFileSync</span><span style="color:#ADBAC7">(</span></span>
+<span class="line"><span style="color:#ADBAC7">  path.</span><span style="color:#DCBDFB">join</span><span style="color:#ADBAC7">(plansDir, latest.f),</span></span>
+<span class="line"><span style="color:#ADBAC7">  path.</span><span style="color:#DCBDFB">join</span><span style="color:#ADBAC7">(outDir, outName)</span></span>
+<span class="line"><span style="color:#ADBAC7">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7">process.</span><span style="color:#DCBDFB">exit</span><span style="color:#ADBAC7">(</span><span style="color:#6CB6FF">0</span><span style="color:#ADBAC7">);</span></span></code></pre>
+</div>
+<h2>Further Reading / Resources</h2>
+<ul>
+<li>Claude Code documentation (<a href="https://code.claude.com/docs/en/hooks">hooks, settings, tool lifecycle</a>).</li>
+</ul>
+
+        </div>
+      </article>
+    </div>
+  </body>
+</html>

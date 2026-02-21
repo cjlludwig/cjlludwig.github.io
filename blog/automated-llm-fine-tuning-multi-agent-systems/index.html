@@ -57,8 +57,8 @@
       }
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-K-H_rf8Z.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CeSuumnz.css">
+    <script type="module" crossorigin src="/assets/index-Cqh-gSCs.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-9Zbrlv56.css">
   </head>
   <body>
     <div id="root">
@@ -122,17 +122,16 @@
 <p>This is especially relevant for small models: a little tuning up front dramatically reduces ongoing inference footprint. That’s why AWS invests in data automation — tuning must be cheap enough to justify frequent iterations.</p>
 <h2>Multi-Agent Architecture: A Hybrid Orchestration Model</h2>
 <p>AWS’s proposed architecture combines lightweight rule-based logic with LLM-driven decision making. A central orchestrator coordinates three specialized agents. The orchestrator manages routing, task breakdown, quality loops, and termination conditions, keeping each agent tightly scoped to reduce hallucination risk and produce more interpretable outputs.</p>
-<pre><code class="language-mermaid">flowchart LR;
-  O[&quot;Orchestrator&quot;] --&gt; PA[&quot;Pattern Analysis Agent&quot;];
-  O --&gt; DG[&quot;Data Generation Agent&quot;];
-  O --&gt; Q[&quot;Quality Agent&quot;];
+<pre class="mermaid">flowchart LR;
+  O["Orchestrator"] --> PA["Pattern Analysis Agent"];
+  O --> DG["Data Generation Agent"];
+  O --> Q["Quality Agent"];
 
-  PA --&gt; DG;
-  DG --&gt; Q;
-  Q --&gt; O;
+  PA --> DG;
+  DG --> Q;
+  Q --> O;
 
-  DG --&gt; DATA[&quot;Augmented Training Data&quot;];
-</code></pre>
+  DG --> DATA["Augmented Training Data"];</pre>
 <h2>Pattern Analysis: Finding What the Model Doesn’t Understand</h2>
 <p>The <strong>Pattern Analysis Agent</strong> identifies weaknesses in the model by analyzing failure cases.</p>
 <p>Two strategies were evaluated:</p>

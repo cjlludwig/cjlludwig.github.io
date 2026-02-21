@@ -57,8 +57,8 @@
       }
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-K-H_rf8Z.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CeSuumnz.css">
+    <script type="module" crossorigin src="/assets/index-Cqh-gSCs.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-9Zbrlv56.css">
   </head>
   <body>
     <div id="root">
@@ -128,18 +128,17 @@
 <p>The key message: a process that used to take months can now be run serverlessly in ~30 minutes.</p>
 <p>A caveat: although the speaker said everything is supported “as code,” AWS launches often lag in full IaC coverage. Code-first teams may find gaps on day one.</p>
 <h3>Diagram</h3>
-<pre><code class="language-mermaid">flowchart LR;
-  Goals[Define goals &amp; eval criteria] --&gt; Data[Prepare dataset];
-  Data --&gt; Customize[Customize &amp; evaluate models];
-  Customize --&gt; Iterate[Iterate toward goals];
-  Iterate --&gt; Deploy[Deploy model];
+<pre class="mermaid">flowchart LR;
+  Goals[Define goals & eval criteria] --> Data[Prepare dataset];
+  Data --> Customize[Customize & evaluate models];
+  Customize --> Iterate[Iterate toward goals];
+  Iterate --> Deploy[Deploy model];
   classDef gray fill:#f2f2f2,stroke:#999;
   Goals:::gray;
   Data:::gray;
   Customize:::gray;
   Iterate:::gray;
-  Deploy:::gray;
-</code></pre>
+  Deploy:::gray;</pre>
 <h2>Infrastructure &amp; Security Notes</h2>
 <p>AWS emphasized secure defaults:</p>
 <ul>

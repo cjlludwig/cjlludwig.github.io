@@ -57,8 +57,8 @@
       }
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-K-H_rf8Z.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CeSuumnz.css">
+    <script type="module" crossorigin src="/assets/index-Cqh-gSCs.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-9Zbrlv56.css">
   </head>
   <body>
     <div id="root">
@@ -120,17 +120,16 @@
 </ul>
 <p>No login flows, auth redirects, cookies, or access tokens—just a machine paying another machine.</p>
 <h2>Diagram</h2>
-<pre><code class="language-mermaid">sequenceDiagram
+<pre class="mermaid">sequenceDiagram
     participant A as Agent
     participant W as Website
     participant P as Payment Network
 
-    A-&gt;&gt;W: Request content
-    W--&gt;&gt;A: 402 Payment Required (x402)
-    A-&gt;&gt;P: Send stablecoin payment
-    P--&gt;&gt;W: Confirm settlement
-    W-&gt;&gt;A: Provide content
-</code></pre>
+    A->>W: Request content
+    W-->>A: 402 Payment Required (x402)
+    A->>P: Send stablecoin payment
+    P-->>W: Confirm settlement
+    W->>A: Provide content</pre>
 <h2>Monetization: Agents Don’t See Ads</h2>
 <p>A key insight surfaced late in the talk:</p>
 <p>Agents do not consume ads.</p>

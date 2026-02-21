@@ -57,8 +57,8 @@
       }
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-K-H_rf8Z.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CeSuumnz.css">
+    <script type="module" crossorigin src="/assets/index-Cqh-gSCs.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-9Zbrlv56.css">
   </head>
   <body>
     <div id="root">
@@ -109,64 +109,77 @@
 <p>Here are some practical examples that you can drop into your own workflows.</p>
 <h3>Global Settings</h3>
 <p><code>~/.claude/settings.json</code> - Managed across the full machine or configured at enterprise level.</p>
-<pre><code class="language-json">{
-  &quot;permissions&quot;: {
-    &quot;allow&quot;: [
-      &quot;Read&quot;,
-      &quot;WebFetch&quot;,
-      &quot;WebSearch&quot;
-    ],
-    &quot;deny&quot;: [
-      &quot;Bash(rm *)&quot;,
-      &quot;Bash(rmdir*)&quot;,
-      &quot;Bash(git clean *)&quot;,
-      &quot;Bash(git reset --hard*)&quot;,
-      &quot;Bash(git checkout -- *)&quot;,
-      &quot;Bash(git restore*)&quot;
-    ]
-  }
-}
-</code></pre>
+<div class="code-block" data-lang="json">
+  <div class="code-block-header">
+    <span class="code-block-lang">json</span>
+  </div>
+<pre class="shiki github-dark-dimmed" style="background-color:#22272e;color:#adbac7" tabindex="0"><code><span class="line"><span style="color:#ADBAC7">{</span></span>
+<span class="line"><span style="color:#8DDB8C">  "permissions"</span><span style="color:#ADBAC7">: {</span></span>
+<span class="line"><span style="color:#8DDB8C">    "allow"</span><span style="color:#ADBAC7">: [</span></span>
+<span class="line"><span style="color:#96D0FF">      "Read"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">      "WebFetch"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">      "WebSearch"</span></span>
+<span class="line"><span style="color:#ADBAC7">    ],</span></span>
+<span class="line"><span style="color:#8DDB8C">    "deny"</span><span style="color:#ADBAC7">: [</span></span>
+<span class="line"><span style="color:#96D0FF">      "Bash(rm *)"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">      "Bash(rmdir*)"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">      "Bash(git clean *)"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">      "Bash(git reset --hard*)"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">      "Bash(git checkout -- *)"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">      "Bash(git restore*)"</span></span>
+<span class="line"><span style="color:#ADBAC7">    ]</span></span>
+<span class="line"><span style="color:#ADBAC7">  }</span></span>
+<span class="line"><span style="color:#ADBAC7">}</span></span>
+<span class="line"></span></code></pre>
+</div>
 <h3>Project-shared Settings</h3>
 <p><code>.claude/settings.json</code> — checked into git, shared with all contributors</p>
-<pre><code class="language-json">{
-  &quot;permissions&quot;: {
-    &quot;allow&quot;: [
-      &quot;Edit&quot;,
-      &quot;Write&quot;,
-      &quot;WebFetch(domain:foo-bar.com)&quot;,
-      &quot;Bash(npm run tsc:*)&quot;,
-      &quot;Bash(npm run test:*)&quot;,
-      &quot;Bash(make:*)&quot;,
-      &quot;Bash(file:*)&quot;,
-      &quot;Bash(wc:*)&quot;,
-      &quot;Bash(which:*)&quot;,
-      &quot;Bash(npx gatsby build:*)&quot;
-    ],
-    &quot;deny&quot;: [
-      &quot;Edit(.claude/settings*)&quot;,
-      &quot;Write(.claude/settings*)&quot;,
-    ]
-  }
-}
-</code></pre>
+<div class="code-block" data-lang="json">
+  <div class="code-block-header">
+    <span class="code-block-lang">json</span>
+  </div>
+<pre class="shiki github-dark-dimmed" style="background-color:#22272e;color:#adbac7" tabindex="0"><code><span class="line"><span style="color:#ADBAC7">{</span></span>
+<span class="line"><span style="color:#8DDB8C">  "permissions"</span><span style="color:#ADBAC7">: {</span></span>
+<span class="line"><span style="color:#8DDB8C">    "allow"</span><span style="color:#ADBAC7">: [</span></span>
+<span class="line"><span style="color:#96D0FF">      "Edit"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">      "Write"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">      "WebFetch(domain:foo-bar.com)"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">      "Bash(npm run tsc:*)"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">      "Bash(npm run test:*)"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">      "Bash(make:*)"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">      "Bash(file:*)"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">      "Bash(wc:*)"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">      "Bash(which:*)"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">      "Bash(npx gatsby build:*)"</span></span>
+<span class="line"><span style="color:#ADBAC7">    ],</span></span>
+<span class="line"><span style="color:#8DDB8C">    "deny"</span><span style="color:#ADBAC7">: [</span></span>
+<span class="line"><span style="color:#96D0FF">      "Edit(.claude/settings*)"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">      "Write(.claude/settings*)"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#ADBAC7">    ]</span></span>
+<span class="line"><span style="color:#ADBAC7">  }</span></span>
+<span class="line"><span style="color:#ADBAC7">}</span></span></code></pre>
+</div>
 <h3>Project-local Overrides</h3>
 <p><code>.claude/settings.local.json</code> — git-ignored, personal workflow preferences</p>
-<pre><code class="language-json">{
-  &quot;permissions&quot;: {
-    &quot;allow&quot;: [
-      &quot;Bash(python3:*)&quot;,
-      &quot;Bash(ln:*)&quot;,
-      &quot;Bash(sips:*)&quot;,
-      &quot;Bash(pdfunite:*)&quot;,
-      &quot;Bash(pdfjam:*)&quot;,
-      &quot;Bash(pdftoppm:*)&quot;,
-      &quot;Bash(npm run foo:*)&quot;,
-      &quot;Bash(npm run start:*)&quot;
-    ]
-  }
-}
-</code></pre>
+<div class="code-block" data-lang="json">
+  <div class="code-block-header">
+    <span class="code-block-lang">json</span>
+  </div>
+<pre class="shiki github-dark-dimmed" style="background-color:#22272e;color:#adbac7" tabindex="0"><code><span class="line"><span style="color:#ADBAC7">{</span></span>
+<span class="line"><span style="color:#8DDB8C">  "permissions"</span><span style="color:#ADBAC7">: {</span></span>
+<span class="line"><span style="color:#8DDB8C">    "allow"</span><span style="color:#ADBAC7">: [</span></span>
+<span class="line"><span style="color:#96D0FF">      "Bash(python3:*)"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">      "Bash(ln:*)"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">      "Bash(sips:*)"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">      "Bash(pdfunite:*)"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">      "Bash(pdfjam:*)"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">      "Bash(pdftoppm:*)"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">      "Bash(npm run foo:*)"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#96D0FF">      "Bash(npm run start:*)"</span></span>
+<span class="line"><span style="color:#ADBAC7">    ]</span></span>
+<span class="line"><span style="color:#ADBAC7">  }</span></span>
+<span class="line"><span style="color:#ADBAC7">}</span></span></code></pre>
+</div>
 <p>This is where individual tooling goes — PDF processing utilities (sips, pdfunite, pdfjam, pdftoppm) that depend on<br>local installs, python3 for scripting, and commands like npm run foo that require a personal OPENAI_API_KEY. Another<br>contributor might not have these tools installed or the API key configured, so they don&#39;t belong in the shared file.</p>
 <p>The split in practice: Shared settings handle what&#39;s universal to the project (Gatsby builds, TypeScript checks,<br>destructive command blocks). Local settings handle what&#39;s specific to your machine (PDF tools, API-dependent scripts,<br>dev server preferences).</p>
 
