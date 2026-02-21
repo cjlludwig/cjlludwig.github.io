@@ -3,28 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Redirecting...</title>
-  <script>
-    // GitHub Pages SPA redirect workaround
-    // Encodes the current path into a query parameter and redirects to index.html
-    // The main app will restore the path on load
-    (function() {
-      var path = window.location.pathname;
-      var search = window.location.search;
-      var hash = window.location.hash;
-
-      // Don't redirect if we're already at root
-      if (path === '/' || path === '/index.html') {
-        return;
-      }
-
-      // Redirect to root with path encoded in query string
-      var redirectUrl = '/?p=' + encodeURIComponent(path + search + hash);
-      window.location.replace(redirectUrl);
-    })();
-  </script>
+  <title>Page Not Found | Connor Ludwig</title>
+  <meta name="robots" content="noindex" />
+  <style>
+    body { font-family: system-ui, sans-serif; text-align: center; padding: 4rem 1rem; color: #1e293b; }
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+    p { color: #64748b; margin-bottom: 2rem; }
+    a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+  </style>
 </head>
 <body>
-  <p>Redirecting...</p>
+  <h1>404 — Page Not Found</h1>
+  <p>The page you're looking for doesn't exist.</p>
+  <a href="/">← Back to home</a>
 </body>
 </html>

@@ -47,16 +47,6 @@ function getRouteFromPath(pathname) {
   return { page: 'home' }
 }
 
-function restorePathFromRedirect() {
-  const params = new URLSearchParams(window.location.search)
-  const redirectedPath = params.get('p')
-  if (redirectedPath) {
-    window.history.replaceState(null, '', redirectedPath)
-    return redirectedPath
-  }
-  return window.location.pathname
-}
-
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
     // Check system preference first
@@ -82,7 +72,7 @@ function App() {
     setDarkMode(!darkMode)
   }
 
-  const [route, setRoute] = useState(() => getRouteFromPath(restorePathFromRedirect()))
+  const [route, setRoute] = useState(() => getRouteFromPath(window.location.pathname))
   const lastTrackedPath = useRef(null)
 
   const navigate = useCallback((path) => {
