@@ -168,7 +168,7 @@ function App() {
         description: activePost.description,
         image: activePost.image,
         date: activePost.date,
-        url: `${SITE_URL}/blog/${activePost.slug}`,
+        url: `${SITE_URL}/blog/${activePost.slug}/`,
         type: 'article',
       }
     }
@@ -176,7 +176,7 @@ function App() {
       return {
         title: 'Blog | Connor Ludwig',
         description: 'Short engineering notes, diagrams, and stories.',
-        url: `${SITE_URL}/blog`,
+        url: `${SITE_URL}/blog/`,
       }
     }
     return { ...defaultMeta, url: SITE_URL }
@@ -218,7 +218,7 @@ function App() {
                 datePublished: activePost.date,
                 description: activePost.description,
                 image: activePost.image,
-                url: `${SITE_URL}/blog/${activePost.slug}`,
+                url: `${SITE_URL}/blog/${activePost.slug}/`,
               }
             : null
         }
@@ -238,7 +238,7 @@ function App() {
               <a href="/#experience">Experience</a>
               <a href="/#skills">Skills</a>
               <a href="/#projects">Projects</a>
-              <a href="/blog" className="nav-blog" onClick={handleNavClick}>
+              <a href="/blog/" className="nav-blog" onClick={handleNavClick}>
                 Blog
               </a>
               <span className="nav-separator">|</span>
