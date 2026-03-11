@@ -6,7 +6,7 @@ Google Search Console showed two persistent errors:
 1. **"Sitemap could not be read"** / **"Couldn't fetch"** for `/sitemap.xml` (since Feb 1, 2026)
 2. **"Redirect error"** — pages on the site not being indexed (notified Feb 4, 2026)
 
-## Root Cause: `404.html` SPA Redirect
+## Root Cause 1: `404.html` SPA Redirect (Fixed Feb 21, 2026)
 
 The original `404.html` was a GitHub Pages SPA routing workaround that redirected all unknown paths to `/?p=<encoded-path>`. This caused Google's crawler to encounter redirect loops:
 
@@ -21,27 +21,53 @@ This pattern was needed historically when the site was a pure SPA (no static fil
 - The redirect only fires for truly non-existent URLs
 - But Google was still discovering/crawling some of those URLs and hitting the loop
 
-## Fix Applied
+## Root Cause 2: Missing Trailing Slashes in React Components (Fixed Mar 7, 2026)
 
-### 1. Replaced `public/404.html` with a proper 404 page
+Even after the `404.html` fix, GSC continued showing "Redirect error" (4 pages) and "Page with redirect" (1 page). The actual cause: `BlogIndex.jsx` and `App.jsx` generated links and canonical URLs **without trailing slashes**.
+
+When Googlebot executed JavaScript and rendered the page, it discovered these non-trailing-slash URLs:
+- `/blog/slug` (from `BlogIndex` title/readmore links)
+- `/blog` (from the nav link and blog index `og:url`)
+
+GitHub Pages 301-redirects these to their trailing-slash equivalents. Combined with `Seo.jsx` dynamically **overwriting the canonical tag** after JS hydration, Googlebot saw conflicting canonicals:
+
+```
+Static HTML canonical:   https://cjlludwig.github.io/blog/slug/   ✅
+After JS hydration:      https://cjlludwig.github.io/blog/slug    ❌ (overwrites via Seo.jsx)
+```
+
+This caused Googlebot to try crawling the no-trailing-slash URL, hit the 301, and report "Redirect error" / "Page with redirect".
+
+## Fixes Applied
+
+### 1. Replaced `public/404.html` with a proper 404 page (Feb 21, 2026)
 
 Removed the `window.location.replace('/?p=...')` JavaScript redirect. Replaced with a clean "Page Not Found" page with `<meta name="robots" content="noindex">`.
 
-### 2. Removed `restorePathFromRedirect()` from `src/App.jsx`
+### 2. Removed `restorePathFromRedirect()` from `src/App.jsx` (Feb 21, 2026)
 
 Dead code that read `?p=` query params and called `window.history.replaceState` — no longer needed since 404.html no longer redirects there.
 
-### 3. Added `public/sitemap-index.xml`
+### 3. Added `public/sitemap-index.xml` (Feb 21, 2026)
 
-A sitemap index file pointing to the main `sitemap.xml`. Submitted this as a fresh entry in GSC to work around the stale "Couldn't fetch" cache on the original `/sitemap.xml` entry (which GSC wouldn't let us delete).
+A sitemap index file pointing to the main `sitemap.xml`. Submitted this as a fresh entry in GSC to work around the stale "Couldn't fetch" cache on the original `/sitemap.xml` entry.
 
-### 4. Updated `public/robots.txt`
+### 4. Updated `public/robots.txt` (Feb 21, 2026)
 
 Added the sitemap index reference alongside the original:
 ```
 Sitemap: https://cjlludwig.github.io/sitemap.xml
 Sitemap: https://cjlludwig.github.io/sitemap-index.xml
 ```
+
+### 5. Fixed trailing slashes in `BlogIndex.jsx` and `App.jsx` (Mar 7, 2026)
+
+All blog URLs throughout the React app now use trailing slashes, consistent with the sitemap and static page canonicals:
+
+- `BlogIndex.jsx`: post title links, "Read more" links, "View all posts" link
+- `App.jsx`: `og:url`/canonical props passed to `<Seo>` for blog index and blog post pages, nav "Blog" link
+
+**Key invariant:** Because `Seo.jsx` dynamically updates `<link rel="canonical">` after hydration, every `url` prop passed to `<Seo>` must use a trailing slash. The static HTML canonical (set in `generate-blog-pages.js`) is correct, but JS hydration overwrites it — so both must agree.
 
 ## Validation Performed
 
@@ -63,30 +89,30 @@ The `sitemap-index.xml` was submitted to GSC immediately after the commit that c
 
 **Always wait for deployment to finish before submitting sitemaps to GSC.**
 
-## If Still Broken After 48 Hours
+## GSC Actions After Deploying Fixes
 
-Next steps to investigate in order:
+1. **Reprocess sitemaps** — In GSC → Sitemaps, click the 3-dot menu next to each entry and select "Reprocess sitemap". You cannot delete previously submitted sitemaps; reprocessing triggers a fresh fetch. Alternatively, resubmit the same URL in the "Add a new sitemap" field to refresh the entry.
+
+2. **Request indexing for affected URLs** — In GSC → URL Inspection, inspect each of the 4 redirect-error URLs and click "Request indexing" to trigger a fresh crawl with the fixed code.
+
+3. **Wait** — GSC data lags 1–2 weeks. The "Redirect error" entries will clear on Google's next crawl cycle once it no longer encounters redirects from those URLs.
+
+## If Still Broken After Deploying
 
 1. **Check if `.nojekyll` is deployed** — the `gh-pages` branch is missing `.nojekyll`. Without it, GitHub Pages processes the site through Jekyll. This shouldn't affect XML files but can cause unexpected behavior. Add an empty `.nojekyll` file to `public/` and update the deploy command:
    ```bash
    npx gh-pages -d dist --dotfiles -u "github-actions-bot ..."
    ```
 
-2. **Check for redirect errors on specific URLs** — Use GSC → Pages → "Why pages aren't indexed" → "Redirect error" to see which specific URLs Google is flagging. Investigate whether any blog post content contains links to non-existent internal paths.
+2. **Verify property ownership** — Confirm `https://cjlludwig.github.io/google181b4d845c49a2b2.html` returns 200 and the GSC property is fully verified.
 
-3. **Use GSC URL Inspection** — Inspect `https://cjlludwig.github.io/` and `https://cjlludwig.github.io/blog/` directly in GSC. Click "Request indexing" to force a fresh crawl of individual pages.
-
-4. **Verify property ownership** — Confirm `https://cjlludwig.github.io/google181b4d845c49a2b2.html` returns 200 and the GSC property is fully verified.
-
-5. **Check GitHub Pages CDN propagation** — After deploying, wait at least 10 minutes (GitHub Pages CDN `max-age=600`) before triggering a GSC re-read.
-
-6. **Try submitting a plain text sitemap** — As a last resort, create `public/sitemap.txt` with one URL per line and submit that instead. Google accepts plain text sitemaps and they bypass any XML parsing issues.
+3. **Check GitHub Pages CDN propagation** — After deploying, wait at least 10 minutes (GitHub Pages CDN `max-age=600`) before triggering a GSC re-read.
 
 ## Architecture Notes
 
 The site uses two routing layers that must stay in sync:
 
-- **Client-side routing** (`App.jsx`): Hash-based (`#/blog`, `#/blog/slug`) for SPA navigation after initial load
+- **Client-side routing** (`App.jsx`): `window.history.pushState` (real paths `/blog`, `/blog/slug`) for SPA navigation after initial load
 - **SSG** (`scripts/generate-blog-pages.js`): Generates static HTML at `/dist/blog/{slug}/index.html` for direct URL access and SEO
 
 Every URL in `sitemap.xml` must have a corresponding static file in `dist/`. The `generate-sitemap.js` script reads from `src/data/blogs.json`, which is populated by `generate-blogs.js`. The build order in `package.json` ensures this happens in the right sequence.
