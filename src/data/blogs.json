@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-11T21:26:04.602Z",
+  "generatedAt": "2026-03-13T20:44:33.679Z",
   "posts": [
     {
       "title": "ReReadme: Doc-as-CI for Repository Context",
@@ -21,7 +21,7 @@
       "title": "Claude Code Save Plan Hook",
       "date": "2026-02-20",
       "slug": "claude-code-save-plan-hook",
-      "description": "Never lose a Claude Code plan again. A tiny Claude Code hook that copies your latest plan into docs/plans so it survives terminal restarts and stays tied to the repo.\"",
+      "description": "Never lose a Claude Code plan again. A tiny hook that snapshots your latest plan into the repo the moment Claude transitions from Plan to Edit.",
       "tags": [
         "claude-code",
         "anthropic",
@@ -84,7 +84,7 @@
       "title": "AI Agents Ate the Conference: Reality, Hype, and Hard Lessons from re:Invent",
       "date": "2025-12-08",
       "slug": "ai-agents-ate-the-conference",
-      "description": "A candid engineer’s recap of re:Invent 2025: the gap between leadership and engineering on AI agents, why benchmarks mislead, and what real-world agent architecture actually looks like in the Wild West era of agentic systems.",
+      "description": "A candid engineer's recap of re:Invent 2025: the gap between leadership and engineering on AI agents, and what real-world agent architecture looks like.",
       "tags": [
         "Agents",
         "AI Engineering",
@@ -164,7 +164,7 @@
       "title": "Advanced Document Processing with LLMs and AWS: Modern IDP Patterns at Scale",
       "date": "2025-12-02T18:45:00Z",
       "slug": "advanced-document-processing-idp-modern-patterns",
-      "description": "Notes from AWS re:Invent 2025: A deep dive into the evolution of intelligent document processing, multimodal extraction pipelines, and AWS-native orchestration patterns for high-assurance workflows.",
+      "description": "Notes from AWS re:Invent 2025: Intelligent document processing, multimodal extraction pipelines, and AWS-native orchestration for high-assurance workflows.",
       "tags": [
         "aws",
         "llm",
@@ -182,7 +182,7 @@
       "title": "AI Code to Prod: Why Context Matters More Than Vibes",
       "date": "2025-12-02",
       "slug": "ai-code-to-prod-context-matters",
-      "description": "Notes from AWS re:Invent 2025: Shifting from vibe-driven prompting to structured, production-ready AI code workflows, featuring Kiro and the rise of the so-called 'context architect.'",
+      "description": "Notes from AWS re:Invent 2025: Shifting from vibe-driven prompting to structured AI workflows, featuring Kiro and the rise of the 'context architect'.",
       "tags": [
         "AI Engineering",
         "LLM Development",
@@ -214,7 +214,7 @@
       "title": "LLM Eval Reliability Foundations",
       "date": "2025-12-01",
       "slug": "llm-eval-reliability-foundations",
-      "description": "Notes from AWS re:Invent 2025: A breakdown of why traditional LLM benchmarks are failing, how contamination and nondeterminism distort scores, and where evaluation is heading next.",
+      "description": "Notes from AWS re:Invent 2025: Why LLM benchmarks are failing, how contamination and nondeterminism distort scores, and where evaluation is heading.",
       "tags": [
         "LLM Evaluations",
         "AI Reliability",
@@ -229,7 +229,7 @@
       "title": "Real-Time AI Inference Patterns from the Gaming Industry",
       "date": "2025-12-01",
       "slug": "real-time-ai-inference-patterns-gaming",
-      "description": "Notes from AWS re:Invent 2025: How modern game studios are building real-time inference engines, optimizing cost, and blending narrative control between players, designers, and AI agents.",
+      "description": "Notes from AWS re:Invent 2025: How game studios build real-time inference engines, optimize cost, and blend narrative between players, designers, and AI agents.",
       "tags": [
         "ai",
         "gaming",
@@ -245,7 +245,7 @@
       "title": "Model Privacy Assessments in Modern GenAI Systems",
       "date": "2025-12-01",
       "slug": "model-privacy-assessments",
-      "description": "Notes from AWS re:Invent 2025: A practical walkthrough of reconstruction attacks, attribute inference, guardrails, and differential privacy for GenAI and RAG systems.",
+      "description": "Notes from AWS re:Invent 2025: Reconstruction attacks, attribute inference, guardrails, and differential privacy for GenAI and RAG systems.",
       "tags": [
         "genai",
         "security",

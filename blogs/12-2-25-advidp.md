@@ -2,7 +2,7 @@
 title: "Advanced Document Processing with LLMs and AWS: Modern IDP Patterns at Scale"
 date: "2025-12-02T18:45:00Z"
 slug: "advanced-document-processing-idp-modern-patterns"
-description: "Notes from AWS re:Invent 2025: A deep dive into the evolution of intelligent document processing, multimodal extraction pipelines, and AWS-native orchestration patterns for high-assurance workflows."
+description: "Notes from AWS re:Invent 2025: Intelligent document processing, multimodal extraction pipelines, and AWS-native orchestration for high-assurance workflows."
 tags: ["aws", "llm", "document-processing", "idp", "bedrock", "nova", "step-functions", "AWS re:Invent"]
 ---
 

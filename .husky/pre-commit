@@ -30,3 +30,16 @@ if git diff --cached --name-only | grep -q "resume.md"; then
 else
   echo "✅ No resume.md changes, skipping generation"
 fi
+
+echo "🔍 Pre-commit: Checking for blog changes..."
+
+if git diff --cached --name-only | grep -q "^blogs/"; then
+  echo "📝 Blog files changed, regenerating blogs and sitemap..."
+  npm run generate-blogs
+  npm run generate-sitemap
+  git add src/data/blogs.json
+  git add public/sitemap.xml
+  echo "✅ blogs.json and sitemap.xml updated and staged"
+else
+  echo "✅ No blog changes, skipping generation"
+fi

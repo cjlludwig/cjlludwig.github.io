@@ -2,7 +2,7 @@
 title: "Model Privacy Assessments in Modern GenAI Systems"
 date: "2025-12-01"
 slug: "model-privacy-assessments"
-description: "Notes from AWS re:Invent 2025: A practical walkthrough of reconstruction attacks, attribute inference, guardrails, and differential privacy for GenAI and RAG systems."
+description: "Notes from AWS re:Invent 2025: Reconstruction attacks, attribute inference, guardrails, and differential privacy for GenAI and RAG systems."
 tags: ["genai", "security", "privacy", "rag", "llm", "AWS re:Invent"]
 ---
 

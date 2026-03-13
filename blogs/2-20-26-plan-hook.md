@@ -3,7 +3,7 @@
 title: "Claude Code Save Plan Hook"
 date: "2026-02-20"
 slug: "claude-code-save-plan-hook"
-description: Never lose a Claude Code plan again. A tiny Claude Code hook that copies your latest plan into docs/plans so it survives terminal restarts and stays tied to the repo."
+description: "Never lose a Claude Code plan again. A tiny hook that snapshots your latest plan into the repo the moment Claude transitions from Plan to Edit."
 tags: ["claude-code", "anthropic", "ai-agents", "developer-experience", "tooling", "devai"]
 ---
 I’ve been using Claude Code enough that I now default to Plan before I let it touch anything. The downside is obvious the moment you start running multiple threads of work in parallel: you end up with several plans in flight, each mid-groomed, each representing real time spent nudging the model toward something you’d actually approve.
