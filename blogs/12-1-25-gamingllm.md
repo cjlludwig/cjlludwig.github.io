@@ -2,7 +2,7 @@
 title: "Real-Time AI Inference Patterns from the Gaming Industry"
 date: "2025-12-01"
 slug: "real-time-ai-inference-patterns-gaming"
-description: "Notes from AWS re:Invent 2025: How modern game studios are building real-time inference engines, optimizing cost, and blending narrative control between players, designers, and AI agents."
+description: "Notes from AWS re:Invent 2025: How game studios build real-time inference engines, optimize cost, and blend narrative between players, designers, and AI agents."
 tags: ["ai", "gaming", "real-time-systems", "distributed-systems", "inference", "AWS re:Invent"]
 ---
 

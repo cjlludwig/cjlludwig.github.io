@@ -1,6 +1,24 @@
 {
-  "generatedAt": "2026-03-11T21:26:04.602Z",
+  "generatedAt": "2026-03-13T20:39:19.470Z",
   "posts": [
+    {
+      "title": "Agents are Bad at Writing Agents",
+      "date": "2026-03-13",
+      "slug": "agents-are-bad-at-writing-agents",
+      "description": "Why eval-driven agent loops optimize for passing the metric over the goal, and what that means for building reliable dev agents.",
+      "tags": [
+        "dev ai",
+        "agents",
+        "claude code",
+        "cursor",
+        "llm tools",
+        "agent evals",
+        "reinforcement learning",
+        "prompt engineering"
+      ],
+      "image": "",
+      "html": "<p>While developing <code>rereadme</code>, I assumed the feedback loop below would eventually produce a self-improving agent.</p>\n<pre class=\"mermaid\">flowchart\n    human-->|Writes|evaluations\n    human-->|Prompt|devAgent\n    devAgent-->|Writes|agent\n    agent-->|Eval Results|devAgent</pre>\n<p>The idea was simple. I would focus on defining measurable signals for what my eyeball test considered “good.” The dev agent (aka <code>claude</code>) would then iterate on the agent prompt until those evals <del>magically</del> passed.</p>\n<p>This is the vision that gets sold constantly on X (RIP Twitter).</p>\n<p>And technically… it worked.</p>\n<p>Kind of.</p>\n<p>In practice, the dev agent tuned the prompt overly specifically to whatever evaluation had just failed.</p>\n<p>For example, one eval checked for keywords that I knew should appear in a project README after reviewing the codebase. Often these are simple commands like <code>npm i</code> or <code>npm run start</code> so someone can try the repo quickly. These seemed like ideal signals. Deterministic checks validating the output of a non-deterministic generation process.</p>\n<p>But when fed into a Claude Code feedback loop, the dev agent <strong>always</strong> chose the path of least resistance, even when it violated the <strong>intent</strong> of the agent.</p>\n<p>Instead of generalizing the concept behind the failure, the system prompt would get patched with repo-specific rules:</p>\n<p><code>You MUST include npm i.</code></p>\n<p>The eval passes, but only for Node repositories.</p>\n<p>The behavior actually makes a lot of sense when considering the inner workings of LLMs. When models are optimized against explicit rewards (my evals), they tend to maximize the measured metric rather than the intended outcome -- a phenomenon known as reward hacking. In reinforcement learning, models frequently exploit shortcuts to reach the reward rather than learning the underlying concept, improving the score while true quality stagnates.</p>\n<p>In practice this behaves like a path-finding algorithm. The model searches for the shortest route to a passing score. If a shortcut exists, it will take it.</p>\n<p>Which means the system optimizes for <strong>passing the eval</strong>, not <strong>understanding the goal</strong>.</p>\n<p>The metric becomes the task (see <a href=\"https://en.wikipedia.org/wiki/Goodhart%27s_law\">Goodhart&#39;s law</a>)</p>\n<p>There’s still a human step required to interpret intent and translate failures into the right abstraction.</p>\n<p>After several iterations of watching the dev agent patch prompts in increasingly brittle ways, I threw away its work and rewrote the prompt from scratch—this time focusing on the underlying concept behind the keyword checks.</p>\n<p>Instead of:</p>\n<p><code>You MUST include npm i.</code></p>\n<p>The rule became:</p>\n<p><code>Always include install instructions appropriate to the repository’s tech stack.</code></p>\n<p>Same passing eval. Very different agent.</p>\n<h2>Further Reading</h2>\n<ul>\n<li>ReReadme Codebase<ul>\n<li><a href=\"https://github.com/cjlludwig/ReReadme\">https://github.com/cjlludwig/ReReadme</a></li>\n</ul>\n</li>\n<li>Reward Hacking Literature<ul>\n<li><a href=\"https://lilianweng.github.io/posts/2024-11-28-reward-hacking/\">https://lilianweng.github.io/posts/2024-11-28-reward-hacking/</a></li>\n<li><a href=\"https://arxiv.org/abs/2406.02900\">https://arxiv.org/abs/2406.02900</a></li>\n</ul>\n</li>\n</ul>\n"
+    },
     {
       "title": "ReReadme: Doc-as-CI for Repository Context",
       "date": "2026-02-22",
@@ -21,7 +39,7 @@
       "title": "Claude Code Save Plan Hook",
       "date": "2026-02-20",
       "slug": "claude-code-save-plan-hook",
-      "description": "Never lose a Claude Code plan again. A tiny Claude Code hook that copies your latest plan into docs/plans so it survives terminal restarts and stays tied to the repo.\"",
+      "description": "Never lose a Claude Code plan again. A tiny hook that snapshots your latest plan into the repo the moment Claude transitions from Plan to Edit.",
       "tags": [
         "claude-code",
         "anthropic",
@@ -84,7 +102,7 @@
       "title": "AI Agents Ate the Conference: Reality, Hype, and Hard Lessons from re:Invent",
       "date": "2025-12-08",
       "slug": "ai-agents-ate-the-conference",
-      "description": "A candid engineer’s recap of re:Invent 2025: the gap between leadership and engineering on AI agents, why benchmarks mislead, and what real-world agent architecture actually looks like in the Wild West era of agentic systems.",
+      "description": "A candid engineer's recap of re:Invent 2025: the gap between leadership and engineering on AI agents, and what real-world agent architecture looks like.",
       "tags": [
         "Agents",
         "AI Engineering",
@@ -164,7 +182,7 @@
       "title": "Advanced Document Processing with LLMs and AWS: Modern IDP Patterns at Scale",
       "date": "2025-12-02T18:45:00Z",
       "slug": "advanced-document-processing-idp-modern-patterns",
-      "description": "Notes from AWS re:Invent 2025: A deep dive into the evolution of intelligent document processing, multimodal extraction pipelines, and AWS-native orchestration patterns for high-assurance workflows.",
+      "description": "Notes from AWS re:Invent 2025: Intelligent document processing, multimodal extraction pipelines, and AWS-native orchestration for high-assurance workflows.",
       "tags": [
         "aws",
         "llm",
@@ -182,7 +200,7 @@
       "title": "AI Code to Prod: Why Context Matters More Than Vibes",
       "date": "2025-12-02",
       "slug": "ai-code-to-prod-context-matters",
-      "description": "Notes from AWS re:Invent 2025: Shifting from vibe-driven prompting to structured, production-ready AI code workflows, featuring Kiro and the rise of the so-called 'context architect.'",
+      "description": "Notes from AWS re:Invent 2025: Shifting from vibe-driven prompting to structured AI workflows, featuring Kiro and the rise of the 'context architect'.",
       "tags": [
         "AI Engineering",
         "LLM Development",
@@ -214,7 +232,7 @@
       "title": "LLM Eval Reliability Foundations",
       "date": "2025-12-01",
       "slug": "llm-eval-reliability-foundations",
-      "description": "Notes from AWS re:Invent 2025: A breakdown of why traditional LLM benchmarks are failing, how contamination and nondeterminism distort scores, and where evaluation is heading next.",
+      "description": "Notes from AWS re:Invent 2025: Why LLM benchmarks are failing, how contamination and nondeterminism distort scores, and where evaluation is heading.",
       "tags": [
         "LLM Evaluations",
         "AI Reliability",
@@ -229,7 +247,7 @@
       "title": "Real-Time AI Inference Patterns from the Gaming Industry",
       "date": "2025-12-01",
       "slug": "real-time-ai-inference-patterns-gaming",
-      "description": "Notes from AWS re:Invent 2025: How modern game studios are building real-time inference engines, optimizing cost, and blending narrative control between players, designers, and AI agents.",
+      "description": "Notes from AWS re:Invent 2025: How game studios build real-time inference engines, optimize cost, and blend narrative between players, designers, and AI agents.",
       "tags": [
         "ai",
         "gaming",
@@ -245,7 +263,7 @@
       "title": "Model Privacy Assessments in Modern GenAI Systems",
       "date": "2025-12-01",
       "slug": "model-privacy-assessments",
-      "description": "Notes from AWS re:Invent 2025: A practical walkthrough of reconstruction attacks, attribute inference, guardrails, and differential privacy for GenAI and RAG systems.",
+      "description": "Notes from AWS re:Invent 2025: Reconstruction attacks, attribute inference, guardrails, and differential privacy for GenAI and RAG systems.",
       "tags": [
         "genai",
         "security",

@@ -210,11 +210,19 @@ async function loadPosts() {
     const slug = data.slug || slugFromFile
     const html = await marked.parse(content)
 
+    let description = data.description || ''
+    if (description.length > 160) {
+      const truncated = description.slice(0, 157)
+      const lastSpace = truncated.lastIndexOf(' ')
+      description = (lastSpace > 100 ? truncated.slice(0, lastSpace) : truncated) + '...'
+      throw new Error(`[SEO] Description exceeds 160 chars in ${file} (${data.description.length} chars). Shorten it to continue.`)
+    }
+
     return {
       title: data.title || slug,
       date: data.date || new Date().toISOString(),
       slug,
-      description: data.description || '',
+      description,
       tags: data.tags || [],
       image: data.image || '',
       html,

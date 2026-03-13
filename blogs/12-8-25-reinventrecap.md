@@ -2,7 +2,7 @@
 title: "AI Agents Ate the Conference: Reality, Hype, and Hard Lessons from re:Invent"
 date: "2025-12-08"
 slug: "ai-agents-ate-the-conference"
-description: "A candid engineer’s recap of re:Invent 2025: the gap between leadership and engineering on AI agents, why benchmarks mislead, and what real-world agent architecture actually looks like in the Wild West era of agentic systems."
+description: "A candid engineer's recap of re:Invent 2025: the gap between leadership and engineering on AI agents, and what real-world agent architecture looks like."
 tags: ["Agents", "AI Engineering", "AWS re:Invent", "Agentic Systems", "LLMs", "Architecture"]
 ---
 # AI Agents Ate the Conference
