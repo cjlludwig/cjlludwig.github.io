@@ -462,9 +462,17 @@ body {
 .mermaid {
   background-color: var(--bg-secondary);
   border-radius: 0.75rem;
-  padding: var(--spacing-md);
+  padding: var(--spacing-lg);
   border: 1px solid var(--border-color);
   overflow-x: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.mermaid svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* Hero Section */

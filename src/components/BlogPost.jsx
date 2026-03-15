@@ -19,7 +19,30 @@ function BlogPost({ post }) {
 
     const mermaidBlocks = contentRef.current.querySelectorAll('.mermaid')
     if (mermaidBlocks.length) {
-      mermaid.initialize({ startOnLoad: false, theme: 'neutral' })
+      const isDark = document.documentElement.classList.contains('dark')
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: isDark ? 'dark' : 'default',
+        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+        flowchart: { curve: 'basis', useMaxWidth: true },
+        themeVariables: isDark ? {
+          background: '#1e293b',
+          primaryColor: '#1e3a5f',
+          primaryTextColor: '#e2e8f0',
+          primaryBorderColor: '#3b82f6',
+          lineColor: '#64748b',
+          secondaryColor: '#0f172a',
+          tertiaryColor: '#334155',
+          edgeLabelBackground: '#1e293b',
+          clusterBkg: '#0f172a',
+        } : {
+          primaryColor: '#dbeafe',
+          primaryTextColor: '#1e3a5f',
+          primaryBorderColor: '#3b82f6',
+          lineColor: '#64748b',
+          edgeLabelBackground: '#f8f9fa',
+        },
+      })
       mermaid.run({ nodes: mermaidBlocks })
     }
   }, [post])

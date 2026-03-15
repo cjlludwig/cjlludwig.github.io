@@ -20,7 +20,7 @@ function Hero() {
           <p className="hero-location">{personal.location}</p>
           
           <div className="hero-links">
-            {personal.links.map((link, index) => (
+            {personal.links.filter(l => l.text !== "Website").map((link, index) => (
               <a
                 key={index}
                 href={link.url}
