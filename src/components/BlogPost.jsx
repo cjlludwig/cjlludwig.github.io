@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import mermaid from 'mermaid'
 
-function BlogPost({ post }) {
+function BlogPost({ post, darkMode }) {
   const contentRef = useRef(null)
 
   useEffect(() => {
@@ -19,33 +19,38 @@ function BlogPost({ post }) {
 
     const mermaidBlocks = contentRef.current.querySelectorAll('.mermaid')
     if (mermaidBlocks.length) {
-      const isDark = document.documentElement.classList.contains('dark')
+      const isDark = darkMode ?? document.documentElement.classList.contains('dark')
       mermaid.initialize({
         startOnLoad: false,
-        theme: isDark ? 'dark' : 'default',
+        theme: 'base',
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
         flowchart: { curve: 'basis', useMaxWidth: true },
         themeVariables: isDark ? {
-          background: '#1e293b',
-          primaryColor: '#1e3a5f',
-          primaryTextColor: '#e2e8f0',
+          background: '#141e2e',
+          primaryColor: '#334155',
+          primaryTextColor: '#f1f5f9',
           primaryBorderColor: '#3b82f6',
-          lineColor: '#64748b',
-          secondaryColor: '#0f172a',
-          tertiaryColor: '#334155',
-          edgeLabelBackground: '#1e293b',
-          clusterBkg: '#0f172a',
+          lineColor: '#94a3b8',
+          secondaryColor: '#1e293b',
+          tertiaryColor: '#475569',
+          edgeLabelBackground: '#334155',
+          clusterBkg: '#1e293b',
+          nodeBorder: '#3b82f6',
+          titleColor: '#f1f5f9',
+          edgeLabelColor: '#f1f5f9',
         } : {
+          background: '#ffffff',
           primaryColor: '#dbeafe',
           primaryTextColor: '#1e3a5f',
           primaryBorderColor: '#3b82f6',
           lineColor: '#64748b',
-          edgeLabelBackground: '#f8f9fa',
+          edgeLabelBackground: '#f8fafc',
+          nodeBorder: '#3b82f6',
         },
       })
       mermaid.run({ nodes: mermaidBlocks })
     }
-  }, [post])
+  }, [post, darkMode])
 
   useEffect(() => {
     if (!post || !contentRef.current) return

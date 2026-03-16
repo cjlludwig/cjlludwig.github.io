@@ -230,6 +230,11 @@ function App() {
           <nav className="nav">
             <div className="nav-brand">
               <a href="/" className="brand-link" onClick={handleNavClick}>
+                <img
+                  src="/images/initials.png"
+                  alt="Connor Ludwig logo"
+                  className="nav-logo"
+                />
                 Connor Ludwig
               </a>
             </div>
@@ -262,7 +267,7 @@ function App() {
         {route.page === 'blog' ? (
           <BlogIndex posts={posts} />
         ) : route.page === 'post' && activePost ? (
-          <BlogPost post={activePost} />
+          <BlogPost post={activePost} darkMode={darkMode} />
         ) : (
           <>
             <Hero />
