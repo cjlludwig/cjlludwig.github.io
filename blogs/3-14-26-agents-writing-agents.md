@@ -10,7 +10,7 @@ image: ""
 While developing `rereadme`, I assumed the feedback loop below would eventually produce a self-improving agent.
 
 ```mermaid
-flowchart
+flowchart LR
     human((Human))-->|Writes|evaluations
     human-->|Prompt|devAgent
     devAgent[Dev Agent]-->|Tweak Prompt|agent

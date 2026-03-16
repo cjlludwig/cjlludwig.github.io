@@ -22,6 +22,19 @@ function escapeHtml(str) {
 
 // Module-level cache: bridges async walkTokens results to the synchronous renderer
 const shikiCache = new Map()
+// Tracks the file currently being parsed so renderer errors can report the source
+let currentFile = ''
+
+function validateMermaidSyntax(code, sourceFile) {
+  const firstLine = code.trim().split('\n')[0].trim()
+  const flowchartNoDir = /^(flowchart|graph)\s*$/i.test(firstLine)
+  if (flowchartNoDir) {
+    throw new Error(
+      `[Mermaid] Missing direction in "${firstLine}" in ${sourceFile}.\n` +
+      `  Use: flowchart TD | flowchart LR | flowchart RL | flowchart BT`
+    )
+  }
+}
 
 function configureMarked() {
   shikiCache.clear()
@@ -56,6 +69,7 @@ function configureMarked() {
       code(text, lang) {
         const rawLang = (lang || '').split(/\s+/)[0].toLowerCase()
         if (rawLang === 'mermaid') {
+          validateMermaidSyntax(text, currentFile)
           return `<pre class="mermaid">${text}</pre>\n`
         }
         const displayLang = rawLang || 'text'
@@ -208,6 +222,7 @@ async function loadPosts() {
 
     const slugFromFile = file.replace(/\.md$/, '')
     const slug = data.slug || slugFromFile
+    currentFile = file
     const html = await marked.parse(content)
 
     let description = data.description || ''
