@@ -573,6 +573,10 @@ body {
   background-color: var(--bg-primary);
 }
 
+.about .section-title {
+  text-align: left;
+}
+
 .about-content {
   max-width: 900px;
   margin: 0 auto;
@@ -583,7 +587,7 @@ body {
   line-height: 1.8;
   color: var(--text-secondary);
   margin-bottom: var(--spacing-xl);
-  text-align: center;
+  text-align: left;
 }
 
 .about-highlights {
