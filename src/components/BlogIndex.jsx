@@ -4,9 +4,6 @@ function BlogIndex({ posts, showViewAll = false }) {
       <div className="container">
         <div className="section-header">
           <h2 className="section-title">Latest Posts</h2>
-          {/* <p className="section-description">
-            Notes on engineering, architecture experiments, and the tools I enjoy using.
-          </p> */}
         </div>
         <div className="blog-grid">
           {posts.map((post) => (
