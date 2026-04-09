@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+
+    <!-- SEO Meta Tags -->
+    <title>DevAI’s Velocity Trap | Connor Ludwig</title>
+    <meta name="description" content="The AI coding narrative optimizes for speed. But when coding becomes free, the bottleneck moves — and quality debt compounds fast." />
+    <meta name="author" content="Connor Ludwig" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://cjlludwig.github.io/blog/devai-velocity-trap/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://cjlludwig.github.io/blog/devai-velocity-trap/" />
+    <meta property="og:site_name" content="Connor Ludwig" />
+    <meta property="og:title" content="DevAI’s Velocity Trap" />
+    <meta property="og:description" content="The AI coding narrative optimizes for speed. But when coding becomes free, the bottleneck moves — and quality debt compounds fast." />
+    <meta property="og:image" content="https://cjlludwig.github.io/og-image.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://cjlludwig.github.io/blog/devai-velocity-trap/" />
+    <meta name="twitter:title" content="DevAI’s Velocity Trap" />
+    <meta name="twitter:description" content="The AI coding narrative optimizes for speed. But when coding becomes free, the bottleneck moves — and quality debt compounds fast." />
+    <meta name="twitter:image" content="https://cjlludwig.github.io/twitter-card.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "DevAI’s Velocity Trap",
+      "description": "The AI coding narrative optimizes for speed. But when coding becomes free, the bottleneck moves — and quality debt compounds fast.",
+      "url": "https://cjlludwig.github.io/blog/devai-velocity-trap/",
+      "datePublished": "2026-04-05",
+      "author": {
+        "@type": "Person",
+        "name": "Connor Ludwig",
+        "url": "https://cjlludwig.github.io"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Connor Ludwig"
+      }
+    }
+    </script>
+    <script type="module" crossorigin src="/assets/index-DGS6WQ-a.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CT1zSKm0.css">
+  </head>
+  <body>
+    <div id="root">
+      <!-- Pre-rendered content for SEO -->
+      <article>
+        <header>
+          <h1>DevAI’s Velocity Trap</h1>
+          <time datetime="2026-04-05">April 5, 2026</time>
+        </header>
+        <div class="blog-content">
+          <p>Simon Willison&#39;s <a href="https://simonwillison.net/guides/agentic-engineering-patterns/better-code">recent article</a> nails a concept I&#39;ve been mulling on, the primary DevAi benefit <strong>&quot;should be&quot;</strong> increased quality.</p>
+<p>That framing runs counter to the narrative currently pushed by most inference providers (the shovel makers of the AI gold rush) and the hype ecosystem around them: that the primary benefit of DevAI is <strong>&quot;speed&quot;</strong>.</p>
+<p>AI tools absolutely can increase development speed. But that speed comes with real trade-offs that engineering organizations should understand before pushing teams to 10× code output.</p>
+<h2>Speed Kills</h2>
+<p>In the <strong>&quot;coding is free&quot;</strong> paradigm there are some pretty straightforward second order effects that are crucial to acknowledge:</p>
+<ol>
+<li>Value of shipped code decreases -&gt; when shipping features becomes cheap, teams ship more of them whether they create meaningful value or not.</li>
+<li>Quality of software decreases -&gt; as the volume of shipped code grows, the bar for releasing code drops (understanding, testing, validation) and the portion of the system fully understood shrinks.</li>
+</ol>
+<p>The &quot;<a href="https://en.wikipedia.org/wiki/AI_slop">sloppification</a>&quot; of software is an immediate repercussion. Suddenly every idea can get implemented in no time at all, and that starts to feel like justification for doing so. You can see this in the wild already, App Store submissions have <a href="https://appfigures.com/resources/insights/20251205?f=2">increased dramatically YoY</a>, Github commits are <a href="https://x.com/kdaigle/status/2040164759836778878?s=20">growing at an exponential rate</a>, and every consumer app is shoehorning in an AI chat interface (whether you asked for it or not.)</p>
+<p>“Can we do something?” is no longer the blocker. “Should we do something?” now is.</p>
+<p>With this volume increase in shipped features, the trade-off is almost always reduced understanding and confidence in what is being shipped. This compounds quickly over time and you dramatically increase the surface area of the system that you know you don&#39;t know anything about.</p>
+<p>At that point it becomes a probability problem: when something undesirable will occur, not if. Just look at AWS internally admitting that GenAI has caused it to <a href="https://www.ft.com/content/00c282de-ed14-4acd-a948-bc8d6bdb339d">break the internet</a> repeatedly in 2025, along with pretty much every major tech company suspiciously experiencing a significant drop in availability in the past year.</p>
+<blockquote>
+<p>TL;DR: There&#39;s no such thing as free lunch. Coding can be faster. That doesn’t mean it should be.</p>
+</blockquote>
+<h2>Quality Counter - A New Hope</h2>
+<p>AI reduces knowledge gaps cheaply. We&#39;ve built the most advanced knowledge tool in human history. You have a tool with the accumulated context of 50 yrs of the engineering profession at the scale of the human race, that should help you plug any gap in confidence in your own limitations through thoughtful search, learning, and implementation.</p>
+<p>You should no longer be accepting “unknowns” before deploying features because of time constraints.</p>
+<p>Research areas of ambiguity. Use the tools to harden systems. Find blind spots and bottlenecks.</p>
+<p>With this shift, the trade-offs we’ve historically accepted start to change.</p>
+<p>You no longer need to cut scope on valuable quality improvements just to meet timelines. Decisions have often come down to what you reasonably understand about a feature, forcing you to skip or defer anything ambiguous or difficult—performance work, resilience, compatibility, refactors.</p>
+<p>Now, you can reasonably tackle those in the same implementation window.</p>
+<h2>The Velocity vs Quality Tradeoff</h2>
+<p>The “10× code velocity” narrative is built on a flawed premise: that code output is the desired business outcome.</p>
+<p>It’s not.</p>
+<p>That framing optimizes for a metric for metric’s sake, rather than shipping meaningful, high-quality features.</p>
+<p>And because we’re focused on the first-order effect (a faster code firehose) we’re not considering what more advanced usage of these tools actually enables.</p>
+<p>There are two realistic paths presented here:</p>
+<p>Scenario 1 (Optimistic Velocity Path):</p>
+<ul>
+<li>Defect Rate: Same as before AI</li>
+<li>Velocity: 10x</li>
+<li>Bugs: 10x</li>
+<li>Performance: Worse</li>
+</ul>
+<p>Scenario 2 (Quality Path):</p>
+<ul>
+<li>Velocity: ~1.25x</li>
+<li>Bugs: ~0.5x</li>
+<li>Performance: 10x</li>
+</ul>
+<p>The velocity narrative hides what happens if quality doesn’t improve.</p>
+<p>Even in an optimistic case where defect rates stay flat (unlikely, given compounding knowledge debt), any increase in velocity directly scales bugs. 10× velocity → 10× bugs.</p>
+<p>The real shift is to stop shipping unknowns. Instead of using AI to push more code through the system, you use it to reduce uncertainty before code ever ships. Understanding edge cases instead of skipping them, improving performance instead of deferring it, and hardening systems instead of assuming they’ll hold.</p>
+<p>The outcome is still impactful to the business, just in a different way. Better features lead to more satisfied customers stronger retention, and ultimately more organic growth.</p>
+<h2>Putting it together</h2>
+<p>The mental model for these tools needs to evolve past first-order speed gains into something more intentional. If we continue optimizing for velocity alone, we shouldn’t be surprised when customer experience declines alongside it.</p>
+<p>These tools give us the opportunity to build better software, not just more of it. That requires being more deliberate. Thinking critically about what we build, why we build it, and validating that it actually works once shipped.</p>
+<p>As Jeff Goldblum once said:</p>
+<blockquote>
+<p>Your scientists were so preoccupied with whether or not they could, they didn&#39;t stop to think if they should...</p>
+</blockquote>
+
+        </div>
+      </article>
+    </div>
+  </body>
+</html>
