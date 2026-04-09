@@ -1,4 +1,4 @@
-# Connor Joseph Ludwig  
+# Connor J. Ludwig
 **Senior Staff Software Engineer**  
 Chicago, IL, US  
 [Website](https://cjlludwig.github.io) | [GitHub](https://github.com/cjlludwig) | [LinkedIn](https://linkedin.com/in/connor-ludwig)
@@ -89,6 +89,12 @@ Versatile and results-driven Full-stack Software Engineer with a proven track re
 ---
 
 ## Key Projects
+
+### **ReReadme: AI-Powered Doc Refresh CLI**  
+*01/2026 – Present*
+
+Published open-source CLI (@cjlludwig/rereadme) that runs an AI agent workflow to regenerate README documentation and detect drift over time through CI, targeting the token cost of stale docs in agentic development. Built AI-native: committed Agent settings, repo context files, and validation hooks make dev agents first-class contributors. Two-layer quality strategy — Jest unit tests for deterministic behavior and DeepEval E2E evals with golden READMEs and LLM-as-a-judge grading.  
+**Stack:** Claude Code, OpenAI Agents SDK, TypeScript, Node.js, Zod, DeepEval, Jest, Google ZX, GitHub Actions
 
 ### **AI Agents Platform**  
 *08/2025 – Present*

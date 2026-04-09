@@ -186,7 +186,7 @@ function fixBlogs() {
 
   const files = fs
     .readdirSync(BLOGS_DIR)
-    .filter((file) => file.endsWith('.md'))
+    .filter((file) => file.endsWith('.md') && !/^[A-Z_]/.test(file))
 
   if (files.length === 0) {
     console.log('No markdown files found in blogs directory.')
@@ -213,7 +213,7 @@ async function loadPosts() {
 
   const files = fs
     .readdirSync(BLOGS_DIR)
-    .filter((file) => file.endsWith('.md'))
+    .filter((file) => file.endsWith('.md') && !/^[A-Z_]/.test(file))
 
   const posts = await Promise.all(files.map(async (file) => {
     const filePath = path.join(BLOGS_DIR, file)

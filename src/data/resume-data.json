@@ -1,6 +1,6 @@
 {
   "personal": {
-    "name": "Connor Joseph Ludwig",
+    "name": "Connor J. Ludwig",
     "title": "Senior Staff Software Engineer",
     "location": "Chicago, IL, US",
     "links": [
@@ -109,6 +109,22 @@
     }
   ],
   "projects": [
+    {
+      "title": "ReReadme: AI-Powered Doc Refresh CLI",
+      "period": "01/2026 – Present",
+      "description": "Published open-source CLI (@cjlludwig/rereadme) that runs an AI agent workflow to regenerate README documentation and detect drift over time through CI, targeting the token cost of stale docs in agentic development. Built AI-native: committed Agent settings, repo context files, and validation hooks make dev agents first-class contributors. Two-layer quality strategy — Jest unit tests for deterministic behavior and DeepEval E2E evals with golden READMEs and LLM-as-a-judge grading.",
+      "stack": [
+        "Claude Code",
+        "OpenAI Agents SDK",
+        "TypeScript",
+        "Node.js",
+        "Zod",
+        "DeepEval",
+        "Jest",
+        "Google ZX",
+        "GitHub Actions"
+      ]
+    },
     {
       "title": "AI Agents Platform",
       "period": "08/2025 – Present",

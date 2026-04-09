@@ -20,20 +20,20 @@ function makeSvgOverlay(width, height) {
 
 
       <!-- Text content -->
-      <g transform="translate(80, 160)">
-        <text x="370" y="50" font-family="system-ui, -apple-system, sans-serif" font-size="54" font-weight="700" fill="#f1f5f9">
+      <g transform="translate(110, 155)">
+        <text x="340" y="50" font-family="system-ui, -apple-system, sans-serif" font-size="66" font-weight="700" fill="#f1f5f9">
           Connor Ludwig
         </text>
-        <text x="370" y="110" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="600" fill="#93c5fd">
+        <text x="340" y="122" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="600" fill="#93c5fd">
           Senior Staff Software Engineer
         </text>
-        <text x="370" y="165" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="500" fill="#cbd5e1">
-          Engineer | Tech Leader | History Buff | Movie &amp; Music Lover
+        <text x="340" y="186" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="500" fill="#cbd5e1">
+          Tech Leader | History Buff | Movie &amp; Music Lover
         </text>
       </g>
 
       <!-- Bottom URL -->
-      <text x="100" y="560" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="500" fill="#64748b">
+      <text x="130" y="558" font-family="system-ui, -apple-system, sans-serif" font-size="30" font-weight="500" fill="#64748b">
         cjlludwig.github.io
       </text>
     </svg>
@@ -74,25 +74,23 @@ async function generateSocialImage() {
   try {
     // OG image — 1200x630
     const ogOverlay = makeSvgOverlay(1200, 630);
-    await sharp(backgroundPath)
-      .resize(1200, 630, { fit: 'cover' })
+    await sharp({ create: { width: 1200, height: 630, channels: 3, background: { r: 10, g: 15, b: 38 } } })
+      .png()
       .composite([
         { input: ogOverlay, top: 0, left: 0 },
-        { input: initialsBuffer, top: 135, left: 50 },
+        { input: initialsBuffer, top: 135, left: 80 },
       ])
-      .png()
       .toFile(path.join(publicDir, 'og-image.png'));
     console.log('✅ Generated og-image.png (1200x630)');
 
     // Twitter card — 1200x600
     const twitterOverlay = makeSvgOverlay(1200, 600);
-    await sharp(backgroundPath)
-      .resize(1200, 600, { fit: 'cover' })
+    await sharp({ create: { width: 1200, height: 600, channels: 3, background: { r: 10, g: 15, b: 38 } } })
+      .png()
       .composite([
         { input: twitterOverlay, top: 0, left: 0 },
-        { input: initialsBuffer, top: 120, left: 50 },
+        { input: initialsBuffer, top: 120, left: 80 },
       ])
-      .png()
       .toFile(path.join(publicDir, 'twitter-card.png'));
     console.log('✅ Generated twitter-card.png (1200x600)');
 
