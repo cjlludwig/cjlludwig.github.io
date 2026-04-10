@@ -2,8 +2,8 @@ import fs from 'fs'
 import path from 'path'
 
 const SITE_URL = 'https://cjlludwig.github.io'
-const OUTPUT_DIR = path.join(process.cwd(), 'public')
-const OUTPUT_FILE = path.join(OUTPUT_DIR, 'sitemap.xml')
+const OUTPUT_DIR = path.join(process.cwd(), 'dist')
+const OUTPUT_FILE = path.join(OUTPUT_DIR, 'sitemap-pages.xml')
 const BLOGS_JSON = path.join(process.cwd(), 'src', 'data', 'blogs.json')
 
 function generateSitemap() {
@@ -43,8 +43,11 @@ ${allPages
 </urlset>
 `
 
+  if (!fs.existsSync(OUTPUT_DIR)) {
+    fs.mkdirSync(OUTPUT_DIR, { recursive: true })
+  }
   fs.writeFileSync(OUTPUT_FILE, xml)
-  console.log(`✅ Generated sitemap.xml with ${allPages.length} URLs`)
+  console.log(`✅ Generated sitemap-pages.xml with ${allPages.length} URLs`)
 }
 
 generateSitemap()
