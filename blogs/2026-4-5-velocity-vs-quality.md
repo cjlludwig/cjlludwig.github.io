@@ -54,20 +54,13 @@ That framing optimizes for a metric for metric’s sake, rather than shipping me
 
 And because we’re focused on the first-order effect (a faster code firehose) we’re not considering what more advanced usage of these tools actually enables.
 
-There are two realistic paths presented here:
+There are two realistic DevAI adoption paths presented here:
 
-Scenario 1 (Optimistic Velocity Path):
+One optimizes for velocity and rapidly ships features that are loosely validated, inconsistently performing, and often misaligned with what users actually need.
 
-- Defect Rate: Same as before AI
-- Velocity: 10x
-- Bugs: 10x
-- Performance: Worse
+The other optimizes for quality and uses these tools to reduce uncertainty upfront, resulting in fewer but more cohesive features, stronger performance, and systems that behave as intended.
 
-Scenario 2 (Quality Path):
-
-- Velocity: ~1.25x
-- Bugs: ~0.5x
-- Performance: 10x
+That level of polish has historically required the rigor of large organizations. Now it is within reach of much smaller teams, but only if they choose to prioritize it.
 
 The velocity narrative hides what happens if quality doesn’t improve.
 
