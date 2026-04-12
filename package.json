@@ -11,6 +11,7 @@
   },
   "scripts": {
     "parse-resume": "node scripts/parse-resume.js",
+    "parse-music": "node scripts/parse-music.js",
     "generate-blogs": "node scripts/generate-blogs.js",
     "fix-blogs": "node scripts/generate-blogs.js --fix",
     "generate-sitemap": "node scripts/generate-sitemap.js",
