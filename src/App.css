@@ -472,6 +472,12 @@ body {
   color: #e2eef2;
 }
 
+.dark .blog-post-body p,
+.dark .blog-post-body ul,
+.dark .blog-post-body ol {
+  color: var(--text-primary);
+}
+
 .blog-post-body a {
   color: var(--accent-primary);
   text-decoration: underline;
