@@ -1,0 +1,3 @@
+[submodule "personal"]
+	path = personal
+	url = /Users/connorludwig/.git-local/personal.git
