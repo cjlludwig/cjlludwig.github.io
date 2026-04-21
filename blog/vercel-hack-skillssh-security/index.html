@@ -16,7 +16,7 @@
     <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
 
     <!-- SEO Meta Tags -->
-    <title>Small Bug, Big Signal: Vercel’s Security Incident and a Skills.sh Vulnerability | Connor Ludwig</title>
+    <title>Vercel’s Security Incident and a Skills.sh Vulnerability | Connor Ludwig</title>
     <meta name="description" content="I found a security bug in Vercel’s skills.sh before their data breach. Here’s what AI-driven developer tooling gets wrong about security." />
     <meta name="author" content="Connor Ludwig" />
     <meta name="robots" content="index, follow" />
@@ -26,14 +26,14 @@
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://cjlludwig.github.io/blog/vercel-hack-skillssh-security/" />
     <meta property="og:site_name" content="Connor Ludwig" />
-    <meta property="og:title" content="Small Bug, Big Signal: Vercel’s Security Incident and a Skills.sh Vulnerability" />
+    <meta property="og:title" content="Vercel’s Security Incident and a Skills.sh Vulnerability" />
     <meta property="og:description" content="I found a security bug in Vercel’s skills.sh before their data breach. Here’s what AI-driven developer tooling gets wrong about security." />
     <meta property="og:image" content="https://cjlludwig.github.io/og-image.png" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://cjlludwig.github.io/blog/vercel-hack-skillssh-security/" />
-    <meta name="twitter:title" content="Small Bug, Big Signal: Vercel’s Security Incident and a Skills.sh Vulnerability" />
+    <meta name="twitter:title" content="Vercel’s Security Incident and a Skills.sh Vulnerability" />
     <meta name="twitter:description" content="I found a security bug in Vercel’s skills.sh before their data breach. Here’s what AI-driven developer tooling gets wrong about security." />
     <meta name="twitter:image" content="https://cjlludwig.github.io/twitter-card.png" />
 
@@ -42,7 +42,7 @@
     {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
-      "headline": "Small Bug, Big Signal: Vercel’s Security Incident and a Skills.sh Vulnerability",
+      "headline": "Vercel’s Security Incident and a Skills.sh Vulnerability",
       "description": "I found a security bug in Vercel’s skills.sh before their data breach. Here’s what AI-driven developer tooling gets wrong about security.",
       "url": "https://cjlludwig.github.io/blog/vercel-hack-skillssh-security/",
       "datePublished": "2026-04-21T12:00:00Z",
@@ -57,7 +57,7 @@
       }
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-BkDkEJ3h.js"></script>
+    <script type="module" crossorigin src="/assets/index-CZSTJvgu.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-DSqx_yVz.css">
   </head>
   <body>
@@ -65,12 +65,12 @@
       <!-- Pre-rendered content for SEO -->
       <article>
         <header>
-          <h1>Small Bug, Big Signal: Vercel’s Security Incident and a Skills.sh Vulnerability</h1>
+          <h1>Vercel’s Security Incident and a Skills.sh Vulnerability</h1>
           <time datetime="2026-04-21T12:00:00Z">April 21, 2026</time>
         </header>
         <div class="blog-content">
           <p>Vercel just had one of the most significant <a href="https://techcrunch.com/2026/04/20/app-host-vercel-confirms-security-incident-says-customer-data-was-stolen-via-breach-at-context-ai/">security lapses</a> of the vibe code / DevAI era.</p>
-<p>It made me think of a recent security bug I identified in their popular <code>vercel-labs/skills.sh</code> framework. Back in January of this year, I read about a new framework to help distribute agent skills — reusable commands or generalized instructions — across the various providers and standards they require.</p>
+<p>It made me think of a recent security bug I identified in their popular <code>vercel-labs/skills.sh</code> <a href="https://skills.sh/">framework</a>. Back in January of this year, I read about a new framework to help distribute agent skills — reusable commands or generalized instructions — across the various providers and standards they require.</p>
 <p>This was a great idea. The number of Dev Agents on the market has grown exponentially over the past year. Claude Code, Cursor, Kiro, and Windsurf, just to name a few. Each has introduced its own implementation requirements for largely the same agent tooling, including skills. For example, Claude Code requires skills installed in <code>.claude/skills</code> and Cursor in <code>.cursor/skills</code>. It becomes a mess to manage, especially as it’s now common to swap agents based on usage and pricing.</p>
 <p>The beauty of <code>skills.sh</code> is that it uses symlinks — file pointers that let you place the same file in multiple locations — to manage a single skill and wire it across agents. It also provides a simple way to discover commonly used skills. A useful shortcut to see what others have already refined.</p>
 <p>Skills themselves are simple — just Markdown text files — but English is a finicky interface. Your <code>beautify-ui</code> skill might not be as effective as the more widely used <code>pretty-ui</code> on <code>skills.sh</code>. Like any shared library, adoption becomes a signal of quality. Instead of building from scratch and iterating alone, it often makes sense to start from something already battle-tested.</p>
