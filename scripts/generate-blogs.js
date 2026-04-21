@@ -64,6 +64,21 @@ function configureMarked() {
       }
     },
     renderer: {
+      // Generate id attributes on headings so in-page anchor links work.
+      // Uses GFM slug rules (matches markdownlint MD051 expectations):
+      // lowercase → strip non-alphanumeric except spaces/hyphens → spaces→hyphens.
+      // Consecutive hyphens are NOT collapsed so & → -- (two surrounding spaces).
+      heading(text, level, raw) {
+        const rawText = (typeof raw === 'string' ? raw : text)
+          .replace(/^#+\s+/, '')
+          .replace(/<[^>]*>/g, '')
+          .trim()
+        const id = rawText
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, '')
+          .replace(/\s+/g, '-')
+        return `<h${level} id="${id}">${text}</h${level}>\n`
+      },
       // Synchronous renderer: looks up pre-computed Shiki HTML from cache
       // Note: marked v13 calls code(text, lang, escaped) — not a token object
       code(text, lang) {
