@@ -57,7 +57,7 @@
       }
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-CdVVvo8J.js"></script>
+    <script type="module" crossorigin src="/assets/index-BkDkEJ3h.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-DSqx_yVz.css">
   </head>
   <body>
@@ -69,8 +69,8 @@
           <time datetime="2025-12-04T12:00:00Z">December 4, 2025</time>
         </header>
         <div class="blog-content">
-          <h1>Automated LLM Fine-Tuning with Multi-Agent Systems</h1>
-<h2>TLDR</h2>
+          <h1 id="automated-llm-fine-tuning-with-multi-agent-systems">Automated LLM Fine-Tuning with Multi-Agent Systems</h1>
+<h2 id="tldr">TLDR</h2>
 <ul>
 <li>AWS showcased an internal multi-agent architecture used to automate and speed up LLM fine-tuning.</li>
 <li>Three specialized agents — pattern analysis, data generation, and quality — work in a controlled loop.</li>
@@ -80,7 +80,7 @@
 <li>Useful conceptual blueprint, even though no turn-key AWS product exists yet.</li>
 </ul>
 <p>This session from AWS’s Generative AI Innovation Center explored how they accelerate fine-tuning using a structured multi-agent workflow. While not something customers can download today, the architecture provided a clear lens into real-world tuning pipelines and how teams can automate data generation at scale.</p>
-<h2>The Tradeoff Landscape: Accuracy, Cost, and Latency</h2>
+<h2 id="the-tradeoff-landscape-accuracy-cost-and-latency">The Tradeoff Landscape: Accuracy, Cost, and Latency</h2>
 <p>AWS framed model optimization as a balancing act across three levers:</p>
 <ul>
 <li><strong>Accuracy</strong></li>
@@ -88,7 +88,7 @@
 <li><strong>Latency</strong></li>
 </ul>
 <p>Improving one often regresses another, so every tuning project must prioritize based on business needs. The system showcased in this talk aims to make these tradeoffs explicit and controllable.</p>
-<h2>Why Small Models Are Back in Style</h2>
+<h2 id="why-small-models-are-back-in-style">Why Small Models Are Back in Style</h2>
 <p>A key theme: the growing shift toward <strong>small, domain-targeted models</strong>.</p>
 <p><strong>Upsides</strong></p>
 <ul>
@@ -103,7 +103,7 @@
 <li>Partially “blind spots” requiring augmentation</li>
 </ul>
 <p>This creates pressure to fill capability gaps efficiently — which is where structured multi-agent data generation comes in.</p>
-<h2>The Customization Spectrum</h2>
+<h2 id="the-customization-spectrum">The Customization Spectrum</h2>
 <p>AWS positioned fine-tuning as one option among several ways to customize model behavior. Ordered by effort and potential impact:</p>
 <ol>
 <li>Prompt engineering  </li>
@@ -113,14 +113,14 @@
 <li>Mid-training or pre-training</li>
 </ol>
 <p>The message: <strong>most organizations can get farther than they realize by improving fine-tuning data quality</strong>, not necessarily by redesigning models.</p>
-<h2>The True Cost Curve: Training vs. Inference</h2>
+<h2 id="the-true-cost-curve-training-vs-inference">The True Cost Curve: Training vs. Inference</h2>
 <p>One of the session’s more useful visuals contrasted:</p>
 <ul>
 <li>High <strong>upfront training/customization cost</strong></li>
 <li>Long-tail <strong>inference cost</strong>, which dominates total spend</li>
 </ul>
 <p>This is especially relevant for small models: a little tuning up front dramatically reduces ongoing inference footprint. That’s why AWS invests in data automation — tuning must be cheap enough to justify frequent iterations.</p>
-<h2>Multi-Agent Architecture: A Hybrid Orchestration Model</h2>
+<h2 id="multi-agent-architecture-a-hybrid-orchestration-model">Multi-Agent Architecture: A Hybrid Orchestration Model</h2>
 <p>AWS’s proposed architecture combines lightweight rule-based logic with LLM-driven decision making. A central orchestrator coordinates three specialized agents. The orchestrator manages routing, task breakdown, quality loops, and termination conditions, keeping each agent tightly scoped to reduce hallucination risk and produce more interpretable outputs.</p>
 <pre class="mermaid">flowchart LR;
   O["Orchestrator"] --> PA["Pattern Analysis Agent"];
@@ -132,7 +132,7 @@
   Q --> O;
 
   DG --> DATA["Augmented Training Data"];</pre>
-<h2>Pattern Analysis: Finding What the Model Doesn’t Understand</h2>
+<h2 id="pattern-analysis-finding-what-the-model-doesnt-understand">Pattern Analysis: Finding What the Model Doesn’t Understand</h2>
 <p>The <strong>Pattern Analysis Agent</strong> identifies weaknesses in the model by analyzing failure cases.</p>
 <p>Two strategies were evaluated:</p>
 <ol>
@@ -141,7 +141,7 @@
 </ol>
 <p>The first approach caused overfitting: the model learned artifacts of the error samples themselves.</p>
 <p>The generalized strategy avoided this, enabling the agent to surface conceptual gaps (e.g., reasoning steps the model skips) and provide structured guidance to the generator agent.</p>
-<h2>Data Generation: Producing New Training Samples at Scale</h2>
+<h2 id="data-generation-producing-new-training-samples-at-scale">Data Generation: Producing New Training Samples at Scale</h2>
 <p>The <strong>Data Generation Agent</strong> creates training samples driven by:</p>
 <ul>
 <li>gap patterns identified earlier  </li>
@@ -149,7 +149,7 @@
 <li>orchestrator constraints</li>
 </ul>
 <p>In the demo example (a code snippet for a mean deviation function), the generator produced a technically correct but unreadable solution. The moment underscored the value of the next step — external quality judgment.</p>
-<h2>Quality Agent: A Neutral Judge to Reduce Bias</h2>
+<h2 id="quality-agent-a-neutral-judge-to-reduce-bias">Quality Agent: A Neutral Judge to Reduce Bias</h2>
 <p>The <strong>Quality Agent</strong> evaluates outputs using a <em>different</em> model than the generator. This separation helps:</p>
 <ul>
 <li>reduce shared biases</li>
@@ -158,7 +158,7 @@
 <li>ensure alignment with the intended task</li>
 </ul>
 <p>The agent provides structured feedback to the orchestrator, which decides whether to accept or regenerate samples.</p>
-<h2>Efficiency Wins in Their Production Setup</h2>
+<h2 id="efficiency-wins-in-their-production-setup">Efficiency Wins in Their Production Setup</h2>
 <p>AWS improved throughput and cost efficiency using:</p>
 <ul>
 <li><strong>Batching</strong> multiple inputs per generation round  </li>
@@ -167,9 +167,9 @@
 <li><strong>Parallel execution</strong> of sub-agents when possible</li>
 </ul>
 <p>These optimizations made the pipeline fast and affordable enough for repeated, iterative tuning.</p>
-<h2>Benchmarks and Real-World Gains</h2>
+<h2 id="benchmarks-and-real-world-gains">Benchmarks and Real-World Gains</h2>
 <p>The benchmark slides showed consistent but modest improvements across accuracy metrics compared to traditional fine-tuning. While not dramatic, the gains reinforce a reality across the industry: <strong>automation improves consistency and reduces cost</strong>, even if the absolute accuracy lift is incremental.</p>
-<h2>Closing Thoughts</h2>
+<h2 id="closing-thoughts">Closing Thoughts</h2>
 <p>This session shared a pragmatic multi-agent blueprint rather than announcing a product. It illustrated a repeatable way to:</p>
 <ul>
 <li>reduce data-prep friction  </li>
@@ -179,7 +179,7 @@
 <li>upgrade small models without scaling compute budgets</li>
 </ul>
 <p>Ultimately, it reinforces the theme that <strong>fine-tuning success depends more on data quality than raw model size</strong>.</p>
-<h2>Further Reading &amp; Resources</h2>
+<h2 id="further-reading-resources">Further Reading &amp; Resources</h2>
 <ul>
 <li><p>AWS re:Invent Session Catalog: <a href="https://reinvent.awsevents.com/">https://reinvent.awsevents.com/</a></p>
 </li>

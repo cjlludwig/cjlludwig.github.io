@@ -57,7 +57,7 @@
       }
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-CdVVvo8J.js"></script>
+    <script type="module" crossorigin src="/assets/index-BkDkEJ3h.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-DSqx_yVz.css">
   </head>
   <body>
@@ -69,8 +69,8 @@
           <time datetime="2025-12-01">December 1, 2025</time>
         </header>
         <div class="blog-content">
-          <h1>Agentic RAG in Practice: Strategies for Smarter Retrieval</h1>
-<h2>TLDR</h2>
+          <h1 id="agentic-rag-in-practice-strategies-for-smarter-retrieval">Agentic RAG in Practice: Strategies for Smarter Retrieval</h1>
+<h2 id="tldr">TLDR</h2>
 <ul>
 <li>Standard RAG struggles when query complexity increases.</li>
 <li>Advanced RAG adds pre/post retrieval logic plus branching strategies.</li>
@@ -79,7 +79,7 @@
 <li>AWS now provides notebooks, APIs, and patterns for production-grade agentic RAG.</li>
 </ul>
 <p>This session centered on a consistent theme: most RAG issues aren&#39;t LLM issues—they’re retrieval issues. AWS laid out how adding structure, branching, and agentic reasoning to retrieval pipelines drastically improves quality and reduces retries.</p>
-<h2>Foundational RAG Patterns</h2>
+<h2 id="foundational-rag-patterns">Foundational RAG Patterns</h2>
 <p>Standard RAG is simple: embed content, chop it into chunks, retrieve the top matches, and feed them to the LLM. It&#39;s straightforward, scalable, and works great for direct, narrow queries. But as soon as questions become multi-step, ambiguous, or domain-specific, the system often falls apart.</p>
 <p><strong>Standard RAG Flow</strong></p>
 <ol>
@@ -88,7 +88,7 @@
 <li>LLM generates an answer using whatever context it was given.</li>
 </ol>
 <p>The problem: every query gets exactly the same retrieval strategy.</p>
-<h3>Advanced RAG</h3>
+<h3 id="advanced-rag">Advanced RAG</h3>
 <p>Advanced RAG inserts additional intelligence on both sides of retrieval:</p>
 <p><strong>Pre-retrieval steps</strong>  </p>
 <ul>
@@ -104,11 +104,11 @@
 <li>Merging and deduplicating</li>
 </ul>
 <p>The result: a far more context-aware pipeline that can adapt retrieval to the shape of the user&#39;s question.</p>
-<h2>Advanced RAG Techniques</h2>
-<h3>Conditional Branching</h3>
+<h2 id="advanced-rag-techniques">Advanced RAG Techniques</h2>
+<h3 id="conditional-branching">Conditional Branching</h3>
 <p>This technique routes a query to <em>one</em> appropriate vector store using rules or heuristics. For example, internal HR policy questions vs. product documentation vs. code snippets.</p>
 <p>A lightweight routing step drastically improves relevance when you have multiple domains.</p>
-<h3>Parallel Branching &amp; Retrieval Fusion</h3>
+<h3 id="parallel-branching-retrieval-fusion">Parallel Branching &amp; Retrieval Fusion</h3>
 <p>Instead of routing to just one store, the system can:</p>
 <ol>
 <li>Reformulate the query in multiple ways.  </li>
@@ -116,10 +116,10 @@
 <li>Combine the results through a fusion step.</li>
 </ol>
 <p>This pattern is ideal for broad questions, underspecified queries, or highly heterogeneous knowledge bases.</p>
-<h2>Query Reformulation in Bedrock</h2>
+<h2 id="query-reformulation-in-bedrock">Query Reformulation in Bedrock</h2>
 <p>AWS demonstrated the RAG API’s ability to automatically generate <strong>multiple sub-queries</strong> from a single user query. Each sub-query is independently retrieved, and the system then pools and ranks the results.</p>
 <p>The benefit is improved recall without manually authoring prompt templates or hand-tuning retrieval logic. It’s especially effective when the initial user query lacks specificity.</p>
-<h2>Self-Corrective Agentic RAG</h2>
+<h2 id="self-corrective-agentic-rag">Self-Corrective Agentic RAG</h2>
 <p>This was the highlight of the session. Instead of retrieval being a fixed pipeline, you introduce a <strong>central agent</strong> that orchestrates the entire workflow.</p>
 <p>A self-corrective loop looks like this:</p>
 <ol>
@@ -142,23 +142,23 @@
 <li>After several attempts or a satisfactory answer, it finalizes.</li>
 </ol>
 <p>This is the emerging <strong>canonical pattern</strong> for reliable RAG—dynamic, adaptive, and quality-aware.</p>
-<h2>Enhancing RAG Accuracy</h2>
+<h2 id="enhancing-rag-accuracy">Enhancing RAG Accuracy</h2>
 <p>The talk separated accuracy into two flows: <strong>ingestion</strong> and <strong>retrieval</strong>.</p>
-<h3>Ingestion Improvements</h3>
+<h3 id="ingestion-improvements">Ingestion Improvements</h3>
 <ul>
 <li>Better chunking strategy (structural + semantic)</li>
 <li>Parsing using foundation models for accuracy</li>
 <li>Multimodal parsing for scanned documents or images</li>
 <li>Metadata labeling (critical for filtering and access control)</li>
 </ul>
-<h3>Retrieval Improvements</h3>
+<h3 id="retrieval-improvements">Retrieval Improvements</h3>
 <ul>
 <li>Metadata filtering (including tenant isolation)</li>
 <li>Re-ranking using cross encoders or LLM scoring</li>
 <li>Hybrid search (sparse + dense)</li>
 </ul>
 <p>A notable callout:<br><strong>Access control for vector stores using metadata filtering with Amazon Bedrock Knowledge Bases</strong>  </p>
-<h2>Key Takeaways</h2>
+<h2 id="key-takeaways">Key Takeaways</h2>
 <ul>
 <li>RAG failures typically arise from <em>misaligned retrieval strategies</em>, not bad LLMs.  </li>
 <li>An orchestrator agent can analyze query complexity and select the appropriate retrieval strategy upfront.  </li>
@@ -168,7 +168,7 @@
 <li>AWS now provides a complete notebook demonstrating self-corrective agentic RAG patterns.</li>
 </ul>
 <p>Notebook reference:<br><a href="https://github.com/aws-samples/amazon-bedrock-samples/tree/main/rag/knowledge-bases/use-case-examples/agentic-self-corrective-rag-kb-langraph">https://github.com/aws-samples/amazon-bedrock-samples/tree/main/rag/knowledge-bases/use-case-examples/agentic-self-corrective-rag-kb-langraph</a></p>
-<h2>Further Reading &amp; Resources</h2>
+<h2 id="further-reading-resources">Further Reading &amp; Resources</h2>
 <ul>
 <li>AWS re:Invent session catalog: <a href="https://reinvent.awsevents.com">https://reinvent.awsevents.com</a></li>
 </ul>

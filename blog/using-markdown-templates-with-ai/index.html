@@ -57,7 +57,7 @@
       }
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-CdVVvo8J.js"></script>
+    <script type="module" crossorigin src="/assets/index-BkDkEJ3h.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-DSqx_yVz.css">
   </head>
   <body>
@@ -74,7 +74,7 @@
 <p>Where teams previously absorbed the cost of poor documentation through strong onboarding, tribal knowledge, and sheer camaraderie, LLM-driven workflows surface that cost immediately. You now pay for bad docs in wasted tokens, broken inference loops, and repeated iterations to reach something even marginally commit-worthy. And that’s assuming you’re validating the generated code at all, which I sincerely hope you are.</p>
 <p>In an LLM-as-dev world, documentation-as-code becomes far more compelling. LLMs are already excellent at navigating codebases. Storing documentation alongside logic makes more sense than scattering it across wikis, tickets, and third-party tools.</p>
 <p>You <em>can</em> mitigate some of this fragmentation with MCPs, but every additional system is another logical hop for the model to reason through. That friction adds up. I strongly prefer treating the repo as the source of truth and copying documentation outward <em>after</em> publication, not the other way around. This keeps docs embedded in normal development workflows where review is required and documentation is treated as an iterable artifact, not a static deliverable.</p>
-<h2>Organization</h2>
+<h2 id="organization">Organization</h2>
 <p>Most conventions push teams toward centralizing repository documentation under a <code>/docs</code> directory. This keeps the project root clean while still allowing flexibility underneath.</p>
 <p>Within <code>/docs</code>, organize by concern in whatever way feels most natural to your team. At a minimum, I like including a <code>/specs</code> directory to aggregate feature-level documentation over time for fast reference. Higher-level architectural material, such as technical requirement docs or design overviews, often fits cleanly under something like <code>/trds</code>.</p>
 <p>The critical detail is that <em>each</em> subset should include a generic <code>TEMPLATE.md</code> to drive consistency and baseline quality.</p>
@@ -96,18 +96,18 @@
 <span class="line"><span style="color:#ADBAC7">    ├── architecture.md</span></span>
 <span class="line"><span style="color:#ADBAC7">    └── system-design.md</span></span></code></pre>
 </div>
-<h2>Templates</h2>
+<h2 id="templates">Templates</h2>
 <p>Markdown templates are open-ended documents with a prescribed structure and conventions. Their job is to guide discovery, thinking, and note-taking, not to constrain expression.</p>
 <p>Finding the right balance between rigid structure and intuitive guidance is non-trivial and somewhat personal. As a rule of thumb, keeping hierarchical depth under three levels and total sections under five or six tends to land in a sweet spot.</p>
 <p>Beyond that, templates start to feel like busywork. You get sections that aren’t applicable, filler text written purely to satisfy structure, and documentation that exists to be completed rather than read. That defeats the purpose. The goal is comprehension, not completeness theater.</p>
-<h3>Types of Templates</h3>
+<h3 id="types-of-templates">Types of Templates</h3>
 <ol>
 <li>PR templates – must have</li>
 <li>Specs – nice to have</li>
 <li>Architecture / technical docs – nice to have</li>
 <li>Agent rules – nice to have</li>
 </ol>
-<h3>General Recommendations</h3>
+<h3 id="general-recommendations">General Recommendations</h3>
 <ul>
 <li><p><strong>Use LLM hints.</strong><br>Markdown comments are a clean way to embed guidance for LLMs without polluting the human-readable surface area of a document.</p>
 </li>
@@ -128,9 +128,9 @@
 <li><p><strong>Don’t escape the template too early.</strong><br>There’s a strong instinct to abandon structure when a section feels heavy or “not applicable.” Instead, work through it with an LLM as a collaborative brainstorming exercise. You’ll often discover what <em>isn’t</em> needed only after fully considering what <em>could</em> be. Over time, this sharpens both the templates and the resulting documentation.</p>
 </li>
 </ul>
-<h2>Tools</h2>
+<h2 id="tools">Tools</h2>
 <p>Here&#39;s a practical toolkit for working with Markdown templates and docs-as-code workflows:</p>
-<h3>VS Code / Cursor Extensions</h3>
+<h3 id="vs-code-cursor-extensions">VS Code / Cursor Extensions</h3>
 <ul>
 <li><p><strong><a href="https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one">Markdown All in One</a></strong><br>Keyboard shortcuts, TOC generation, auto-preview. Eliminates friction for basic formatting tasks.</p>
 </li>
@@ -141,7 +141,7 @@
 <li><p><strong><a href="https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image">Paste Image</a></strong><br>Pastes screenshots directly into docs with auto-generated relative paths. Useful for quick captures during troubleshooting or pairing sessions.</p>
 </li>
 </ul>
-<h3>Web Tools</h3>
+<h3 id="web-tools">Web Tools</h3>
 <ul>
 <li><p><strong><a href="https://mermaid.live/">Mermaid Live Editor</a></strong><br>Iterate on diagrams with instant preview. Export to SVG or PNG. Faster than fighting with syntax in your editor when building complex flows.</p>
 </li>
@@ -152,7 +152,7 @@
 <li><p><strong><a href="https://www.tablesgenerator.com/markdown_tables">Tables Generator</a></strong><br>Visual table builder for Markdown. Avoids manual pipe-alignment hell for complex tables.</p>
 </li>
 </ul>
-<h3>Automation</h3>
+<h3 id="automation">Automation</h3>
 <p><strong>Pre-commit hooks</strong><br>Wire up <code>markdownlint-cli</code> or <code>prettier</code> to run on staged <code>.md</code> files. Prevents broken formatting from reaching main. Example:</p>
 <div class="code-block" data-lang="yaml">
   <div class="code-block-header">
@@ -166,12 +166,12 @@
 <span class="line"><span style="color:#ADBAC7">      - </span><span style="color:#8DDB8C">id</span><span style="color:#ADBAC7">: </span><span style="color:#96D0FF">markdownlint</span></span></code></pre>
 </div>
 <p><strong>GitHub Actions</strong><br>Automate link checking and diagram validation in CI. <a href="https://github.com/tcort/markdown-link-check">markdown-link-check</a> catches broken URLs. Pair with Mermaid CLI to validate diagram syntax before merge.</p>
-<h2>Putting It All Together</h2>
+<h2 id="putting-it-all-together">Putting It All Together</h2>
 <p>Below is a reference template and a sample GitHub repository that show these conventions in practice. The template reflects the structural constraints discussed above, and the repo demonstrates how documentation, specs, and agent rules live alongside code as first-class artifacts.</p>
 <p>If you adopt nothing else, start with the template. Once it’s in place, the surrounding structure tends to emerge naturally.</p>
-<h3>Repo</h3>
+<h3 id="repo">Repo</h3>
 <p>See <a href="https://github.com/cjlludwig/llm-md-templates">llm-md-templates</a> repo for a boilerplate reference.</p>
-<h3>Template</h3>
+<h3 id="template">Template</h3>
 <div class="code-block" data-lang="md">
   <div class="code-block-header">
     <span class="code-block-lang">md</span>
