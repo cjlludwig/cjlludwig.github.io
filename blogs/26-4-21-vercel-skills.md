@@ -1,5 +1,5 @@
 ---
-title: "Small Bug, Big Signal: Vercel’s Security Incident and a Skills.sh Vulnerability"
+title: "Vercel’s Security Incident and a Skills.sh Vulnerability"
 date: "2026-04-21T12:00:00Z"
 slug: "vercel-hack-skillssh-security"
 description: "I found a security bug in Vercel’s skills.sh before their data breach. Here’s what AI-driven developer tooling gets wrong about security."
@@ -9,7 +9,7 @@ image: ""
 
 Vercel just had one of the most significant [security lapses](https://techcrunch.com/2026/04/20/app-host-vercel-confirms-security-incident-says-customer-data-was-stolen-via-breach-at-context-ai/) of the vibe code / DevAI era.
 
-It made me think of a recent security bug I identified in their popular `vercel-labs/skills.sh` framework. Back in January of this year, I read about a new framework to help distribute agent skills — reusable commands or generalized instructions — across the various providers and standards they require.
+It made me think of a recent security bug I identified in their popular `vercel-labs/skills.sh` [framework](https://skills.sh/). Back in January of this year, I read about a new framework to help distribute agent skills — reusable commands or generalized instructions — across the various providers and standards they require.
 
 This was a great idea. The number of Dev Agents on the market has grown exponentially over the past year. Claude Code, Cursor, Kiro, and Windsurf, just to name a few. Each has introduced its own implementation requirements for largely the same agent tooling, including skills. For example, Claude Code requires skills installed in `.claude/skills` and Cursor in `.cursor/skills`. It becomes a mess to manage, especially as it’s now common to swap agents based on usage and pricing.
 
