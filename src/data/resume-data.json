@@ -28,8 +28,9 @@
       "achievements": [
         "Founded AI Agents Platform, establishing evaluation frameworks, safety guardrails, and observability patterns",
         "Led AI document extraction experimentation with benchmark-driven evaluation and regression protection",
-        "Drove org-wide AI tooling adoption, authoring standards and enabling LLM-ready documentation practices",
+        "Co-founded AI Guild, driving measurable AI tooling adoption increases across 100+ engineers",
         "Unblocked over $1M ARR by delivering complex loan compliance calculations for enterprise clients",
+        "Identified PII exposure risk in a cross-team design, authored corrective RFC, and aligned stakeholders",
         "Built Data Streaming team from scratch, hiring senior engineers and establishing team practices",
         "Led 5+ P1 incidents as incident commander, restoring platform stability during critical regressions",
         "Drove financial precision initiative, improving calculation accuracy to 14 decimal digits",
@@ -132,7 +133,7 @@
       "stack": [
         "AWS Strands",
         "AWS Agentcore",
-        "OpenAi",
+        "OpenAI",
         "Claude",
         "Knowledge Bases",
         "Temporal",

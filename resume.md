@@ -19,8 +19,9 @@ Versatile and results-driven Full-stack Software Engineer with a proven track re
 
 - Founded AI Agents Platform, establishing evaluation frameworks, safety guardrails, and observability patterns
 - Led AI document extraction experimentation with benchmark-driven evaluation and regression protection
-- Drove org-wide AI tooling adoption, authoring standards and enabling LLM-ready documentation practices
+- Co-founded AI Guild, driving measurable AI tooling adoption increases across 100+ engineers
 - Unblocked over $1M ARR by delivering complex loan compliance calculations for enterprise clients
+- Identified PII exposure risk in a cross-team design, authored corrective RFC, and aligned stakeholders
 - Built Data Streaming team from scratch, hiring senior engineers and establishing team practices
 - Led 5+ P1 incidents as incident commander, restoring platform stability during critical regressions
 - Drove financial precision initiative, improving calculation accuracy to 14 decimal digits
@@ -93,14 +94,14 @@ Versatile and results-driven Full-stack Software Engineer with a proven track re
 ### **ReReadme: AI-Powered Doc Refresh CLI**  
 *01/2026 – Present*
 
-Published open-source CLI (@cjlludwig/rereadme) that runs an AI agent workflow to regenerate README documentation and detect drift over time through CI, targeting the token cost of stale docs in agentic development. Built AI-native: committed Agent settings, repo context files, and validation hooks make dev agents first-class contributors. Two-layer quality strategy — Jest unit tests for deterministic behavior and DeepEval E2E evals with golden READMEs and LLM-as-a-judge grading.  
+Published open-source CLI (@cjlludwig/rereadme) that runs an AI agent workflow to regenerate README documentation and detect drift over time through CI, targeting the token cost of stale docs in agentic development. Built AI-native: committed Agent settings, repo context files, and validation hooks make dev agents first-class contributors. Two-layer quality strategy — Jest unit tests for deterministic behavior and DeepEval E2E evals with golden READMEs and LLM-as-a-judge grading.
 **Stack:** Claude Code, OpenAI Agents SDK, TypeScript, Node.js, Zod, DeepEval, Jest, Google ZX, GitHub Actions
 
 ### **AI Agents Platform**  
 *08/2025 – Present*
 
 Founding member building enterprise AI agent platform supporting both deterministic workflows and autonomous agents. Delivered intelligent document processing for unstructured financial documents, enabling automated data ingestion. Pioneered AI product ideation and thought leadership across organization.  
-**Stack:** AWS Strands, AWS Agentcore, OpenAi, Claude, Knowledge Bases, Temporal, Python, LLMs, React
+**Stack:** AWS Strands, AWS Agentcore, OpenAI, Claude, Knowledge Bases, Temporal, Python, LLMs, React
 
 ### **Real-time Calculation Processing**  
 *06/2024 – 07/2025*

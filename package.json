@@ -19,6 +19,8 @@
     "cache-github-stats": "node scripts/cache-github-stats.js",
     "generate-resume-pdf": "pandoc resume.md -o public/resume.pdf --pdf-engine=xelatex -V geometry:margin=0.75in -V linkcolor:blue -V urlcolor:blue || echo 'Warning: PDF generation skipped (pandoc not installed)'",
     "generate-resume": "npm run parse-resume && npm run generate-resume-pdf",
+    "spell:warn": "cspell --no-progress --show-suggestions --show-context --no-exit-code --gitignore .",
+    "spell:fix": "cspell --no-progress --show-suggestions --show-context --gitignore .",
     "dev": "npm run parse-resume && npm run fix-blogs && npm run generate-blogs && npm run cache-github-stats && vite",
     "start": "npm run dev",
     "build": "npm run parse-resume && npm run generate-blogs && npm run cache-github-stats && vite build && node scripts/generate-blog-pages.js && npm run generate-sitemap",
@@ -42,6 +44,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^5.1.1",
+    "cspell": "^9.8.0",
     "gh-pages": "^6.3.0",
     "husky": "^9.1.7",
     "sharp": "^0.34.5",
