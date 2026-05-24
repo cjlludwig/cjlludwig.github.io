@@ -325,6 +325,7 @@ body {
 .blog-post-body h3,
 .blog-post-body h4 {
   color: var(--text-primary);
+  scroll-margin-top: 80px;
 }
 
 .blog-post-body ul,

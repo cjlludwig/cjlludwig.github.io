@@ -17,7 +17,7 @@ Versatile and results-driven Full-stack Software Engineer with a proven track re
 **Built Technologies – Nashville, TN (Remote)**  
 *01/2025 – Present*
 
-- Founded AI Agents Platform, establishing evaluation frameworks, safety guardrails, and observability patterns
+- Founded AI Agents Platform, establishing evaluation frameworks, safety guardrails, observability patterns, and MCP integration standards
 - Led AI document extraction experimentation with benchmark-driven evaluation and regression protection
 - Co-founded AI Guild, driving measurable AI tooling adoption increases across 100+ engineers
 - Unblocked over $1M ARR by delivering complex loan compliance calculations for enterprise clients
