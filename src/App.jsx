@@ -231,9 +231,11 @@ function App() {
             <div className="nav-brand">
               <a href="/" className="brand-link" onClick={handleNavClick}>
                 <img
-                  src="/images/initials.png"
+                  src="/images/initials.webp"
                   alt="Connor Ludwig logo"
                   className="nav-logo"
+                  width="100"
+                  height="70"
                 />
                 Connor Ludwig
               </a>

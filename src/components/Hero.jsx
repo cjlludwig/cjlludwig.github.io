@@ -16,11 +16,17 @@ function Hero() {
       <div className="container">
         <div className="hero-content">
           <div className="hero-photo-wrap">
-            <img
-              src="/images/headshot copy.jpg"
-              alt="Connor Ludwig"
-              className="hero-photo"
-            />
+            <picture>
+              <source srcSet="/images/headshot.webp" type="image/webp" />
+              <img
+                src="/images/headshot copy.jpg"
+                alt="Connor Ludwig"
+                className="hero-photo"
+                width="220"
+                height="280"
+                fetchPriority="high"
+              />
+            </picture>
           </div>
           <div className="hero-text">
             <h1 className="hero-title">{personal.name}</h1>

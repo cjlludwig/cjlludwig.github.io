@@ -30,7 +30,14 @@ function Music() {
               className="album-cover"
             >
               <div className="album-image-wrapper">
-                <img src={album.image} alt={`${album.name} by ${album.artist}`} />
+                <img
+                  src={album.image}
+                  alt={`${album.name} by ${album.artist}`}
+                  loading="lazy"
+                  decoding="async"
+                  width="300"
+                  height="300"
+                />
                 <div className="album-overlay">
                   <div className="album-info">
                     <p className="album-name">{album.name}</p>

@@ -33,6 +33,10 @@ function GitHub() {
                 src={`https://github.com/${githubUsername}.png`}
                 alt={githubUsername}
                 className="github-avatar"
+                loading="lazy"
+                decoding="async"
+                width="60"
+                height="60"
               />
               <div className="github-profile-info">
                 <h3>@{githubUsername}</h3>
