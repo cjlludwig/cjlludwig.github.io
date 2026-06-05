@@ -57,7 +57,7 @@
       }
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-Buxq0fR7.js"></script>
+    <script type="module" crossorigin src="/assets/index-BrOPnZKS.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-Dv8IA8VP.css">
   </head>
   <body>
@@ -93,6 +93,7 @@
 <li><a href="#verify">Verify</a> — read it before you forward it</li>
 <li><a href="#disclosure-vs-non-disclosure">Disclosure</a> — label raw AI output, refine your own freely</li>
 <li><a href="#receiving-ai-output">Receiving AI Output</a> — ask questions, don&#39;t absorb review burden silently</li>
+<li><a href="#outsourced-reasoning">Outsourced Reasoning</a> — don&#39;t bias the model toward the answer you already want</li>
 </ul>
 <p><strong>Team Practices</strong></p>
 <ul>
@@ -135,6 +136,11 @@
 <p>The norms above cover what to do as the sender, but you&#39;ll inevitably be on the receiving end too. A few principles worth holding:</p>
 <p>Ask clarifying questions freely. If something reads like irresponsible AI output, a quick &quot;did you check this?&quot; is entirely reasonable, and the disclosure norm above is exactly what makes that conversation easy to have. The label removes the social friction.</p>
 <p>Don&#39;t absorb the review burden silently. Quietly spending an hour cleaning up someone else&#39;s workslop is how the pattern perpetuates. Surface it once, offer the context on why it matters, and move on. The goal is a higher floor across the team, not punishing individuals.</p>
+<h4 id="outsourced-reasoning">Outsourced Reasoning</h4>
+<p>A subtler pattern I see with heavy AI users is the slow outsourcing of their own judgment. Instead of weighing an argument on its merits, they paste the whole disagreement into Claude and ask it to help counter the points. The model obliges every time, even when the other side is right.</p>
+<p>That&#39;s the trap. A general purpose model will argue whichever side you assign it, tirelessly and confidently. If you prime it with the outcome you want, it aligns to that outcome and manufactures justification on demand (the well-documented <a href="https://arxiv.org/abs/2310.13548">sycophancy problem</a>). The bias isn&#39;t really in the model, it&#39;s in the framing you handed it, and most users never see it.</p>
+<p>The damage shows up in how decisions actually get made. When one person can generate an endless stream of polished rebuttals, the people offering good-faith feedback start to give up. Not because they were wrong, but because they&#39;re worn down. Arguing against a bottomless well of GenAI output is a losing game, and your sharpest people figure that out fast. You end up deciding through fatigue rather than merit, which is a quiet way to lose the exact dissent that keeps you honest.</p>
+<p>None of this means AI can&#39;t sharpen your thinking. It&#39;s genuinely good at pressure-testing a position, surfacing counterpoints you missed, and poking holes in your logic. But you have to actually let it. Ask it to find the weaknesses in your own argument, not just ammunition against someone else&#39;s. The moment you hand it a predetermined conclusion, you&#39;ve turned a reasoning tool into a confirmation machine.</p>
 <h3 id="team">Team</h3>
 <h4 id="prompt-visibility">Prompt Visibility</h4>
 <p>Share your prompts! It allows teams to collaborate and refine AI inputs together and catch issues that individuals often miss. Natural language can be finicky and there&#39;s a wide range of interpretation in communication and writing styles. By increasing visibility to raw inputs you&#39;ll be able to refine core communication skills required for your business processes.</p>
@@ -175,6 +181,7 @@
 <li><a href="https://www.faros.ai/blog/ai-software-engineering">Faros AI: The AI Productivity Paradox</a></li>
 <li><a href="https://arxiv.org/html/2512.00867v1">arXiv: The AI Attribution Paradox</a></li>
 <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12450962/">NIH/PMC: Why unequal AI access enhances team productivity</a></li>
+<li><a href="https://arxiv.org/abs/2310.13548">arXiv: Towards Understanding Sycophancy in Language Models</a></li>
 </ul>
 
         </div>
