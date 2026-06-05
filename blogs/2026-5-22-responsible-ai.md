@@ -39,6 +39,7 @@ The fix isn't another tool mandate. It's better norms and practice. Responsible 
 - [Verify](#verify) — read it before you forward it
 - [Disclosure](#disclosure-vs-non-disclosure) — label raw AI output, refine your own freely
 - [Receiving AI Output](#receiving-ai-output) — ask questions, don't absorb review burden silently
+- [Outsourced Reasoning](#outsourced-reasoning) — don't bias the model toward the answer you already want
 
 **Team Practices**
 - [Prompt Visibility](#prompt-visibility) — share inputs, not just outputs
@@ -105,6 +106,16 @@ The norms above cover what to do as the sender, but you'll inevitably be on the 
 Ask clarifying questions freely. If something reads like irresponsible AI output, a quick "did you check this?" is entirely reasonable, and the disclosure norm above is exactly what makes that conversation easy to have. The label removes the social friction.
 
 Don't absorb the review burden silently. Quietly spending an hour cleaning up someone else's workslop is how the pattern perpetuates. Surface it once, offer the context on why it matters, and move on. The goal is a higher floor across the team, not punishing individuals.
+
+#### Outsourced Reasoning
+
+A subtler pattern I see with heavy AI users is the slow outsourcing of their own judgment. Instead of weighing an argument on its merits, they paste the whole disagreement into Claude and ask it to help counter the points. The model obliges every time, even when the other side is right.
+
+That's the trap. A general purpose model will argue whichever side you assign it, tirelessly and confidently. If you prime it with the outcome you want, it aligns to that outcome and manufactures justification on demand (the well-documented [sycophancy problem](https://arxiv.org/abs/2310.13548)). The bias isn't really in the model, it's in the framing you handed it, and most users never see it.
+
+The damage shows up in how decisions actually get made. When one person can generate an endless stream of polished rebuttals, the people offering good-faith feedback start to give up. Not because they were wrong, but because they're worn down. Arguing against a bottomless well of GenAI output is a losing game, and your sharpest people figure that out fast. You end up deciding through fatigue rather than merit, which is a quiet way to lose the exact dissent that keeps you honest.
+
+None of this means AI can't sharpen your thinking. It's genuinely good at pressure-testing a position, surfacing counterpoints you missed, and poking holes in your logic. But you have to actually let it. Ask it to find the weaknesses in your own argument, not just ammunition against someone else's. The moment you hand it a predetermined conclusion, you've turned a reasoning tool into a confirmation machine.
 
 ### Team
 
@@ -173,3 +184,4 @@ The good news is AI rewards this mentality more than most. Rapid prototyping mea
 - [Faros AI: The AI Productivity Paradox](https://www.faros.ai/blog/ai-software-engineering)
 - [arXiv: The AI Attribution Paradox](https://arxiv.org/html/2512.00867v1)
 - [NIH/PMC: Why unequal AI access enhances team productivity](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12450962/)
+- [arXiv: Towards Understanding Sycophancy in Language Models](https://arxiv.org/abs/2310.13548)
