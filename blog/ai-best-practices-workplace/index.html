@@ -57,7 +57,7 @@
       }
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-BrOPnZKS.js"></script>
+    <script type="module" crossorigin src="/assets/index-BEU0Yhl8.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-Dv8IA8VP.css">
   </head>
   <body>
@@ -76,7 +76,12 @@
 <p>That&#39;s where the 10x productivity narrative starts to break down.</p>
 <p>When weaker performers use generative AI poorly, they do not magically become 10x operators. They can just as easily produce 10x more vague analysis, oversized pull requests, half-checked summaries, and deceptively confident output. Then top performers feel responsible for absorbing that slop before it reaches customers, leadership, or production.</p>
 <p>Now the team has not eliminated work. It has redistributed it.</p>
-<p>There are a lot of angles to this problem, and one common response from the AI crowd is “just use AI to review it.” I think there&#39;s some merit to that, but it&#39;s also incomplete. AI review can help catch issues faster, but it does not replace accountability, judgment, or shared team standards.</p>
+<p>One common response from the AI crowd is “just use AI to review it.” I think there&#39;s merit to that, but it&#39;s incomplete.</p>
+<h3 id="why-ai-review-isnt-enough">Why AI Review Isn&#39;t Enough</h3>
+<p>AI review has two failure modes that make it unreliable as a standalone check. The first is incentive misalignment — models are trained to produce output that gets approved, not output that&#39;s correct, and that shows up in review. RLHF training increased false-positive approval rates by 24.1% on QA tasks and 18.3% on coding tasks (<a href="https://arxiv.org/abs/2409.12822">U-Sophistry, ICLR 2025</a>), and regressive sycophancy (abandoning a correct judgment under pressure) shows up in roughly 15% of cases across major models (<a href="https://arxiv.org/abs/2502.08177">SycEval, Stanford 2025</a>). A reviewer that can be nudged off a correct call isn&#39;t a backstop, it&#39;s a rubber stamp with extra steps.</p>
+<p>The second is attention. AI doesn&#39;t review a 2,000-line PR with the same focus it brings to 200 lines. Accuracy dropped from 94.9% to 44.5% as context grew from 4K to 128K tokens (<a href="https://arxiv.org/abs/2404.06654">RULER, NVIDIA 2024</a>), with the worst failures concentrated in the middle of long contexts (<a href="https://arxiv.org/abs/2307.03172">Liu et al., 2024</a>). The content a reviewer most needs to scrutinize is statistically the most likely to get missed.</p>
+<p>Neither addresses the most obvious gap, the model has no stake in whether the work holds up in production. AI review can be a useful signal. It can&#39;t be a substitute for accountability.</p>
+<h3 id="the-fix-is-better-norms">The Fix Is Better Norms</h3>
 <p>What teams need is a set of norms for responsible AI usage in the workplace. Not to slow adoption down, but to make sure adoption actually improves the work instead of flooding the organization with faster, shinier garbage.</p>
 <p>That redistribution isn&#39;t harmless. It creates a real operating tax:</p>
 <ul>
@@ -90,6 +95,8 @@
 <li><a href="#ownership">Ownership</a> — you ship it, you own it</li>
 <li><a href="#formatting">Formatting</a> — format for the medium before you share</li>
 <li><a href="#bloat">Bloat</a> — trim output to what your audience actually needs</li>
+<li><a href="#decompose">Decompose</a> — use AI to break down what AI built</li>
+<li><a href="#know-your-limits">Know Your Limits</a> — if you can&#39;t validate it, you&#39;re not contributing</li>
 <li><a href="#verify">Verify</a> — read it before you forward it</li>
 <li><a href="#disclosure-vs-non-disclosure">Disclosure</a> — label raw AI output, refine your own freely</li>
 <li><a href="#receiving-ai-output">Receiving AI Output</a> — ask questions, don&#39;t absorb review burden silently</li>
@@ -122,7 +129,17 @@
 <h4 id="bloat">Bloat</h4>
 <p>Writing text is cheap now. Your teammate&#39;s time is not. AI tools are often biased toward generating more than you need. Whether that comes from model behavior, product defaults, or token economics, the result is the same. It&#39;s your responsibility to make the output consumable.</p>
 <p>Simple words like &quot;brief&quot;, &quot;succinct&quot;, and &quot;concise&quot; can all go a long way to restrain the output and help you tweak it to something actually readable by your audience.</p>
-<p>This applies to scope too, not just length. AI makes it easy to generate a lot in a single pass, but that speed isn&#39;t a reason to ship oversized PRs or deliverables that no one can meaningfully engage with. The scoping discipline that applied to handwritten work still applies here. A reviewer who can&#39;t realistically get through a 2,000-line PR isn&#39;t reviewing it, they&#39;re approving it, and that&#39;s workslop one step downstream.</p>
+<h4 id="decompose">Decompose</h4>
+<p>AI has given a lot of developers a new justification for enormous PRs. The logic goes, the agent implemented the full feature in one pass, so why split it up? The problem is that your implementation speed and the reviewer&#39;s processing speed are not the same variable.</p>
+<p>A PR solving 10 things at once is faster to ship in the short run. It&#39;s also harder to review meaningfully, harder to roll back cleanly if something breaks, and harder to bisect when it does. That win on your end is just cost on theirs. A 10-month study of 2,500 code reviews found defect detection dropped from 87% on PRs under 100 lines to 28% on PRs over 1,000 (<a href="https://static1.smartbear.co/support/media/resources/cc/book/code-review-cisco-case-study.pdf">SmartBear/Cisco</a>). Reviewers don&#39;t get worse at their jobs, they just run out of bandwidth.</p>
+<p>This generalizes past code. A book sent in place of a memo. A 40-slide deck for a decision that needs one slide. The output got cheaper to generate, not cheaper to receive.</p>
+<p>The move is to use AI for the next order of thinking, not just the first pass. The same agent that produced the monolith can be prompted to decompose it into smaller PRs that can ship on their own. That&#39;s a higher-leverage use of the tool. The smaller the slice, the easier it is to get across the line. You&#39;re not adding work downstream, you&#39;re removing it.</p>
+<h4 id="know-your-limits">Know Your Limits</h4>
+<p>One prerequisite for sharing AI-generated work that doesn&#39;t get talked about enough: you need to be able to validate it&#39;s correct before passing it along.</p>
+<p>AI is genuinely good at breaking down silos. A non-technical person can now generate a software architecture proposal, a solutioning doc, or a pull request against a platform codebase in minutes. At face value that looks like a win (everyone is an engineer now, 10x output). In practice, if the contributor has no way to assess whether the output is technically sound, they haven&#39;t contributed, they&#39;ve handed a learning problem to someone downstream who actually can. In an RCT with 52 engineers picking up an unfamiliar library, AI users finished the task in similar time but scored 17% lower on a follow-up comprehension test. The AI did the work, so they couldn&#39;t have caught an error in it (<a href="https://arxiv.org/abs/2601.20245">Shen &amp; Tamkin, 2026</a>).</p>
+<p>The domain expert on the receiving end now has to do a full review with none of the context on what constraints were or weren&#39;t considered when generating it. They can&#39;t just approve or push back cleanly. They have to re-derive the work themselves to know which parts are safe. That&#39;s the tax. That&#39;s not a productivity gain for the org, it&#39;s a reallocation. The contributor saved an hour and the expert spent two. When Copilot was introduced across open source projects, core developers reviewed 6.5% more code and saw a 19% drop in their own productivity (<a href="https://arxiv.org/abs/2510.10165">Xu et al., 2025</a>). The efficiency gain was real, it just landed on the wrong person.</p>
+<p>Before sharing AI output in territory you can&#39;t verify, ask honestly whether you could catch a meaningful error in it. If the answer is no, either build that foundation first, loop in someone who can validate before you ship, or be explicit with the recipient that you&#39;re sharing a starting point that needs expert eyes, not a finished contribution.</p>
+<p>None of this is an argument for strict silo adherence. The problems behind these cross-domain pushes are usually real. The better move is to use AI to refine what you actually do understand: scope the problem, sharpen the definition, document your constraints from where you sit. A well-framed problem from a non-expert often gives an implementer everything they need to one-shot a solution. That&#39;s a genuine time save. A half-baked solution they have to disassemble first is not.</p>
 <h4 id="verify">Verify</h4>
 <p>The minimum bar for distributing AI content is to actually read it, or test the process that generates it thoroughly. Stats and figures should come from tools and integrations, not the model spitting out values. AI is very good at analyzing large amounts of information but it will just as easily make up values without some checks and guidance. It&#39;s your responsibility to make sure you have some sort of smell test before forwarding content on.</p>
 <p>Links are worth spot-checking too. A citation that 404s or points to an article that doesn&#39;t say what you claim is just as bad as no citation. If a stat or source matters enough to include, it matters enough to open the link.</p>
@@ -182,6 +199,13 @@
 <li><a href="https://arxiv.org/html/2512.00867v1">arXiv: The AI Attribution Paradox</a></li>
 <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12450962/">NIH/PMC: Why unequal AI access enhances team productivity</a></li>
 <li><a href="https://arxiv.org/abs/2310.13548">arXiv: Towards Understanding Sycophancy in Language Models</a></li>
+<li><a href="https://arxiv.org/abs/2510.10165">arXiv: AI-Assisted Programming Decreases Expert Productivity (Xu et al., 2025)</a></li>
+<li><a href="https://arxiv.org/abs/2601.20245">arXiv: How AI Impacts Skill Formation (Shen &amp; Tamkin, 2026)</a></li>
+<li><a href="https://static1.smartbear.co/support/media/resources/cc/book/code-review-cisco-case-study.pdf">SmartBear: Best Kept Secrets of Peer Code Review (Cisco study)</a></li>
+<li><a href="https://arxiv.org/abs/2409.12822">arXiv: U-Sophistry — Language Models Learn to Mislead Humans via RLHF</a></li>
+<li><a href="https://arxiv.org/abs/2502.08177">arXiv: SycEval — Evaluating LLM Sycophancy (Stanford, 2025)</a></li>
+<li><a href="https://arxiv.org/abs/2404.06654">arXiv: RULER — What&#39;s the Real Context Size of Your Long-Context LLMs? (NVIDIA, 2024)</a></li>
+<li><a href="https://arxiv.org/abs/2307.03172">arXiv: Lost in the Middle — How Language Models Use Long Contexts (Liu et al., 2024)</a></li>
 </ul>
 
         </div>
