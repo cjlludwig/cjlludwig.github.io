@@ -57,8 +57,8 @@
       }
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-BEU0Yhl8.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Dv8IA8VP.css">
+    <script type="module" crossorigin src="/assets/index-BwbjNiUz.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CM-4QDvo.css">
   </head>
   <body>
     <div id="root">
@@ -78,7 +78,7 @@
 <p>Now the team has not eliminated work. It has redistributed it.</p>
 <p>One common response from the AI crowd is “just use AI to review it.” I think there&#39;s merit to that, but it&#39;s incomplete.</p>
 <h3 id="why-ai-review-isnt-enough">Why AI Review Isn&#39;t Enough</h3>
-<p>AI review has two failure modes that make it unreliable as a standalone check. The first is incentive misalignment — models are trained to produce output that gets approved, not output that&#39;s correct, and that shows up in review. RLHF training increased false-positive approval rates by 24.1% on QA tasks and 18.3% on coding tasks (<a href="https://arxiv.org/abs/2409.12822">U-Sophistry, ICLR 2025</a>), and regressive sycophancy (abandoning a correct judgment under pressure) shows up in roughly 15% of cases across major models (<a href="https://arxiv.org/abs/2502.08177">SycEval, Stanford 2025</a>). A reviewer that can be nudged off a correct call isn&#39;t a backstop, it&#39;s a rubber stamp with extra steps.</p>
+<p>AI review has two failure modes that make it unreliable as a standalone check. The first is incentive misalignment. Models are trained to produce output that gets approved, not output that&#39;s correct, and that shows up in review. RLHF training increased false-positive approval rates by 24.1% on QA tasks and 18.3% on coding tasks (<a href="https://arxiv.org/abs/2409.12822">U-Sophistry, ICLR 2025</a>), and regressive sycophancy (abandoning a correct judgment under pressure) shows up in roughly 15% of cases across major models (<a href="https://arxiv.org/abs/2502.08177">SycEval, Stanford 2025</a>). A reviewer that can be nudged off a correct call isn&#39;t a backstop, it&#39;s a rubber stamp with extra steps.</p>
 <p>The second is attention. AI doesn&#39;t review a 2,000-line PR with the same focus it brings to 200 lines. Accuracy dropped from 94.9% to 44.5% as context grew from 4K to 128K tokens (<a href="https://arxiv.org/abs/2404.06654">RULER, NVIDIA 2024</a>), with the worst failures concentrated in the middle of long contexts (<a href="https://arxiv.org/abs/2307.03172">Liu et al., 2024</a>). The content a reviewer most needs to scrutinize is statistically the most likely to get missed.</p>
 <p>Neither addresses the most obvious gap, the model has no stake in whether the work holds up in production. AI review can be a useful signal. It can&#39;t be a substitute for accountability.</p>
 <h3 id="the-fix-is-better-norms">The Fix Is Better Norms</h3>
