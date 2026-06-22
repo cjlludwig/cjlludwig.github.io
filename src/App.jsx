@@ -29,7 +29,7 @@ const SITE_URL = 'https://cjlludwig.github.io'
 const defaultMeta = {
   title: 'Connor Ludwig | Senior Staff Software Engineer',
   description:
-    'Senior Staff Software Engineer passionate about building performant platforms, reliable systems, and delightful developer experiences.',
+    'Engineering leader in Chicago, building distributed systems and cloud platforms across fintech, agtech, and enterprise data.',
 }
 
 function getRouteFromPath(pathname) {

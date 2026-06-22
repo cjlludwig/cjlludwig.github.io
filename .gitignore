@@ -41,6 +41,9 @@ coverage/
 # Tailored resumes (job-specific, not tracked)
 tailored-resumes/
 
+# Unpublished blog drafts
+blogs/drafts/
+
 .cursor/
 
 /docs/specs/

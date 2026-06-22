@@ -26,10 +26,17 @@ function extractAssetTags(indexHtml) {
   }
 }
 
+function resolveImage(image) {
+  if (!image) return `${SITE_URL}/og-image.png`
+  if (/^https?:\/\//.test(image)) return image
+  return `${SITE_URL}${image.startsWith('/') ? '' : '/'}${image}`
+}
+
 function generateBlogPostPage(post, assetTags) {
   const title = escapeHtml(post.title)
   const description = escapeHtml(post.description || `Read ${post.title} by Connor Ludwig`)
   const url = `${SITE_URL}/blog/${post.slug}/`
+  const image = resolveImage(post.image)
   const date = post.date ? new Date(post.date).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
@@ -66,33 +73,64 @@ function generateBlogPostPage(post, assetTags) {
     <meta property="og:site_name" content="Connor Ludwig" />
     <meta property="og:title" content="${title}" />
     <meta property="og:description" content="${description}" />
-    <meta property="og:image" content="${SITE_URL}/og-image.png" />
+    <meta property="og:image" content="${image}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="${title}" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="${url}" />
     <meta name="twitter:title" content="${title}" />
     <meta name="twitter:description" content="${description}" />
-    <meta name="twitter:image" content="${SITE_URL}/twitter-card.png" />
+    <meta name="twitter:image" content="${image}" />
+    <meta name="twitter:image:alt" content="${title}" />
+    <meta name="twitter:creator" content="@cjlludwig" />
+    <meta name="twitter:site" content="@cjlludwig" />
 
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": "${title}",
-      "description": "${description}",
-      "url": "${url}",
-      "datePublished": "${post.date || ''}",
-      "author": {
-        "@type": "Person",
-        "name": "Connor Ludwig",
-        "url": "${SITE_URL}"
-      },
-      "publisher": {
-        "@type": "Person",
-        "name": "Connor Ludwig"
-      }
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "@id": "${url}#blogposting",
+          "headline": "${title}",
+          "description": "${description}",
+          "url": "${url}",
+          "image": "${image}",
+          "mainEntityOfPage": { "@id": "${url}" },
+          "isPartOf": { "@id": "${SITE_URL}/#website" },
+          "datePublished": "${post.date || ''}",
+          "dateModified": "${post.date || ''}",
+          "author": {
+            "@type": "Person",
+            "@id": "${SITE_URL}/#person",
+            "name": "Connor Ludwig",
+            "url": "${SITE_URL}/"
+          },
+          "publisher": {
+            "@type": "Person",
+            "@id": "${SITE_URL}/#person",
+            "name": "Connor Ludwig",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "${SITE_URL}/android-chrome-512x512.png",
+              "width": 512,
+              "height": 512
+            }
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "${SITE_URL}/" },
+            { "@type": "ListItem", "position": 2, "name": "Blog", "item": "${SITE_URL}/blog/" },
+            { "@type": "ListItem", "position": 3, "name": "${title}", "item": "${url}" }
+          ]
+        }
+      ]
     }
     </script>
     ${assetTags.scriptTag}
@@ -137,6 +175,39 @@ function generateBlogIndexPage(posts, assetTags) {
         </article>`
   }).join('\n')
 
+  const blogPostListItems = posts.map((post, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    url: `${SITE_URL}/blog/${post.slug}/`,
+    name: post.title
+  }))
+
+  const indexJsonLd = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Blog',
+        '@id': `${url}#blog`,
+        url,
+        name: title,
+        description,
+        isPartOf: { '@id': `${SITE_URL}/#website` },
+        author: { '@id': `${SITE_URL}/#person` },
+        mainEntity: {
+          '@type': 'ItemList',
+          itemListElement: blogPostListItems
+        }
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+          { '@type': 'ListItem', position: 2, name: 'Blog', item: url }
+        ]
+      }
+    ]
+  })
+
   return `<!DOCTYPE html>
 <html lang="en">
   <head>
@@ -175,6 +246,14 @@ function generateBlogIndexPage(posts, assetTags) {
     <meta name="twitter:title" content="${title}" />
     <meta name="twitter:description" content="${description}" />
     <meta name="twitter:image" content="${SITE_URL}/twitter-card.png" />
+    <meta name="twitter:image:alt" content="${escapeHtml(title)}" />
+    <meta name="twitter:creator" content="@cjlludwig" />
+    <meta name="twitter:site" content="@cjlludwig" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    ${indexJsonLd}
+    </script>
     ${assetTags.scriptTag}
     ${assetTags.cssTag}
   </head>

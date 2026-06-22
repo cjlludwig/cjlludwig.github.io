@@ -7,7 +7,7 @@ Chicago, IL, US
 
 ## Summary
 
-Versatile and results-driven Full-stack Software Engineer with a proven track record in leading technical initiatives within startups and Fortune 500 companies. With over 8 years of experience, excels in developing robust tools and scalable systems that enhance productivity and drive business growth. Proven technical leader with a history of modernizing engineering practices and improving engineering standards. Routinely masters new technologies to meet project needs. Strong communication and collaboration skills demonstrated through technical mentorship, advising cross-functional stakeholders, and customer consulting to identify optimal solutions. Deep domain experience in fintech, construction lending, precision agriculture, and enterprise data platforms.
+Senior Staff Software Engineer with over 9 years building and leading scalable systems for startups and Fortune 500 companies. Comfortable across the stack, from event-driven backends and cloud infrastructure to the internal tools and frontends teams depend on. Leads by modernizing engineering practices, mentoring engineers, and working with cross-functional partners to land the right solution rather than the obvious one. Picks up new technologies quickly to fit the problem at hand. Domain experience spans fintech, construction lending, precision agriculture, and enterprise data platforms.
 
 ---
 
