@@ -501,7 +501,14 @@ body {
 .dark .blog-post-body p,
 .dark .blog-post-body ul,
 .dark .blog-post-body ol {
-  color: var(--text-primary);
+  color: #e1ddec;
+}
+
+.dark .blog-post-body h1,
+.dark .blog-post-body h2,
+.dark .blog-post-body h3,
+.dark .blog-post-body h4 {
+  color: #f0edf8;
 }
 
 .blog-post-body a {
@@ -1882,4 +1889,3 @@ body {
     page-break-inside: avoid;
   }
 }
-
