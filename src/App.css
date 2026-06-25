@@ -477,6 +477,25 @@ body {
   height: auto;
 }
 
+/* Build-time figures (scripts/figures/*) */
+.blog-post-body .ctx-fig {
+  margin: 2.5rem 0;
+}
+
+.blog-post-body .ctx-fig svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.blog-post-body .ctx-fig figcaption {
+  margin-top: 0.85rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  text-align: center;
+  color: var(--text-tertiary);
+}
+
 .blog-post-body blockquote {
   margin: 0 0 var(--spacing-md);
   padding: 1rem 1.5rem;

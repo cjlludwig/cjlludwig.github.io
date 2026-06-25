@@ -52,6 +52,28 @@ function BlogPost({ post, darkMode }) {
     }
   }, [post, darkMode])
 
+  // Play each figure's build animation only once it scrolls into view, so the
+  // user watches it grow rather than landing on the finished diagram. Animations
+  // are gated on the `.ctx-in` class (see scripts/figures/_lib.js).
+  useEffect(() => {
+    if (!post || !contentRef.current) return
+    const figures = contentRef.current.querySelectorAll('.ctx-fig')
+    if (!figures.length) return
+    if (typeof IntersectionObserver === 'undefined') {
+      figures.forEach((fig) => fig.classList.add('ctx-in'))
+      return
+    }
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return
+        entry.target.classList.add('ctx-in')
+        obs.unobserve(entry.target)
+      })
+    }, { threshold: 0.2 })
+    figures.forEach((fig) => io.observe(fig))
+    return () => io.disconnect()
+  }, [post])
+
   useEffect(() => {
     if (!post || !contentRef.current) return
     contentRef.current.querySelectorAll('.code-block').forEach((block) => {
