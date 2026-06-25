@@ -3,6 +3,8 @@ import path from 'path'
 import matter from 'gray-matter'
 import { marked } from 'marked'
 import { codeToHtml } from 'shiki'
+import { figures } from './figures/index.js'
+import { assemble } from './figures/_lib.js'
 
 const BLOGS_DIR = path.join(process.cwd(), 'blogs')
 const OUTPUT_DIR = path.join(process.cwd(), 'src', 'data')
@@ -36,6 +38,21 @@ function validateMermaidSyntax(code, sourceFile) {
   }
 }
 
+// Swap a ```figure``` stub for build-time generated inline SVG.
+// Block body is simple `key: value` lines; `name` selects the figure module.
+function renderFigure(text) {
+  const params = {}
+  for (const ln of String(text).split('\n')) {
+    const m = ln.match(/^\s*([\w-]+)\s*:\s*(.+?)\s*$/)
+    if (m) params[m[1]] = m[2]
+  }
+  const build = figures[params.name]
+  if (!build) {
+    throw new Error(`[figure] Unknown figure "${params.name}" in ${currentFile}. Known: ${Object.keys(figures).join(', ')}`)
+  }
+  return assemble(params.name, build())
+}
+
 function configureMarked() {
   shikiCache.clear()
 
@@ -46,6 +63,7 @@ function configureMarked() {
       if (token.type !== 'code') return
       const rawLang = (token.lang || '').split(/\s+/)[0].toLowerCase()
       if (rawLang === 'mermaid') return
+      if (rawLang === 'figure') return // handled synchronously in the renderer
       const displayLang = rawLang || 'text'
       const safeText = String(token.text || '')
       const key = `${displayLang}:::${safeText}`
@@ -86,6 +104,9 @@ function configureMarked() {
         if (rawLang === 'mermaid') {
           validateMermaidSyntax(text, currentFile)
           return `<pre class="mermaid">${text}</pre>\n`
+        }
+        if (rawLang === 'figure') {
+          return renderFigure(text)
         }
         const displayLang = rawLang || 'text'
         const safeText = String(text || '')
