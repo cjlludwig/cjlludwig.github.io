@@ -93,7 +93,7 @@ export default function build() {
   return {
     viewBox: VB,
     body,
-    caption: 'A greenfield task. A single seed tile germinates and branches outward into the open context window, settling into a neat cluster with plenty of room left to grow and few constraints to work around.',
+    caption: 'A greenfield task. A single seed tile germinates and branches outward into the open context window, settling into a vibe-coded cluster with plenty of room left to grow and few constraints to work around.',
     ariaLabel: 'A nearly empty context window. A single bright seed tile near the centre grows outward one tile at a time, the cluster cooling from hot at the core to faint at the edges and settling into a neat organic shape. Small sparkles twinkle in the empty cells just beyond the frontier, and open space surrounds the cluster as room to grow.',
     anim: `
 .ctx-greenfield .gf-t{transform-box:fill-box;transform-origin:center;animation:gf-pop .45s cubic-bezier(.2,.8,.3,1) both;}

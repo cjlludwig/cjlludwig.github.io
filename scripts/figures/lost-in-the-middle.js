@@ -57,9 +57,13 @@ export default function build() {
     + `<stop offset="1" stop-color="${color('load')}" stop-opacity="0.24"/>`
     + `</linearGradient></defs>`;
 
+  // offset-path + base opacity are inline (structural), so the probe is hidden
+  // and parked on the curve in the base/reduced-motion state; only the ride
+  // animation is gated on `.ctx-in`. (Putting these in `anim` would gate them too,
+  // leaving a stray visible dot at the SVG origin before scroll-in.)
   const probe = group(
     circle(0, 0, 10, 'load', { op: 0.28 }) + circle(0, 0, 4, 'load'),
-    { cls: 'lm-probe' }
+    { cls: 'lm-probe', extra: ` style="opacity:0;offset-path:path('${curve}');offset-rotate:0deg"` }
   );
 
   const body = [
@@ -67,7 +71,7 @@ export default function build() {
     // axes
     line(X0, YB, X1, YB, 'frame', { sw: 1.5, op: 0.8, cap: 'butt' }),
     line(X0, YB, X0, YT - 6, 'frame', { sw: 1.5, op: 0.8, cap: 'butt' }),
-    text(X0 - 10, (YB + YT) / 2, 'attention', { anchor: 'middle', size: 13, weight: 600, op: 0.85, cls: 'ylab lm-fade-el' }),
+    group(text(X0 - 10, (YB + YT) / 2, 'attention', { anchor: 'middle', size: 13, weight: 600, op: 0.85 }), { cls: 'lm-fade-el', extra: ` transform="rotate(-90 ${X0 - 10} ${(YB + YT) / 2})"` }),
     // attention curve (d3) — washed fill, then the drawn-in stroke
     `<path d="${fill}" style="fill:url(#lm-grad)" class="lm-fill"/>`,
     // trough guide: curve minimum -> lost band (static, survives reduced motion)
@@ -86,8 +90,6 @@ export default function build() {
   ].join('\n');
 
   const anim = `
-${C} .ylab{transform:rotate(-90deg);transform-box:fill-box;transform-origin:center;}
-
 /* entrance: curve draws in, fill + labels fade up, strip rises */
 ${C} .lm-curve{stroke-dasharray:${DASH};stroke-dashoffset:0;animation:lm-draw 1s cubic-bezier(.65,.05,.36,1) both;}
 @keyframes lm-draw{from{stroke-dashoffset:${DASH};}to{stroke-dashoffset:0;}}
@@ -98,7 +100,7 @@ ${C} .lm-strip{animation:lm-rise .6s cubic-bezier(.22,.61,.36,1) both;transform-
 @keyframes lm-rise{from{opacity:0;transform:translateY(10px);}}
 
 /* probe rides the attention curve on a loop */
-${C} .lm-probe{offset-path:path('${curve}');offset-rotate:0deg;opacity:0;animation:lm-ride ${P}s linear infinite;}
+${C} .lm-probe{animation:lm-ride ${P}s linear infinite;}
 @keyframes lm-ride{0%{offset-distance:0%;opacity:0;}5%{opacity:1;}95%{opacity:1;}100%{offset-distance:100%;opacity:0;}}
 
 /* token wave, delayed per position so the pulse tracks the probe */
@@ -114,7 +116,7 @@ ${delays.join('\n')}`;
   return {
     viewBox: VB,
     body,
-    caption: 'Lost in the middle. Models attend most to the start and end of a prompt, so detail buried in the middle is the first thing they overlook.',
+    caption: 'Lost in the middle. Models attend most to the start and end of a prompt, so detail buried in the middle is overlooked.',
     ariaLabel: 'A U-shaped attention curve, high at the start and end of the prompt and low in the middle. A probe rides the curve while a strip of tokens below pulses in sync: blue tokens lift at the edges where attention is high, and the amber band in the middle stays flat and flickers where attention is lost.',
     anim,
   };

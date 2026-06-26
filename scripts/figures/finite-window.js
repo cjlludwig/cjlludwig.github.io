@@ -72,7 +72,7 @@ export default function build() {
   return {
     viewBox: VB,
     body,
-    caption: 'A finite window. Fresh context streams in at the bottom-left and ages along the grid; the window ticks upward one row at a time, and the oldest context rises into the hard limit and is evicted to make room.',
+    caption: 'A finite window. Fresh context streams in at the bottom-left and ages along the grid; the window ticks upward one context chunk at a time, and the oldest context rises into the hard limit and is evicted to make room.',
     ariaLabel: 'A finite context window filled with blue tiles up to a bold amber limit line at the top. The tiles form a diagonal brightness gradient, brightest at the bottom-left where fresh context enters and dimming toward the top-right where it ages. The grid ticks upward one row per beat, and the oldest row rises into the limit line and dissolves as it is evicted.',
     anim: `
 .ctx-finite-window .flow{animation:fw-flow ${T}s steps(${PERIOD_ROWS},end) infinite;}

@@ -80,7 +80,7 @@ export default function build() {
   return {
     viewBox: VB,
     body,
-    caption: 'An established codebase. The code itself, plus architecture docs, historical tickets, spoken conversations, written notes, and conventions, forms a vast corpus the session never sees; the context window only ever holds a tiny slice of the code.',
+    caption: 'An established codebase. The code itself, plus architecture docs, historical tickets, spoken conversations, written notes, and conventions, forms a vast corpus the session never sees; the context window only ever holds a tiny slice of the total context.',
     ariaLabel: 'A large grid of dim context tiles fills the frame under the heading pre-existing context the session never sees, partitioned into labelled regions: architecture docs, historical tickets, spoken conversations, the codebase, written notes, and team conventions. A small bright-bordered context window sits inside the codebase region, enclosing only a tiny cluster of its tiles, showing how little of even the code the session actually holds. The tile field dissolves softly at the outer edges, implying the corpus extends beyond the frame.',
     anim: `
 .ctx-established-codebase .ec-corpus{animation:ec-fade .8s ease both;}
