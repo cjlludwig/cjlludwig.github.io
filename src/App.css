@@ -336,6 +336,32 @@ body {
 .blog-post-body h4 {
   color: var(--text-primary);
   scroll-margin-top: 80px;
+  position: relative;
+}
+
+.blog-post-body .header-anchor {
+  position: absolute;
+  left: -1.1em;
+  top: 0;
+  opacity: 0;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 400;
+  transition: opacity 0.15s ease;
+}
+
+.blog-post-body h1:hover .header-anchor,
+.blog-post-body h2:hover .header-anchor,
+.blog-post-body h3:hover .header-anchor,
+.blog-post-body h4:hover .header-anchor,
+.blog-post-body .header-anchor:focus {
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .blog-post-body .header-anchor {
+    display: none;
+  }
 }
 
 .blog-post-body h2,

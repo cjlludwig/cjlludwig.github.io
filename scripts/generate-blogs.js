@@ -95,7 +95,11 @@ function configureMarked() {
           .toLowerCase()
           .replace(/[^\w\s-]/g, '')
           .replace(/\s+/g, '-')
-        return `<h${level} id="${id}">${text}</h${level}>\n`
+        // GitHub-readme-style anchor: a hover-revealed "#" link next to the heading
+        // text that updates the URL hash for sharing, without making the whole
+        // heading itself a link.
+        const anchor = `<a href="#${id}" class="header-anchor" aria-label="Link to this section">#</a>`
+        return `<h${level} id="${id}">${text}${anchor}</h${level}>\n`
       },
       // Synchronous renderer: looks up pre-computed Shiki HTML from cache
       // Note: marked v13 calls code(text, lang, escaped) — not a token object

@@ -74,6 +74,22 @@ function BlogPost({ post, darkMode }) {
     return () => io.disconnect()
   }, [post])
 
+  // Scroll to the heading referenced by the URL hash (e.g. a shared link to
+  // /blog/slug/#some-heading). React replaces the article's HTML on mount, which
+  // can beat or clobber the browser's native fragment scroll, so do it ourselves
+  // once the content is in the DOM.
+  useEffect(() => {
+    if (!post || !contentRef.current) return
+    const hash = window.location.hash
+    if (!hash) return
+    const id = decodeURIComponent(hash.slice(1))
+    const target = contentRef.current.querySelector(`#${CSS.escape(id)}`)
+    if (!target) return
+    requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+  }, [post])
+
   useEffect(() => {
     if (!post || !contentRef.current) return
     contentRef.current.querySelectorAll('.code-block').forEach((block) => {
