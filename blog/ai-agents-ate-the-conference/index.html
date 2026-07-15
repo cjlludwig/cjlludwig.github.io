@@ -88,8 +88,8 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-BhwKzi5v.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-v4LG5FeD.css">
+    <script type="module" crossorigin src="/assets/index-CK51fLjs.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-PaK9e3EG.css">
   </head>
   <body>
     <div id="root">
@@ -100,13 +100,13 @@
           <time datetime="2025-12-08">December 8, 2025</time>
         </header>
         <div class="blog-content">
-          <h1 id="ai-agents-ate-the-conference">AI Agents Ate the Conference</h1>
+          <h1 id="ai-agents-ate-the-conference">AI Agents Ate the Conference<a href="#ai-agents-ate-the-conference" class="header-anchor" aria-label="Link to this section">#</a></h1>
 <p>Another re:Invent is in the books, or as I like to call it, <strong>Cowboys and Coders Week</strong>. The PBR championship always lands on the same dates, so the Strip fills up with a strange mix of hoodies, boots, and people loudly comparing Cybertrucks to F-150s.  </p>
 <p>I walked away with plenty of technical notes, but the real value of re:Invent has always been the <strong>industry temperature check</strong>. You get tens of thousands of engineers across every company size and maturity level all wrestling with similar problems. This year, the collective mood around AI and agents felt especially sharp:<br> <strong>we’re all still figuring this out, even the AWS teams building the tools.</strong></p>
 <hr>
-<h2 id="the-leadershipengineering-perception-gap">The Leadership–Engineering Perception Gap</h2>
+<h2 id="the-leadershipengineering-perception-gap">The Leadership–Engineering Perception Gap<a href="#the-leadershipengineering-perception-gap" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>One theme kept resurfacing in keynotes, chalk talks, and hallway conversations:<br><strong>leaders and engineers are not talking about the same kind of “agents.”</strong></p>
-<h3 id="what-leaders-are-saying">What leaders are saying</h3>
+<h3 id="what-leaders-are-saying">What leaders are saying<a href="#what-leaders-are-saying" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>If you watched the <a href="https://reinvent.awsevents.com/keynotes/">re:Invent keynotes</a>, you saw a pitch for highly capable, nearly autonomous agent systems:</p>
 <ul>
 <li>Acting independently  </li>
@@ -115,7 +115,7 @@
 <li>Reasoning and adapting with minimal supervision</li>
 </ul>
 <p>It’s an inspiring narrative that occasionally feels like a recruiting pitch for AGI.</p>
-<h3 id="what-engineers-are-actually-building">What engineers are actually building</h3>
+<h3 id="what-engineers-are-actually-building">What engineers are actually building<a href="#what-engineers-are-actually-building" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>The engineers presenting the 400/500-level sessions told a very different story:</p>
 <ul>
 <li>Production agents are not monolithic super-intelligences.  </li>
@@ -125,11 +125,11 @@
 </ul>
 <p>Multiple sessions quietly converged on the same rules of thumb for production agents: most useful ones end up making binary decisions in practice, things like &quot;rotate traffic&quot; or &quot;hold steady.&quot; They work best when they only read from one or two input streams. Teams increasingly run them as sidecars so that when they misbehave the blast radius stays small. Swarms did get mentioned, but usually as something people tried, then backed away from because the operational overhead was not worth it.</p>
 <p>Not exactly the sci-fi ideal of end-to-end autonomy.</p>
-<h3 id="why-the-gap-matters">Why the gap matters</h3>
+<h3 id="why-the-gap-matters">Why the gap matters<a href="#why-the-gap-matters" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>Leadership hears “autonomous coworkers.”<br>Engineers hear “a lattice of brittle reasoning units that each require a test suite.”  </p>
 <p>Both perspectives contain truth, but the mismatch is already creating friction inside engineering orgs. Bridging that expectation gap will be essential for successful agent launches.</p>
 <hr>
-<h2 id="the-coding-benchmark-illusion">The Coding Benchmark Illusion</h2>
+<h2 id="the-coding-benchmark-illusion">The Coding Benchmark Illusion<a href="#the-coding-benchmark-illusion" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>A session from the AGI team on frontier model benchmarking took aim at well-known “85% coding score” from frontier models.</p>
 <p>Leadership interpretation:  </p>
 <blockquote>
@@ -145,9 +145,9 @@
 <p>The score at the bottom is <strong>a fraction of a fraction of a fraction</strong> of actual engineering capability. That nuance often evaporates when the stat hits a slide deck, and expectations drift accordingly.</p>
 <p>That illusion gets worse over time. Eval datasets are increasingly contaminated, frontier models are now &quot;seeing&quot; a meaningful chunk of the test set during training, and small changes to prompts or decoding parameters can move scores more than most slide decks admit. We compress a messy, non deterministic capability space into a tidy number that looks scientific, but often is not measuring what we think it is.</p>
 <hr>
-<h2 id="workflows-graphs-and-swarms-the-great-agent-design-schism">Workflows, Graphs, and Swarms: The Great Agent Design Schism</h2>
+<h2 id="workflows-graphs-and-swarms-the-great-agent-design-schism">Workflows, Graphs, and Swarms: The Great Agent Design Schism<a href="#workflows-graphs-and-swarms-the-great-agent-design-schism" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>Another pattern surfaced across sessions.</p>
-<h3 id="what-the-advanced-sessions-endorsed">What the advanced sessions endorsed</h3>
+<h3 id="what-the-advanced-sessions-endorsed">What the advanced sessions endorsed<a href="#what-the-advanced-sessions-endorsed" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>Most 400/500-level talks promoted structured workflows with optional business-intent orchestration. Think:</p>
 <ul>
 <li>Task-specific agents with clear responsibilities  </li>
@@ -156,7 +156,7 @@
 <li>A grounded, production-ready architecture</li>
 </ul>
 <p>The clearest example came from AWS’s new work on <strong>Lambda Durable Functions</strong>, which formalizes multi-step workflows and long-running agentic patterns. It’s worth reading the announcement:<br><a href="https://aws.amazon.com/blogs/aws/build-multi-step-applications-and-ai-workflows-with-aws-lambda-durable-functions/">Build Multi-Step Applications and AI Workflows with AWS Lambda Durable Functions</a>.</p>
-<h3 id="what-the-mid-level-sessions-showcased">What the mid-level sessions showcased</h3>
+<h3 id="what-the-mid-level-sessions-showcased">What the mid-level sessions showcased<a href="#what-the-mid-level-sessions-showcased" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>The 200/300 tracks leaned toward chat-centric demos:</p>
 <ul>
 <li>Dynamic graphs where sub-agents act as tools  </li>
@@ -164,7 +164,7 @@
 <li>Occasional references to <strong>swarms</strong>, usually with very few implementation details</li>
 </ul>
 <p>Swarm examples mostly appeared in keynotes, which didn’t help make the case for real-world scalability.</p>
-<h3 id="the-deeper-issue">The deeper issue</h3>
+<h3 id="the-deeper-issue">The deeper issue<a href="#the-deeper-issue" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>We use <strong>“agent”</strong> to describe:</p>
 <ul>
 <li>Structured workflows  </li>
@@ -174,7 +174,7 @@
 </ul>
 <p>With a vocabulary that broad, it’s no surprise teams talk past each other. A shared mental model is still emerging.</p>
 <hr>
-<h2 id="the-rise-of-ai-native-development-almost">The Rise of AI-Native Development (…Almost)</h2>
+<h2 id="the-rise-of-ai-native-development-almost">The Rise of AI-Native Development (…Almost)<a href="#the-rise-of-ai-native-development-almost" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>In conversations with other engineers, tool adoption felt uneven. Cursor, Copilot, and Kiro are gaining traction, but they’re still far from universal.</p>
 <p>Many sessions focused on the mindset shift required to make these tools effective. No matter the name—<em>spec-driven development</em>, <em>context engineering</em>, or something similar—the message was consistent:<br>AI is only a force multiplier once we change <strong>how</strong> we work, not just which IDE we use.</p>
 <p>For a good summary of the broader trend, these pieces from AWS and industry analysts capture it well:</p>
@@ -183,11 +183,11 @@
 <li><em>The Kernel</em>: <a href="https://thekernel.news/articles/dawn-of-the-renaissance-developer/">Dawn of the Renaissance Developer</a></li>
 </ul>
 <hr>
-<h2 id="fine-tuning-more-accessible-still-optional">Fine-Tuning: More Accessible, Still Optional</h2>
+<h2 id="fine-tuning-more-accessible-still-optional">Fine-Tuning: More Accessible, Still Optional<a href="#fine-tuning-more-accessible-still-optional" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>My team has avoided fine-tuning because doing it safely in production takes specialized expertise. This year’s SageMaker announcements lower that barrier significantly.</p>
 <p>Right-sized and tuned models are becoming more compelling for targeted tasks, but my position hasn’t changed:<br><strong>start with off-the-shelf models, ship the MVP, then optimize.</strong><br>Fine-tuning remains an optimization path, not a default strategy.</p>
 <hr>
-<h2 id="great-non-agent-announcements-that-got-buried">Great Non-Agent Announcements That Got Buried</h2>
+<h2 id="great-non-agent-announcements-that-got-buried">Great Non-Agent Announcements That Got Buried<a href="#great-non-agent-announcements-that-got-buried" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>The agent wave overshadowed several genuinely useful platform updates. Among the ones that deserved more attention:</p>
 <ul>
 <li><strong>Database Cost Planner</strong>: <a href="https://aws.amazon.com/blogs/aws/introducing-database-savings-plans-for-aws-databases/">Introducing Database Savings Plans for AWS Databases</a></li>
@@ -196,7 +196,7 @@
 </ul>
 <p>Some team absolutely spent a year shipping these capabilities only to get overshadowed by agent demos. I salute them.</p>
 <hr>
-<h2 id="werner-vogels-voice-of-reason-again">Werner Vogels, Voice of Reason (Again)</h2>
+<h2 id="werner-vogels-voice-of-reason-again">Werner Vogels, Voice of Reason (Again)<a href="#werner-vogels-voice-of-reason-again" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>Werner delivered one of the strongest keynotes this year, and it’s worth watching:  </p>
 <ul>
 <li><strong>CTO Keynote:</strong> <a href="https://www.youtube.com/watch?v=3Y1G9najGiI">https://www.youtube.com/watch?v=3Y1G9najGiI</a></li>
@@ -220,7 +220,7 @@
 <p>It hit especially hard after attending a session on self-evolving agents where no one could clearly explain how accountability works once you remove HITL. If there’s no human on the hook, how do you trust the system at all?</p>
 <p>Werner’s stance was refreshing:<br><strong>human review stays in the loop, and ownership remains with the developer.</strong></p>
 <hr>
-<h2 id="the-important-stats">The Important Stats</h2>
+<h2 id="the-important-stats">The Important Stats<a href="#the-important-stats" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <ul>
 <li><strong>Sessions attended:</strong> 13 + 4 keynotes  </li>
 <li><strong>Steps walked:</strong> 68,300  </li>
@@ -232,7 +232,7 @@
 <li><strong>Cups of coffee:</strong> ∞</li>
 </ul>
 <hr>
-<h2 id="final-thanks">Final Thanks</h2>
+<h2 id="final-thanks">Final Thanks<a href="#final-thanks" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>Huge thanks to <strong>Built Technologies</strong> for investing in employee upskilling and giving me the chance to attend. I always come back from re:Invent with fresh ideas, but this year felt especially pivotal. The agent landscape is evolving fast, and it’s clear we’re still only at the beginning of figuring out what production grade agents actually look like in practice.</p>
 
         </div>

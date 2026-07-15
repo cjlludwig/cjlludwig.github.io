@@ -88,8 +88,8 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-BhwKzi5v.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-v4LG5FeD.css">
+    <script type="module" crossorigin src="/assets/index-CK51fLjs.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-PaK9e3EG.css">
   </head>
   <body>
     <div id="root">
@@ -100,8 +100,8 @@
           <time datetime="2025-12-01">December 1, 2025</time>
         </header>
         <div class="blog-content">
-          <h1 id="model-privacy-assessments-in-modern-genai-systems">Model Privacy Assessments in Modern GenAI Systems</h1>
-<h2 id="tldr">TLDR</h2>
+          <h1 id="model-privacy-assessments-in-modern-genai-systems">Model Privacy Assessments in Modern GenAI Systems<a href="#model-privacy-assessments-in-modern-genai-systems" class="header-anchor" aria-label="Link to this section">#</a></h1>
+<h2 id="tldr">TLDR<a href="#tldr" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>GenAI systems leak more than you think—often without directly exposing raw data.</li>
 <li>Reconstruction and attribute-inference attacks are surprisingly easy due to model generalization.</li>
@@ -110,8 +110,8 @@
 <li>Treat RAG systems as unbounded input pipelines that require strong and layered defenses.</li>
 </ul>
 <p>Privacy in GenAI is one of those topics where the more you learn, the more you realize how many places things can go wrong. This session walked through the core attack types, why they’re so effective on generative systems, and the modern defensive stack for mitigating real-world risk.</p>
-<h2 id="the-core-attack-surfaces">The Core Attack Surfaces</h2>
-<h3 id="reconstruction-attacks">Reconstruction Attacks</h3>
+<h2 id="the-core-attack-surfaces">The Core Attack Surfaces<a href="#the-core-attack-surfaces" class="header-anchor" aria-label="Link to this section">#</a></h2>
+<h3 id="reconstruction-attacks">Reconstruction Attacks<a href="#reconstruction-attacks" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>Reconstruction attacks attempt to approximate or recreate the original training data simply by <strong>asking the model enough cleverly structured questions</strong>.</p>
 <p>GenAI is particularly vulnerable because:</p>
 <ul>
@@ -120,7 +120,7 @@
 <li>Adversaries don’t need internal access—just repeated queries.</li>
 </ul>
 <p>The net effect: if sensitive data was in the model’s training corpus, an attacker can often coax fragments or approximations back out.</p>
-<h3 id="attribute-inference-attacks">Attribute Inference Attacks</h3>
+<h3 id="attribute-inference-attacks">Attribute Inference Attacks<a href="#attribute-inference-attacks" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>Attribute inference attacks rely on <strong>partial knowledge</strong> of a record to derive hidden or restricted fields.<br>Example pattern:</p>
 <ul>
 <li>Attacker knows a user’s name or ID.</li>
@@ -128,8 +128,8 @@
 <li>The model may output something statistically “likely” based on its training exposure.</li>
 </ul>
 <p>This becomes especially dangerous in RAG or agentic systems where the model has broader context access and may behave more confidently.</p>
-<h2 id="defense-strategies-for-practical-deployments">Defense Strategies for Practical Deployments</h2>
-<h3 id="pii-masking-guardrails">PII Masking Guardrails</h3>
+<h2 id="defense-strategies-for-practical-deployments">Defense Strategies for Practical Deployments<a href="#defense-strategies-for-practical-deployments" class="header-anchor" aria-label="Link to this section">#</a></h2>
+<h3 id="pii-masking-guardrails">PII Masking Guardrails<a href="#pii-masking-guardrails" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>Guardrails act as the first line of defense for <strong>explicit</strong> PII leakage. The session highlighted two high-value placements:</p>
 <ol>
 <li><p><strong>Outbound Response Filtering</strong><br>Prevents the model from returning raw PII even if it retrieved something sensitive.</p>
@@ -138,7 +138,7 @@
 </li>
 </ol>
 <p>This layering ensures that neither queries nor responses become vehicles for privacy compromise.</p>
-<h3 id="privacy-masking-small-sample-pitfalls">Privacy Masking &amp; Small-Sample Pitfalls</h3>
+<h3 id="privacy-masking-small-sample-pitfalls">Privacy Masking &amp; Small-Sample Pitfalls<a href="#privacy-masking-small-sample-pitfalls" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>Even if explicit fields are masked, there’s a subtle but serious issue:</p>
 <p>Low sample sizes allow attackers to infer identities by exploiting <strong>statistical uniqueness</strong>.<br>For example:</p>
 <ul>
@@ -146,7 +146,7 @@
 <li>A retrieval pattern that accidentally signals a unique match.</li>
 </ul>
 <p>This is where things shift from guardrails into formal privacy engineering.</p>
-<h3 id="differentially-private-generation">Differentially Private Generation</h3>
+<h3 id="differentially-private-generation">Differentially Private Generation<a href="#differentially-private-generation" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>For high-risk cases, the recommended mitigation is <strong>Differential Privacy (DP)</strong> applied to generative outputs.</p>
 <p>Conceptually:</p>
 <ul>
@@ -155,7 +155,7 @@
 <li>Ensure that adding or removing one person’s record doesn’t noticeably shift the model’s behavior.</li>
 </ul>
 <p>DP goes beyond heuristic masking. It gives you a measurable privacy guarantee tied to the epsilon (ɛ) budget.</p>
-<h2 id="key-takeaways">Key Takeaways</h2>
+<h2 id="key-takeaways">Key Takeaways<a href="#key-takeaways" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <ul>
 <li><strong>Privacy is multi-layered.</strong> It isn’t only about preventing direct exposure but also preventing inference-based reconstruction.</li>
 <li><strong>RAG and agentic systems expand the attack surface.</strong> Unbounded inputs and dynamic retrieval require stronger scrutiny than static LLMs.</li>
@@ -163,7 +163,7 @@
 <li><strong>Apply masking and guardrails everywhere.</strong> Ingestion → query → retrieval → response.</li>
 <li><strong>Use differential privacy for outlier cases.</strong> When data density is low or risk tolerance is near zero, noise becomes your friend.</li>
 </ul>
-<h2 id="further-reading-resources">Further Reading / Resources</h2>
+<h2 id="further-reading-resources">Further Reading / Resources<a href="#further-reading-resources" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>AWS re:Invent Session Catalog: <a href="https://reinvent.awsevents.com/">https://reinvent.awsevents.com/</a></li>
 <li>AWS Bedrock Guardrails documentation: <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html">https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html</a>  </li>

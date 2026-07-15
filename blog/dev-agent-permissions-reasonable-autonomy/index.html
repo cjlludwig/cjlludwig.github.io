@@ -88,8 +88,8 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-BhwKzi5v.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-v4LG5FeD.css">
+    <script type="module" crossorigin src="/assets/index-CK51fLjs.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-PaK9e3EG.css">
   </head>
   <body>
     <div id="root">
@@ -106,7 +106,7 @@
 <p>I’ve landed somewhere in the middle. Lenient reads and web searches. Loose edits inside repo directories with version control as the backstop. Strict denies around deletes and destructive git operations. The goal is fast planning and iteration, paired with deliberate pushes and rollbacks.</p>
 <p>Anthropic’s reference configs are a useful starting point:<br><a href="https://github.com/anthropics/claude-code/tree/main/examples/settings">https://github.com/anthropics/claude-code/tree/main/examples/settings</a></p>
 <p>But they mostly demonstrate the extremes. In practice, serious workflows live in the middle.</p>
-<h2 id="permission-layers">Permission Layers</h2>
+<h2 id="permission-layers">Permission Layers<a href="#permission-layers" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>The mental model that unlocked this for me is simple. Permissions behave like a firewall.</p>
 <p><code>Deny -&gt; Ask -&gt; Allow</code></p>
 <p>More precisely, rules are evaluated in order of authority. Deny rules take precedence. Ask rules trigger an explicit prompt. Allow rules auto-approve. Anything not matched falls back to an interactive prompt.</p>
@@ -121,7 +121,7 @@
 </ul>
 <p>The move is straightforward but powerful. Push universally safe rules up. Push restrictive, context-specific protections down.</p>
 <p>Reads and web access are safe everywhere. Those belong in global. Destructive operations and configuration protections are repo-scoped concerns. Those belong in project settings. If something is truly universal and low risk, let it live at the top. If it can damage a specific codebase, keep it close to the code.</p>
-<h2 id="tiers-of-trust">Tiers of Trust</h2>
+<h2 id="tiers-of-trust">Tiers of Trust<a href="#tiers-of-trust" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>From there, I think in three tiers of trust.</p>
 <p>First is lenient. Auto-allow read-only operations like Read, WebFetch, and WebSearch. These are inherently non-destructive. Removing these prompts eliminates the highest-frequency friction with essentially no increase in risk. This is the biggest quality-of-life win. Claude can explore your codebase and reference documentation freely without interrupting your flow.</p>
 <p>Second is loose. Broad Edit and Write permissions are what make the agent actually useful. This is where people get nervous. But source code is version-controlled. Git is your undo button.</p>
@@ -130,15 +130,15 @@
 <p>Third is strict. Hard deny destructive commands such as <code>rm</code>, <code>rmdir</code>, <code>git clean</code>, <code>git reset --hard</code>, <code>git checkout --</code>, and <code>git restore</code>. These are the operations where a mistake costs real work. Because deny rules take precedence, even a broad <code>Bash(*)</code> allow cannot override them. This is your circuit breaker layer.</p>
 <p>Bash deserves special attention. File edits are scoped to your repo. Bash can touch the entire system. That asymmetry matters. Wildcard denies like <code>Bash(rm *)</code> let you block categories of destructive intent without preventing useful commands like <code>npm run tsc</code> or <code>make</code>. You don’t need to enumerate every safe command. Handle the extremes and let ask rules absorb the ambiguous middle.</p>
 <p>One subtle but important insight is that you don’t need a rule for everything. Anything not explicitly denied, asked, or allowed will prompt. Commands like <code>git push</code>, <code>npm install</code>, or <code>curl</code> naturally land in that interactive middle unless you explicitly categorize them. That implicit prompt layer is a feature, not a flaw. It preserves friction where you haven’t yet built conviction.</p>
-<h2 id="putting-it-together">Putting it Together</h2>
+<h2 id="putting-it-together">Putting it Together<a href="#putting-it-together" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>What ultimately changed my thinking was realizing the default “prompt for everything” UX is not annoying safety theater. It’s the correct starting posture. You earn automation by understanding your workflow, not by disabling friction wholesale. You start conservative, observe where prompts are high-frequency and low-risk, then promote those into allow rules. You identify irreversible risks, then lock those into deny.</p>
 <p>The temptation with agents is to optimize for velocity. But what you actually want is calibrated autonomy. Fast on read-only operations. Confident on reversible mutations. Explicitly confirmed on boundary-crossing actions. Paranoid on destructive ones.</p>
 <p>The official examples skew either lax or ultra-strict. Most engineers want something else: low-noise exploration, high-speed iteration, intentional confirmation at trust boundaries, and hard stops on anything that can nuke state.</p>
 <p>For me, the three-tier model fills that gap cleanly. Read-only operations get full trust. Reversible mutations get conditional trust with guardrails. Irreversible destructive operations get zero trust. Everything else lives in a deliberate ask layer until proven safe.</p>
 <p>The result is an agent that moves quickly when it’s safe, pauses when it should, and stops entirely when it must. That’s the balance I’m aiming for.</p>
-<h2 id="examples">Examples</h2>
+<h2 id="examples">Examples<a href="#examples" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>Here are some practical examples that you can drop into your own workflows.</p>
-<h3 id="global-settings">Global Settings</h3>
+<h3 id="global-settings">Global Settings<a href="#global-settings" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p><code>~/.claude/settings.json</code> - Managed across the full machine or configured at enterprise level.</p>
 <div class="code-block" data-lang="json">
   <div class="code-block-header">
@@ -163,7 +163,7 @@
 <span class="line"><span style="color:#ADBAC7">}</span></span>
 <span class="line"></span></code></pre>
 </div>
-<h3 id="project-shared-settings">Project-shared Settings</h3>
+<h3 id="project-shared-settings">Project-shared Settings<a href="#project-shared-settings" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p><code>.claude/settings.json</code> — checked into git, shared with all contributors</p>
 <div class="code-block" data-lang="json">
   <div class="code-block-header">
@@ -190,7 +190,7 @@
 <span class="line"><span style="color:#ADBAC7">  }</span></span>
 <span class="line"><span style="color:#ADBAC7">}</span></span></code></pre>
 </div>
-<h3 id="project-local-overrides">Project-local Overrides</h3>
+<h3 id="project-local-overrides">Project-local Overrides<a href="#project-local-overrides" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p><code>.claude/settings.local.json</code> — git-ignored, personal workflow preferences</p>
 <div class="code-block" data-lang="json">
   <div class="code-block-header">

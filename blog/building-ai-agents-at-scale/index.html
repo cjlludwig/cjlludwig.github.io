@@ -88,8 +88,8 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-BhwKzi5v.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-v4LG5FeD.css">
+    <script type="module" crossorigin src="/assets/index-CK51fLjs.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-PaK9e3EG.css">
   </head>
   <body>
     <div id="root">
@@ -100,8 +100,8 @@
           <time datetime="2025-12-03T00:00:00Z">December 3, 2025</time>
         </header>
         <div class="blog-content">
-          <h1 id="building-ai-agents-at-scale">Building AI Agents at Scale</h1>
-<h2 id="tldr">TLDR</h2>
+          <h1 id="building-ai-agents-at-scale">Building AI Agents at Scale<a href="#building-ai-agents-at-scale" class="header-anchor" aria-label="Link to this section">#</a></h1>
+<h2 id="tldr">TLDR<a href="#tldr" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>AWS framed agent growth as a progression: flexible → structured → scalable → multi-tenant.</li>
 <li>Multi-tenant isolation using JWT-derived tenant IDs was a highlight.</li>
@@ -110,11 +110,11 @@
 <li>Conversational agents alone are insufficient—production systems demand predictability.</li>
 </ul>
 <hr>
-<h2 id="from-chat-demos-to-production-ready-agents">From Chat Demos to Production-Ready Agents</h2>
+<h2 id="from-chat-demos-to-production-ready-agents">From Chat Demos to Production-Ready Agents<a href="#from-chat-demos-to-production-ready-agents" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>The workshop walked through the real-world lifecycle of agentic systems. Early versions typically start as flexible, chat-centric prototypes. Over time, requirements shift toward <strong>determinism</strong>, <strong>auditing</strong>, and <strong>strict routing</strong>, especially in multi-tenant SaaS environments.</p>
 <p>AWS used AgentCore and MCP registries to illustrate how this progression naturally unfolds: as capabilities expand, so must the structural safeguards around the agent.</p>
 <hr>
-<h2 id="tenant-segmented-agents-a-required-safety-layer">Tenant-Segmented Agents: A Required Safety Layer</h2>
+<h2 id="tenant-segmented-agents-a-required-safety-layer">Tenant-Segmented Agents: A Required Safety Layer<a href="#tenant-segmented-agents-a-required-safety-layer" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>One of the most practical demos showed the runtime automatically extracting a <strong>tenant_id from the user’s JWT</strong> and injecting it into every tool call. This ensured that Lambdas, REST APIs, and other backend tools were always scoped to the correct tenant.</p>
 <p>This approach prevents:</p>
 <ul>
@@ -124,18 +124,18 @@
 </ul>
 <p>The segmentation lives inside the agent definition rather than relying on the LLM to reason about tenant safety, making it especially attractive for ISVs and SaaS builders.</p>
 <hr>
-<h2 id="choosing-a-pattern-for-agentic-workflows">Choosing a Pattern for Agentic Workflows</h2>
+<h2 id="choosing-a-pattern-for-agentic-workflows">Choosing a Pattern for Agentic Workflows<a href="#choosing-a-pattern-for-agentic-workflows" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>Instead of treating &quot;agents&quot; as a one-size-fits-all solution, the workshop broke down four distinct architectural patterns. The value was in understanding when each should be applied.</p>
-<h3 id="orchestrator">Orchestrator</h3>
+<h3 id="orchestrator">Orchestrator<a href="#orchestrator" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>Ideal for <strong>early iteration and conversational front ends</strong>.<br>Highly flexible but weak in structure, determinism, and parallelism.</p>
-<h3 id="graph">Graph</h3>
+<h3 id="graph">Graph<a href="#graph" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>Ideal for <strong>fast, structured, deterministic flows</strong>.<br>Explicit nodes and transitions provide strong control but zero conversational flexibility.</p>
-<h3 id="workflow-engine">Workflow Engine</h3>
+<h3 id="workflow-engine">Workflow Engine<a href="#workflow-engine" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>Ideal for <strong>durable, auditable, production-grade orchestration</strong>.<br>Great for long-running or multi-system processes with retry and validation needs.</p>
-<h3 id="swarm">Swarm</h3>
+<h3 id="swarm">Swarm<a href="#swarm" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>Ideal for <strong>rich conversational experiences</strong>.<br>High flexibility but not suitable for business-critical or deterministic flows.</p>
 <hr>
-<h2 id="real-systems-combine-patterns">Real Systems Combine Patterns</h2>
+<h2 id="real-systems-combine-patterns">Real Systems Combine Patterns<a href="#real-systems-combine-patterns" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>One of the strongest messages from the workshop: <strong>mature agentic systems almost never use a single pattern.</strong></p>
 <p>Common progression:</p>
 <ol>
@@ -146,11 +146,11 @@
 </ol>
 <p>This approach balances flexibility with reliability as the system scales.</p>
 <hr>
-<h2 id="why-it-matters">Why It Matters</h2>
+<h2 id="why-it-matters">Why It Matters<a href="#why-it-matters" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>AWS reinforced that agentic capability isn&#39;t the hard part anymore—the surrounding <strong>architecture</strong> is.<br>Predictability, safety, auditability, and routing controls are what distinguish a demo from a production system.</p>
 <p>The agent is only as safe as the scaffolding around it. This workshop was all about building that scaffolding.</p>
 <hr>
-<h2 id="further-reading-resources">Further Reading / Resources</h2>
+<h2 id="further-reading-resources">Further Reading / Resources<a href="#further-reading-resources" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>AWS re:Invent Session Catalog: <a href="https://reinvent.awsevents.com/">https://reinvent.awsevents.com/</a></li>
 <li>AWS Documentation: <a href="https://docs.aws.amazon.com">https://docs.aws.amazon.com</a>  </li>

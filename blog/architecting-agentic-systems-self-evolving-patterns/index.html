@@ -88,8 +88,8 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-BhwKzi5v.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-v4LG5FeD.css">
+    <script type="module" crossorigin src="/assets/index-CK51fLjs.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-PaK9e3EG.css">
   </head>
   <body>
     <div id="root">
@@ -100,8 +100,8 @@
           <time datetime="2025-12-02">December 2, 2025</time>
         </header>
         <div class="blog-content">
-          <h1 id="architecting-agentic-systems-self-evolving-patterns-for-autonomous-ops">Architecting Agentic Systems: Self-Evolving Patterns for Autonomous Ops</h1>
-<h2 id="tldr">TLDR</h2>
+          <h1 id="architecting-agentic-systems-self-evolving-patterns-for-autonomous-ops">Architecting Agentic Systems: Self-Evolving Patterns for Autonomous Ops<a href="#architecting-agentic-systems-self-evolving-patterns-for-autonomous-ops" class="header-anchor" aria-label="Link to this section">#</a></h1>
+<h2 id="tldr">TLDR<a href="#tldr" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>Threat landscapes and system complexity are outpacing human-only operational models.  </li>
 <li>AWS advocates hierarchical, single-purpose agent patterns over swarms.  </li>
@@ -111,7 +111,7 @@
 <li>Continuous improvement loops and well-architected pillars frame how agents evolve over time.</li>
 </ul>
 <p>The session laid out a pragmatic blueprint for designing agentic systems that improve themselves while remaining governable. Much of it echoed what many engineering teams (including ours) have learned the hard way: complexity kills, and swarms amplify complexity faster than they deliver value.</p>
-<h2 id="the-expanding-threat-landscape-and-why-agents-matter">The Expanding Threat Landscape and Why Agents Matter</h2>
+<h2 id="the-expanding-threat-landscape-and-why-agents-matter">The Expanding Threat Landscape and Why Agents Matter<a href="#the-expanding-threat-landscape-and-why-agents-matter" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>Modern systems have ballooned in complexity—distributed architectures, ephemeral compute, sprawling integrations, and an attack surface that grows geometrically. Traditional operational approaches are still largely reactive: alerts fire, humans respond, and root causes are analyzed after the fact.</p>
 <p>The premise was simple. Humans alone can’t keep up. Agents need to shoulder more of the operational burden, growing in expertise alongside engineers rather than replacing them.</p>
 <p>AWS framed this shift across five well-architected pillars:</p>
@@ -123,10 +123,10 @@
 <li><strong>Cost</strong>: anomaly detection and optimization guidance</li>
 </ul>
 <p>These aren’t meant to be solved by one mega-agent. They are domains where <em>specialized</em> agents can thrive.</p>
-<h2 id="observability-as-the-foundation">Observability as the Foundation</h2>
+<h2 id="observability-as-the-foundation">Observability as the Foundation<a href="#observability-as-the-foundation" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>The talk emphasized that observability is the raw material of effective agent systems. AWS mapped each pillar to the supporting services teams already know: CloudWatch, Systems Manager, GuardDuty, Security Hub, Config, Auto Scaling, ELB, Route 53, X-Ray, Cost Explorer, and Compute Optimizer.</p>
 <p>In other words, before expecting agents to act intelligently, you must give them structured, high-quality signals.</p>
-<h2 id="key-components-of-agentic-systems">Key Components of Agentic Systems</h2>
+<h2 id="key-components-of-agentic-systems">Key Components of Agentic Systems<a href="#key-components-of-agentic-systems" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>The session outlined the major building blocks required to run agents at enterprise scale:</p>
 <ul>
 <li><strong>Agent Orchestrator</strong> to coordinate agent roles and manage cross-pillar learning  </li>
@@ -136,10 +136,10 @@
 <li><strong>Learning Mechanisms</strong> including reinforcement loops and continuous improvement</li>
 </ul>
 <p>The design encourages systems that evolve but remain predictable.</p>
-<h2 id="why-agent-swarms-become-a-nightmare">Why Agent Swarms Become a Nightmare</h2>
+<h2 id="why-agent-swarms-become-a-nightmare">Why Agent Swarms Become a Nightmare<a href="#why-agent-swarms-become-a-nightmare" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>One of the most validating moments was the explicit acknowledgment that swarm architectures often fail. They’re difficult to debug, impossible to observe holistically, and create emergent behaviors that teams can’t predict or govern. This mirrors what many orgs (including ours) have seen firsthand.</p>
 <p>AWS’s recommendation was clear:<br><strong>Prefer hierarchical systems with narrowly scoped agents that report into an orchestrator.</strong></p>
-<h2 id="simplicity-as-a-design-constraint">Simplicity as a Design Constraint</h2>
+<h2 id="simplicity-as-a-design-constraint">Simplicity as a Design Constraint<a href="#simplicity-as-a-design-constraint" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>Several design heuristics stood out:</p>
 <ul>
 <li>Keep agents single-purpose.  </li>
@@ -149,10 +149,10 @@
 <li>Deploy agents as sidecars to minimize unintended blast radius.</li>
 </ul>
 <p>They also noted they haven’t fully evaluated the risk profile of adversarial manipulation of sidecar agents, which was surprisingly candid.</p>
-<h2 id="a-demo-of-goal-driven-agents">A Demo of Goal-Driven Agents</h2>
+<h2 id="a-demo-of-goal-driven-agents">A Demo of Goal-Driven Agents<a href="#a-demo-of-goal-driven-agents" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>The walkthrough example focused on reducing cart abandonment. Each specialized agent contributed signals tied to operational, security, resilience, performance, or cost insights. The orchestrator aligned these signals to the business goal and selected actions accordingly.</p>
 <p>The important takeaway wasn’t the e-commerce domain but the pattern:<br><strong>business goals → orchestrator → specialized agents → system actions → measurable outcomes.</strong></p>
-<h2 id="continuous-improvement-a-self-evolving-loop">Continuous Improvement: A Self-Evolving Loop</h2>
+<h2 id="continuous-improvement-a-self-evolving-loop">Continuous Improvement: A Self-Evolving Loop<a href="#continuous-improvement-a-self-evolving-loop" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>Agents sit inside a continuous improvement cycle:</p>
 <ol>
 <li>Monitoring and data collection  </li>
@@ -162,10 +162,10 @@
 <li>Adaptation and refinement</li>
 </ol>
 <p>This ensures agents don’t stagnate and instead accumulate knowledge and improve over time.</p>
-<h2 id="accountability-the-hardest-open-question">Accountability: The Hardest Open Question</h2>
+<h2 id="accountability-the-hardest-open-question">Accountability: The Hardest Open Question<a href="#accountability-the-hardest-open-question" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>In traditional systems, decision-makers are accountable for outcomes. When agents make decisions autonomously, who is accountable?</p>
 <p>The speaker agreed this is a core blocker for enterprise adoption. While they think accountability can work for discrete, narrow agents, the system-wide question remains unanswered. Their advice: be cautious, start small, and avoid early overreach.</p>
-<h2 id="further-reading-resources">Further Reading / Resources</h2>
+<h2 id="further-reading-resources">Further Reading / Resources<a href="#further-reading-resources" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>AWS Well-Architected Framework: <a href="https://aws.amazon.com/architecture/well-architected">https://aws.amazon.com/architecture/well-architected</a>  </li>
 <li>Amazon Bedrock Agents: <a href="https://aws.amazon.com/bedrock/agents/">https://aws.amazon.com/bedrock/agents/</a>  </li>

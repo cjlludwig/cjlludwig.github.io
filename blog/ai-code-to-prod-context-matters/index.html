@@ -88,8 +88,8 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-BhwKzi5v.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-v4LG5FeD.css">
+    <script type="module" crossorigin src="/assets/index-CK51fLjs.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-PaK9e3EG.css">
   </head>
   <body>
     <div id="root">
@@ -100,8 +100,8 @@
           <time datetime="2025-12-02">December 2, 2025</time>
         </header>
         <div class="blog-content">
-          <h1 id="ai-code-to-prod-why-context-matters-more-than-vibes-kiro-overview">AI Code to Prod: Why Context Matters More Than Vibes (Kiro Overview)</h1>
-<h2 id="tldr">TLDR</h2>
+          <h1 id="ai-code-to-prod-why-context-matters-more-than-vibes-kiro-overview">AI Code to Prod: Why Context Matters More Than Vibes (Kiro Overview)<a href="#ai-code-to-prod-why-context-matters-more-than-vibes-kiro-overview" class="header-anchor" aria-label="Link to this section">#</a></h1>
+<h2 id="tldr">TLDR<a href="#tldr" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>“Vibe coding” works for demos, not for production engineering.</li>
 <li>Domain context—not just instructions—is the top predictor of AI code success.</li>
@@ -111,7 +111,7 @@
 </ul>
 <p>AI-generated code is moving fast, but the methods we use to guide that code are moving even faster. This session unpacked the shift from loose, vibes-based prompting to a more engineered, context-rich approach for getting LLM-generated code into production safely. The speakers called this emerging role the <em>context architect</em>—a label that might be a bit broad, but the underlying idea is solid: production AI needs structure.</p>
 <hr>
-<h2 id="from-vibe-coder-to-context-architect">From Vibe Coder to Context Architect</h2>
+<h2 id="from-vibe-coder-to-context-architect">From Vibe Coder to Context Architect<a href="#from-vibe-coder-to-context-architect" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>The presenters contrasted two archetypes:</p>
 <ul>
 <li><p><strong>The Vibe Coder</strong><br>Reactive. Throws vague prompts at a model. Great for throwing together demos. Asks “What?”</p>
@@ -122,7 +122,7 @@
 <p>The core argument: LLMs are generalists. Without strong domain constraints and company-specific context, they drift. Most AI code failures have nothing to do with the LLM and everything to do with missing domain guardrails.</p>
 <p>So the shift isn’t away from creativity—it’s toward <em>intentional scaffolding.</em></p>
 <hr>
-<h2 id="why-domain-context-is-the-make-or-break-variable">Why Domain Context Is the Make-or-Break Variable</h2>
+<h2 id="why-domain-context-is-the-make-or-break-variable">Why Domain Context Is the Make-or-Break Variable<a href="#why-domain-context-is-the-make-or-break-variable" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>One of the more direct points: <strong>domain specificity is the top reason AI-generated code fails in real systems.</strong></p>
 <p>Notably:</p>
 <ul>
@@ -132,7 +132,7 @@
 </ul>
 <p>The message was clear: If you want production outcomes, treat the LLM like a junior engineer—give it the background, the constraints, and the “why,” not just the task.</p>
 <hr>
-<h2 id="structured-prompting-more-planning-fewer-surprises">Structured Prompting: More Planning, Fewer Surprises</h2>
+<h2 id="structured-prompting-more-planning-fewer-surprises">Structured Prompting: More Planning, Fewer Surprises<a href="#structured-prompting-more-planning-fewer-surprises" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>The session pushed a move from open-ended vibes to plan/spec workflows.<br>The benefits:</p>
 <ul>
 <li>Clearer expectations for the model.</li>
@@ -142,21 +142,21 @@
 </ul>
 <p>This mirrored real-world engineering: spend a little more time upfront so you don&#39;t spend five times more debugging later.</p>
 <hr>
-<h2 id="kiro-awss-take-on-ai-assisted-structured-development">Kiro: AWS’s Take on AI-Assisted Structured Development</h2>
+<h2 id="kiro-awss-take-on-ai-assisted-structured-development">Kiro: AWS’s Take on AI-Assisted Structured Development<a href="#kiro-awss-take-on-ai-assisted-structured-development" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>The live demo used <strong>Kiro</strong>, AWS&#39;s coding tool built around structured AI workflows. Two notable modes:</p>
 <ul>
 <li><strong>Vibe Mode</strong>: Quick and loose.</li>
 <li><strong>Spec Mode</strong>: Structured, step-based, reviewable.</li>
 </ul>
 <p>A few standout features:</p>
-<h3 id="steering-rules">Steering Rules</h3>
+<h3 id="steering-rules">Steering Rules<a href="#steering-rules" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>Similar to Cursor’s rules engine. Kiro supports tiers of rule types to influence the agent.<br>You can:</p>
 <ul>
 <li>Auto-generate rules from the existing codebase (they didn’t fully stress-test this live).</li>
 <li>Define project conventions.</li>
 <li>Control stylistic or safety constraints.</li>
 </ul>
-<h3 id="kiro-cli-visibility">Kiro CLI Visibility</h3>
+<h3 id="kiro-cli-visibility">Kiro CLI Visibility<a href="#kiro-cli-visibility" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>The CLI exposes:</p>
 <ul>
 <li>Internal model behavior,</li>
@@ -165,7 +165,7 @@
 <li>Execution traces.</li>
 </ul>
 <p>This level of transparency is incredibly helpful for debugging why an LLM “did what it did” instead of guessing.</p>
-<h3 id="hooks">Hooks</h3>
+<h3 id="hooks">Hooks<a href="#hooks" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>Hooks let you define automated lifecycle steps using natural language.<br>Examples:</p>
 <ul>
 <li>Automatically write a unit test for any new logic.</li>
@@ -173,10 +173,10 @@
 <li>Validate schema or API contracts mid-run.</li>
 </ul>
 <p>This nudges AI agents into predictable workflows instead of free-form chat sessions.</p>
-<h3 id="natural-project-lifecycle">Natural Project Lifecycle</h3>
+<h3 id="natural-project-lifecycle">Natural Project Lifecycle<a href="#natural-project-lifecycle" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>One of the workflow highlights:<br>You can <em>start</em> with a vibe-coded idea, then have Kiro auto-generate a spec, then evolve steering rules as the project grows.<br>This creates a multi-phase loop that feels more like real engineering than prompting in a vacuum.</p>
 <hr>
-<h2 id="the-big-picture-shift">The Big Picture Shift</h2>
+<h2 id="the-big-picture-shift">The Big Picture Shift<a href="#the-big-picture-shift" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>The overarching theme:<br><strong>AI coding is growing up.</strong></p>
 <p>We’re moving beyond:</p>
 <ul>
@@ -190,7 +190,7 @@
 </ul>
 <p>This isn’t about over-engineering. It’s about bringing the same discipline we expect from human engineers into AI-assisted workflows.</p>
 <hr>
-<h2 id="open-questions-raised">Open Questions Raised</h2>
+<h2 id="open-questions-raised">Open Questions Raised<a href="#open-questions-raised" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>The session wrapped with good discussion points:</p>
 <ul>
 <li>How far can spec automation go before users regress to vibe prompts anyway?</li>
@@ -199,7 +199,7 @@
 </ul>
 <p>None of these have clear answers yet—but they’re the right questions to be asking.</p>
 <hr>
-<h2 id="further-reading-resources">Further Reading &amp; Resources</h2>
+<h2 id="further-reading-resources">Further Reading &amp; Resources<a href="#further-reading-resources" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>AWS re:Invent session catalog: <a href="https://reinvent.awsevents.com/">https://reinvent.awsevents.com/</a></li>
 </ul>

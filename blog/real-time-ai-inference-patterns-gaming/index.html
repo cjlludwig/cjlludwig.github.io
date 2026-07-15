@@ -88,8 +88,8 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-BhwKzi5v.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-v4LG5FeD.css">
+    <script type="module" crossorigin src="/assets/index-CK51fLjs.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-PaK9e3EG.css">
   </head>
   <body>
     <div id="root">
@@ -100,8 +100,8 @@
           <time datetime="2025-12-01">December 1, 2025</time>
         </header>
         <div class="blog-content">
-          <h1 id="real-time-ai-inference-patterns-from-the-gaming-industry">Real-Time AI Inference Patterns from the Gaming Industry</h1>
-<h2 id="tldr">TLDR</h2>
+          <h1 id="real-time-ai-inference-patterns-from-the-gaming-industry">Real-Time AI Inference Patterns from the Gaming Industry<a href="#real-time-ai-inference-patterns-from-the-gaming-industry" class="header-anchor" aria-label="Link to this section">#</a></h1>
+<h2 id="tldr">TLDR<a href="#tldr" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>The gaming industry is quietly pioneering real-time distributed AI patterns.</li>
 <li>Studios are building inference engines like <strong>INFUSE</strong> to blend narrative control between players, designers, and agents.</li>
@@ -111,7 +111,7 @@
 <li>Automated “theater tests” help validate behavior across entire simulated worlds.</li>
 </ul>
 <hr>
-<h2 id="why-games-are-the-hardest-distributed-systems-youre-not-thinking-about">Why Games Are the Hardest Distributed Systems You’re Not Thinking About</h2>
+<h2 id="why-games-are-the-hardest-distributed-systems-youre-not-thinking-about">Why Games Are the Hardest Distributed Systems You’re Not Thinking About<a href="#why-games-are-the-hardest-distributed-systems-youre-not-thinking-about" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>Video games are, in many ways, the purest expression of a distributed architecture:  </p>
 <ul>
 <li>Clients and servers share portions of state.  </li>
@@ -122,7 +122,7 @@
 <p>The Jam and Tea studio team presenting built an inference engine called <strong>INFUSE</strong>, designed to sit alongside Unreal Engine and provide adaptive narrative and behavioral logic in real time.</p>
 <p>Its guiding goal:<br><strong>Bridge narrative control between players, designers, and autonomous AI agents.</strong></p>
 <hr>
-<h2 id="the-infuse-engine-actors-directors-and-shared-narrative">The INFUSE Engine: Actors, Directors, and Shared Narrative</h2>
+<h2 id="the-infuse-engine-actors-directors-and-shared-narrative">The INFUSE Engine: Actors, Directors, and Shared Narrative<a href="#the-infuse-engine-actors-directors-and-shared-narrative" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>At the heart of INFUSE is a simple but powerful pattern:</p>
 <ul>
 <li><p><strong>Actors (Local Scope)</strong><br>Represent individual NPC-level reasoning.<br>Handle tight, situation-specific logic.</p>
@@ -133,7 +133,7 @@
 <p>The two interact through a concept they call <strong>Structured Emergence</strong>—a controlled balance between explicit design constraints and unexpected, player-driven outcomes.</p>
 <p>Designers and players both influence the experience, with AI agents sitting in the middle, continuously shaping the evolving world.</p>
 <hr>
-<h2 id="making-the-client-the-source-of-truth">Making the Client the Source of Truth</h2>
+<h2 id="making-the-client-the-source-of-truth">Making the Client the Source of Truth<a href="#making-the-client-the-source-of-truth" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>One of the most interesting design decisions:</p>
 <p><strong>Clients own the state. Inference is stateless.</strong></p>
 <p>Rather than maintaining rolling memory or conversational context on the server, every inference call includes the <strong>entire required slice of world state</strong>—often <strong>20–40k tokens inbound</strong>—and expects about <strong>100 tokens outbound</strong>.</p>
@@ -146,7 +146,7 @@
 </ul>
 <p>Stateless AI is far simpler to reason about in a real-time environment.</p>
 <hr>
-<h2 id="guardrails-keeping-npcs-grounded-in-reality">Guardrails: Keeping NPCs Grounded in Reality</h2>
+<h2 id="guardrails-keeping-npcs-grounded-in-reality">Guardrails: Keeping NPCs Grounded in Reality<a href="#guardrails-keeping-npcs-grounded-in-reality" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>To prevent wild or lore-breaking outputs, they added a post-processing layer that:</p>
 <ul>
 <li>Sanitizes raw LLM responses  </li>
@@ -159,7 +159,7 @@
 </blockquote>
 <p>The guardrails are a safety net but also a narrative device.</p>
 <hr>
-<h2 id="real-time-inference-loops-and-queuing">Real-Time Inference Loops and Queuing</h2>
+<h2 id="real-time-inference-loops-and-queuing">Real-Time Inference Loops and Queuing<a href="#real-time-inference-loops-and-queuing" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>Inference runs on <strong>1–2 second cycles</strong>, which is blisteringly fast considering the token sizes involved.</p>
 <p>To support this, the system uses:</p>
 <ul>
@@ -169,7 +169,7 @@
 </ul>
 <p>This pattern mirrors high-frequency trading and robotics more than traditional game AI.</p>
 <hr>
-<h2 id="the-brutal-cost-curve-of-large-context-inference">The Brutal Cost Curve of Large-Context Inference</h2>
+<h2 id="the-brutal-cost-curve-of-large-context-inference">The Brutal Cost Curve of Large-Context Inference<a href="#the-brutal-cost-curve-of-large-context-inference" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>Their original architecture was… expensive.</p>
 <ul>
 <li><strong>$200 per game session</strong> when relying on external providers.  </li>
@@ -179,7 +179,7 @@
 </ul>
 <p>This is a rare, quantified look at what real-time LLM usage costs at scale—and how aggressively you need to optimize to reach consumer-grade economics.</p>
 <hr>
-<h2 id="testing-ai-worlds-unit-tests-and-theater-tests">Testing AI Worlds: Unit Tests and “Theater Tests”</h2>
+<h2 id="testing-ai-worlds-unit-tests-and-theater-tests">Testing AI Worlds: Unit Tests and “Theater Tests”<a href="#testing-ai-worlds-unit-tests-and-theater-tests" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>Beyond conventional unit tests, the team runs <strong>theater tests</strong>:</p>
 <ul>
 <li>Start with an empty game world  </li>
@@ -189,7 +189,7 @@
 </ul>
 <p>It’s essentially <strong>load testing for emergent behavior</strong>, ensuring that the AI ecosystem doesn’t spiral into chaos when many agents interact simultaneously.</p>
 <hr>
-<h2 id="closing-thoughts">Closing Thoughts</h2>
+<h2 id="closing-thoughts">Closing Thoughts<a href="#closing-thoughts" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>This session was a fascinating look into how the gaming industry is solving problems that most enterprises won’t face for years:</p>
 <ul>
 <li>Real-time inference at scale  </li>
@@ -199,7 +199,7 @@
 </ul>
 <p>If you want a glimpse of future agent architectures—or you’re building anything that blends real-time user input with autonomous behaviors—these patterns are worth studying closely.</p>
 <hr>
-<h2 id="further-reading-resources">Further Reading &amp; Resources</h2>
+<h2 id="further-reading-resources">Further Reading &amp; Resources<a href="#further-reading-resources" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>Jam and Tea Studio: <a href="https://www.jamandtea.studio/">https://www.jamandtea.studio/</a></li>
 <li>AWS re:Invent session catalog: <a href="https://reinvent.awsevents.com">https://reinvent.awsevents.com</a></li>

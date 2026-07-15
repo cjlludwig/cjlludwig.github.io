@@ -88,8 +88,8 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-BhwKzi5v.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-v4LG5FeD.css">
+    <script type="module" crossorigin src="/assets/index-CK51fLjs.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-PaK9e3EG.css">
   </head>
   <body>
     <div id="root">
@@ -100,7 +100,7 @@
           <time datetime="2026-02-22">February 22, 2026</time>
         </header>
         <div class="blog-content">
-          <h2 id="poor-documentation-costs-are-rising">Poor Documentation Costs are Rising</h2>
+          <h2 id="poor-documentation-costs-are-rising">Poor Documentation Costs are Rising<a href="#poor-documentation-costs-are-rising" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <blockquote>
 <p>In most engineering organizations, distributed systems READMEs are stale at best and nonexistent at worst.</p>
 </blockquote>
@@ -109,7 +109,7 @@
 <p>Headless coding agents now interact with your repository repeatedly. Each session must reconstruct context that should already exist in a well-written README: architectural boundaries, service responsibilities, deployment constraints, domain assumptions.</p>
 <p>Without that context, agents navigate blindly—exploring directories, parsing files, inferring intent, and repeating the cycle. Every cycle consumes tokens, compute, network bandwidth, and time. What used to be onboarding overhead becomes a recurring operational cost.</p>
 <p>The absence of structured documentation is no longer a soft inefficiency. It’s measurable spend.</p>
-<h3 id="cost-estimate">Cost Estimate</h3>
+<h3 id="cost-estimate">Cost Estimate<a href="#cost-estimate" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>Consider a moderately large enterprise repository:</p>
 <ul>
 <li>~10,000 total files  </li>
@@ -124,12 +124,12 @@
 <blockquote>
 <p>pay once to persist context, or pay repeatedly to rediscover it.</p>
 </blockquote>
-<h2 id="doc-as-ci">Doc-as-CI</h2>
+<h2 id="doc-as-ci">Doc-as-CI<a href="#doc-as-ci" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <blockquote>
 <p>A tuned agent workflow focused on gathering that context and persisting it in a README.</p>
 </blockquote>
 <p>The agent explores the repository deliberately, synthesizes context, and persists it as a high-signal README. Because the workflow is CI-friendly, pull requests can be evaluated against the existing documentation to detect drift. Changes that modify behavior without updating docs can be flagged or failed automatically.</p>
-<h3 id="background">Background</h3>
+<h3 id="background">Background<a href="#background" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>The first iteration of this project was a simple inference pipeline: a sequence of OpenAI API calls stitched together to process repository context and emit documentation. It proved the concept, but the design was fundamentally brittle.</p>
 <p>It depended on large, precomputed repository dumps. That required constant filtering of low-signal noise: <code>node_modules</code>, lockfiles, generated artifacts, and other irrelevant content. Even with aggressive exclusion rules, the model was still forced to ingest far more context than it actually needed.</p>
 <p>The core issue wasn’t prompt quality, it was architecture. So I rebuilt the system around an agentic workflow.</p>
@@ -137,7 +137,7 @@
 <p>Conceptually, this is similar to Claude Code’s <code>/init</code> flow that produces an initial <code>CLAUDE.md</code>. The difference is scope and enforcement. This project treats documentation as a maintained artifact rather than a one-time bootstrap step.</p>
 <p>Because the workflow is agent-driven, it extends naturally into CI. Pull requests can be evaluated against the current README to detect documentation drift. Changes that alter behavior without updating docs can be surfaced automatically—or gated entirely.</p>
 <p>The result is a repeatable, enforceable pattern for maintaining repository context over time.</p>
-<h2 id="introducing-rereadme">Introducing ReReadme</h2>
+<h2 id="introducing-rereadme">Introducing ReReadme<a href="#introducing-rereadme" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p><code>rereadme</code> is a CLI tool that refreshes README.md files by analyzing a repository and generating an updated README from a template using an AI agent workflow built on the OpenAI Agents SDK. It supports both a full regeneration mode and a PR-friendly CI mode that analyzes diffs and produces targeted patch suggestions.</p>
 <p>The package focuses on standardized documentation across distributed repositories. In larger organizations, each repository tends to evolve its own documentation style and structure, forcing engineers and agents to re-orient themselves every time they move between services. ReReadme addresses this with bring-your-own templates, allowing teams to define a consistent README structure once and apply it across repositories.</p>
 <p>It&#39;s not intended to generate flashy Markdown for marketing or virality—that&#39;s a different use case entirely. The goal is to help teams quickly establish core documentation where it doesn&#39;t exist and then wire a simple process to keep it up to date.</p>
@@ -155,7 +155,7 @@
 <span class="line"><span style="color:#F69D50">rereadme</span></span></code></pre>
 </div>
 <p><img src="/blog-images/demo.gif" alt="demo"></p>
-<h3 id="how-does-it-work">How does it work?</h3>
+<h3 id="how-does-it-work">How does it work?<a href="#how-does-it-work" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>By leveraging the OpenAI Agents SDK I was able to build and tune an agentic workflow exposed as a CLI tool for on-demand documentation generation and evaluation. This keeps the system scoped and predictable, avoiding the unbounded behavior common in many LLM-powered solutions while meeting developers directly in their existing workflows.</p>
 <p>Through a curated suite of reusable evals, a representative dataset of repositories, and extensive dogfooding, I developed tuned system prompts for the different agentic tasks in the tool. This setup allows me to quickly validate prompt changes and model upgrades against a standardized benchmark before shipping them.</p>
 <p>ReReadme also supports bring-your-own templates using <code>--template</code>, allowing organizations to define a consistent documentation structure across repositories. Instead of every README evolving organically, teams can standardize the sections they care about—architecture, deployment, dependencies, operational notes—and have the agent populate them automatically. See the <a href="https://github.com/cjlludwig/ReReadme/blob/main/docs/templates.md">template docs</a> and the <a href="https://github.com/cjlludwig/ReReadme/blob/main/templates/README_TEMPLATE.md">default template example</a>.</p>
@@ -163,8 +163,8 @@
 <p>The agents operate with a deliberately constrained set of filesystem tools built on Node’s native FS capabilities and the <a href="https://www.npmjs.com/package/globby">globby</a> library. These tools enable targeted repository exploration while enforcing an important constraint: <strong>git-tracked access only</strong>.</p>
 <p>This mirrors normal development practices where only committed files represent the intended state of the repository. By restricting the agent to git-tracked files, sensitive local artifacts like <code>.env</code>, <code>.secrets</code>, and other untracked files remain inaccessible.</p>
 <p>The second security principle is isolation. The agent framework runs within your own OpenAI account, meaning repository data never leaves a trusted environment. Combined with the constrained filesystem access, this layered design keeps the system deterministic and dramatically reduces the risk of agent behavior undermining trust in the tool.</p>
-<h3 id="core-workflows">Core Workflows</h3>
-<h4 id="readme-from-scratch">README from scratch</h4>
+<h3 id="core-workflows">Core Workflows<a href="#core-workflows" class="header-anchor" aria-label="Link to this section">#</a></h3>
+<h4 id="readme-from-scratch">README from scratch<a href="#readme-from-scratch" class="header-anchor" aria-label="Link to this section">#</a></h4>
 <p>No README? Run rereadme to generate one, the tool explores your repo structure and distills it into a polished doc.</p>
 <div class="code-block" data-lang="shell">
   <div class="code-block-header">
@@ -184,7 +184,7 @@
 <span class="line"><span style="color:#768390"># ✨ README.md</span></span></code></pre>
 </div>
 <p><img src="/blog-images/blog_demo.gif" alt="demo_scratch"></p>
-<h4 id="readme-drift-over-time">README drift over time</h4>
+<h4 id="readme-drift-over-time">README drift over time<a href="#readme-drift-over-time" class="header-anchor" aria-label="Link to this section">#</a></h4>
 <p>Stale doc references? Run a check of current Git branch changes against latest README to ensure changes are captured.</p>
 <div class="code-block" data-lang="shell">
   <div class="code-block-header">
@@ -201,7 +201,7 @@
 <span class="line"><span style="color:#768390"># ♻️ README.md</span></span></code></pre>
 </div>
 <p><img src="/blog-images/blog_ci.gif" alt="demo_ci"></p>
-<h2 id="putting-it-together">Putting it Together</h2>
+<h2 id="putting-it-together">Putting it Together<a href="#putting-it-together" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>Documentation used to be a human convenience. In AI-assisted development it becomes shared infrastructure for both humans and agents. ReReadme allows teams to kill two birds with one stone by quickly generating context artifacts for both audiences, dramatically lowering the barrier to entry for any contributor.</p>
 <p>I&#39;m planning on continuing to write up a series of lessons learned while tinkering and improving the output of the tool. In these I&#39;ll highlight some of the tech decisions made in the repo and the why. These will include:</p>
 <ul>

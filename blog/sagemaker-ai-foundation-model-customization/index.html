@@ -88,8 +88,8 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-BhwKzi5v.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-v4LG5FeD.css">
+    <script type="module" crossorigin src="/assets/index-CK51fLjs.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-PaK9e3EG.css">
   </head>
   <body>
     <div id="root">
@@ -100,8 +100,8 @@
           <time datetime="2025-12-04">December 4, 2025</time>
         </header>
         <div class="blog-content">
-          <h1 id="customizing-foundation-models-with-sagemaker-ai">Customizing Foundation Models with SageMaker AI</h1>
-<h2 id="tldr">TLDR</h2>
+          <h1 id="customizing-foundation-models-with-sagemaker-ai">Customizing Foundation Models with SageMaker AI<a href="#customizing-foundation-models-with-sagemaker-ai" class="header-anchor" aria-label="Link to this section">#</a></h1>
+<h2 id="tldr">TLDR<a href="#tldr" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>SageMaker AI now offers guided, serverless model customization workflows with fine-tuning, RL, and synthetic data options.</li>
 <li>The console experience is polished, but code-first parity may lag.</li>
@@ -110,9 +110,9 @@
 <li>Private VPC, encryption, and governance are available by default.</li>
 </ul>
 <p>AWS is leaning heavily into making model customization accessible to teams that don’t want to spend months wrangling GPU clusters, custom trainers, and eval pipelines. This session walked through a new SageMaker AI workflow designed to reduce customization time from months to roughly 30 minutes. Below are my refined notes and interpretations from the talk and live demo.</p>
-<h2 id="the-model-customization-workflow">The Model Customization Workflow</h2>
+<h2 id="the-model-customization-workflow">The Model Customization Workflow<a href="#the-model-customization-workflow" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>The core workflow: define goals → gather data → customize → iterate → deploy.<br>All of it sits under a governance and responsible-AI framework.</p>
-<h2 id="why-customize-when-foundation-models-keep-getting-better">Why Customize When Foundation Models Keep Getting Better?</h2>
+<h2 id="why-customize-when-foundation-models-keep-getting-better">Why Customize When Foundation Models Keep Getting Better?<a href="#why-customize-when-foundation-models-keep-getting-better" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>The presenter emphasized three motivations:</p>
 <ol>
 <li><strong>Latency</strong> — Smaller or domain-specific models respond faster.  </li>
@@ -120,12 +120,12 @@
 <li><strong>Accuracy</strong> — Domain-adapted reasoning reduces hallucinations and improves reliability.</li>
 </ol>
 <p>In short: tuning transforms the model into a domain-expert instead of a generalist.</p>
-<h2 id="new-console-flows-in-sagemaker-ai">New Console Flows in SageMaker AI</h2>
+<h2 id="new-console-flows-in-sagemaker-ai">New Console Flows in SageMaker AI<a href="#new-console-flows-in-sagemaker-ai" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>The new “Customize” dropdown appears on all supported foundation models in the SageMaker AI console.</p>
 <p>Highlights:</p>
-<h3 id="kiro-enabled-spec-process">Kiro-Enabled Spec Process</h3>
+<h3 id="kiro-enabled-spec-process">Kiro-Enabled Spec Process<a href="#kiro-enabled-spec-process" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>A guided wizard that dynamically validates configuration choices and prevents invalid setups.</p>
-<h3 id="customization-techniques">Customization Techniques</h3>
+<h3 id="customization-techniques">Customization Techniques<a href="#customization-techniques" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>Multiple tuning modes were demonstrated:</p>
 <ul>
 <li>Supervised fine-tuning  </li>
@@ -134,17 +134,17 @@
 <li>RL with LLM-as-a-judge</li>
 </ul>
 <p>The last option is notable: AWS now provides judge models natively for reinforcement learning loops.</p>
-<h3 id="synthetic-data-generation">Synthetic Data Generation</h3>
+<h3 id="synthetic-data-generation">Synthetic Data Generation<a href="#synthetic-data-generation" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>Users can generate synthetic examples either:</p>
 <ul>
 <li>without supplying data (pure synthetic),  </li>
 <li>with an input bucket for grounding, or  </li>
 <li>with fully user-defined datasets.</li>
 </ul>
-<h3 id="evaluator-page">Evaluator Page</h3>
+<h3 id="evaluator-page">Evaluator Page<a href="#evaluator-page" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <p>A built-in interface for creating or importing eval sets.<br>AWS includes a catalog of predefined training scenarios, such as high-quality tool-calling evaluations.</p>
 <p>This solves one of the historically painful parts of model customization: the eval pipeline.</p>
-<h2 id="live-demo-sagemaker-studio">Live Demo: SageMaker Studio</h2>
+<h2 id="live-demo-sagemaker-studio">Live Demo: SageMaker Studio<a href="#live-demo-sagemaker-studio" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>The presenters demonstrated the full workflow:</p>
 <ul>
 <li>Selecting a base model  </li>
@@ -158,7 +158,7 @@
 </ul>
 <p>The key message: a process that used to take months can now be run serverlessly in ~30 minutes.</p>
 <p>A caveat: although the speaker said everything is supported “as code,” AWS launches often lag in full IaC coverage. Code-first teams may find gaps on day one.</p>
-<h3 id="diagram">Diagram</h3>
+<h3 id="diagram">Diagram<a href="#diagram" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <pre class="mermaid">flowchart LR;
   Goals[Define goals & eval criteria] --> Data[Prepare dataset];
   Data --> Customize[Customize & evaluate models];
@@ -170,7 +170,7 @@
   Customize:::gray;
   Iterate:::gray;
   Deploy:::gray;</pre>
-<h2 id="infrastructure-security-notes">Infrastructure &amp; Security Notes</h2>
+<h2 id="infrastructure-security-notes">Infrastructure &amp; Security Notes<a href="#infrastructure-security-notes" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>AWS emphasized secure defaults:</p>
 <ul>
 <li>Serverless runtime  </li>
@@ -179,14 +179,14 @@
 <li>Lineage tracking for every step</li>
 </ul>
 <p>Governance is woven throughout the lifecycle rather than added as an afterthought.</p>
-<h2 id="benchmarking-comparison">Benchmarking &amp; Comparison</h2>
+<h2 id="benchmarking-comparison">Benchmarking &amp; Comparison<a href="#benchmarking-comparison" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>After customization completes:</p>
 <ul>
 <li>Users can benchmark the base vs. tuned model using AWS or custom eval suites.  </li>
 <li>Side-by-side comparisons are available.  </li>
 <li>Lineage, parameters, and history are fully traceable.</li>
 </ul>
-<h2 id="prompt-playground-deployment">Prompt Playground &amp; Deployment</h2>
+<h2 id="prompt-playground-deployment">Prompt Playground &amp; Deployment<a href="#prompt-playground-deployment" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>Teams can immediately:</p>
 <ul>
 <li>adjust inference parameters,  </li>
@@ -195,9 +195,9 @@
 <li>manage endpoints in the UI.</li>
 </ul>
 <p>This closes the loop from idea to production in a single interface.</p>
-<h2 id="useful-reference">Useful Reference</h2>
+<h2 id="useful-reference">Useful Reference<a href="#useful-reference" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p><strong>Foundation models and hyperparameters for fine-tuning — Amazon SageMaker AI</strong><br><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-fine-tuning.html">https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-fine-tuning.html</a></p>
-<h2 id="further-reading-resources">Further Reading / Resources</h2>
+<h2 id="further-reading-resources">Further Reading / Resources<a href="#further-reading-resources" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>AWS re:Invent Session Catalog: <a href="https://reinvent.awsevents.com/">https://reinvent.awsevents.com/</a></li>
 <li>AWS SageMaker AI documentation: <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/whatis.html">https://docs.aws.amazon.com/sagemaker/latest/dg/whatis.html</a>  </li>

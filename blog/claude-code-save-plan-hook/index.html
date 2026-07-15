@@ -88,8 +88,8 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-BhwKzi5v.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-v4LG5FeD.css">
+    <script type="module" crossorigin src="/assets/index-CK51fLjs.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-PaK9e3EG.css">
   </head>
   <body>
     <div id="root">
@@ -104,7 +104,7 @@
 <p>And then a run hangs, or the agent crashes, or the terminal gets into a weird state.</p>
 <p>Anthropic (and, frankly, most agent runtimes) still have enough instability that “just restart the session” is a normal troubleshooting step. That’s fine until you realize you just lost the plan you carefully shaped into a crisp set of steps.</p>
 <p>So I wired up a small hook that snapshots the latest Claude plan into the repo the moment Claude transitions from <code>Plan -&gt; Edit</code>. It’s a pure quality-of-life upgrade, but one that very quickly becomes “how did I live without this?”</p>
-<h2 id="the-problem-plans-persist-but-not-where-you-need-them">The problem: plans persist, but not where you need them</h2>
+<h2 id="the-problem-plans-persist-but-not-where-you-need-them">The problem: plans persist, but not where you need them<a href="#the-problem-plans-persist-but-not-where-you-need-them" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>Claude Code helpfully persists plans to a common location, <code>~/.claude/plans/{random_name}.md</code>.</p>
 <p>That’s useful, but in practice it becomes a single bucket across all repos and sessions on your machine. If you’re hopping between projects (or juggling multiple plans), it gets messy fast.</p>
 <p>What I actually wanted was:</p>
@@ -113,7 +113,7 @@
 <li>Name it something human-readable (based on the plan header).</li>
 <li>Make it safe to run repeatedly and safe across multiple tool invocations.</li>
 </ul>
-<h2 id="the-solution-snapshot-on-pretooluse">The solution: snapshot on PreToolUse</h2>
+<h2 id="the-solution-snapshot-on-pretooluse">The solution: snapshot on PreToolUse<a href="#the-solution-snapshot-on-pretooluse" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>Claude Code exposes hooks. A <code>PreToolUse</code> hook is the perfect place to do this because it runs right as Claude is about to invoke an editing tool.</p>
 <p>The flow looks like this:</p>
 <ol>
@@ -132,13 +132,13 @@
 </ol>
 <p>From that point on, you’ve got a stable, repo-local record of the intent before implementation begins.</p>
 <p>And because the file lives in your repo, it becomes easy to reference later in Claude prompts -- <code>@docs/plans/{descriptive_name}.md</code>.</p>
-<h2 id="why-is-this-valuable">Why is this valuable?</h2>
+<h2 id="why-is-this-valuable">Why is this valuable?<a href="#why-is-this-valuable" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>Plans capture something that’s often missing in the final code, <code>intent</code>. Having that intent preserved inside the repo pays dividends well beyond simply avoiding lost work. It makes writing a strong PR description straightforward because you’re not reconstructing context from scattered code changes. It gives you a clean paper trail when debugging regressions, showing what you originally meant to implement. And it creates high-signal “why” documentation that stands apart from the implementation itself.</p>
 <p>Instead of ephemeral agent chatter, plans become lightweight, versionable engineering artifacts that travel with the code.</p>
 <hr>
-<h2 id="hook-implementation">Hook implementation</h2>
+<h2 id="hook-implementation">Hook implementation<a href="#hook-implementation" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <p>Below is the exact setup: a <code>settings.json</code> hook plus a small Node script.</p>
-<h3 id="save-plan-hook">Save plan hook</h3>
+<h3 id="save-plan-hook">Save plan hook<a href="#save-plan-hook" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <div class="code-block" data-lang="json">
   <div class="code-block-header">
     <span class="code-block-lang">json</span>
@@ -163,7 +163,7 @@
 <span class="line"><span style="color:#ADBAC7">  }</span></span>
 <span class="line"><span style="color:#ADBAC7">}</span></span></code></pre>
 </div>
-<h3 id="save-plan-script">Save plan script</h3>
+<h3 id="save-plan-script">Save plan script<a href="#save-plan-script" class="header-anchor" aria-label="Link to this section">#</a></h3>
 <div class="code-block" data-lang="js">
   <div class="code-block-header">
     <span class="code-block-lang">js</span>
@@ -212,7 +212,7 @@
 <span class="line"></span>
 <span class="line"><span style="color:#ADBAC7">process.</span><span style="color:#DCBDFB">exit</span><span style="color:#ADBAC7">(</span><span style="color:#6CB6FF">0</span><span style="color:#ADBAC7">);</span></span></code></pre>
 </div>
-<h2 id="further-reading-resources">Further Reading / Resources</h2>
+<h2 id="further-reading-resources">Further Reading / Resources<a href="#further-reading-resources" class="header-anchor" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>Claude Code documentation (<a href="https://code.claude.com/docs/en/hooks">hooks, settings, tool lifecycle</a>).</li>
 </ul>
